@@ -31,7 +31,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "VUv7xzcVz"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -108,10 +108,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "VUv7xzcVz"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "go_memstats_heap_released_bytes",
+          "expr": "go_goroutines",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -134,7 +134,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "VUv7xzcVz"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -211,15 +211,13 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "VUv7xzcVz"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "go_memstats_alloc_bytes{instance=\"node-exporter:9100\"}",
-          "instant": true,
-          "key": "Q-563f3192-578e-450f-9ad3-866279cf22fe-0",
+          "expr": "go_gc_duration_seconds",
           "legendFormat": "__auto",
           "range": true,
-          "refId": "go-metric"
+          "refId": "A"
         }
       ],
       "title": "New Panel",
@@ -240,6 +238,6 @@
   "timezone": "",
   "title": "test dashboard",
   "uid": "bN1Ubz5Vk",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }

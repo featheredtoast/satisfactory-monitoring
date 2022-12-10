@@ -18,7 +18,8 @@ services:
   grafana:
     image: grafana/grafana-oss
     volumes:
-      - ./grafana/datasources/prometheus.yml:/usr/share/grafana/conf/provisioning/datasources/prometheus.yml
+      - ./grafana/datasources/prometheus.yml:/etc/grafana/provisioning/datasources/prometheus.yml
+      - ./grafana/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml
       - ./grafana/dashboards:/var/lib/grafana/dashboards
     ports:
       - "3000:3000"
