@@ -17,6 +17,9 @@ services:
 
   grafana:
     image: grafana/grafana-oss
+    volumes:
+      - ./grafana/datasources/prometheus.yml:/usr/share/grafana/conf/provisioning/datasources/prometheus.yml
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
     ports:
       - "3000:3000"
     networks:
