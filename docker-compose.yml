@@ -9,8 +9,19 @@ services:
     image: prom/prometheus
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/rules.yml:/etc/prometheus/rules.yml
     ports:
       - "9090:9090"
+    networks:
+      - grafana
+    restart: always
+
+  alertmanager:
+    image: prom/alertmanager
+    volumes:
+      - ./alertmanager:/etc/alertmanager
+    ports:
+      - "9093:9093"
     networks:
       - grafana
     restart: always
@@ -31,6 +42,8 @@ services:
     image: ubuntu
     networks:
       - grafana
+    ports:
+      - "8090:8090"
     volumes:
       - ./node-exporter/entrypoint.sh:/opt/entrypoint.sh
     entrypoint: ["/opt/entrypoint.sh"]

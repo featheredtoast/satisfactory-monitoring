@@ -1,0 +1,6 @@
+groups:
+ - name: Count greater than 5
+   rules:
+   - alert: CountGreaterThan5
+     expr: go_goroutines > 5
+     for: 10s
