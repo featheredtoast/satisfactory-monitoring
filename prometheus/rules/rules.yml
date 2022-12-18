@@ -4,3 +4,6 @@ groups:
    - alert: CountGreaterThan5
      expr: go_goroutines > 5
      for: 10s
+     annotations:
+       summary: "Test alert {{ $labels.exporter_type }}"
+       description: Test alerts for {{ $labels.job}} on instance {{ $labels.instance }} and it is {{ $value }}.

@@ -2,9 +2,10 @@ global:
   resolve_timeout: 5m
 route:
   receiver: webhook_receiver
+#  repeat_interval: 5m
 receivers:
     - name: webhook_receiver
       webhook_configs:
         - url: 'https://webhook.site/5ec97381-c8a2-47b4-b7fc-14bee28b1490'
-          send_resolved: false
+          send_resolved: true
 
