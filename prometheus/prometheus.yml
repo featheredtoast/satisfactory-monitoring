@@ -2,7 +2,7 @@ global:
   scrape_interval: 15s
   evaluation_interval: 10s
 rule_files:
-  - rules.yml
+  - rules/*.yml
 
 alerting:
   alertmanagers:
@@ -12,5 +12,6 @@ alerting:
 
 scrape_configs:
   - job_name: node
-    static_configs:
-      - targets: ['node-exporter:9100']
+    file_sd_configs:
+      - files:
+        - nodes/*.yml

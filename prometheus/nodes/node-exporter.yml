@@ -1,0 +1,4 @@
+- targets:
+    - 'node-exporter:9100'
+  labels:
+    exporter_type: 'test-node exporter'

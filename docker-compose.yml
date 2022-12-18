@@ -8,8 +8,7 @@ services:
   prometheus:
     image: prom/prometheus
     volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./prometheus/rules.yml:/etc/prometheus/rules.yml
+      - ./prometheus:/etc/prometheus
     ports:
       - "9090:9090"
     networks:
