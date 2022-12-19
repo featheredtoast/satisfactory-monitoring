@@ -1,0 +1,158 @@
+# HELP battery_capacity Total capacity of battery bank(s)
+# TYPE battery_capacity gauge
+battery_capacity{circuit_id="1"} 100
+battery_capacity{circuit_id="2"} 100
+# HELP battery_differential Amount of power in excess/deficit going into or out of the battery bank(s). Positive = Charges batteries, Negative = Drains batteries
+# TYPE battery_differential gauge
+battery_differential{circuit_id="1"} 12
+battery_differential{circuit_id="2"} -12
+# HELP battery_percent Percentage of battery bank(s) charge
+# TYPE battery_percent gauge
+battery_percent{circuit_id="1"} 60
+battery_percent{circuit_id="2"} 60
+# HELP battery_seconds_empty Seconds until Batteries are empty
+# TYPE battery_seconds_empty gauge
+battery_seconds_empty{circuit_id="1"} 0
+battery_seconds_empty{circuit_id="2"} 7200
+# HELP battery_seconds_full Seconds until Batteries are full
+# TYPE battery_seconds_full gauge
+battery_seconds_full{circuit_id="1"} 120131
+battery_seconds_full{circuit_id="2"} 0
+# HELP fuse_triggered Has the fuse been triggered
+# TYPE fuse_triggered gauge
+fuse_triggered{circuit_id="1"} 0
+fuse_triggered{circuit_id="2"} 1
+# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.
+# TYPE go_gc_duration_seconds summary
+go_gc_duration_seconds{quantile="0"} 6.2644e-05
+go_gc_duration_seconds{quantile="0.25"} 6.4193e-05
+go_gc_duration_seconds{quantile="0.5"} 0.000128623
+go_gc_duration_seconds{quantile="0.75"} 0.000138082
+go_gc_duration_seconds{quantile="1"} 0.000219561
+go_gc_duration_seconds_sum 0.000851141
+go_gc_duration_seconds_count 7
+# HELP go_goroutines Number of goroutines that currently exist.
+# TYPE go_goroutines gauge
+go_goroutines 20
+# HELP go_info Information about the Go environment.
+# TYPE go_info gauge
+go_info{version="go1.19.4"} 1
+# HELP go_memstats_alloc_bytes Number of bytes allocated and still in use.
+# TYPE go_memstats_alloc_bytes gauge
+go_memstats_alloc_bytes 2.929944e+06
+# HELP go_memstats_alloc_bytes_total Total number of bytes allocated, even if freed.
+# TYPE go_memstats_alloc_bytes_total counter
+go_memstats_alloc_bytes_total 1.2195928e+07
+# HELP go_memstats_buck_hash_sys_bytes Number of bytes used by the profiling bucket hash table.
+# TYPE go_memstats_buck_hash_sys_bytes gauge
+go_memstats_buck_hash_sys_bytes 4467
+# HELP go_memstats_frees_total Total number of frees.
+# TYPE go_memstats_frees_total counter
+go_memstats_frees_total 56508
+# HELP go_memstats_gc_cpu_fraction The fraction of this program's available CPU time used by the GC since the program started.
+# TYPE go_memstats_gc_cpu_fraction gauge
+go_memstats_gc_cpu_fraction 3.514383705785121e-06
+# HELP go_memstats_gc_sys_bytes Number of bytes used for garbage collection system metadata.
+# TYPE go_memstats_gc_sys_bytes gauge
+go_memstats_gc_sys_bytes 8.99248e+06
+# HELP go_memstats_heap_alloc_bytes Number of heap bytes allocated and still in use.
+# TYPE go_memstats_heap_alloc_bytes gauge
+go_memstats_heap_alloc_bytes 2.929944e+06
+# HELP go_memstats_heap_idle_bytes Number of heap bytes waiting to be used.
+# TYPE go_memstats_heap_idle_bytes gauge
+go_memstats_heap_idle_bytes 6.651904e+06
+# HELP go_memstats_heap_inuse_bytes Number of heap bytes that are in use.
+# TYPE go_memstats_heap_inuse_bytes gauge
+go_memstats_heap_inuse_bytes 5.046272e+06
+# HELP go_memstats_heap_objects Number of allocated objects.
+# TYPE go_memstats_heap_objects gauge
+go_memstats_heap_objects 5148
+# HELP go_memstats_heap_released_bytes Number of heap bytes released to OS.
+# TYPE go_memstats_heap_released_bytes gauge
+go_memstats_heap_released_bytes 5.890048e+06
+# HELP go_memstats_heap_sys_bytes Number of heap bytes obtained from system.
+# TYPE go_memstats_heap_sys_bytes gauge
+go_memstats_heap_sys_bytes 1.1698176e+07
+# HELP go_memstats_last_gc_time_seconds Number of seconds since 1970 of last garbage collection.
+# TYPE go_memstats_last_gc_time_seconds gauge
+go_memstats_last_gc_time_seconds 1.671474510139337e+09
+# HELP go_memstats_lookups_total Total number of pointer lookups.
+# TYPE go_memstats_lookups_total counter
+go_memstats_lookups_total 0
+# HELP go_memstats_mallocs_total Total number of mallocs.
+# TYPE go_memstats_mallocs_total counter
+go_memstats_mallocs_total 61656
+# HELP go_memstats_mcache_inuse_bytes Number of bytes in use by mcache structures.
+# TYPE go_memstats_mcache_inuse_bytes gauge
+go_memstats_mcache_inuse_bytes 9600
+# HELP go_memstats_mcache_sys_bytes Number of bytes used for mcache structures obtained from system.
+# TYPE go_memstats_mcache_sys_bytes gauge
+go_memstats_mcache_sys_bytes 15600
+# HELP go_memstats_mspan_inuse_bytes Number of bytes in use by mspan structures.
+# TYPE go_memstats_mspan_inuse_bytes gauge
+go_memstats_mspan_inuse_bytes 117216
+# HELP go_memstats_mspan_sys_bytes Number of bytes used for mspan structures obtained from system.
+# TYPE go_memstats_mspan_sys_bytes gauge
+go_memstats_mspan_sys_bytes 130176
+# HELP go_memstats_next_gc_bytes Number of heap bytes when next garbage collection will take place.
+# TYPE go_memstats_next_gc_bytes gauge
+go_memstats_next_gc_bytes 4.194304e+06
+# HELP go_memstats_other_sys_bytes Number of bytes used for other system allocations.
+# TYPE go_memstats_other_sys_bytes gauge
+go_memstats_other_sys_bytes 1.587789e+06
+# HELP go_memstats_stack_inuse_bytes Number of bytes in use by the stack allocator.
+# TYPE go_memstats_stack_inuse_bytes gauge
+go_memstats_stack_inuse_bytes 884736
+# HELP go_memstats_stack_sys_bytes Number of bytes obtained from system for stack allocator.
+# TYPE go_memstats_stack_sys_bytes gauge
+go_memstats_stack_sys_bytes 884736
+# HELP go_memstats_sys_bytes Number of bytes obtained from system.
+# TYPE go_memstats_sys_bytes gauge
+go_memstats_sys_bytes 2.3313424e+07
+# HELP go_threads Number of OS threads created.
+# TYPE go_threads gauge
+go_threads 14
+# HELP item_consumption_capacity_pc The percentage of an item's consumption capacity being used
+# TYPE item_consumption_capacity_pc gauge
+item_consumption_capacity_pc{item_name="Iron Rod"} 0.2
+item_consumption_capacity_pc{item_name="Iron Plate"} 0.5
+# HELP item_consumption_capacity_per_min The factory's capacity for the consumption of an item, per minute
+# TYPE item_consumption_capacity_per_min gauge
+item_consumption_capacity_per_min{item_name="Iron Rod"} 200
+item_consumption_capacity_per_min{item_name="Iron Plate"} 100
+# HELP item_production_capacity_pc The percentage of an item's production capacity being used
+# TYPE item_production_capacity_pc gauge
+item_production_capacity_pc{item_name="Iron Rod"} 0.1
+item_production_capacity_pc{item_name="Iron Plate"} 0.9
+# HELP item_production_capacity_per_min The factory's capacity for the production of an item, per minute
+# TYPE item_production_capacity_per_min gauge
+item_production_capacity_per_min{item_name="Iron Rod"} 100
+item_production_capacity_per_min{item_name="Iron Plate"} 400
+# HELP items_consumed_per_min The number of an item being consumed, per minute
+# TYPE items_consumed_per_min gauge
+items_consumed_per_min{item_name="Iron Rod"} 40
+items_consumed_per_min{item_name="Iron Plate"} 60
+# HELP items_produced_per_min The number of an item being produced, per minute
+# TYPE items_produced_per_min gauge
+items_produced_per_min{item_name="Iron Rod"} 10
+items_produced_per_min{item_name="Iron Plate"} 100
+# HELP power_capacity Power capacity on selected power circuit
+# TYPE power_capacity gauge
+power_capacity{circuit_id="1"} 44
+power_capacity{circuit_id="2"} 44
+# HELP power_consumed Power consumed on selected power circuit
+# TYPE power_consumed gauge
+power_consumed{circuit_id="1"} 30
+power_consumed{circuit_id="2"} 55
+# HELP power_max_consumed Maximum Power that can be consumed on selected power circuit
+# TYPE power_max_consumed gauge
+power_max_consumed{circuit_id="1"} 50
+power_max_consumed{circuit_id="2"} 60
+# HELP promhttp_metric_handler_requests_in_flight Current number of scrapes being served.
+# TYPE promhttp_metric_handler_requests_in_flight gauge
+promhttp_metric_handler_requests_in_flight 1
+# HELP promhttp_metric_handler_requests_total Total number of scrapes by HTTP status code.
+# TYPE promhttp_metric_handler_requests_total counter
+promhttp_metric_handler_requests_total{code="200"} 6
+promhttp_metric_handler_requests_total{code="500"} 0
+promhttp_metric_handler_requests_total{code="503"} 0

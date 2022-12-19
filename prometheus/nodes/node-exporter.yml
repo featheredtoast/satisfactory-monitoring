@@ -2,3 +2,5 @@
     - 'node-exporter:9100'
   labels:
     exporter_type: 'test-node exporter'
+- targets:
+    - 'server:9000'

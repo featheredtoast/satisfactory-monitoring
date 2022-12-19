@@ -5,6 +5,15 @@ networks:
     external: false
 
 services:
+  server:
+    image: nginx
+    volumes:
+      - ./exporter/metrics:/usr/share/nginx/html/metrics
+      - ./exporter/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "9000:9000"
+    networks:
+      - grafana
   prometheus:
     image: prom/prometheus
     volumes:
