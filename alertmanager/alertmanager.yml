@@ -2,6 +2,7 @@ global:
   resolve_timeout: 5m
 route:
   receiver: webhook_receiver
+  group_by: [alertname,job]
 #  repeat_interval: 5m
 receivers:
     - name: webhook_receiver
