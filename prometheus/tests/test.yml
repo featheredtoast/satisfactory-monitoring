@@ -65,13 +65,11 @@ tests:
               summary: "Under 30 minutes of power left on circuit 2"
               description: A battery has nearly drained on circuit 2. Under thirty minutes of power remaining.
 
-# No alert when charging
+# No alert when charging - battery seconds empty is 0
   - interval: 1m
     input_series:
       - series: 'battery_seconds_empty{circuit_id="1"}'
-        values: '3700 1700'
-      - series: 'battery_differential{circuit_id="1"}'
-        values: '1 1'
+        values: '0+0x10'
     alert_rule_test:
       - eval_time: 10m
         alertname: BatteryDrained

@@ -8,7 +8,7 @@ groups:
         summary: "Fuse triggered on circuit {{ $labels.circuit_id }}"
         description: Fuse triggered - a power grid is without power.
     - alert: BatteryDrained
-      expr: battery_seconds_empty < 1800
+      expr: 0 < battery_seconds_empty and battery_seconds_empty < 1800
       for: 10s
       annotations:
         summary: "Under 30 minutes of power left on circuit {{ $labels.circuit_id }}"
