@@ -2,14 +2,14 @@ groups:
   - name: Power
     rules:
     - alert: FuseTriggered
-      expr: sum without (job, instance) (fuse_triggered > 0)
+      expr: fuse_triggered > 0
       labels:
         category: power
       annotations:
         summary: "Fuse triggered on circuit {{ $labels.circuit_id }}"
         description: Fuse triggered - a power grid is without power.
     - alert: BatteryDrained
-      expr: sum without (job, instance) (0 < battery_seconds_empty and battery_seconds_empty < 1800)
+      expr: 0 < battery_seconds_empty and battery_seconds_empty < 1800
       for: 10s
       labels:
         category: power
@@ -17,7 +17,7 @@ groups:
         summary: "Under 30 minutes of power left on circuit {{ $labels.circuit_id }}"
         description: A battery has nearly drained on circuit {{ $labels.circuit_id }}. Under thirty minutes of power remaining.
     - alert: BatteryDraining
-      expr: sum without (job, instance) (battery_differential < 0)
+      expr: battery_differential < 0
       for: 10s
       labels:
         category: power
@@ -25,7 +25,7 @@ groups:
         summary: "Battery draining on circuit {{ $labels.circuit_id }}"
         description: A battery has started to drain on circuit {{ $labels.circuit_id }}.
     - alert: MaxConsumption
-      expr: sum without (job, instance) (power_capacity < power_max_consumed)
+      expr: power_capacity < power_max_consumed
       for: 10s
       labels:
         category: power
