@@ -24,7 +24,7 @@ tests:
   - interval: 1m
     input_series:
       - series: 'item_production_capacity_pc{item_name="Iron Plate"}'
-        values: '60-5x10'
+        values: '0.6-0.05x10'
     alert_rule_test:
       - eval_time: 10m
         alertname: Underproducing
@@ -35,3 +35,13 @@ tests:
             exp_annotations:
               summary: "Underproducing Iron Plate"
               description: Iron Plate production is low - under 20% production capacity. Check production sites?
+
+# No alerts for anything over 20%
+  - interval: 1m
+    input_series:
+      - series: 'item_production_capacity_pc{item_name="Iron Plate"}'
+        values: '0.3+0x10'
+    alert_rule_test:
+      - eval_time: 10m
+        alertname: Underproducing
+        exp_alerts:

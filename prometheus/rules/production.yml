@@ -10,7 +10,7 @@ groups:
         summary: "Overconsuming {{ $labels.item_name }}"
         description: "{{ $labels.item_name }} consumption has overtaken consumption. Produce more {{ $labels.item_name }} so as to not run out"
     - alert: Underproducing
-      expr: item_production_capacity_pc < 20
+      expr: item_production_capacity_pc < 0.2
       for: 1m
       labels:
         category: production
