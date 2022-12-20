@@ -20,7 +20,7 @@ With FicsitRemoteMonitoring plugin, make sure you boot the http server `/frmweb 
 - [prometheus](http://localhost:9090): Ingest metrics from the remote monitoring companion. Generates alert metrics for interesting anomalies.
 - [alertmanager](http://localhost:9093): Forwards critical alerts to notification components.
 - alertmanager-discord: Sends critical alerts to Discord.
-- [grafana](http://localhost:3000): Time series graphing dashboard.
+- [grafana](http://localhost:3000): Time series graphing dashboard. Default username/password is `admin/admin`
 - fakeserver: Test server for fake metrics used for testing. Maps to host port 8081 to avoid port conflicts if FRM is running on localhost.
   - [getFactory](http://localhost:8081/getFactory)
   - [getPower](http://localhost:8081/getPower)
