@@ -1,13 +1,3 @@
-little getting started with grafana and prometheus.
-
-Uses sample node exporter for prom.
-
-localhost:3000 for grafana
-localhost:9090 for prometheus.
-
-from grafana, add new datasource prometheus:9090
-uses docker networking here for DNS :)
-
 # Ficsit Remote Monitoring Companion Bundle
 
 Docker compose setup for Ficsit Remote Monitoring and alerting. Requires [FicsitRemoteMonitoring](https://ficsit.app/mod/FicsitRemoteMonitoring) plugin.
@@ -15,11 +5,9 @@ The http server booted up `/frmweb start` in game.
 
 ## Env Vars
 
-Set environment variables for
-
-FRM_HOST - Host where the Ficsit Remote Monitoring webserver is running. Generally this is your computer's IP address, EG: `192.168.1.20`. (Default: `fakeserver`)
-FRM_PORT - Port where the Ficsit Remote Monitoring webserver is running. `8080` is FRM's default at the time of writing. (Default: `8080`)
-DISCORD_WEBHOOK - Webhook for discord fuse and low battery notifications. Something like `https://discord.com/api/webhooks/12345/abcd12345`.
+- `FRM_HOST` - Host where the Ficsit Remote Monitoring webserver is running. Generally this is your computer's IP address, EG: `192.168.1.20`. (Default: `fakeserver`)
+- `FRM_PORT` - Port where the Ficsit Remote Monitoring webserver is running. `8080` is FRM's default at the time of writing. (Default: `8080`)
+- `DISCORD_WEBHOOK` - Webhook for discord fuse and low battery notifications. Something like `https://discord.com/api/webhooks/12345/abcd12345`.
 
 ## Services and ports
 
