@@ -1,12 +1,18 @@
 global:
   resolve_timeout: 5m
 route:
-  receiver: webhook_receiver
-  group_by: [alertname]
+  receiver: ignore
+  routes:
+    - receiver: webhook_receiver
+      group_by: [alertname]
+      matchers:
+        - category =~ "power"
+        - alertname != "BatteryDraining"
 #  repeat_interval: 5m
 receivers:
-    - name: webhook_receiver
-      webhook_configs:
-        - url: 'http://discord:9094'
-          send_resolved: true
+  - name: ignore
+  - name: webhook_receiver
+    webhook_configs:
+      - url: 'http://discord:9094'
+        send_resolved: true
 
