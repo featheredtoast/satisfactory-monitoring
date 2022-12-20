@@ -7,15 +7,15 @@ groups:
       annotations:
         summary: "Fuse triggered on circuit {{ $labels.circuit_id }}"
         description: Fuse triggered - a power grid is without power.
+    - alert: BatteryDrained
+      expr: battery_seconds_empty < 1800
+      for: 10s
+      annotations:
+        summary: "Under 30 minutes of power left on circuit {{ $labels.circuit_id }}"
+        description: A battery has nearly drained on circuit {{ $labels.circuit_id }}. Under thirty minutes of power remaining.
     - alert: BatteryDraining
       expr: battery_differential < 0
       for: 10s
       annotations:
         summary: "Battery draining on circuit {{ $labels.circuit_id }}"
         description: A battery has started to drain on circuit {{ $labels.circuit_id }}.
-    - alert: BatteryDrained
-      expr: battery_seconds_empty < 1800
-      for: 10s
-      annotations:
-        summary: "Under 30 minutes of battery left on circuit {{ $labels.circuit_id }}"
-        description: A battery has nearly drained on circuit {{ $labels.circuit_id }}. Under thirty minutes of power remaining.
