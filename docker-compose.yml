@@ -24,6 +24,14 @@ services:
       - grafana
     restart: always
 
+  discord:
+    image: benjojo/alertmanager-discord
+    environment:
+        - DISCORD_WEBHOOK=https://discord.com/api/webhooks/1054592709299552397/qcBPxfUpmbFiLTkKTQuxa_XPVdfzJFMyuX_MHDxN64hfEq5rfQ20Pbw_rLh2yzd53m7P
+    networks:
+      - grafana
+    restart: always
+
   alertmanager:
     image: prom/alertmanager
     volumes:
@@ -45,13 +53,3 @@ services:
     networks:
       - grafana
     restart: always
-
-  node-exporter:
-    image: ubuntu
-    networks:
-      - grafana
-    ports:
-      - "8090:8090"
-    volumes:
-      - ./node-exporter/entrypoint.sh:/opt/entrypoint.sh
-    entrypoint: ["/opt/entrypoint.sh"]
