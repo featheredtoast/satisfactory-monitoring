@@ -143,40 +143,38 @@
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "continuous-GrYlRd"
           },
           "mappings": [
             {
               "options": {
                 "0": {
-                  "color": "green",
                   "index": 0,
-                  "text": "-"
+                  "text": "UP"
+                },
+                "1": {
+                  "index": 1,
+                  "text": "DOWN"
                 }
               },
               "type": "value"
             }
           ],
-          "max": 960,
+          "max": 1,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
+                "color": "green",
                 "value": null
               },
               {
-                "color": "#EAB839",
-                "value": 30
-              },
-              {
-                "color": "green",
-                "value": 240
+                "color": "red",
+                "value": 80
               }
             ]
           }
@@ -189,16 +187,18 @@
         "x": 0,
         "y": 10
       },
-      "id": 10,
+      "id": 12,
       "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": false
+        "textMode": "auto"
       },
       "pluginVersion": "9.3.1",
       "targets": [
@@ -208,14 +208,14 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "battery_seconds_empty{circuit_id=\"$circuit\"} / 60",
+          "expr": "fuse_triggered{circuit_id=\"$circuit\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Battery minutes remaining",
-      "type": "gauge"
+      "title": "Fuse",
+      "type": "stat"
     },
     {
       "datasource": {
@@ -262,7 +262,7 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 4,
+        "w": 5,
         "x": 4,
         "y": 10
       },
@@ -299,38 +299,40 @@
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "continuous-GrYlRd"
+            "mode": "thresholds"
           },
           "mappings": [
             {
               "options": {
                 "0": {
+                  "color": "green",
                   "index": 0,
-                  "text": "UP"
-                },
-                "1": {
-                  "index": 1,
-                  "text": "DOWN"
+                  "text": "-"
                 }
               },
               "type": "value"
             }
           ],
-          "max": 1,
+          "max": 960,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "red",
                 "value": null
               },
               {
-                "color": "red",
-                "value": 80
+                "color": "#EAB839",
+                "value": 30
+              },
+              {
+                "color": "green",
+                "value": 240
               }
             ]
           }
@@ -339,22 +341,20 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 4,
-        "x": 20,
+        "w": 5,
+        "x": 9,
         "y": 10
       },
-      "id": 12,
+      "id": 10,
       "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showThresholdLabels": false,
+        "showThresholdMarkers": false
       },
       "pluginVersion": "9.3.1",
       "targets": [
@@ -364,14 +364,14 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "fuse_triggered{circuit_id=\"$circuit\"}",
+          "expr": "battery_seconds_empty{circuit_id=\"$circuit\"} / 60",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Fuse",
-      "type": "stat"
+      "title": "Battery minutes remaining",
+      "type": "gauge"
     },
     {
       "datasource": {
@@ -1062,6 +1062,6 @@
   "timezone": "",
   "title": "Satisfactory",
   "uid": "R-BfP854k",
-  "version": 5,
+  "version": 7,
   "weekStart": ""
 }
