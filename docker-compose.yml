@@ -21,6 +21,9 @@ services:
     entrypoint: /usr/local/bin/init.sh
     volumes:
       - ./frmcompanion/init.sh:/usr/local/bin/init.sh
+    environment:
+      - FRM_HOST=fakeserver
+      - FRM_PORT=8081
     ports:
       - "9000:9000"
       - "8000:8000"

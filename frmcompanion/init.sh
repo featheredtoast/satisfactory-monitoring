@@ -10,4 +10,4 @@ npm install
 npm run compile
 cp -R index.html map-16k.png vendor/ img/ js/ ../Companion/bin/map
 cd ../Companion/bin
-./companion -hostname fakeserver -port 8081
+./companion -hostname $FRM_HOST -port $FRM_PORT
