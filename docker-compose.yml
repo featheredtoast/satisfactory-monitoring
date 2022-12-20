@@ -39,7 +39,7 @@ services:
   discord:
     image: benjojo/alertmanager-discord
     environment:
-        - DISCORD_WEBHOOK=https://discord.com/api/webhooks/1054592709299552397/qcBPxfUpmbFiLTkKTQuxa_XPVdfzJFMyuX_MHDxN64hfEq5rfQ20Pbw_rLh2yzd53m7P
+        - DISCORD_WEBHOOK=${DISCORD_WEBHOOK}
     networks:
       - grafana
     restart: always
