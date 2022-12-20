@@ -1,5 +1,8 @@
 # Ficsit Remote Monitoring Companion Bundle
 
+![dashboard](resources/satisfactory-dash.png)
+![discord alert](resources/satisfactory-alert.png)
+
 Docker compose setup for Ficsit Remote Monitoring and alerting. Requires [FicsitRemoteMonitoring](https://ficsit.app/mod/FicsitRemoteMonitoring) plugin.
 The http server booted up `/frmweb start` in game.
 
