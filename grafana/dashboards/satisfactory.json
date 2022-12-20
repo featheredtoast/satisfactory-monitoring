@@ -18,6 +18,25 @@
           "type": "dashboard"
         },
         "type": "dashboard"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "enable": true,
+        "expr": "ALERTS{alertname=\"FuseTriggered\", alertstate=\"firing\"}",
+        "iconColor": "red",
+        "name": "Fuse triggered",
+        "step": "5m",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "textFormat": "Circuit {{circuit_id}} tripped",
+        "titleFormat": "Fuse triggered"
       }
     ]
   },
@@ -25,10 +44,23 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 24,
+      "panels": [],
+      "title": "Alerts",
+      "type": "row"
+    },
     {
       "datasource": {
         "type": "datasource",
@@ -36,9 +68,9 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 8,
+        "w": 12,
         "x": 0,
-        "y": 0
+        "y": 1
       },
       "id": 21,
       "options": {
@@ -68,9 +100,9 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 8,
-        "x": 8,
-        "y": 0
+        "w": 12,
+        "x": 12,
+        "y": 1
       },
       "id": 22,
       "options": {
@@ -99,7 +131,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 8
+        "y": 9
       },
       "id": 8,
       "panels": [],
@@ -155,7 +187,7 @@
         "h": 6,
         "w": 4,
         "x": 0,
-        "y": 9
+        "y": 10
       },
       "id": 10,
       "options": {
@@ -232,7 +264,7 @@
         "h": 6,
         "w": 4,
         "x": 4,
-        "y": 9
+        "y": 10
       },
       "id": 4,
       "options": {
@@ -309,7 +341,7 @@
         "h": 6,
         "w": 4,
         "x": 20,
-        "y": 9
+        "y": 10
       },
       "id": 12,
       "options": {
@@ -455,7 +487,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 15
+        "y": 16
       },
       "id": 2,
       "options": {
@@ -571,7 +603,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 15
+        "y": 16
       },
       "id": 19,
       "options": {
@@ -608,7 +640,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 23
+        "y": 24
       },
       "id": 14,
       "panels": [],
@@ -660,7 +692,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -750,7 +783,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 24
+        "y": 25
       },
       "id": 16,
       "options": {
@@ -865,7 +898,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -912,7 +946,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 24
+        "y": 25
       },
       "id": 17,
       "options": {
@@ -964,7 +998,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "1",
           "value": "1"
         },
@@ -1028,6 +1062,6 @@
   "timezone": "",
   "title": "Satisfactory",
   "uid": "R-BfP854k",
-  "version": 36,
+  "version": 5,
   "weekStart": ""
 }
