@@ -1,34 +1,3704 @@
-[{
-  "Building": "Smelter",
-	"Location": {
-		"X":        100,
-		"Y":        200,
-		"Z":        -300,
-		"Rotation": 60
-	},
-	"Recipe": "Iron Ingot",
-	"Production": [
-    {
-		"Name":        "Iron Ingot",
-		"CurrentProd": 10.0,
-		"MaxProd":     10.0,
-		"ProdPercent": 0.5
-	},
-		{
-		"Name":        "Iron Nothing",
-		"CurrentProd": 1000.0,
-		"MaxProd":     4000.0,
-		"ProdPercent": 0.25
-	}],
-	"Ingredients": [{
-		"Name":            "Iron Ore",
-		"CurrentConsumed": 5.0,
-		"MaxConsumed":     5.0,
-		"ConsPercent":     1.0
-	}],
-	"ManuSpeed":    1.0,
-	"IsConfigured": false,
-	"IsProducing":  false,
-	"IsPaused":     false,
-	"CircuitID":    0
-}]
+[
+  {
+    "building": "Assembler",
+    "location": {
+      "x": -58260.058594,
+      "y": 265099.25,
+      "z": -3760.552002,
+      "rotation": -80
+    },
+    "Recipe": "Smart Plating",
+    "production": [
+      {
+        "Name": "Smart Plating",
+        "CurrentProd": 0.0,
+        "MaxProd": 2.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Reinforced Iron Plate",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 2.0,
+        "ConsPercent": 0.0
+      },
+      {
+        "Name": "Rotor",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 2.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 15,
+    "features": {
+      "properties": { "type": "Assembler" },
+      "geometry": {
+        "coordinates": {
+          "x": -58260.058594,
+          "y": 265099.25,
+          "z": -3760.552002
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Assembler",
+    "location": {
+      "x": -57275.25,
+      "y": 265272.90625,
+      "z": -3760.552002,
+      "rotation": -80
+    },
+    "Recipe": "Smart Plating",
+    "production": [
+      {
+        "Name": "Smart Plating",
+        "CurrentProd": 0.0,
+        "MaxProd": 2.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Reinforced Iron Plate",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 2.0,
+        "ConsPercent": 0.0
+      },
+      {
+        "Name": "Rotor",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 2.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 15,
+    "features": {
+      "properties": { "type": "Assembler" },
+      "geometry": {
+        "coordinates": {
+          "x": -57275.25,
+          "y": 265272.90625,
+          "z": -3760.552002
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Assembler",
+    "location": {
+      "x": -56290.441406,
+      "y": 265446.5625,
+      "z": -3760.552002,
+      "rotation": -80
+    },
+    "Recipe": "Smart Plating",
+    "production": [
+      {
+        "Name": "Smart Plating",
+        "CurrentProd": 0.0,
+        "MaxProd": 2.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Reinforced Iron Plate",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 2.0,
+        "ConsPercent": 0.0
+      },
+      {
+        "Name": "Rotor",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 2.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 15,
+    "features": {
+      "properties": { "type": "Assembler" },
+      "geometry": {
+        "coordinates": {
+          "x": -56290.441406,
+          "y": 265446.5625,
+          "z": -3760.552002
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Assembler",
+    "location": {
+      "x": -59244.867188,
+      "y": 264925.59375,
+      "z": -3741.405762,
+      "rotation": -80
+    },
+    "Recipe": "Smart Plating",
+    "production": [
+      {
+        "Name": "Smart Plating",
+        "CurrentProd": 0.0,
+        "MaxProd": 2.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Reinforced Iron Plate",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 2.0,
+        "ConsPercent": 0.0
+      },
+      {
+        "Name": "Rotor",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 2.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 15,
+    "features": {
+      "properties": { "type": "Assembler" },
+      "geometry": {
+        "coordinates": {
+          "x": -59244.867188,
+          "y": 264925.59375,
+          "z": -3741.405762
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Assembler",
+    "location": {
+      "x": -63112.589844,
+      "y": 250517.53125,
+      "z": 1117.935059,
+      "rotation": 240
+    },
+    "Recipe": "Reinforced Iron Plate",
+    "production": [
+      {
+        "Name": "Reinforced Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 5.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Plate",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      },
+      {
+        "Name": "Screw",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 60.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 18,
+    "features": {
+      "properties": { "type": "Assembler" },
+      "geometry": {
+        "coordinates": {
+          "x": -63112.589844,
+          "y": 250517.53125,
+          "z": 1117.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Assembler",
+    "location": {
+      "x": -63978.609375,
+      "y": 251017.546875,
+      "z": 1117.935059,
+      "rotation": 240
+    },
+    "Recipe": "Reinforced Iron Plate",
+    "production": [
+      {
+        "Name": "Reinforced Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 5.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Plate",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      },
+      {
+        "Name": "Screw",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 60.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 18,
+    "features": {
+      "properties": { "type": "Assembler" },
+      "geometry": {
+        "coordinates": {
+          "x": -63978.609375,
+          "y": 251017.546875,
+          "z": 1117.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Assembler",
+    "location": {
+      "x": -62778.585938,
+      "y": 253095.984375,
+      "z": 1117.935059,
+      "rotation": 240
+    },
+    "Recipe": "Reinforced Iron Plate",
+    "production": [
+      {
+        "Name": "Reinforced Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 5.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Plate",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      },
+      {
+        "Name": "Screw",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 60.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 18,
+    "features": {
+      "properties": { "type": "Assembler" },
+      "geometry": {
+        "coordinates": {
+          "x": -62778.585938,
+          "y": 253095.984375,
+          "z": 1117.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Assembler",
+    "location": {
+      "x": -61912.566406,
+      "y": 252595.96875,
+      "z": 1117.935059,
+      "rotation": 240
+    },
+    "Recipe": "Reinforced Iron Plate",
+    "production": [
+      {
+        "Name": "Reinforced Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 5.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Plate",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      },
+      {
+        "Name": "Screw",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 60.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 18,
+    "features": {
+      "properties": { "type": "Assembler" },
+      "geometry": {
+        "coordinates": {
+          "x": -61912.566406,
+          "y": 252595.96875,
+          "z": 1117.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Assembler",
+    "location": {
+      "x": -61578.570312,
+      "y": 255174.40625,
+      "z": 1117.935059,
+      "rotation": 240
+    },
+    "Recipe": "Reinforced Iron Plate",
+    "production": [
+      {
+        "Name": "Reinforced Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 5.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Plate",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      },
+      {
+        "Name": "Screw",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 60.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 18,
+    "features": {
+      "properties": { "type": "Assembler" },
+      "geometry": {
+        "coordinates": {
+          "x": -61578.570312,
+          "y": 255174.40625,
+          "z": 1117.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Assembler",
+    "location": {
+      "x": -60712.550781,
+      "y": 254674.390625,
+      "z": 1117.935059,
+      "rotation": 240
+    },
+    "Recipe": "Reinforced Iron Plate",
+    "production": [
+      {
+        "Name": "Reinforced Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 5.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Plate",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      },
+      {
+        "Name": "Screw",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 60.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 18,
+    "features": {
+      "properties": { "type": "Assembler" },
+      "geometry": {
+        "coordinates": {
+          "x": -60712.550781,
+          "y": 254674.390625,
+          "z": 1117.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Assembler",
+    "location": {
+      "x": -70510.375,
+      "y": 254904.1875,
+      "z": 717.934998,
+      "rotation": 60
+    },
+    "Recipe": "Modular Frame",
+    "production": [
+      {
+        "Name": "Modular Frame",
+        "CurrentProd": 0.0,
+        "MaxProd": 2.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Reinforced Iron Plate",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 3.0,
+        "ConsPercent": 0.0
+      },
+      {
+        "Name": "Iron Rod",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 12.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 0,
+    "features": {
+      "properties": { "type": "Assembler" },
+      "geometry": {
+        "coordinates": {
+          "x": -70510.375,
+          "y": 254904.1875,
+          "z": 717.934998
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Assembler",
+    "location": {
+      "x": -69644.351562,
+      "y": 254404.1875,
+      "z": 717.934998,
+      "rotation": 60
+    },
+    "Recipe": "Modular Frame",
+    "production": [
+      {
+        "Name": "Modular Frame",
+        "CurrentProd": 0.0,
+        "MaxProd": 2.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Reinforced Iron Plate",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 3.0,
+        "ConsPercent": 0.0
+      },
+      {
+        "Name": "Iron Rod",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 12.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 0,
+    "features": {
+      "properties": { "type": "Assembler" },
+      "geometry": {
+        "coordinates": {
+          "x": -69644.351562,
+          "y": 254404.1875,
+          "z": 717.934998
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Assembler",
+    "location": {
+      "x": -71376.390625,
+      "y": 255404.203125,
+      "z": 717.934998,
+      "rotation": 60
+    },
+    "Recipe": "Modular Frame",
+    "production": [
+      {
+        "Name": "Modular Frame",
+        "CurrentProd": 0.0,
+        "MaxProd": 2.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Reinforced Iron Plate",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 3.0,
+        "ConsPercent": 0.0
+      },
+      {
+        "Name": "Iron Rod",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 12.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 0,
+    "features": {
+      "properties": { "type": "Assembler" },
+      "geometry": {
+        "coordinates": {
+          "x": -71376.390625,
+          "y": 255404.203125,
+          "z": 717.934998
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Assembler",
+    "location": {
+      "x": -72242.414062,
+      "y": 255904.203125,
+      "z": 717.934998,
+      "rotation": 60
+    },
+    "Recipe": "Modular Frame",
+    "production": [
+      {
+        "Name": "Modular Frame",
+        "CurrentProd": 0.0,
+        "MaxProd": 2.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Reinforced Iron Plate",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 3.0,
+        "ConsPercent": 0.0
+      },
+      {
+        "Name": "Iron Rod",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 12.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 0,
+    "features": {
+      "properties": { "type": "Assembler" },
+      "geometry": {
+        "coordinates": {
+          "x": -72242.414062,
+          "y": 255904.203125,
+          "z": 717.934998
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Assembler",
+    "location": {
+      "x": -73108.445312,
+      "y": 256404.203125,
+      "z": 717.934937,
+      "rotation": 60
+    },
+    "Recipe": "Modular Frame",
+    "production": [
+      {
+        "Name": "Modular Frame",
+        "CurrentProd": 0.0,
+        "MaxProd": 2.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Reinforced Iron Plate",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 3.0,
+        "ConsPercent": 0.0
+      },
+      {
+        "Name": "Iron Rod",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 12.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 0,
+    "features": {
+      "properties": { "type": "Assembler" },
+      "geometry": {
+        "coordinates": {
+          "x": -73108.445312,
+          "y": 256404.203125,
+          "z": 717.934937
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -54876.085938,
+      "y": 261930.34375,
+      "z": -3802.847168,
+      "rotation": 230
+    },
+    "Recipe": "Concrete",
+    "production": [
+      {
+        "Name": "Concrete",
+        "CurrentProd": 15.0,
+        "MaxProd": 15.0,
+        "ProdPercent": 100.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Limestone",
+        "CurrentConsumed": 45.0,
+        "MaxConsumed": 45.0,
+        "ConsPercent": 100.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": true,
+    "IsPaused": false,
+    "CircuitID": 3,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -54876.085938,
+          "y": 261930.34375,
+          "z": -3802.847168
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -44968.484375,
+      "y": 258486.53125,
+      "z": -3676.529053,
+      "rotation": 170
+    },
+    "Recipe": "Biomass (Wood)",
+    "production": [
+      {
+        "Name": "Biomass",
+        "CurrentProd": 0.0,
+        "MaxProd": 300.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Wood",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 60.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 13,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -44968.484375,
+          "y": 258486.53125,
+          "z": -3676.529053
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -41008.589844,
+      "y": 260016.671875,
+      "z": -2046.898438,
+      "rotation": -30
+    },
+    "Recipe": "Iron Plate",
+    "production": [
+      {
+        "Name": "Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 45.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 7,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -41008.589844,
+          "y": 260016.671875,
+          "z": -2046.898438
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -41408.59375,
+      "y": 259323.859375,
+      "z": -2046.898438,
+      "rotation": -30
+    },
+    "Recipe": "Iron Plate",
+    "production": [
+      {
+        "Name": "Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 45.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 7,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -41408.59375,
+          "y": 259323.859375,
+          "z": -2046.898438
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -42901.414062,
+      "y": 258338.21875,
+      "z": -2046.898438,
+      "rotation": -30
+    },
+    "Recipe": "Iron Rod",
+    "production": [
+      {
+        "Name": "Iron Rod",
+        "CurrentProd": 0.0,
+        "MaxProd": 15.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 15.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 10,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -42901.414062,
+          "y": 258338.21875,
+          "z": -2046.898438
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -43301.414062,
+      "y": 257645.390625,
+      "z": -2046.898438,
+      "rotation": -30
+    },
+    "Recipe": "Iron Rod",
+    "production": [
+      {
+        "Name": "Iron Rod",
+        "CurrentProd": 0.0,
+        "MaxProd": 15.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 15.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 10,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -43301.414062,
+          "y": 257645.390625,
+          "z": -2046.898438
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -43701.414062,
+      "y": 256952.578125,
+      "z": -2046.898438,
+      "rotation": -30
+    },
+    "Recipe": "Iron Rod",
+    "production": [
+      {
+        "Name": "Iron Rod",
+        "CurrentProd": 0.0,
+        "MaxProd": 15.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 15.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 10,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -43701.414062,
+          "y": 256952.578125,
+          "z": -2046.898438
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -44101.417969,
+      "y": 256259.75,
+      "z": -2046.898438,
+      "rotation": -30
+    },
+    "Recipe": "Iron Rod",
+    "production": [
+      {
+        "Name": "Iron Rod",
+        "CurrentProd": 0.0,
+        "MaxProd": 15.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 15.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 10,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -44101.417969,
+          "y": 256259.75,
+          "z": -2046.898438
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -45301.417969,
+      "y": 254181.3125,
+      "z": -2046.898438,
+      "rotation": -30
+    },
+    "Recipe": "Screw",
+    "production": [
+      {
+        "Name": "Screw",
+        "CurrentProd": 0.0,
+        "MaxProd": 40.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Rod",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 10.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 1,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -45301.417969,
+          "y": 254181.3125,
+          "z": -2046.898438
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -45701.421875,
+      "y": 253488.484375,
+      "z": -2046.898438,
+      "rotation": -30
+    },
+    "Recipe": "Screw",
+    "production": [
+      {
+        "Name": "Screw",
+        "CurrentProd": 0.0,
+        "MaxProd": 40.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Rod",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 10.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 1,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -45701.421875,
+          "y": 253488.484375,
+          "z": -2046.898438
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -46101.421875,
+      "y": 252795.671875,
+      "z": -2046.898438,
+      "rotation": -30
+    },
+    "Recipe": "Screw",
+    "production": [
+      {
+        "Name": "Screw",
+        "CurrentProd": 0.0,
+        "MaxProd": 40.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Rod",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 10.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 1,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -46101.421875,
+          "y": 252795.671875,
+          "z": -2046.898438
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -46501.421875,
+      "y": 252102.84375,
+      "z": -2046.898438,
+      "rotation": -30
+    },
+    "Recipe": "Screw",
+    "production": [
+      {
+        "Name": "Screw",
+        "CurrentProd": 0.0,
+        "MaxProd": 40.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Rod",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 10.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 1,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -46501.421875,
+          "y": 252102.84375,
+          "z": -2046.898438
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -45694.890625,
+      "y": 256713.125,
+      "z": -3731.679443,
+      "rotation": 160
+    },
+    "Recipe": "Quartz Crystal",
+    "production": [
+      {
+        "Name": "Quartz Crystal",
+        "CurrentProd": 0.0,
+        "MaxProd": 33.799999,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Raw Quartz",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 56.299999,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 13,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -45694.890625,
+          "y": 256713.125,
+          "z": -3731.679443
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -46768.222656,
+      "y": 258803.875,
+      "z": -3646.675781,
+      "rotation": 170
+    },
+    "Recipe": "Solid Biofuel",
+    "production": [
+      {
+        "Name": "Solid Biofuel",
+        "CurrentProd": 0.0,
+        "MaxProd": 60.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Biomass",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 120.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 13,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -46768.222656,
+          "y": 258803.875,
+          "z": -3646.675781
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -58737.351562,
+      "y": 233095.859375,
+      "z": 717.93512,
+      "rotation": 60
+    },
+    "Recipe": "Iron Plate",
+    "production": [
+      {
+        "Name": "Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 20.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 4,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -58737.351562,
+          "y": 233095.859375,
+          "z": 717.93512
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -58044.53125,
+      "y": 232695.859375,
+      "z": 717.93512,
+      "rotation": 60
+    },
+    "Recipe": "Iron Plate",
+    "production": [
+      {
+        "Name": "Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 20.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 4,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -58044.53125,
+          "y": 232695.859375,
+          "z": 717.93512
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -59372.996094,
+      "y": 235194.890625,
+      "z": 717.93512,
+      "rotation": 60
+    },
+    "Recipe": "Iron Plate",
+    "production": [
+      {
+        "Name": "Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 20.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 4,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -59372.996094,
+          "y": 235194.890625,
+          "z": 717.93512
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -59544.554688,
+      "y": 230097.8125,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Iron Plate",
+    "production": [
+      {
+        "Name": "Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 20.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 4,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -59544.554688,
+          "y": 230097.8125,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -58680.175781,
+      "y": 234794.890625,
+      "z": 717.93512,
+      "rotation": 60
+    },
+    "Recipe": "Iron Plate",
+    "production": [
+      {
+        "Name": "Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 20.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 4,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -58680.175781,
+          "y": 234794.890625,
+          "z": 717.93512
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -60873.0,
+      "y": 232596.84375,
+      "z": 717.93512,
+      "rotation": 60
+    },
+    "Recipe": "Iron Plate",
+    "production": [
+      {
+        "Name": "Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 20.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 4,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -60873.0,
+          "y": 232596.84375,
+          "z": 717.93512
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -58794.546875,
+      "y": 231396.84375,
+      "z": 717.93512,
+      "rotation": 60
+    },
+    "Recipe": "Iron Plate",
+    "production": [
+      {
+        "Name": "Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 20.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 4,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -58794.546875,
+          "y": 231396.84375,
+          "z": 717.93512
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -57987.359375,
+      "y": 234394.890625,
+      "z": 717.93512,
+      "rotation": 60
+    },
+    "Recipe": "Iron Plate",
+    "production": [
+      {
+        "Name": "Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 20.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 4,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -57987.359375,
+          "y": 234394.890625,
+          "z": 717.93512
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -63929.90625,
+      "y": 236902.09375,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Iron Rod",
+    "production": [
+      {
+        "Name": "Iron Rod",
+        "CurrentProd": 15.0,
+        "MaxProd": 15.0,
+        "ProdPercent": 100.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 15.0,
+        "MaxConsumed": 15.0,
+        "ConsPercent": 100.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": true,
+    "IsPaused": false,
+    "CircuitID": 12,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -63929.90625,
+          "y": 236902.09375,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -62544.269531,
+      "y": 236102.078125,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Iron Rod",
+    "production": [
+      {
+        "Name": "Iron Rod",
+        "CurrentProd": 15.0,
+        "MaxProd": 15.0,
+        "ProdPercent": 100.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 15.0,
+        "MaxConsumed": 15.0,
+        "ConsPercent": 100.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": true,
+    "IsPaused": false,
+    "CircuitID": 12,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -62544.269531,
+          "y": 236102.078125,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -64622.726562,
+      "y": 237302.09375,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Iron Rod",
+    "production": [
+      {
+        "Name": "Iron Rod",
+        "CurrentProd": 0.0,
+        "MaxProd": 15.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 15.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 12,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -64622.726562,
+          "y": 237302.09375,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -63237.089844,
+      "y": 236502.09375,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Iron Rod",
+    "production": [
+      {
+        "Name": "Iron Rod",
+        "CurrentProd": 15.0,
+        "MaxProd": 15.0,
+        "ProdPercent": 100.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 15.0,
+        "MaxConsumed": 15.0,
+        "ConsPercent": 100.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": true,
+    "IsPaused": false,
+    "CircuitID": 12,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -63237.089844,
+          "y": 236502.09375,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -57294.542969,
+      "y": 233994.890625,
+      "z": 717.93512,
+      "rotation": 60
+    },
+    "Recipe": "Iron Plate",
+    "production": [
+      {
+        "Name": "Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 20.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 4,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -57294.542969,
+          "y": 233994.890625,
+          "z": 717.93512
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -60122.988281,
+      "y": 233895.859375,
+      "z": 717.93512,
+      "rotation": 60
+    },
+    "Recipe": "Iron Plate",
+    "production": [
+      {
+        "Name": "Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 20.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 4,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -60122.988281,
+          "y": 233895.859375,
+          "z": 717.93512
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -60180.183594,
+      "y": 232196.84375,
+      "z": 717.93512,
+      "rotation": 60
+    },
+    "Recipe": "Iron Plate",
+    "production": [
+      {
+        "Name": "Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 20.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 4,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -60180.183594,
+          "y": 232196.84375,
+          "z": 717.93512
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -65822.734375,
+      "y": 235223.640625,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Iron Rod",
+    "production": [
+      {
+        "Name": "Iron Rod",
+        "CurrentProd": 0.0,
+        "MaxProd": 15.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 15.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 12,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -65822.734375,
+          "y": 235223.640625,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -65129.917969,
+      "y": 234823.640625,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Iron Rod",
+    "production": [
+      {
+        "Name": "Iron Rod",
+        "CurrentProd": 0.0,
+        "MaxProd": 15.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 15.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 12,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -65129.917969,
+          "y": 234823.640625,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -64437.101562,
+      "y": 234423.640625,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Iron Rod",
+    "production": [
+      {
+        "Name": "Iron Rod",
+        "CurrentProd": 0.0,
+        "MaxProd": 15.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 15.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 12,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -64437.101562,
+          "y": 234423.640625,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -63744.28125,
+      "y": 234023.625,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Iron Rod",
+    "production": [
+      {
+        "Name": "Iron Rod",
+        "CurrentProd": 0.0,
+        "MaxProd": 15.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 15.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 12,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -63744.28125,
+          "y": 234023.625,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -59487.363281,
+      "y": 231796.84375,
+      "z": 717.93512,
+      "rotation": 60
+    },
+    "Recipe": "Iron Plate",
+    "production": [
+      {
+        "Name": "Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 20.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 4,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -59487.363281,
+          "y": 231796.84375,
+          "z": 717.93512
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -60237.371094,
+      "y": 230497.8125,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Iron Plate",
+    "production": [
+      {
+        "Name": "Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 20.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 4,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -60237.371094,
+          "y": 230497.8125,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -59430.167969,
+      "y": 233495.859375,
+      "z": 717.93512,
+      "rotation": 60
+    },
+    "Recipe": "Iron Plate",
+    "production": [
+      {
+        "Name": "Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 20.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 4,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -59430.167969,
+          "y": 233495.859375,
+          "z": 717.93512
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -60930.167969,
+      "y": 230897.796875,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Iron Plate",
+    "production": [
+      {
+        "Name": "Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 20.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 4,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -60930.167969,
+          "y": 230897.796875,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -61623.007812,
+      "y": 231297.8125,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Iron Plate",
+    "production": [
+      {
+        "Name": "Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 20.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 4,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -61623.007812,
+          "y": 231297.8125,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -67093.992188,
+      "y": 239421.6875,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Alternate: Cast Screw",
+    "production": [
+      {
+        "Name": "Screw",
+        "CurrentProd": 0.0,
+        "MaxProd": 50.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 12.5,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 18,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -67093.992188,
+          "y": 239421.6875,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -67786.804688,
+      "y": 239821.703125,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Alternate: Cast Screw",
+    "production": [
+      {
+        "Name": "Screw",
+        "CurrentProd": 0.0,
+        "MaxProd": 50.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 12.5,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 18,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -67786.804688,
+          "y": 239821.703125,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -68479.625,
+      "y": 240221.703125,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Alternate: Cast Screw",
+    "production": [
+      {
+        "Name": "Screw",
+        "CurrentProd": 0.0,
+        "MaxProd": 50.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 12.5,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 18,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -68479.625,
+          "y": 240221.703125,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -69172.445312,
+      "y": 240621.703125,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Alternate: Cast Screw",
+    "production": [
+      {
+        "Name": "Screw",
+        "CurrentProd": 0.0,
+        "MaxProd": 50.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 12.5,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 18,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -69172.445312,
+          "y": 240621.703125,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -69865.265625,
+      "y": 241021.703125,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Alternate: Cast Screw",
+    "production": [
+      {
+        "Name": "Screw",
+        "CurrentProd": 0.0,
+        "MaxProd": 50.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 12.5,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 18,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -69865.265625,
+          "y": 241021.703125,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -68093.992188,
+      "y": 237689.65625,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Alternate: Cast Screw",
+    "production": [
+      {
+        "Name": "Screw",
+        "CurrentProd": 0.0,
+        "MaxProd": 50.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 12.5,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 18,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -68093.992188,
+          "y": 237689.65625,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -68786.804688,
+      "y": 238089.65625,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Alternate: Cast Screw",
+    "production": [
+      {
+        "Name": "Screw",
+        "CurrentProd": 0.0,
+        "MaxProd": 50.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 12.5,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 18,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -68786.804688,
+          "y": 238089.65625,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -69479.625,
+      "y": 238489.671875,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Alternate: Cast Screw",
+    "production": [
+      {
+        "Name": "Screw",
+        "CurrentProd": 0.0,
+        "MaxProd": 50.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 12.5,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 18,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -69479.625,
+          "y": 238489.671875,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -70172.445312,
+      "y": 238889.671875,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Alternate: Cast Screw",
+    "production": [
+      {
+        "Name": "Screw",
+        "CurrentProd": 0.0,
+        "MaxProd": 50.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 12.5,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 18,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -70172.445312,
+          "y": 238889.671875,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": -70865.265625,
+      "y": 239289.671875,
+      "z": 717.935059,
+      "rotation": 60
+    },
+    "Recipe": "Alternate: Cast Screw",
+    "production": [
+      {
+        "Name": "Screw",
+        "CurrentProd": 0.0,
+        "MaxProd": 50.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 12.5,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 18,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": -70865.265625,
+          "y": 239289.671875,
+          "z": 717.935059
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": -39058.589844,
+      "y": 263394.15625,
+      "z": -2046.898438,
+      "rotation": -30
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 5,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": -39058.589844,
+          "y": 263394.15625,
+          "z": -2046.898438
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": -39458.589844,
+      "y": 262701.34375,
+      "z": -2046.898438,
+      "rotation": -30
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 5,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": -39458.589844,
+          "y": 262701.34375,
+          "z": -2046.898438
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": -39858.589844,
+      "y": 262008.515625,
+      "z": -2046.898438,
+      "rotation": -30
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 5,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": -39858.589844,
+          "y": 262008.515625,
+          "z": -2046.898438
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": -40258.589844,
+      "y": 261315.703125,
+      "z": -2046.898438,
+      "rotation": -30
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 5,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": -40258.589844,
+          "y": 261315.703125,
+          "z": -2046.898438
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": -48635.238281,
+      "y": 225993.234375,
+      "z": 317.924896,
+      "rotation": 60
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 17,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": -48635.238281,
+          "y": 225993.234375,
+          "z": 317.924896
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": -47685.238281,
+      "y": 227638.6875,
+      "z": 322.595734,
+      "rotation": 60
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 17,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": -47685.238281,
+          "y": 227638.6875,
+          "z": 322.595734
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": -49244.085938,
+      "y": 228538.6875,
+      "z": 322.595703,
+      "rotation": 60
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 17,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": -49244.085938,
+          "y": 228538.6875,
+          "z": 322.595703
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": -49154.855469,
+      "y": 226293.234375,
+      "z": 317.924866,
+      "rotation": 60
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 17,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": -49154.855469,
+          "y": 226293.234375,
+          "z": 317.924866
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": -48724.46875,
+      "y": 228238.6875,
+      "z": 322.595673,
+      "rotation": 60
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 17,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": -48724.46875,
+          "y": 228238.6875,
+          "z": 322.595673
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": -48204.855469,
+      "y": 227938.6875,
+      "z": 322.595703,
+      "rotation": 60
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 17,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": -48204.855469,
+          "y": 227938.6875,
+          "z": 322.595703
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": -49674.46875,
+      "y": 226593.234375,
+      "z": 317.924866,
+      "rotation": 60
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 17,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": -49674.46875,
+          "y": 226593.234375,
+          "z": 317.924866
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": -50194.085938,
+      "y": 226893.234375,
+      "z": 317.924896,
+      "rotation": 60
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 17,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": -50194.085938,
+          "y": 226893.234375,
+          "z": 317.924896
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": -49585.242188,
+      "y": 224347.796875,
+      "z": 317.924866,
+      "rotation": 60
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 17,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": -49585.242188,
+          "y": 224347.796875,
+          "z": 317.924866
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": -50104.859375,
+      "y": 224647.78125,
+      "z": 317.924866,
+      "rotation": 60
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 17,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": -50104.859375,
+          "y": 224647.78125,
+          "z": 317.924866
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": -50624.472656,
+      "y": 224947.78125,
+      "z": 317.924866,
+      "rotation": 60
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 17,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": -50624.472656,
+          "y": 224947.78125,
+          "z": 317.924866
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": -51144.089844,
+      "y": 225247.796875,
+      "z": 317.924927,
+      "rotation": 60
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 17,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": -51144.089844,
+          "y": 225247.796875,
+          "z": 317.924927
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": -50535.242188,
+      "y": 222702.34375,
+      "z": 317.924866,
+      "rotation": 60
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 17,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": -50535.242188,
+          "y": 222702.34375,
+          "z": 317.924866
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": -51054.859375,
+      "y": 223002.34375,
+      "z": 317.924866,
+      "rotation": 60
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 17,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": -51054.859375,
+          "y": 223002.34375,
+          "z": 317.924866
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": -51574.472656,
+      "y": 223302.34375,
+      "z": 317.924866,
+      "rotation": 60
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 17,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": -51574.472656,
+          "y": 223302.34375,
+          "z": 317.924866
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": -52094.089844,
+      "y": 223602.34375,
+      "z": 317.924866,
+      "rotation": 60
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 17,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": -52094.089844,
+          "y": 223602.34375,
+          "z": 317.924866
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Smelter",
+    "location": {
+      "x": 0,
+      "y": 0,
+      "z": -1000.0,
+      "rotation": 60
+    },
+    "Recipe": "Iron Ingot",
+    "production": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ore",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 17,
+    "features": {
+      "properties": { "type": "Smelter" },
+      "geometry": {
+        "coordinates": {
+          "x": 0,
+          "y": 0,
+          "z": -1000.0
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": 0,
+      "y": 0,
+      "z": 0.0,
+      "rotation": 60
+    },
+    "Recipe": "Iron Plate",
+    "production": [
+      {
+        "Name": "Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 17,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": 0,
+          "y": 0,
+          "z": 0.0
+        },
+        "type": "Point"
+      }
+    }
+  },
+  {
+    "building": "Constructor",
+    "location": {
+      "x": 0,
+      "y": 0,
+      "z": 250.0,
+      "rotation": 60
+    },
+    "Recipe": "Iron Plate",
+    "production": [
+      {
+        "Name": "Iron Plate",
+        "CurrentProd": 0.0,
+        "MaxProd": 30.0,
+        "ProdPercent": 0.0
+      }
+    ],
+    "ingredients": [
+      {
+        "Name": "Iron Ingot",
+        "CurrentConsumed": 0.0,
+        "MaxConsumed": 30.0,
+        "ConsPercent": 0.0
+      }
+    ],
+    "ManuSpeed": 1.0,
+    "IsConfigured": true,
+    "IsProducing": false,
+    "IsPaused": false,
+    "CircuitID": 17,
+    "features": {
+      "properties": { "type": "Constructor" },
+      "geometry": {
+        "coordinates": {
+          "x": 0,
+          "y": 0,
+          "z": 250.0
+        },
+        "type": "Point"
+      }
+    }
+  }
+]
