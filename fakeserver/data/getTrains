@@ -1,0 +1,22 @@
+[
+{
+  "TrainName": "choo",
+	"Location": {
+		"X":        1000,
+		"Y":        2000,
+		"Z":        -3000,
+		"Rotation": 20
+	},
+  "ForwardSpeed": 140,
+  "TotalMass": 100,
+  "PayloadMass": 30,
+  "PowerConsumed": 35,
+  "TrainStation": "Volskya",
+  "ThrottlePercent": 0.9,
+  "Derailed": false,
+  "PendingDerail": false,
+  "Status": "En Route",
+  "TimeTable": [{"StationName": "Volskya"},
+                {"StationName": "Anubus"}]
+}
+]
