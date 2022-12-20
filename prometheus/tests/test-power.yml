@@ -1,5 +1,5 @@
 rule_files:
-  - ../rules/rules.yml
+  - ../rules/power.yml
 evaluation_interval: 1m
 tests:
   - interval: 1m
@@ -12,6 +12,7 @@ tests:
         exp_alerts:
           - exp_labels:
               circuit_id: 1
+              category: power
             exp_annotations:
               summary: "Fuse triggered on circuit 1"
               description: Fuse triggered - a power grid is without power.
@@ -37,6 +38,7 @@ tests:
         exp_alerts:
           - exp_labels:
               circuit_id: 1
+              category: power
             exp_annotations:
               summary: "Battery draining on circuit 1"
               description: A battery has started to drain on circuit 1.
@@ -61,6 +63,7 @@ tests:
         exp_alerts:
           - exp_labels:
               circuit_id: 2
+              category: power
             exp_annotations:
               summary: "Under 30 minutes of power left on circuit 2"
               description: A battery has nearly drained on circuit 2. Under thirty minutes of power remaining.
