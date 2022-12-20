@@ -23,13 +23,13 @@ DISCORD_WEBHOOK - Webhook for discord fuse and low battery notifications. Someth
 
 ## Services and ports
 
-[frmcompanion](http://localhost:9000/metrics): A webapp that converts JSON data from FRM into Prometheus metrics at `localhost:9000/metrics`. There is also a realtime map app. `localhost:8000?frmhost=localhost&frmport=8080`.
-[prometheus](http://localhost:9090): Ingest metrics from the remote monitoring companion. Generates alert metrics for interesting anomalies.
-[alertmanager](http://localhost:9093): Forwards critical alerts to notification components.
-alertmanager-discord: Sends critical alerts to Discord.
-[grafana](http://localhost:3000): Time series graphing dashboard.
-fakeserver: Test server for fake metrics used for testing. Maps to host port 8081 to avoid port conflicts if FRM is running on localhost.
-  * [getFactory](localhost:8081/getFactory)
-  * [getPower](localhost:8081/getPower)
-  * [getProdStats](localhost:8081/getProdStats)
-  * [getTrains](localhost:8081/getTrains)
+- [frmcompanion](http://localhost:9000/metrics): A webapp that converts JSON data from FRM into Prometheus metrics at `localhost:9000/metrics`. There is also a realtime map app. `localhost:8000?frmhost=localhost&frmport=8080`.
+- [prometheus](http://localhost:9090): Ingest metrics from the remote monitoring companion. Generates alert metrics for interesting anomalies.
+- [alertmanager](http://localhost:9093): Forwards critical alerts to notification components.
+- alertmanager-discord: Sends critical alerts to Discord.
+- [grafana](http://localhost:3000): Time series graphing dashboard.
+- fakeserver: Test server for fake metrics used for testing. Maps to host port 8081 to avoid port conflicts if FRM is running on localhost.
+  - [getFactory](http://localhost:8081/getFactory)
+  - [getPower](http://localhost:8081/getPower)
+  - [getProdStats](http://localhost:8081/getProdStats)
+  - [getTrains](http://localhost:8081/getTrains)
