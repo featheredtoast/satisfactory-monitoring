@@ -77,3 +77,31 @@ tests:
       - eval_time: 10m
         alertname: BatteryDrained
         exp_alerts:
+
+# Alert when power capacity is under max consumption
+  - interval: 1m
+    input_series:
+      - series: 'power_capacity{circuit_id="1"}'
+        values: '50+0x10'
+      - series: 'power_max_consumed{circuit_id="1"}'
+        values: '20+5x10'
+    alert_rule_test:
+      - eval_time: 10m
+        alertname: MaxConsumption
+        exp_alerts:
+          - exp_labels:
+              circuit_id: 1
+              category: power
+            exp_annotations:
+              summary: "Max consumption too high on circuit 1"
+              description: Max consumption on power grid 1 has exceeded production. Power instability may occur.
+  - interval: 1m
+    input_series:
+      - series: 'power_capacity{circuit_id="1"}'
+        values: '50+0x10'
+      - series: 'power_max_consumed{circuit_id="1"}'
+        values: '20+0x10'
+    alert_rule_test:
+      - eval_time: 10m
+        alertname: MaxConsumption
+        exp_alerts:

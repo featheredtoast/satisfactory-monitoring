@@ -24,3 +24,11 @@ groups:
       annotations:
         summary: "Battery draining on circuit {{ $labels.circuit_id }}"
         description: A battery has started to drain on circuit {{ $labels.circuit_id }}.
+    - alert: MaxConsumption
+      expr: power_capacity < power_max_consumed
+      for: 10s
+      labels:
+        category: power
+      annotations:
+        summary: "Max consumption too high on circuit {{ $labels.circuit_id }}"
+        description: Max consumption on power grid {{ $labels.circuit_id }} has exceeded production. Power instability may occur.
