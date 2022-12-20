@@ -15,3 +15,7 @@ scrape_configs:
     file_sd_configs:
       - files:
         - nodes/*.yml
+    metric_relabel_configs:
+      - regex: "^(job|instance)$"
+        action: labeldrop
+
