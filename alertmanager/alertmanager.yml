@@ -7,7 +7,7 @@ route:
       group_by: [alertname]
       matchers:
         - category =~ "power"
-        - alertname != "BatteryDraining"
+        - alertname =~ "FuseTriggered|BatteryDrained"
 #  repeat_interval: 5m
 receivers:
   - name: ignore
