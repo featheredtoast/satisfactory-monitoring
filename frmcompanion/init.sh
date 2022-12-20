@@ -10,4 +10,8 @@ npm install
 npm run compile
 cp -R index.html map-16k.png vendor/ img/ js/ ../Companion/bin/map
 cd ../Companion/bin
-./companion -hostname $FRM_HOST -port $FRM_PORT
+./companion -hostname $FRM_HOST -port $FRM_PORT &
+PID="$!"
+
+trap "kill $PID" exit INT TERM
+wait
