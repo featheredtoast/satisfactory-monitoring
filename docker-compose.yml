@@ -5,13 +5,25 @@ networks:
     external: false
 
 services:
-  server:
+  fakeserver:
     image: nginx
     volumes:
       - ./exporter/metrics:/usr/share/nginx/html/metrics
+      - ./exporter/data:/usr/share/nginx/html/data
       - ./exporter/default.conf:/etc/nginx/conf.d/default.conf
     ports:
+      - "8081:8081"
+    networks:
+      - grafana
+  frmcompanion:
+    image: golang
+    working_dir: /usr/src
+    entrypoint: /usr/local/bin/init.sh
+    volumes:
+      - ./frmcompanion/init.sh:/usr/local/bin/init.sh
+    ports:
       - "9000:9000"
+      - "8000:8000"
     networks:
       - grafana
   prometheus:

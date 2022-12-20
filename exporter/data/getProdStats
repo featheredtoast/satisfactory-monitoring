@@ -1,0 +1,21 @@
+[{
+  "ItemName": "Iron Rod",
+  "ProdPerMin": "P: 10/100/min - C: 40/200/min",
+	"ProdPercent": 0.1,
+	"ConsPercent": 0.2,
+	"CurrentProduction": 10,
+	"CurrentConsumption": 40,
+  "MaxProd": 100.0,
+	"MaxConsumed": 200.0
+},
+ {
+  "ItemName": "Iron Plate",
+  "ProdPerMin": "P: 5/10/min - C: 40/200/min",
+	"ProdPercent": 0.5,
+	"ConsPercent": 0.2,
+	"CurrentProduction": 5,
+	"CurrentConsumption": 40,
+  "MaxProd": 10.0,
+	"MaxConsumed": 200.0
+}
+]

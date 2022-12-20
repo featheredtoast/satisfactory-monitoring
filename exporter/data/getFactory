@@ -1,0 +1,34 @@
+[{
+  "Building": "Smelter",
+	"Location": {
+		"X":        100,
+		"Y":        200,
+		"Z":        -300,
+		"Rotation": 60
+	},
+	"Recipe": "Iron Ingot",
+	"Production": [
+    {
+		"Name":        "Iron Ingot",
+		"CurrentProd": 10.0,
+		"MaxProd":     10.0,
+		"ProdPercent": 0.5
+	},
+		{
+		"Name":        "Iron Nothing",
+		"CurrentProd": 1000.0,
+		"MaxProd":     4000.0,
+		"ProdPercent": 0.25
+	}],
+	"Ingredients": [{
+		"Name":            "Iron Ore",
+		"CurrentConsumed": 5.0,
+		"MaxConsumed":     5.0,
+		"ConsPercent":     1.0
+	}],
+	"ManuSpeed":    1.0,
+	"IsConfigured": false,
+	"IsProducing":  false,
+	"IsPaused":     false,
+	"CircuitID":    0
+}]
