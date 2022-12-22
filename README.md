@@ -1,9 +1,32 @@
 # Ficsit Remote Monitoring Companion Bundle
 
-A docker-compose for getting Satisfactory dashboards and alerting.
+A docker-compose for getting Satisfactory dashboards and alerting. Configured for:
 
+### General production and power stats
 ![dashboard](resources/satisfactory-dash.png)
+
+Power grid overview and Production vs Consumption levels.
+![alert-dashboard](resources/satisfactory-alerts-dash.png)
+
+Power and production alerts are also displayed.
+
+### Discord alerts
 ![discord alert](resources/satisfactory-alert.png)
+
+Discord alerting for tripped grids.
+
+### Vehicle dashboard overview
+![vehicle-dash](resources/vehicle-dash1.png)
+
+Get an overview of your vehicle, train, and drone infrastructure.
+
+View vehicles real-time round trip times and fuel.
+
+View Trains round trip times and travel times between stations.
+
+![vehicle-dash2](resources/vehicle-dash2.png)
+
+View drone battery usage and round trip times.
 
 Docker compose setup for Ficsit Remote Monitoring and alerting. Requires [FicsitRemoteMonitoring](https://ficsit.app/mod/FicsitRemoteMonitoring) plugin.
 With FicsitRemoteMonitoring plugin, make sure you boot the http server `/frmweb start` in game.
