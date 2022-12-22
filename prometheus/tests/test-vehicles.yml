@@ -1,0 +1,28 @@
+rule_files:
+  - ../rules/vehicles.yml
+evaluation_interval: 1m
+tests:
+  - interval: 1m
+    input_series:
+      - series: 'train_derailed{name="choo"}'
+        values: '0 0 0 0 0 0 1 1 1 1'
+    alert_rule_test:
+      - eval_time: 10m
+        alertname: TrainDerailed
+        exp_alerts:
+          - exp_labels:
+              category: vehicles
+              name: "choo"
+            exp_annotations:
+              summary: "A train has derailed"
+              description: "Train choo has gone off the rails!"
+
+# No alert when train isn't derailed
+  - interval: 1m
+    input_series:
+      - series: 'train_derailed{name="choo"}'
+        values: '0'
+    alert_rule_test:
+      - eval_time: 10m
+        alertname: TrainDerailed
+        exp_alerts:

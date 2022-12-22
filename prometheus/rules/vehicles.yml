@@ -1,0 +1,10 @@
+groups:
+  - name: Vehicles
+    rules:
+    - alert: TrainDerailed
+      expr: train_derailed > 0
+      labels:
+        category: vehicles
+      annotations:
+        summary: "A train has derailed"
+        description: "Train {{ $labels.name }} has gone off the rails!"
