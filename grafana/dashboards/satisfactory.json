@@ -135,7 +135,7 @@
       },
       "id": 8,
       "panels": [],
-      "title": "Power",
+      "title": "Circuit $circuit Power",
       "type": "row"
     },
     {
@@ -644,7 +644,7 @@
       },
       "id": 14,
       "panels": [],
-      "title": "Production",
+      "title": "$item Production",
       "type": "row"
     },
     {
@@ -998,7 +998,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "1",
           "value": "1"
         },
@@ -1026,9 +1026,9 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "AI Limiter",
-          "value": "AI Limiter"
+          "selected": true,
+          "text": "Alclad Aluminum Sheet",
+          "value": "Alclad Aluminum Sheet"
         },
         "datasource": {
           "type": "prometheus",
@@ -1062,6 +1062,6 @@
   "timezone": "",
   "title": "Satisfactory",
   "uid": "R-BfP854k",
-  "version": 4,
+  "version": 6,
   "weekStart": ""
 }
