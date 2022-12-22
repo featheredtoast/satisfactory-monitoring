@@ -513,6 +513,37 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 18
+      },
+      "id": 24,
+      "options": {
+        "alertName": "TrainDerailed",
+        "dashboardAlerts": false,
+        "groupBy": ["name"],
+        "groupMode": "custom",
+        "maxItems": 20,
+        "sortOrder": 1,
+        "stateFilter": {
+          "error": true,
+          "firing": true,
+          "noData": false,
+          "normal": false,
+          "pending": true
+        },
+        "viewMode": "list"
+      },
+      "title": "Derail Alerts",
+      "type": "alertlist"
+    },
+    {
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -723,6 +754,6 @@
   "timezone": "",
   "title": "Vehicles",
   "uid": "XteIs3cVk",
-  "version": 8,
+  "version": 10,
   "weekStart": ""
 }
