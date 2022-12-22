@@ -124,7 +124,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "vehicle_fuel",
+          "expr": "vehicle_fuel{vehicle_type!=\"Factory Cart\"}",
           "legendFormat": "{{id}} ({{vehicle_type}}) - {{fuel_type}}",
           "range": true,
           "refId": "A"
@@ -525,6 +525,7 @@
       },
       "id": 24,
       "options": {
+        "alertInstanceLabelFilter": "",
         "alertName": "TrainDerailed",
         "dashboardAlerts": false,
         "groupBy": ["name"],
@@ -754,6 +755,6 @@
   "timezone": "",
   "title": "Vehicles",
   "uid": "XteIs3cVk",
-  "version": 10,
+  "version": 2,
   "weekStart": ""
 }
