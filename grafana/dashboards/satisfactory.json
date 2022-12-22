@@ -386,7 +386,7 @@
           "custom": {
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "",
+            "axisLabel": "MW",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -553,9 +553,9 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisCenteredZero": false,
+            "axisCenteredZero": true,
             "axisColorMode": "text",
-            "axisLabel": "",
+            "axisLabel": "MW/H",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -579,7 +579,7 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "off"
+              "mode": "area"
             }
           },
           "mappings": [],
@@ -587,12 +587,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "red",
                 "value": null
               },
               {
-                "color": "red",
-                "value": 80
+                "color": "green",
+                "value": 1
               }
             ]
           }
@@ -631,7 +631,7 @@
           "refId": "A"
         }
       ],
-      "title": "Battery charge rate rate",
+      "title": "Battery charge rate",
       "type": "timeseries"
     },
     {
@@ -998,7 +998,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "1",
           "value": "1"
         },
@@ -1026,7 +1026,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "AI Limiter",
           "value": "AI Limiter"
         },
@@ -1062,6 +1062,6 @@
   "timezone": "",
   "title": "Satisfactory",
   "uid": "R-BfP854k",
-  "version": 2,
+  "version": 4,
   "weekStart": ""
 }
