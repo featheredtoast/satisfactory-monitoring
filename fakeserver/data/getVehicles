@@ -2,10 +2,10 @@
   "ID":"0",
   "VehicleType":"Truck",
   "location":{
-    "x":-53349.597656,"y":242036.0625,"z":-3853.614258,
-    "rotation":264
+    "x":0,"y":0,"z":0,
+    "rotation":0
   },
-  "ForwardSpeed":48.0,
+  "ForwardSpeed":0,
   "CurrentGear":2,
   "EngineRPM":7968.0,
   "Airborne":false,
@@ -21,7 +21,7 @@
 		{"type": "Truck"},
 		"geometry": {
 			"coordinates": {
-				"x":-53349.597656,"y":242036.0625,"z":-3853.614258
+				"x":0,"y":0,"z":0
 			},
 			"type": "Point"
 		}

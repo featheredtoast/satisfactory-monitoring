@@ -15,7 +15,7 @@
   "ThrottlePercent": 0.9,
   "Derailed": false,
   "PendingDerail": false,
-  "Status": "En Route",
+  "Status": "TS_SelfDriving",
   "TimeTable": [{"StationName": "Volskya"},
                 {"StationName": "Anubus"}]
 }
