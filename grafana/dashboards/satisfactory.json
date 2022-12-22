@@ -907,7 +907,7 @@
               }
             ]
           },
-          "unit": "percentunit"
+          "unit": "percent"
         },
         "overrides": [
           {
@@ -998,7 +998,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "1",
           "value": "1"
         },
@@ -1026,9 +1026,9 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "Iron Plate",
-          "value": "Iron Plate"
+          "selected": true,
+          "text": "AI Limiter",
+          "value": "AI Limiter"
         },
         "datasource": {
           "type": "prometheus",
@@ -1062,6 +1062,6 @@
   "timezone": "",
   "title": "Satisfactory",
   "uid": "R-BfP854k",
-  "version": 7,
+  "version": 2,
   "weekStart": ""
 }
