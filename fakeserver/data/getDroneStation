@@ -1,0 +1,130 @@
+[{
+  "ID":"0",
+  "HomeStation":"Drone Port 1",
+  "location":{
+		"x":-30655.789062,"y":221870.6875,"z":-40.63269,
+    "rotation":"90"
+  },
+  "PairedStation":"Drone Port 2",
+  "DroneStatus":"EDS_EN_ROUTE",
+  "AvgIncRate":30.299999,
+	"AvgIncStack":0.2,
+	"AvgOutRate":11.4,
+	"AvgOutStack":0.1,
+	"AvgRndTrip":"00:02:26",
+	"AvgTotalIncRate":59.700001,
+	"AvgTotalIncStack":0.3,
+	"AvgTotalOutRate":22.9,
+	"AvgTotalOutStack":0.1,
+	"AvgTripIncAmt":74.0,
+	"EstRndTrip":"00:01:50",
+	"EstTotalTransRate":9.7,
+	"EstTransRate":4.9,
+	"EstLatestTotalIncStack":0.3,
+	"EstLatestTotalOutStack":0.1,
+	"LatestIncStack":0.2,
+	"LatestOutStack":0.1,
+	"LatestRndTrip":"00:02:26",
+	"LatestTripIncAmt":74,
+	"LatestTripOutAmt":28,
+	"MedianRndTrip":"00:02:26",
+	"MedianTripIncAmt":74.0,
+	"MedianTripOutAmt":28.0,
+	"EstBatteryRate":2.7,
+  "features": {
+		"properties":
+		{"type": "Drone Station"},
+		"geometry": {
+			"coordinates": {
+				"x":-30655.789062,"y":221870.6875,"z":-40.63269
+			},
+			"type": "Point"
+		}
+	}	
+},{
+  "ID":"1",
+  "HomeStation":"Drone Port 2",
+  "location":{
+		"x":-22668.775391,"y":232038.140625,"z":-40.632812,
+    "rotation":"90"
+  },
+  "PairedStation":"Drone Port 1",
+  "DroneStatus":"EDS_EN_ROUTE",
+  "AvgIncRate":11.4,
+	"AvgIncStack":0.1,
+	"AvgOutRate":29.4,
+	"AvgOutStack":0.1,
+	"AvgRndTrip":"00:02:26",
+	"AvgTotalIncRate":22.9,
+	"AvgTotalIncStack":0.1,
+	"AvgTotalOutRate":59.700001,
+	"AvgTotalOutStack":0.3,
+	"AvgTripIncAmt":28.0,
+	"EstRndTrip":"00:01:50",
+	"EstTotalTransRate":9.7,
+	"EstTransRate":4.9,
+	"EstLatestTotalIncStack":0.1,
+	"EstLatestTotalOutStack":0.3,
+	"LatestIncStack":0.1,
+	"LatestOutStack":0.1,
+	"LatestRndTrip":"00:02:26",
+	"LatestTripIncAmt":28,
+	"LatestTripOutAmt":72,
+	"MedianRndTrip":"00:02:26",
+	"MedianTripIncAmt":28.0,
+	"MedianTripOutAmt":72.0,
+	"EstBatteryRate":2.7,
+  "features": {
+		"properties":
+		{"type": "Drone Station"},
+		"geometry": {
+			"coordinates": {
+				"x":-22668.775391,"y":232038.140625,"z":-40.632812
+			},
+			"type": "Point"
+		}
+	}	
+},{
+  "ID":"2",
+  "HomeStation":"",
+  "location":{
+		"x":0.0,"y":0.0,"z":0.0,
+    "rotation":"90"
+  },
+  "PairedStation":"",
+  "DroneStatus":"EDS_NO_DRONE",
+  "AvgIncRate":0.0,
+	"AvgIncStack":0.0,
+	"AvgOutRate":0.0,
+	"AvgOutStack":0.0,
+	"AvgRndTrip":"00:00:00",
+	"AvgTotalIncRate":0.0,
+	"AvgTotalIncStack":0.0,
+	"AvgTotalOutRate":0.0,
+	"AvgTotalOutStack":0.0,
+	"AvgTripIncAmt":0.0,
+	"EstRndTrip":"00:00:00",
+	"EstTotalTransRate":0.0,
+	"EstTransRate":0.0,
+	"EstLatestTotalIncStack":0.0,
+	"EstLatestTotalOutStack":0.0,
+	"LatestIncStack":0.0,
+	"LatestOutStack":0.0,
+	"LatestRndTrip":"00:00:00",
+	"LatestTripIncAmt":0,
+	"LatestTripOutAmt":0,
+	"MedianRndTrip":"00:00:00",
+	"MedianTripIncAmt":0.0,
+	"MedianTripOutAmt":0.0,
+	"EstBatteryRate":0.0,
+  "features": {
+		"properties":
+		{"type": "Drone Station"},
+		"geometry": {
+			"coordinates": {
+				"x":0.0,"y":0.0,"z":0.0
+			},
+			"type": "Point"
+		}
+	}
+}]
