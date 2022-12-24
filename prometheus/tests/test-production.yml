@@ -19,6 +19,17 @@ tests:
             exp_annotations:
               summary: "Overconsuming Iron Plate"
               description: Iron Plate consumption has overtaken consumption. Produce more Iron Plate so as to not run out
+  # no alert when production is = consumption
+  - interval: 1m
+    input_series:
+      - series: 'items_produced_per_min{item_name="Iron Plate"}'
+        values: '1+1x10'
+      - series: 'items_consumed_per_min{item_name="Iron Plate"}'
+        values: '1+1x10'
+    alert_rule_test:
+      - eval_time: 10m
+        alertname: Overconsuming
+        exp_alerts:
 
 # Production percent under 20
   - interval: 1m

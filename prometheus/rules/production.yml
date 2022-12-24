@@ -2,7 +2,7 @@ groups:
   - name: Production
     rules:
     - alert: Overconsuming
-      expr:  items_produced_per_min - items_consumed_per_min <= 0
+      expr:  items_produced_per_min - items_consumed_per_min < 0
       for: 1m
       labels:
         category: production
