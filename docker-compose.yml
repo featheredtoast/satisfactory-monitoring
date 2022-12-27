@@ -63,6 +63,7 @@ services:
       - ./grafana/datasources/prometheus.yml:/etc/grafana/provisioning/datasources/prometheus.yml
       - ./grafana/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml
       - ./grafana/dashboards:/var/lib/grafana/dashboards
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
     ports:
       - "3000:3000"
     networks:
