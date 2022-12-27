@@ -38,8 +38,28 @@ services:
     networks:
       - grafana
 
+  frmcache:
+    image: golang
+    working_dir: /usr/src
+    entrypoint: /usr/local/bin/init.sh
+    volumes:
+      - ./frmcache/init.sh:/usr/local/bin/init.sh
+      - ./frmcache/src:/usr/src
+    environment:
+      - FRM_HOST=${FRM_HOST:-fakeserver}
+      - FRM_PORT=${FRM_PORT:-8080}
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+    networks:
+      - grafana
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.5.3
+    environment:
+      - node.name=es
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+      - network.host=0.0.0.0
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - bootstrap.memory_lock=true
     networks:
       - grafana
 
