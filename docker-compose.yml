@@ -37,7 +37,11 @@ services:
       - "9090:9090"
     networks:
       - grafana
-    restart: always
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.5.3
+    networks:
+      - grafana
 
   discord:
     image: benjojo/alertmanager-discord
@@ -45,7 +49,6 @@ services:
         - DISCORD_WEBHOOK=${DISCORD_WEBHOOK}
     networks:
       - grafana
-    restart: always
 
   alertmanager:
     image: prom/alertmanager
@@ -55,7 +58,6 @@ services:
       - "9093:9093"
     networks:
       - grafana
-    restart: always
 
   grafana:
     image: grafana/grafana-oss
@@ -68,4 +70,3 @@ services:
       - "3000:3000"
     networks:
       - grafana
-    restart: always
