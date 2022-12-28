@@ -81,7 +81,7 @@ services:
   grafana:
     image: grafana/grafana-oss
     volumes:
-      - ./grafana/datasources/prometheus.yml:/etc/grafana/provisioning/datasources/prometheus.yml
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources
       - ./grafana/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml
       - ./grafana/dashboards:/var/lib/grafana/dashboards
       - ./grafana/grafana.ini:/etc/grafana/grafana.ini
