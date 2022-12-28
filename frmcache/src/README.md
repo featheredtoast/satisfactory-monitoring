@@ -22,7 +22,7 @@ data ->> 'building' as building,
 (data -> 'location' ->> 'x')::NUMERIC/100 as x,
 (data -> 'location' ->> 'y')::NUMERIC/100 as y,
 (data -> 'location' ->> 'z')::NUMERIC/100 as z,
-(((data -> 'location' ->> 'x')::NUMERIC + 374950) * 0.0000001075) as longitude,
+(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,
 (((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude
 FROM cache
 cross join jsonb_path_query(frm_data, '$[*]') as data
