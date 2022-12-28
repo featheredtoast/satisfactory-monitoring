@@ -3,10 +3,10 @@ package main
 import (
 	"context"
 	"database/sql"
-	"encoding/json"
 	"github.com/benbjohnson/clock"
+	"io"
 	"net/http"
-	"bytes"
+	"strings"
 
 	"fmt"
 	"time"
@@ -32,40 +32,39 @@ func NewCacheWorker(frmBaseUrl string, db *sql.DB) *CacheWorker {
 	}
 }
 
-func retrieveData(frmAddress string, details *any) error {
+func retrieveData(frmAddress string) (string, error) {
 	resp, err := http.Get(frmAddress)
 
 	if err != nil {
 		fmt.Printf("error fetching statistics from FRM: %s\n", err)
-		return err
+		return "", err
 	}
 
+	buf := new(strings.Builder)
+	_, err = io.Copy(buf, resp.Body)
+	if err != nil {
+		fmt.Printf("error fetching statistics from FRM: %s\n", err)
+		return "", err
+	}
 	defer resp.Body.Close()
-
-	decoder := json.NewDecoder(resp.Body)
-
-	err = decoder.Decode(details)
-	return err
+	return buf.String(), nil
 }
 
-func (c *CacheWorker) cacheMetrics(metric string, details any) {
-	byteArray, err := json.Marshal(details)
-	CheckError(err)
-	data := bytes.NewBuffer(byteArray).String()
+func (c *CacheWorker) cacheMetrics(metric string, data string) {
 	insert := `insert into "cache"("metric","frm_data") values($1,$2) ON CONFLICT (metric) DO UPDATE SET FRM_DATA = EXCLUDED.frm_data`
 	c.db.Exec(insert, metric, data)
 }
 
-func (c *CacheWorker) pullMetrics(metric string, route string, details any) {
-	err := retrieveData(c.frmBaseUrl+route, &details)
+func (c *CacheWorker) pullMetrics(metric string, route string) {
+	data, err := retrieveData(c.frmBaseUrl + route)
 	if err != nil {
 		fmt.Println("error when parsing json: ", err)
 	}
-	c.cacheMetrics(metric, details)
+	c.cacheMetrics(metric, data)
 }
 
 func (c *CacheWorker) pullAllMetrics() {
-	c.pullMetrics("factory", "/getFactory", []BuildingDetail{})
+	c.pullMetrics("factory", "/getFactory")
 }
 
 func (c *CacheWorker) Start() {
