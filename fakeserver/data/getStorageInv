@@ -26,6 +26,10 @@
          {
             "Name":"Quickwire",
             "Count":41
+         },
+         {
+            "Name":"Wire",
+            "Count":41
          }
       ]
    },
