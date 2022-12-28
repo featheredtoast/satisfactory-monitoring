@@ -155,7 +155,7 @@
       "options": {
         "basemap": {
           "config": {
-            "url": "https://static.satisfactory-calculator.com/imgMap/gameLayer/EarlyAccess/{z}/{x}/{y}.png?v=1671697795"
+            "url": "https://satisfactory-map.featheredtoast.com/map/{z}/{x}/{y}.png"
           },
           "name": "Layer 0",
           "type": "xyz"
@@ -192,6 +192,11 @@
                   "fixed": "img/icons/marker/circle.svg",
                   "mode": "fixed"
                 },
+                "text": {
+                  "field": "",
+                  "fixed": "",
+                  "mode": "field"
+                },
                 "textConfig": {
                   "fontSize": 12,
                   "offsetX": 0,
@@ -214,10 +219,10 @@
         },
         "view": {
           "allLayers": true,
-          "id": "coords",
-          "lat": 41.709095,
-          "lon": -72.94811,
-          "zoom": 3
+          "id": "fit",
+          "lat": -0.045,
+          "lon": 0.045,
+          "zoom": 15
         }
       },
       "pluginVersion": "9.3.1",
@@ -230,7 +235,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select \ndata ->> 'Looted' as looted,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 324600) * 0.00024004) - 157.54585 as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.00013951) + 92.66079 as latitude,\n(data ->> 'RepairItem') as repair_item,\n(data ->> 'RepairAmount') as repair_item_amount,\n(data ->> 'PowerRequired') as power_required\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'dropPod'\nand data ->> 'Looted' != 'true';",
+          "rawSql": "select \ndata ->> 'Looted' as looted,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 374950) * 0.0000001175) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude,\n(data ->> 'RepairItem') as repair_item,\n(data ->> 'RepairAmount') as repair_item_amount,\n(data ->> 'PowerRequired') as power_required\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'dropPod'\nand data ->> 'Looted' != 'true';",
           "refId": "A",
           "sql": {
             "columns": [
@@ -269,6 +274,6 @@
   "timezone": "",
   "title": "Drop Pods",
   "uid": "1USga2tVk",
-  "version": 4,
+  "version": 10,
   "weekStart": ""
 }

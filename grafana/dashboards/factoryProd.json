@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -122,7 +122,7 @@
       "options": {
         "basemap": {
           "config": {
-            "url": "https://static.satisfactory-calculator.com/imgMap/gameLayer/EarlyAccess/{z}/{x}/{y}.png?v=1671697795"
+            "url": "https://satisfactory-map.featheredtoast.com/map/{z}/{x}/{y}.png"
           },
           "name": "Layer 0",
           "tooltip": true,
@@ -144,7 +144,7 @@
                 "color": {
                   "fixed": "dark-green"
                 },
-                "opacity": 0.4,
+                "opacity": 0.7,
                 "rotation": {
                   "fixed": 0,
                   "max": 360,
@@ -186,10 +186,10 @@
         },
         "view": {
           "allLayers": true,
-          "id": "coords",
-          "lat": 41.709095,
-          "lon": -72.94811,
-          "zoom": 3
+          "id": "fit",
+          "lat": -0.045,
+          "lon": 0.045,
+          "zoom": 15
         }
       },
       "pluginVersion": "9.3.1",
@@ -202,7 +202,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\ndata ->> 'building' as building,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 324600) * 0.00024004) - 157.54585 as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.00013951) + 92.66079 as latitude\nFROM cache\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'factory'\nLIMIT 500",
+          "rawSql": "SELECT\ndata ->> 'building' as building,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 374950) * 0.0000001175) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nFROM cache\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'factory'\nLIMIT 500",
           "refId": "A",
           "sql": {
             "columns": [
@@ -450,7 +450,7 @@
         "name": "xmin",
         "options": [
           {
-            "selected": false,
+            "selected": true,
             "text": "0",
             "value": "0"
           }
@@ -471,7 +471,7 @@
         "name": "xmax",
         "options": [
           {
-            "selected": false,
+            "selected": true,
             "text": "0",
             "value": "0"
           }
@@ -492,7 +492,7 @@
         "name": "ymax",
         "options": [
           {
-            "selected": false,
+            "selected": true,
             "text": "0",
             "value": "0"
           }
@@ -513,7 +513,7 @@
         "name": "ymin",
         "options": [
           {
-            "selected": false,
+            "selected": true,
             "text": "0",
             "value": "0"
           }
@@ -532,6 +532,6 @@
   "timezone": "",
   "title": "Factory Production",
   "uid": "pUvf_pt4k",
-  "version": 6,
+  "version": 4,
   "weekStart": ""
 }
