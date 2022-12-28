@@ -33,7 +33,7 @@
         "type": "postgres",
         "uid": "GhzMNppVk"
       },
-      "description": "Current consumption",
+      "description": "Current production(+) and consumption(-)",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -101,7 +101,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\njsonb_path_query(data, '$.ingredients[*].Name') as name,\nsum((ingredient ->> 'CurrentConsumed')::NUMERIC) as consumed\nFROM cache\ncross join jsonb_path_query(frm_data, '$[*]') as data,\nlateral jsonb_path_query(data, '$.ingredients[*]') as ingredients(ingredient)\nwhere metric = 'factory'\nAND \n(data -> 'location' ->> 'x')::NUMERIC BETWEEN $xmin and $xmax \nAND\n(data -> 'location' ->> 'y')::NUMERIC BETWEEN $ymin and $ymax\ngroup by name\nhaving sum((ingredient ->> 'CurrentConsumed')::NUMERIC) > 0\nLIMIT 50",
+          "rawSql": "SELECT\n  COALESCE(prod.name, cons.name) as name,\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) as rate\nfrom\n  (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.ingredients[*].Name') :: TEXT as name,\n          (\n            jsonb_path_query(data, '$.ingredients[*].CurrentConsumed') :: TEXT :: NUMERIC\n          ) val\n        FROM\n          cache\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'factory'\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN $xmin\n          and $xmax\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN $ymin\n          and $ymax\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as cons full\n  outer join (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.production[*].Name') :: TEXT as name,\n          jsonb_path_query(data, '$.production[*].CurrentProd') :: TEXT :: NUMERIC val\n        FROM\n          cache\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'factory'\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN $xmin\n          and $xmax\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN $ymin\n          and $ymax\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as prod on cons.name = prod.name\nwhere\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) != 0\norder by\n  rate desc,\n  name",
           "refId": "A",
           "sql": {
             "columns": [
@@ -128,7 +128,7 @@
           "table": "cache"
         }
       ],
-      "title": "Consumption",
+      "title": "Production",
       "type": "table"
     },
     {
@@ -136,7 +136,7 @@
         "type": "postgres",
         "uid": "GhzMNppVk"
       },
-      "description": "Max consumption",
+      "description": "Maximum production(+) and consumption(-)",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -203,211 +203,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\njsonb_path_query(data, '$.ingredients[*].Name') as name,\nsum((ingredient ->> 'MaxConsumed')::NUMERIC) as max_consumption\nFROM cache\ncross join jsonb_path_query(frm_data, '$[*]') as data,\nlateral jsonb_path_query(data, '$.ingredients[*]') as ingredients(ingredient)\nwhere metric = 'factory'\nAND \n(data -> 'location' ->> 'x')::NUMERIC BETWEEN $xmin and $xmax \nAND\n(data -> 'location' ->> 'y')::NUMERIC BETWEEN $ymin and $ymax\ngroup by name\nhaving sum((ingredient ->> 'MaxConsumed')::NUMERIC) > 0\nLIMIT 50",
-          "refId": "A",
-          "sql": {
-            "columns": [
-              {
-                "parameters": [
-                  {
-                    "name": "*",
-                    "type": "functionParameter"
-                  }
-                ],
-                "type": "function"
-              }
-            ],
-            "groupBy": [
-              {
-                "property": {
-                  "type": "string"
-                },
-                "type": "groupBy"
-              }
-            ],
-            "limit": 50
-          },
-          "table": "cache"
-        }
-      ],
-      "title": "Max Consumption",
-      "type": "table"
-    },
-    {
-      "datasource": {
-        "type": "postgres",
-        "uid": "GhzMNppVk"
-      },
-      "description": "Current production",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "auto",
-            "displayMode": "auto",
-            "inspect": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "data"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 337
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 9
-      },
-      "id": 4,
-      "options": {
-        "footer": {
-          "fields": "",
-          "reducer": ["sum"],
-          "show": false
-        },
-        "showHeader": true,
-        "sortBy": []
-      },
-      "pluginVersion": "9.3.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "postgres",
-            "uid": "GhzMNppVk"
-          },
-          "editorMode": "code",
-          "format": "table",
-          "rawQuery": true,
-          "rawSql": "SELECT\njsonb_path_query(data, '$.production[*].Name') as name,\nsum((item ->> 'CurrentProd')::NUMERIC) as produced\nFROM cache\ncross join jsonb_path_query(frm_data, '$[*]') as data,\nlateral jsonb_path_query(data, '$.production[*]') as production(item)\nwhere metric = 'factory'\nAND \n(data -> 'location' ->> 'x')::NUMERIC BETWEEN $xmin and $xmax \nAND\n(data -> 'location' ->> 'y')::NUMERIC BETWEEN $ymin and $ymax\ngroup by name\nhaving sum((item ->> 'CurrentProd')::NUMERIC) > 0\nLIMIT 50",
-          "refId": "A",
-          "sql": {
-            "columns": [
-              {
-                "parameters": [
-                  {
-                    "name": "*",
-                    "type": "functionParameter"
-                  }
-                ],
-                "type": "function"
-              }
-            ],
-            "groupBy": [
-              {
-                "property": {
-                  "type": "string"
-                },
-                "type": "groupBy"
-              }
-            ],
-            "limit": 50
-          },
-          "table": "cache"
-        }
-      ],
-      "title": "Production",
-      "type": "table"
-    },
-    {
-      "datasource": {
-        "type": "postgres",
-        "uid": "GhzMNppVk"
-      },
-      "description": "Maximum production",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "auto",
-            "displayMode": "auto",
-            "inspect": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "data"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 337
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 9
-      },
-      "id": 5,
-      "options": {
-        "footer": {
-          "fields": "",
-          "reducer": ["sum"],
-          "show": false
-        },
-        "showHeader": true,
-        "sortBy": []
-      },
-      "pluginVersion": "9.3.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "postgres",
-            "uid": "GhzMNppVk"
-          },
-          "editorMode": "code",
-          "format": "table",
-          "rawQuery": true,
-          "rawSql": "SELECT\njsonb_path_query(data, '$.production[*].Name') as name,\nsum((item ->> 'MaxProd')::NUMERIC) as produced\nFROM cache\ncross join jsonb_path_query(frm_data, '$[*]') as data,\nlateral jsonb_path_query(data, '$.production[*]') as production(item)\nwhere metric = 'factory'\nAND \n(data -> 'location' ->> 'x')::NUMERIC BETWEEN $xmin and $xmax \nAND\n(data -> 'location' ->> 'y')::NUMERIC BETWEEN $ymin and $ymax\ngroup by name\nhaving sum((item ->> 'MaxProd')::NUMERIC) > 0\nLIMIT 50",
+          "rawSql": "SELECT\n  COALESCE(prod.name, cons.name) as name,\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) as rate\nfrom\n  (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.ingredients[*].Name') :: TEXT as name,\n          (\n            jsonb_path_query(data, '$.ingredients[*].MaxConsumed') :: TEXT :: NUMERIC\n          ) val\n        FROM\n          cache\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'factory'\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN $xmin\n          and $xmax\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN $ymin\n          and $ymax\n      ) as t\n    group by\n      t.name\n  ) as cons full\n  outer join (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.production[*].Name') :: TEXT as name,\n          jsonb_path_query(data, '$.production[*].MaxProd') :: TEXT :: NUMERIC val\n        FROM\n          cache\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'factory'\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN $xmin\n          and $xmax\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN $ymin\n          and $ymax\n      ) as t\n    group by\n      t.name\n  ) as prod on cons.name = prod.name\nwhere\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) != 0\norder by\n  rate desc,\n  name",
           "refId": "A",
           "sql": {
             "columns": [
@@ -446,8 +242,8 @@
       {
         "current": {
           "selected": false,
-          "text": "0",
-          "value": "0"
+          "text": "-1000000",
+          "value": "-1000000"
         },
         "description": "leftmost bound of factory",
         "hide": 0,
@@ -456,19 +252,19 @@
         "options": [
           {
             "selected": true,
-            "text": "0",
-            "value": "0"
+            "text": "-1000000",
+            "value": "-1000000"
           }
         ],
-        "query": "0",
+        "query": "-1000000",
         "skipUrlSync": false,
         "type": "textbox"
       },
       {
         "current": {
           "selected": false,
-          "text": "0",
-          "value": "0"
+          "text": "1000000",
+          "value": "1000000"
         },
         "description": "rightmost bound of factory",
         "hide": 0,
@@ -477,19 +273,19 @@
         "options": [
           {
             "selected": true,
-            "text": "0",
-            "value": "0"
+            "text": "1000000",
+            "value": "1000000"
           }
         ],
-        "query": "0",
+        "query": "1000000",
         "skipUrlSync": false,
         "type": "textbox"
       },
       {
         "current": {
           "selected": false,
-          "text": "0",
-          "value": "0"
+          "text": "1000000",
+          "value": "1000000"
         },
         "description": "northern bound of factory",
         "hide": 0,
@@ -498,19 +294,19 @@
         "options": [
           {
             "selected": true,
-            "text": "0",
-            "value": "0"
+            "text": "1000000",
+            "value": "1000000"
           }
         ],
-        "query": "0",
+        "query": "1000000",
         "skipUrlSync": false,
         "type": "textbox"
       },
       {
         "current": {
           "selected": false,
-          "text": "0",
-          "value": "0"
+          "text": "-1000000",
+          "value": "-1000000"
         },
         "description": "southern bound of factory",
         "hide": 0,
@@ -519,11 +315,11 @@
         "options": [
           {
             "selected": true,
-            "text": "0",
-            "value": "0"
+            "text": "-1000000",
+            "value": "-1000000"
           }
         ],
-        "query": "0",
+        "query": "-1000000",
         "skipUrlSync": false,
         "type": "textbox"
       }
@@ -537,6 +333,6 @@
   "timezone": "",
   "title": "Factory Production",
   "uid": "pUvf_pt4k",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }
