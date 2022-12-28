@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"database/sql"
-	"github.com/benbjohnson/clock"
 	"io"
 	"net/http"
 	"strings"
@@ -11,8 +10,6 @@ import (
 	"fmt"
 	"time"
 )
-
-var Clock = clock.New()
 
 type CacheWorker struct {
 	ctx        context.Context
@@ -76,7 +73,7 @@ func (c *CacheWorker) Start() {
 		select {
 		case <-c.ctx.Done():
 			return
-		case <-Clock.After(60 * time.Second):
+		case <-time.After(60 * time.Second):
 			c.pullAllMetrics()
 		}
 	}
