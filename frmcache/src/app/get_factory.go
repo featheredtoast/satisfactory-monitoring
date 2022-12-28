@@ -11,8 +11,6 @@ type BuildingDetail struct {
 	IsProducing  bool         `json:"IsProducing"`
 	IsPaused     bool         `json:"IsPaused"`
 	CircuitID    int          `json:"CircuitID"`
-	Longitude    float64      `json:"longitude"`
-	Latitude     float64      `json:"latitude"`
 }
 
 type Production struct {
