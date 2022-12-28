@@ -40,7 +40,7 @@ services:
 
   frmcache:
     image: golang
-    working_dir: /usr/src
+    working_dir: /usr/src/app
     entrypoint: /usr/local/bin/init.sh
     volumes:
       - ./frmcache/init.sh:/usr/local/bin/init.sh
@@ -48,18 +48,17 @@ services:
     environment:
       - FRM_HOST=${FRM_HOST:-fakeserver}
       - FRM_PORT=${FRM_PORT:-8080}
-      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - PG_HOST=${PG_HOST:-postgres}
+      - PG_PORT=${PG_PORT:-5432}
+      - PG_PASSWORD=${PG_PASSWORD:-secretpassword}
+      - PG_USER=${PG_USER:-postgres}
+      - PG_DB=${PG_DB:-postgres}
     networks:
       - grafana
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.5.3
+  postgres:
+    image: postgres
     environment:
-      - node.name=es
-      - xpack.security.enabled=false
-      - discovery.type=single-node
-      - network.host=0.0.0.0
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - bootstrap.memory_lock=true
+      - POSTGRES_PASSWORD=secretpassword
     networks:
       - grafana
 
