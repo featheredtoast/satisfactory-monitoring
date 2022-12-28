@@ -65,6 +65,9 @@ func (c *CacheWorker) pullAllMetrics() {
 	c.pullMetrics("dropPod", "/getDropPod")
 	c.pullMetrics("storageInv", "/getStorageInv")
 	c.pullMetrics("worldInv", "/getWorldInv")
+	c.pullMetrics("droneStation", "/getDroneStation")
+	c.pullMetrics("trainStation", "/getTrainStation")
+	c.pullMetrics("truckStation", "/getTruckStation")
 }
 
 func (c *CacheWorker) Start() {
