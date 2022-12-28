@@ -65,6 +65,9 @@ func (c *CacheWorker) pullMetrics(metric string, route string) {
 
 func (c *CacheWorker) pullAllMetrics() {
 	c.pullMetrics("factory", "/getFactory")
+	c.pullMetrics("dropPod", "/getDropPod")
+	c.pullMetrics("storageInv", "/getStorageInv")
+	c.pullMetrics("worldInv", "/getWorldInv")
 }
 
 func (c *CacheWorker) Start() {
@@ -73,7 +76,7 @@ func (c *CacheWorker) Start() {
 		select {
 		case <-c.ctx.Done():
 			return
-		case <-Clock.After(5 * time.Second):
+		case <-Clock.After(60 * time.Second):
 			c.pullAllMetrics()
 		}
 	}

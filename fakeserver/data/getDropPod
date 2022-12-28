@@ -1,0 +1,52 @@
+[
+   {
+      "DropPodID":"0",
+      "location":{
+         "x":-123677.367188,
+         "y":-167107.46875,
+         "z":29710.71875
+      },
+      "Looted":true,
+      "RepairItem":"Motor",
+      "RepairAmount":4,
+      "PowerRequired":0.0,
+      "features":{
+         "properties":{
+            "type":"Drop Pods"
+         },
+         "geometry":{
+            "coordinates":{
+               "x":-123677.367188,
+               "y":-167107.46875,
+               "z":29710.71875
+            },
+            "type":"Point"
+         }
+      }
+   },
+   {
+      "DropPodID":"1",
+      "location":{
+         "x":236508.34375,
+         "y":-312236.40625,
+         "z":9971.155273
+      },
+      "Looted":true,
+      "RepairItem":"Motor",
+      "RepairAmount":30,
+      "PowerRequired":0.0,
+      "features":{
+         "properties":{
+            "type":"Drop Pods"
+         },
+         "geometry":{
+            "coordinates":{
+               "x":236508.34375,
+               "y":-312236.40625,
+               "z":9971.155273
+            },
+            "type":"Point"
+         }
+      }
+   }
+]
