@@ -61,7 +61,6 @@ func (c *CacheWorker) pullMetrics(metric string, route string, details any) {
 	if err != nil {
 		fmt.Println("error when parsing json: ", err)
 	}
-	fmt.Println("caching:", details)
 	c.cacheMetrics(metric, details)
 }
 
