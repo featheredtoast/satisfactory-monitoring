@@ -29,6 +29,205 @@
   "liveNow": false,
   "panels": [
     {
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 9,
+      "title": "Info",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 1
+      },
+      "id": 11,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "Calculate input and output by a square region, bounded by variables.\n\nEdit the map displayed and inspect buildings to get approximate x + y coordinates.\nThen plugin bounds for x and y. Factory exports (+/min) and imports (-/min) will be updated according to the new area.\n\nx min, x max, y min and y max are ingame coordinates.",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.3.1",
+      "title": "Factory production calculator by region",
+      "type": "text"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 6
+      },
+      "id": 7,
+      "panels": [],
+      "title": "Factory details",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "GhzMNppVk"
+      },
+      "description": "Approximate map of the factory - useful for plotting factory boundaries",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 0,
+        "y": 7
+      },
+      "id": 5,
+      "options": {
+        "basemap": {
+          "config": {
+            "url": "https://static.satisfactory-calculator.com/imgMap/gameLayer/EarlyAccess/{z}/{x}/{y}.png?v=1671697795"
+          },
+          "name": "Layer 0",
+          "tooltip": true,
+          "type": "xyz"
+        },
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": false,
+          "showDebug": false,
+          "showMeasure": false,
+          "showScale": false,
+          "showZoom": true
+        },
+        "layers": [
+          {
+            "config": {
+              "showLegend": false,
+              "style": {
+                "color": {
+                  "fixed": "dark-green"
+                },
+                "opacity": 0.4,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "A"
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "Buildings",
+            "tooltip": true,
+            "type": "markers"
+          }
+        ],
+        "tooltip": {
+          "mode": "details"
+        },
+        "view": {
+          "allLayers": true,
+          "id": "coords",
+          "lat": 41.709095,
+          "lon": -72.94811,
+          "zoom": 3
+        }
+      },
+      "pluginVersion": "9.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "GhzMNppVk"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\ndata ->> 'building' as building,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 324600) * 0.00024004) - 157.54585 as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.00013951) + 92.66079 as latitude\nFROM cache\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'factory'\nLIMIT 500",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "cache"
+        }
+      ],
+      "title": "Factory Map",
+      "type": "geomap"
+    },
+    {
       "datasource": {
         "type": "postgres",
         "uid": "GhzMNppVk"
@@ -77,8 +276,8 @@
       "gridPos": {
         "h": 9,
         "w": 12,
-        "x": 0,
-        "y": 0
+        "x": 12,
+        "y": 7
       },
       "id": 2,
       "options": {
@@ -101,7 +300,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\n  COALESCE(prod.name, cons.name) as name,\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) as rate\nfrom\n  (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.ingredients[*].Name') :: TEXT as name,\n          (\n            jsonb_path_query(data, '$.ingredients[*].CurrentConsumed') :: TEXT :: NUMERIC\n          ) val\n        FROM\n          cache\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'factory'\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN $xmin\n          and $xmax\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN $ymin\n          and $ymax\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as cons full\n  outer join (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.production[*].Name') :: TEXT as name,\n          jsonb_path_query(data, '$.production[*].CurrentProd') :: TEXT :: NUMERIC val\n        FROM\n          cache\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'factory'\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN $xmin\n          and $xmax\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN $ymin\n          and $ymax\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as prod on cons.name = prod.name\nwhere\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) != 0\norder by\n  rate desc,\n  name",
+          "rawSql": "SELECT\n  COALESCE(prod.name, cons.name) as name,\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) as rate\nfrom\n  (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.ingredients[*].Name') :: TEXT as name,\n          (\n            jsonb_path_query(data, '$.ingredients[*].CurrentConsumed') :: TEXT :: NUMERIC\n          ) val\n        FROM\n          cache\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'factory'\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN ($xmin * 100)\n          and ($xmax * 100)\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN ($ymin * 100)\n          and ($ymax * 100)\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as cons full\n  outer join (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.production[*].Name') :: TEXT as name,\n          jsonb_path_query(data, '$.production[*].CurrentProd') :: TEXT :: NUMERIC val\n        FROM\n          cache\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'factory'\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN ($xmin * 100)\n          and ($xmax * 100)\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN ($ymin * 100)\n          and ($ymax * 100)\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as prod on cons.name = prod.name\nwhere\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) != 0\norder by\n  rate desc,\n  name",
           "refId": "A",
           "sql": {
             "columns": [
@@ -128,7 +327,7 @@
           "table": "cache"
         }
       ],
-      "title": "Production",
+      "title": "Current Production",
       "type": "table"
     },
     {
@@ -181,7 +380,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 0
+        "y": 16
       },
       "id": 3,
       "options": {
@@ -203,7 +402,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\n  COALESCE(prod.name, cons.name) as name,\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) as rate\nfrom\n  (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.ingredients[*].Name') :: TEXT as name,\n          (\n            jsonb_path_query(data, '$.ingredients[*].MaxConsumed') :: TEXT :: NUMERIC\n          ) val\n        FROM\n          cache\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'factory'\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN $xmin\n          and $xmax\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN $ymin\n          and $ymax\n      ) as t\n    group by\n      t.name\n  ) as cons full\n  outer join (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.production[*].Name') :: TEXT as name,\n          jsonb_path_query(data, '$.production[*].MaxProd') :: TEXT :: NUMERIC val\n        FROM\n          cache\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'factory'\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN $xmin\n          and $xmax\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN $ymin\n          and $ymax\n      ) as t\n    group by\n      t.name\n  ) as prod on cons.name = prod.name\nwhere\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) != 0\norder by\n  rate desc,\n  name",
+          "rawSql": "SELECT\n  COALESCE(prod.name, cons.name) as name,\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) as rate\nfrom\n  (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.ingredients[*].Name') :: TEXT as name,\n          (\n            jsonb_path_query(data, '$.ingredients[*].MaxConsumed') :: TEXT :: NUMERIC\n          ) val\n        FROM\n          cache\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'factory'\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN ($xmin * 100)\n          and ($xmax * 100)\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN ($ymin * 100)\n          and ($ymax * 100)\n      ) as t\n    group by\n      t.name\n  ) as cons full\n  outer join (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.production[*].Name') :: TEXT as name,\n          jsonb_path_query(data, '$.production[*].MaxProd') :: TEXT :: NUMERIC val\n        FROM\n          cache\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'factory'\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN ($xmin * 100)\n          and ($xmax * 100)\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN ($ymin * 100)\n          and ($ymax * 100)\n      ) as t\n    group by\n      t.name\n  ) as prod on cons.name = prod.name\nwhere\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) != 0\norder by\n  rate desc,\n  name",
           "refId": "A",
           "sql": {
             "columns": [
@@ -242,8 +441,8 @@
       {
         "current": {
           "selected": false,
-          "text": "-1000000",
-          "value": "-1000000"
+          "text": "-709",
+          "value": "-709"
         },
         "description": "leftmost bound of factory",
         "hide": 0,
@@ -251,20 +450,20 @@
         "name": "xmin",
         "options": [
           {
-            "selected": true,
-            "text": "-1000000",
-            "value": "-1000000"
+            "selected": false,
+            "text": "0",
+            "value": "0"
           }
         ],
-        "query": "-1000000",
+        "query": "-709",
         "skipUrlSync": false,
         "type": "textbox"
       },
       {
         "current": {
           "selected": false,
-          "text": "1000000",
-          "value": "1000000"
+          "text": "-350",
+          "value": "-350"
         },
         "description": "rightmost bound of factory",
         "hide": 0,
@@ -272,20 +471,20 @@
         "name": "xmax",
         "options": [
           {
-            "selected": true,
-            "text": "1000000",
-            "value": "1000000"
+            "selected": false,
+            "text": "0",
+            "value": "0"
           }
         ],
-        "query": "1000000",
+        "query": "-350",
         "skipUrlSync": false,
         "type": "textbox"
       },
       {
         "current": {
           "selected": false,
-          "text": "1000000",
-          "value": "1000000"
+          "text": "2700",
+          "value": "2700"
         },
         "description": "northern bound of factory",
         "hide": 0,
@@ -293,20 +492,20 @@
         "name": "ymax",
         "options": [
           {
-            "selected": true,
-            "text": "1000000",
-            "value": "1000000"
+            "selected": false,
+            "text": "0",
+            "value": "0"
           }
         ],
-        "query": "1000000",
+        "query": "2700",
         "skipUrlSync": false,
         "type": "textbox"
       },
       {
         "current": {
           "selected": false,
-          "text": "-1000000",
-          "value": "-1000000"
+          "text": "2200",
+          "value": "2200"
         },
         "description": "southern bound of factory",
         "hide": 0,
@@ -314,12 +513,12 @@
         "name": "ymin",
         "options": [
           {
-            "selected": true,
-            "text": "-1000000",
-            "value": "-1000000"
+            "selected": false,
+            "text": "0",
+            "value": "0"
           }
         ],
-        "query": "-1000000",
+        "query": "2200",
         "skipUrlSync": false,
         "type": "textbox"
       }
@@ -333,6 +532,6 @@
   "timezone": "",
   "title": "Factory Production",
   "uid": "pUvf_pt4k",
-  "version": 3,
+  "version": 6,
   "weekStart": ""
 }
