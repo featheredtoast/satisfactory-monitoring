@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 7,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -86,6 +86,93 @@
           "showZoom": true
         },
         "layers": [
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
+                  "fixed": "dark-blue"
+                },
+                "opacity": 0.4,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "Other stations"
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "Other stations",
+            "tooltip": true,
+            "type": "markers"
+          },
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
+                  "fixed": "dark-blue"
+                },
+                "opacity": 0.4,
+                "rotation": {
+                  "field": "rotation",
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 50,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/unicons/angle-up.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "Other trains"
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "Other trains",
+            "tooltip": true,
+            "type": "markers"
+          },
           {
             "config": {
               "style": {
@@ -213,93 +300,6 @@
             "name": "Stations",
             "tooltip": true,
             "type": "markers"
-          },
-          {
-            "config": {
-              "showLegend": true,
-              "style": {
-                "color": {
-                  "fixed": "dark-blue"
-                },
-                "opacity": 0.4,
-                "rotation": {
-                  "field": "rotation",
-                  "fixed": 0,
-                  "max": 360,
-                  "min": -360,
-                  "mode": "mod"
-                },
-                "size": {
-                  "fixed": 50,
-                  "max": 15,
-                  "min": 2
-                },
-                "symbol": {
-                  "fixed": "img/icons/unicons/angle-up.svg",
-                  "mode": "fixed"
-                },
-                "textConfig": {
-                  "fontSize": 12,
-                  "offsetX": 0,
-                  "offsetY": 0,
-                  "textAlign": "center",
-                  "textBaseline": "middle"
-                }
-              }
-            },
-            "filterData": {
-              "id": "byRefId",
-              "options": "Other trains"
-            },
-            "location": {
-              "mode": "auto"
-            },
-            "name": "Other trains",
-            "tooltip": true,
-            "type": "markers"
-          },
-          {
-            "config": {
-              "showLegend": true,
-              "style": {
-                "color": {
-                  "fixed": "dark-blue"
-                },
-                "opacity": 0.4,
-                "rotation": {
-                  "fixed": 0,
-                  "max": 360,
-                  "min": -360,
-                  "mode": "mod"
-                },
-                "size": {
-                  "fixed": 5,
-                  "max": 15,
-                  "min": 2
-                },
-                "symbol": {
-                  "fixed": "img/icons/marker/circle.svg",
-                  "mode": "fixed"
-                },
-                "textConfig": {
-                  "fontSize": 12,
-                  "offsetX": 0,
-                  "offsetY": 0,
-                  "textAlign": "center",
-                  "textBaseline": "middle"
-                }
-              }
-            },
-            "filterData": {
-              "id": "byRefId",
-              "options": "Other stations"
-            },
-            "location": {
-              "mode": "auto"
-            },
-            "name": "Other stations",
-            "tooltip": true,
-            "type": "markers"
           }
         ],
         "tooltip": {
@@ -384,7 +384,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\n  data -> 'StationName' as station_name,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nfrom\n  cache\n  cross join jsonb_path_query(frm_data, '$[*]') as data\nwhere\n  metric = 'trainStation'\n  and (data ->> 'StationName') in (\n    select\n      trim(\n        '\"'\n        from\n          jsonb_path_query(t.timetable, '$[*].StationName') :: TEXT\n      ) as station\n    from\n(\n        select\n          timetable\n        from\n          cache_with_history c\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n          cross join jsonb_path_query(frm_data, '$[*].TimeTable') as timetable\n        where\n          metric = 'train'\n          and data ->> 'TrainName' = '$train'\n        order by\n          c.id desc\n        limit\n          1\n      ) as t\n  )\nlimit\n  100;",
+          "rawSql": "select\n  data -> 'StationName' as station_name,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nfrom\n  cache\n  cross join jsonb_path_query(frm_data, '$[*]') as data\nwhere\n  metric = 'trainStation'\n  and (data ->> 'StationName') in (\n    select\n      trim(\n        '\"'\n        from\n          jsonb_path_query(timetable, '$[*].StationName') :: TEXT\n      ) as timetable\n    from\n      (\n        select\n          data -> 'TimeTable' as timetable\n        from\n          cache_with_history c\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'train'\n          and data ->> 'TrainName' = '$train'\n        order by\n          c.id desc\n        limit\n          1\n      ) t\n  )\nlimit\n  100;",
           "refId": "Stations",
           "sql": {
             "columns": [
@@ -442,7 +442,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata -> 'StationName' as station_name,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'trainStation'\nand (data ->> 'StationName') not in (\nselect trim('\"' from jsonb_path_query(t.timetable, '$[*].StationName')::TEXT) as station\nfrom(\nselect\ntimetable\nfrom cache_with_history c\ncross join jsonb_path_query(frm_data, '$[*]') as data\ncross join jsonb_path_query(frm_data, '$[*].TimeTable') as timetable\nwhere metric = 'train'\nand data ->> 'TrainName' = '$train'\norder by c.id desc\nlimit 1) as t\n)\nlimit 100;\n",
+          "rawSql": "select\n  data -> 'StationName' as station_name,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nfrom\n  cache\n  cross join jsonb_path_query(frm_data, '$[*]') as data\nwhere\n  metric = 'trainStation'\n  and (data ->> 'StationName') not in (\n    select\n      trim(\n        '\"'\n        from\n          jsonb_path_query(timetable, '$[*].StationName') :: TEXT\n      ) as timetable\n    from\n      (\n        select\n          data -> 'TimeTable' as timetable\n        from\n          cache_with_history c\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'train'\n          and data ->> 'TrainName' = '$train'\n        order by\n          c.id desc\n        limit\n          1\n      ) t\n  )\nlimit\n  100;",
           "refId": "Other stations",
           "sql": {
             "columns": [
@@ -794,9 +794,9 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "choo",
-          "value": "choo"
+          "selected": true,
+          "text": "sulfur to turbofuel",
+          "value": "sulfur to turbofuel"
         },
         "datasource": {
           "type": "postgres",
@@ -826,6 +826,6 @@
   "timezone": "",
   "title": "Trains",
   "uid": "5TN0r0p4k",
-  "version": 7,
+  "version": 2,
   "weekStart": ""
 }
