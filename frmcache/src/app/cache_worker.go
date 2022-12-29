@@ -110,6 +110,7 @@ func (c *CacheWorker) Start() {
 		case <-time.After(10 * time.Minute):
 			c.rotateCacheHistory()
 		case <-time.After(5 * time.Second):
+			counter = counter + 1
 			c.pullRealtimeMetrics()
 			if counter > 11 {
 				c.pullLowCadenceMetrics()
