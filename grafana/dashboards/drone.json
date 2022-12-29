@@ -262,7 +262,7 @@
           "mode": "details"
         },
         "view": {
-          "allLayers": false,
+          "allLayers": true,
           "id": "fit",
           "lastOnly": false,
           "lat": 0,
@@ -678,7 +678,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "33",
           "value": "33"
         },
@@ -710,6 +710,6 @@
   "timezone": "",
   "title": "Drones",
   "uid": "HsE6e0tVz",
-  "version": 8,
+  "version": 9,
   "weekStart": ""
 }
