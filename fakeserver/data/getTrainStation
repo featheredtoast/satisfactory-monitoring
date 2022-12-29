@@ -2,7 +2,7 @@
    {
       "StationName":"Other station",
       "location":{
-         "x":,
+         "x": 1000,
          "y":1000,
          "z":10589.841797,
          "rotation":100
