@@ -221,6 +221,49 @@
                 "color": {
                   "fixed": "dark-orange"
                 },
+                "opacity": 0.6,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "Stations"
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "Stations",
+            "tooltip": true,
+            "type": "markers"
+          },
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
+                  "fixed": "dark-orange"
+                },
                 "opacity": 0.7,
                 "rotation": {
                   "field": "rotation",
@@ -255,49 +298,6 @@
               "mode": "auto"
             },
             "name": "Train location",
-            "tooltip": true,
-            "type": "markers"
-          },
-          {
-            "config": {
-              "showLegend": true,
-              "style": {
-                "color": {
-                  "fixed": "dark-orange"
-                },
-                "opacity": 0.6,
-                "rotation": {
-                  "fixed": 0,
-                  "max": 360,
-                  "min": -360,
-                  "mode": "mod"
-                },
-                "size": {
-                  "fixed": 5,
-                  "max": 15,
-                  "min": 2
-                },
-                "symbol": {
-                  "fixed": "img/icons/marker/circle.svg",
-                  "mode": "fixed"
-                },
-                "textConfig": {
-                  "fontSize": 12,
-                  "offsetX": 0,
-                  "offsetY": 0,
-                  "textAlign": "center",
-                  "textBaseline": "middle"
-                }
-              }
-            },
-            "filterData": {
-              "id": "byRefId",
-              "options": "Stations"
-            },
-            "location": {
-              "mode": "auto"
-            },
-            "name": "Stations",
             "tooltip": true,
             "type": "markers"
           }
@@ -890,8 +890,8 @@
       {
         "current": {
           "selected": true,
-          "text": "Jeff's Train",
-          "value": "Jeff's Train"
+          "text": "Dick Mabutt",
+          "value": "Dick Mabutt"
         },
         "datasource": {
           "type": "postgres",
