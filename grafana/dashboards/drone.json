@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 7,
+  "id": 8,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -90,7 +90,7 @@
             "config": {
               "style": {
                 "color": {
-                  "fixed": "#37872D"
+                  "fixed": "#73BF69"
                 },
                 "lineWidth": 2,
                 "opacity": 1,
@@ -123,7 +123,6 @@
               "options": "Route"
             },
             "name": "Route",
-            "opacity": 0.9,
             "tooltip": true,
             "type": "route"
           },
@@ -132,9 +131,53 @@
               "showLegend": true,
               "style": {
                 "color": {
+                  "fixed": "dark-blue"
+                },
+                "opacity": 0.4,
+                "rotation": {
+                  "field": "rotation",
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/unicons/angle-up.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "Other drones"
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "Other drones",
+            "tooltip": true,
+            "type": "markers"
+          },
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
                   "fixed": "dark-orange"
                 },
-                "opacity": 0.7,
+                "opacity": 0.4,
                 "rotation": {
                   "field": "rotation",
                   "fixed": 0,
@@ -167,7 +210,7 @@
             "location": {
               "mode": "auto"
             },
-            "name": "Train location",
+            "name": "Drone",
             "tooltip": true,
             "type": "markers"
           },
@@ -176,94 +219,7 @@
               "showLegend": true,
               "style": {
                 "color": {
-                  "fixed": "dark-orange"
-                },
-                "opacity": 0.6,
-                "rotation": {
-                  "fixed": 0,
-                  "max": 360,
-                  "min": -360,
-                  "mode": "mod"
-                },
-                "size": {
-                  "fixed": 5,
-                  "max": 15,
-                  "min": 2
-                },
-                "symbol": {
-                  "fixed": "img/icons/marker/circle.svg",
-                  "mode": "fixed"
-                },
-                "textConfig": {
-                  "fontSize": 12,
-                  "offsetX": 0,
-                  "offsetY": 0,
-                  "textAlign": "center",
-                  "textBaseline": "middle"
-                }
-              }
-            },
-            "filterData": {
-              "id": "byRefId",
-              "options": "Stations"
-            },
-            "location": {
-              "mode": "auto"
-            },
-            "name": "Stations",
-            "tooltip": true,
-            "type": "markers"
-          },
-          {
-            "config": {
-              "showLegend": true,
-              "style": {
-                "color": {
-                  "fixed": "dark-blue"
-                },
-                "opacity": 0.4,
-                "rotation": {
-                  "field": "rotation",
-                  "fixed": 0,
-                  "max": 360,
-                  "min": -360,
-                  "mode": "mod"
-                },
-                "size": {
-                  "fixed": 50,
-                  "max": 15,
-                  "min": 2
-                },
-                "symbol": {
-                  "fixed": "img/icons/unicons/angle-up.svg",
-                  "mode": "fixed"
-                },
-                "textConfig": {
-                  "fontSize": 12,
-                  "offsetX": 0,
-                  "offsetY": 0,
-                  "textAlign": "center",
-                  "textBaseline": "middle"
-                }
-              }
-            },
-            "filterData": {
-              "id": "byRefId",
-              "options": "Other trains"
-            },
-            "location": {
-              "mode": "auto"
-            },
-            "name": "Other trains",
-            "tooltip": true,
-            "type": "markers"
-          },
-          {
-            "config": {
-              "showLegend": true,
-              "style": {
-                "color": {
-                  "fixed": "dark-blue"
+                  "fixed": "dark-green"
                 },
                 "opacity": 0.4,
                 "rotation": {
@@ -292,12 +248,12 @@
             },
             "filterData": {
               "id": "byRefId",
-              "options": "Other stations"
+              "options": "Ports"
             },
             "location": {
               "mode": "auto"
             },
-            "name": "Other stations",
+            "name": "Ports",
             "tooltip": true,
             "type": "markers"
           }
@@ -306,11 +262,9 @@
           "mode": "details"
         },
         "view": {
-          "allLayers": false,
+          "allLayers": true,
           "id": "fit",
-          "lastOnly": false,
           "lat": 0,
-          "layer": "Route",
           "lon": 0,
           "zoom": 18
         }
@@ -326,7 +280,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'Rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'train'\nand data ->> 'TrainName' = '$train'\norder by time desc\nlimit 720;\n",
+          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'drone'\nand data ->> 'ID' = '$drone'\norder by time desc\nlimit 100;\n",
           "refId": "Route",
           "sql": {
             "columns": [
@@ -355,7 +309,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'Rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'train'\nand data ->> 'TrainName' = '$train'\norder by id desc\nlimit 1;\n",
+          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'drone'\nand data ->> 'ID' = '$drone'\norder by id desc\nlimit 1;\n",
           "refId": "Current location",
           "sql": {
             "columns": [
@@ -384,8 +338,8 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\n  data -> 'StationName' as station_name,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nfrom\n  cache\n  cross join jsonb_path_query(frm_data, '$[*]') as data\nwhere\n  metric = 'trainStation'\n  and (data ->> 'StationName') in (\n    select\n      trim(\n        '\"'\n        from\n          jsonb_path_query(t.timetable, '$[*].StationName') :: TEXT\n      ) as station\n    from\n(\n        select\n          timetable\n        from\n          cache_with_history c\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n          cross join jsonb_path_query(frm_data, '$[*].TimeTable') as timetable\n        where\n          metric = 'train'\n          and data ->> 'TrainName' = '$train'\n        order by\n          c.id desc\n        limit\n          1\n      ) as t\n  )\nlimit\n  100;",
-          "refId": "Stations",
+          "rawSql": "select\ndata ->> 'HomeStation',\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'droneStation'\nlimit 100;\n",
+          "refId": "Ports",
           "sql": {
             "columns": [
               {
@@ -413,37 +367,8 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata -> 'TrainName' as name,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'Rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'train'\nand data ->> 'TrainName' <> '$train'\norder by id desc\nlimit 1;\n",
-          "refId": "Other trains",
-          "sql": {
-            "columns": [
-              {
-                "parameters": [],
-                "type": "function"
-              }
-            ],
-            "groupBy": [
-              {
-                "property": {
-                  "type": "string"
-                },
-                "type": "groupBy"
-              }
-            ],
-            "limit": 50
-          }
-        },
-        {
-          "datasource": {
-            "type": "postgres",
-            "uid": "GhzMNppVk"
-          },
-          "editorMode": "code",
-          "format": "table",
-          "hide": false,
-          "rawQuery": true,
-          "rawSql": "select\ndata -> 'StationName' as station_name,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'trainStation'\nand (data ->> 'StationName') not in (\nselect trim('\"' from jsonb_path_query(t.timetable, '$[*].StationName')::TEXT) as station\nfrom(\nselect\ntimetable\nfrom cache_with_history c\ncross join jsonb_path_query(frm_data, '$[*]') as data\ncross join jsonb_path_query(frm_data, '$[*].TimeTable') as timetable\nwhere metric = 'train'\nand data ->> 'TrainName' = '$train'\norder by c.id desc\nlimit 1) as t\n)\nlimit 100;\n",
-          "refId": "Other stations",
+          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'drone'\nand data ->> 'ID' != '$drone'\norder by id desc\nlimit 1;\n",
+          "refId": "Other drones",
           "sql": {
             "columns": [
               {
@@ -463,7 +388,7 @@
           }
         }
       ],
-      "title": "Train Routes",
+      "title": "Drone Routes",
       "type": "geomap"
     },
     {
@@ -473,8 +398,8 @@
         "x": 0,
         "y": 8
       },
-      "id": 4,
-      "title": "All Train Stats",
+      "id": 2,
+      "title": "Drone Global",
       "type": "row"
     },
     {
@@ -540,7 +465,7 @@
         "x": 0,
         "y": 9
       },
-      "id": 16,
+      "id": 22,
       "options": {
         "legend": {
           "calcs": [],
@@ -560,13 +485,13 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "train_round_trip_seconds / 60",
-          "legendFormat": "{{name}}",
+          "expr": "drone_port_round_trip_seconds / 60 > 0",
+          "legendFormat": "{{home_station}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Train Round trip",
+      "title": "Drone Round Trip",
       "type": "timeseries"
     },
     {
@@ -582,7 +507,7 @@
           "custom": {
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "Minutes",
+            "axisLabel": "batteries/min",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -632,7 +557,7 @@
         "x": 12,
         "y": 9
       },
-      "id": 18,
+      "id": 20,
       "options": {
         "legend": {
           "calcs": [],
@@ -652,138 +577,14 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "avg by(from, to) (train_segment_trip_seconds) / 60",
-          "legendFormat": "{{from}} -> {{to}}",
+          "expr": "sum(drone_port_battery_rate > 0)",
+          "legendFormat": "Batteries",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Station Travel Time",
+      "title": "Battery Consumption Rate",
       "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "MW",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 17
-      },
-      "id": 14,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "builder",
-          "expr": "train_power_consumed",
-          "legendFormat": "{{name}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Train power consumption",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "datasource",
-        "uid": "grafana"
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 17
-      },
-      "id": 24,
-      "options": {
-        "alertInstanceLabelFilter": "",
-        "alertName": "TrainDerailed",
-        "dashboardAlerts": false,
-        "groupBy": ["name"],
-        "groupMode": "custom",
-        "maxItems": 20,
-        "sortOrder": 1,
-        "stateFilter": {
-          "error": true,
-          "firing": true,
-          "noData": false,
-          "normal": false,
-          "pending": true
-        },
-        "viewMode": "list"
-      },
-      "title": "Derail Alerts",
-      "type": "alertlist"
     }
   ],
   "refresh": "5s",
@@ -795,21 +596,21 @@
       {
         "current": {
           "selected": false,
-          "text": "choo",
-          "value": "choo"
+          "text": "0",
+          "value": "0"
         },
         "datasource": {
           "type": "postgres",
           "uid": "GhzMNppVk"
         },
-        "definition": "select\ndata ->> 'TrainName'\nfrom cache_with_history c\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'train'\norder by c.id desc",
+        "definition": "select\ndata ->> 'ID'\nfrom cache_with_history c\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'drone'\norder by c.id desc\nlimit 1",
         "hide": 0,
         "includeAll": false,
-        "label": "Train name",
+        "label": "Drone ID",
         "multi": false,
-        "name": "train",
+        "name": "drone",
         "options": [],
-        "query": "select\ndata ->> 'TrainName'\nfrom cache_with_history c\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'train'\norder by c.id desc",
+        "query": "select\ndata ->> 'ID'\nfrom cache_with_history c\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'drone'\norder by c.id desc\nlimit 1",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -824,8 +625,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Trains",
-  "uid": "5TN0r0p4k",
-  "version": 7,
+  "title": "Drones",
+  "uid": "HsE6e0tVz",
+  "version": 4,
   "weekStart": ""
 }

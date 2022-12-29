@@ -26,4 +26,34 @@
 			"type": "Point"
 		}
 	}
-}]
+},
+ {
+  "ID":"1",
+  "VehicleType":"Tractor",
+  "location":{
+    "x":0,"y":0,"z":0,
+    "rotation":0
+  },
+  "ForwardSpeed":0,
+  "CurrentGear":2,
+  "EngineRPM":7968.0,
+  "Airborne":false,
+  "AutoPilot":true,
+  "FuelType":"Coal",
+  "FuelInventory":96,
+  "ThrottlePercent":100.0,
+  "PathName":"test1",
+  "FollowingPath": true,
+  "FuelUsed":"",
+  "features": {
+		"properties":
+		{"type": "Truck"},
+		"geometry": {
+			"coordinates": {
+				"x":0,"y":0,"z":0
+			},
+			"type": "Point"
+		}
+	}
+}
+]
