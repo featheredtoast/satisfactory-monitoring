@@ -48,36 +48,60 @@ func retrieveData(frmAddress string) (string, error) {
 }
 
 func (c *CacheWorker) cacheMetrics(metric string, data string) {
-	insert := `insert into "cache"("metric","frm_data") values($1,$2) ON CONFLICT (metric) DO UPDATE SET FRM_DATA = EXCLUDED.frm_data`
+	insert := `insert into "cache" ("metric","frm_data") values($1,$2) ON CONFLICT (metric) DO UPDATE SET FRM_DATA = EXCLUDED.frm_data`
 	c.db.Exec(insert, metric, data)
 }
 
-func (c *CacheWorker) pullMetrics(metric string, route string) {
+func (c *CacheWorker) cacheMetricsWithHistory(metric string, data string) {
+	insert := `insert into "cache_with_history" ("metric","frm_data", "created") values($1,$2, now())`
+	c.db.Exec(insert, metric, data)
+}
+
+func (c *CacheWorker) rotateCacheHistory() {
+	insert := `delete from "cache_history" where created < 'now'::timestamp - '1 hour'::interval`
+	c.db.Exec(insert)
+}
+
+func (c *CacheWorker) pullMetrics(metric string, route string, keepHistory bool) {
 	data, err := retrieveData(c.frmBaseUrl + route)
 	if err != nil {
 		fmt.Println("error when parsing json: ", err)
 	}
-	c.cacheMetrics(metric, data)
+	if keepHistory {
+		c.cacheMetricsWithHistory(metric, data)
+	} else {
+		c.cacheMetrics(metric, data)
+	}
 }
 
-func (c *CacheWorker) pullAllMetrics() {
-	c.pullMetrics("factory", "/getFactory")
-	c.pullMetrics("dropPod", "/getDropPod")
-	c.pullMetrics("storageInv", "/getStorageInv")
-	c.pullMetrics("worldInv", "/getWorldInv")
-	c.pullMetrics("droneStation", "/getDroneStation")
-	c.pullMetrics("trainStation", "/getTrainStation")
-	c.pullMetrics("truckStation", "/getTruckStation")
+func (c *CacheWorker) pullLowCadenceMetrics() {
+	c.pullMetrics("factory", "/getFactory", false)
+	c.pullMetrics("dropPod", "/getDropPod", false)
+	c.pullMetrics("storageInv", "/getStorageInv", false)
+	c.pullMetrics("worldInv", "/getWorldInv", false)
+	c.pullMetrics("droneStation", "/getDroneStation", false)
+	c.pullMetrics("trainStation", "/getTrainStation", false)
+	c.pullMetrics("truckStation", "/getTruckStation", false)
+}
+
+func (c *CacheWorker) pullRealtimeMetrics() {
+	c.pullMetrics("droneStation", "/getDrone", true)
+	c.pullMetrics("trainStation", "/getTrains", true)
+	c.pullMetrics("truckStation", "/getVehicles", true)
 }
 
 func (c *CacheWorker) Start() {
-	c.pullAllMetrics()
+	c.pullLowCadenceMetrics()
 	for {
 		select {
 		case <-c.ctx.Done():
 			return
+		case <-time.After(10 * time.Minute):
+			c.rotateCacheHistory()
 		case <-time.After(60 * time.Second):
-			c.pullAllMetrics()
+			c.pullLowCadenceMetrics()
+		case <-time.After(5 * time.Second):
+			c.pullRealtimeMetrics()
 		}
 	}
 }
