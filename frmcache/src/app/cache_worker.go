@@ -53,12 +53,12 @@ func (c *CacheWorker) cacheMetrics(metric string, data string) {
 }
 
 func (c *CacheWorker) cacheMetricsWithHistory(metric string, data string) {
-	insert := `insert into "cache_with_history" ("metric","frm_data", "created") values($1,$2, now())`
+	insert := `insert into "cache_with_history" ("metric","frm_data", "time") values($1,$2, now())`
 	c.db.Exec(insert, metric, data)
 }
 
 func (c *CacheWorker) rotateCacheHistory() {
-	insert := `delete from "cache_history" where created < 'now'::timestamp - '1 hour'::interval`
+	insert := `delete from "cache_history" where time < 'now'::timestamp - '1 hour'::interval`
 	c.db.Exec(insert)
 }
 

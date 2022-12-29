@@ -4,7 +4,7 @@ create table cache_with_history(
   id serial primary key,
   metric text NOT NULL,
   frm_data jsonb,
-  created timestamp
+  time timestamp
 );
 
 ---- create above / drop below ----
