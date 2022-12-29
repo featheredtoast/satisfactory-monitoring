@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 8,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -275,7 +275,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation') as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\nand data ->> 'ID' = '$vehicle'\norder by time desc\nlimit 100;\n",
+          "rawSql": "select\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation') as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\nand data ->> 'ID' = '$vehicle'\norder by time desc\nlimit 100;\n",
           "refId": "Route",
           "sql": {
             "columns": [
@@ -360,9 +360,9 @@
           },
           "editorMode": "code",
           "format": "table",
-          "hide": true,
+          "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\nand data ->> 'ID' <> '$vehicle'\norder by id desc\nlimit 100;\n",
+          "rawSql": "select\nconcat(data->>'ID',':',data->>'VehicleType') as vehicle,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\nand data ->> 'ID' <> '$vehicle'\norder by id desc\n",
           "refId": "Other Trucks",
           "sql": {
             "columns": [
@@ -443,7 +443,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\ndata->>'ID' as id,\ndata->>'VehicleType' as type,\ndata->>'PathName' as path_name\nfrom (\n  SELECT frm_data from cache_with_history WHERE metric = 'truck' ORDER BY id desc limit 1\n) as t\n cross join jsonb_path_query(t.frm_data, '$[*]') as data limit 100;",
+          "rawSql": "SELECT\ndata->>'ID' as id,\ndata->>'VehicleType' as type,\ndata->>'PathName' as path_name,\ndata->>'AutoPilot' as autopilot\nfrom (\n  SELECT frm_data from cache_with_history WHERE metric = 'truck' ORDER BY id desc limit 1\n) as t\n cross join jsonb_path_query(t.frm_data, '$[*]') as data limit 100;",
           "refId": "A",
           "sql": {
             "columns": [
@@ -673,7 +673,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "19",
           "value": "19"
         },
@@ -705,6 +705,6 @@
   "timezone": "",
   "title": "Vehicles",
   "uid": "XteIs3cVk",
-  "version": 4,
+  "version": 1,
   "weekStart": ""
 }
