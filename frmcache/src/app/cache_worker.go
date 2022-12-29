@@ -101,16 +101,20 @@ func (c *CacheWorker) pullRealtimeMetrics() {
 
 func (c *CacheWorker) Start() {
 	c.pullLowCadenceMetrics()
+	c.pullRealtimeMetrics()
+	counter := 0
 	for {
 		select {
 		case <-c.ctx.Done():
 			return
 		case <-time.After(10 * time.Minute):
 			c.rotateCacheHistory()
-		case <-time.After(60 * time.Second):
-			c.pullLowCadenceMetrics()
 		case <-time.After(5 * time.Second):
 			c.pullRealtimeMetrics()
+			if counter > 11 {
+				c.pullLowCadenceMetrics()
+				counter = 0
+			}
 		}
 	}
 }
