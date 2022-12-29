@@ -76,10 +76,9 @@ func (c *CacheWorker) pullMetrics(metric string, route string, keepHistory bool)
 	if err != nil {
 		fmt.Println("error when parsing json: ", err)
 	}
+	c.cacheMetrics(metric, data)
 	if keepHistory {
 		c.cacheMetricsWithHistory(metric, data)
-	} else {
-		c.cacheMetrics(metric, data)
 	}
 }
 
