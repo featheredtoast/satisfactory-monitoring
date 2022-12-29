@@ -1,0 +1,39 @@
+[{
+      "ID":"0",
+      "VehicleType":"Drone",
+      "location":{
+         "x":-101315.90625,"y":-123853.492188,"z":3984.685059,
+         "rotation":47
+      },
+      "CurrentDestination":"",
+      "FlyingSpeed":1000,
+      "CurrentFlyingMode":"DFM_Travel",
+    "features": {
+		"properties":
+			{"type": "Drone"},
+		"geometry": {
+			"coordinates": {
+					"x":-101315.90625,"y":-123853.492188,"z":3984.685059			},
+			"type": "Point"
+		}
+	}
+},{
+      "ID":"1",
+      "VehicleType":"Drone",
+      "location":{
+         "x":-60792.097656,"y":-157388.921875,"z":1549.842285,
+         "rotation":10
+      },
+      "CurrentDestination":"",
+      "FlyingSpeed":1000,
+      "CurrentFlyingMode":"DFM_None",
+    "features": {
+		"properties":
+			{"type": "Drone"},
+		"geometry": {
+			"coordinates": {
+					"x":-60792.097656,"y":-157388.921875,"z":1549.842285			},
+			"type": "Point"
+		}
+	}
+}]
