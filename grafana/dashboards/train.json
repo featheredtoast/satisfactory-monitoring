@@ -93,7 +93,7 @@
                 "color": {
                   "fixed": "dark-blue"
                 },
-                "opacity": 0.4,
+                "opacity": 0.6,
                 "rotation": {
                   "fixed": 0,
                   "max": 360,
@@ -136,7 +136,7 @@
                 "color": {
                   "fixed": "dark-blue"
                 },
-                "opacity": 0.4,
+                "opacity": 0.7,
                 "rotation": {
                   "field": "rotation",
                   "fixed": 0,
@@ -177,7 +177,7 @@
             "config": {
               "style": {
                 "color": {
-                  "fixed": "#37872D"
+                  "fixed": "#FA6400"
                 },
                 "lineWidth": 2,
                 "opacity": 1,
@@ -219,7 +219,7 @@
               "showLegend": true,
               "style": {
                 "color": {
-                  "fixed": "dark-orange"
+                  "fixed": "dark-red"
                 },
                 "opacity": 0.6,
                 "rotation": {
@@ -262,9 +262,9 @@
               "showLegend": true,
               "style": {
                 "color": {
-                  "fixed": "dark-orange"
+                  "fixed": "dark-red"
                 },
-                "opacity": 0.7,
+                "opacity": 1,
                 "rotation": {
                   "field": "rotation",
                   "fixed": 0,
@@ -1088,6 +1088,6 @@
   "timezone": "",
   "title": "Trains",
   "uid": "5TN0r0p4k",
-  "version": 9,
+  "version": 12,
   "weekStart": ""
 }

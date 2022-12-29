@@ -93,7 +93,7 @@
                 "color": {
                   "fixed": "blue"
                 },
-                "opacity": 0.9,
+                "opacity": 0.8,
                 "rotation": {
                   "field": "rotation",
                   "fixed": 0,
@@ -102,7 +102,7 @@
                   "mode": "mod"
                 },
                 "size": {
-                  "fixed": 50,
+                  "fixed": 60,
                   "max": 15,
                   "min": 2
                 },
@@ -137,7 +137,7 @@
                 "color": {
                   "fixed": "dark-green"
                 },
-                "opacity": 0.4,
+                "opacity": 0.8,
                 "rotation": {
                   "fixed": 0,
                   "max": 360,
@@ -145,7 +145,7 @@
                   "mode": "mod"
                 },
                 "size": {
-                  "fixed": 5,
+                  "fixed": 15,
                   "max": 15,
                   "min": 2
                 },
@@ -177,7 +177,7 @@
             "config": {
               "style": {
                 "color": {
-                  "fixed": "#73BF69"
+                  "fixed": "#FA6400"
                 },
                 "lineWidth": 2,
                 "opacity": 1,
@@ -218,9 +218,9 @@
               "showLegend": true,
               "style": {
                 "color": {
-                  "fixed": "dark-orange"
+                  "fixed": "dark-red"
                 },
-                "opacity": 0.7,
+                "opacity": 1,
                 "rotation": {
                   "field": "rotation",
                   "fixed": 0,
@@ -710,6 +710,6 @@
   "timezone": "",
   "title": "Drones",
   "uid": "HsE6e0tVz",
-  "version": 4,
+  "version": 6,
   "weekStart": ""
 }

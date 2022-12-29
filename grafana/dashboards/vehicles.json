@@ -128,9 +128,9 @@
               "showLegend": true,
               "style": {
                 "color": {
-                  "fixed": "dark-green"
+                  "fixed": "dark-blue"
                 },
-                "opacity": 0.4,
+                "opacity": 0.9,
                 "rotation": {
                   "fixed": 0,
                   "max": 360,
@@ -211,9 +211,9 @@
               "showLegend": true,
               "style": {
                 "color": {
-                  "fixed": "dark-orange"
+                  "fixed": "dark-red"
                 },
-                "opacity": 0.4,
+                "opacity": 1,
                 "rotation": {
                   "field": "rotation",
                   "fixed": 0,
@@ -705,6 +705,6 @@
   "timezone": "",
   "title": "Vehicles",
   "uid": "XteIs3cVk",
-  "version": 4,
+  "version": 6,
   "weekStart": ""
 }
