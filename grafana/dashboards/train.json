@@ -312,7 +312,7 @@
           "lat": 0,
           "layer": "Route",
           "lon": 0,
-          "zoom": 18
+          "zoom": 16
         }
       },
       "pluginVersion": "9.3.1",
@@ -889,9 +889,9 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "sulfur to turbofuel",
-          "value": "sulfur to turbofuel"
+          "selected": true,
+          "text": "Jeff's Train",
+          "value": "Jeff's Train"
         },
         "datasource": {
           "type": "postgres",
@@ -921,6 +921,6 @@
   "timezone": "",
   "title": "Trains",
   "uid": "5TN0r0p4k",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
