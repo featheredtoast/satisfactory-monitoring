@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 8,
+  "id": 3,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -88,52 +88,12 @@
         "layers": [
           {
             "config": {
-              "style": {
-                "color": {
-                  "fixed": "#73BF69"
-                },
-                "lineWidth": 2,
-                "opacity": 1,
-                "rotation": {
-                  "fixed": 0,
-                  "max": 360,
-                  "min": -360,
-                  "mode": "mod"
-                },
-                "size": {
-                  "fixed": 5,
-                  "max": 15,
-                  "min": 2
-                },
-                "symbol": {
-                  "fixed": "img/icons/marker/circle.svg",
-                  "mode": "fixed"
-                },
-                "textConfig": {
-                  "fontSize": 12,
-                  "offsetX": 0,
-                  "offsetY": 0,
-                  "textAlign": "center",
-                  "textBaseline": "middle"
-                }
-              }
-            },
-            "filterData": {
-              "id": "byRefId",
-              "options": "Route"
-            },
-            "name": "Route",
-            "tooltip": true,
-            "type": "route"
-          },
-          {
-            "config": {
               "showLegend": true,
               "style": {
                 "color": {
-                  "fixed": "dark-blue"
+                  "fixed": "blue"
                 },
-                "opacity": 0.4,
+                "opacity": 0.5,
                 "rotation": {
                   "field": "rotation",
                   "fixed": 0,
@@ -142,7 +102,7 @@
                   "mode": "mod"
                 },
                 "size": {
-                  "fixed": 5,
+                  "fixed": 50,
                   "max": 15,
                   "min": 2
                 },
@@ -167,50 +127,6 @@
               "mode": "auto"
             },
             "name": "Other drones",
-            "tooltip": true,
-            "type": "markers"
-          },
-          {
-            "config": {
-              "showLegend": true,
-              "style": {
-                "color": {
-                  "fixed": "dark-orange"
-                },
-                "opacity": 0.4,
-                "rotation": {
-                  "field": "rotation",
-                  "fixed": 0,
-                  "max": 360,
-                  "min": -360,
-                  "mode": "mod"
-                },
-                "size": {
-                  "fixed": 60,
-                  "max": 15,
-                  "min": 2
-                },
-                "symbol": {
-                  "fixed": "img/icons/unicons/angle-up.svg",
-                  "mode": "fixed"
-                },
-                "textConfig": {
-                  "fontSize": 12,
-                  "offsetX": 0,
-                  "offsetY": 0,
-                  "textAlign": "center",
-                  "textBaseline": "middle"
-                }
-              }
-            },
-            "filterData": {
-              "id": "byRefId",
-              "options": "Current location"
-            },
-            "location": {
-              "mode": "auto"
-            },
-            "name": "Drone",
             "tooltip": true,
             "type": "markers"
           },
@@ -256,6 +172,90 @@
             "name": "Ports",
             "tooltip": true,
             "type": "markers"
+          },
+          {
+            "config": {
+              "style": {
+                "color": {
+                  "fixed": "#73BF69"
+                },
+                "lineWidth": 2,
+                "opacity": 1,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "Route"
+            },
+            "name": "Route",
+            "tooltip": true,
+            "type": "route"
+          },
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
+                  "fixed": "dark-orange"
+                },
+                "opacity": 0.4,
+                "rotation": {
+                  "field": "rotation",
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 60,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/unicons/angle-up.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "Current location"
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "Drone",
+            "tooltip": true,
+            "type": "markers"
           }
         ],
         "tooltip": {
@@ -280,7 +280,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'drone'\nand data ->> 'ID' = '$drone'\norder by time desc\nlimit 100;\n",
+          "rawSql": "select\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'drone'\nand data ->> 'ID' = '$drone'\norder by time desc\nlimit 100;\n",
           "refId": "Route",
           "sql": {
             "columns": [
@@ -309,7 +309,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'drone'\nand data ->> 'ID' = '$drone'\norder by id desc\nlimit 1;\n",
+          "rawSql": "select\ndata ->> 'ID' as id,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'drone'\nand data ->> 'ID' = '$drone'\norder by id desc;\n",
           "refId": "Current location",
           "sql": {
             "columns": [
@@ -338,7 +338,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata ->> 'HomeStation',\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'droneStation'\nlimit 100;\n",
+          "rawSql": "select\ndata ->> 'HomeStation' as name,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'droneStation'\nlimit 100;\n",
           "refId": "Ports",
           "sql": {
             "columns": [
@@ -367,7 +367,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'drone'\nand data ->> 'ID' != '$drone'\norder by id desc\nlimit 1;\n",
+          "rawSql": "select\ndata ->> 'ID' as id,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'drone'\nand data ->> 'ID' <> '$drone'\norder by id desc;\n",
           "refId": "Other drones",
           "sql": {
             "columns": [
@@ -595,22 +595,22 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "0",
-          "value": "0"
+          "selected": true,
+          "text": "32",
+          "value": "32"
         },
         "datasource": {
           "type": "postgres",
           "uid": "GhzMNppVk"
         },
-        "definition": "select\ndata ->> 'ID'\nfrom cache_with_history c\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'drone'\norder by c.id desc\nlimit 1",
+        "definition": "select\ndata ->> 'ID'\nfrom cache c\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'drone'\norder by c.id desc",
         "hide": 0,
         "includeAll": false,
         "label": "Drone ID",
         "multi": false,
         "name": "drone",
         "options": [],
-        "query": "select\ndata ->> 'ID'\nfrom cache_with_history c\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'drone'\norder by c.id desc\nlimit 1",
+        "query": "select\ndata ->> 'ID'\nfrom cache c\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'drone'\norder by c.id desc",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -627,6 +627,6 @@
   "timezone": "",
   "title": "Drones",
   "uid": "HsE6e0tVz",
-  "version": 4,
+  "version": 3,
   "weekStart": ""
 }

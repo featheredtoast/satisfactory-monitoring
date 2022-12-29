@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 6,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -88,46 +88,6 @@
         "layers": [
           {
             "config": {
-              "style": {
-                "color": {
-                  "fixed": "#73BF69"
-                },
-                "lineWidth": 2,
-                "opacity": 1,
-                "rotation": {
-                  "fixed": 0,
-                  "max": 360,
-                  "min": -360,
-                  "mode": "mod"
-                },
-                "size": {
-                  "fixed": 5,
-                  "max": 15,
-                  "min": 2
-                },
-                "symbol": {
-                  "fixed": "img/icons/marker/circle.svg",
-                  "mode": "fixed"
-                },
-                "textConfig": {
-                  "fontSize": 12,
-                  "offsetX": 0,
-                  "offsetY": 0,
-                  "textAlign": "center",
-                  "textBaseline": "middle"
-                }
-              }
-            },
-            "filterData": {
-              "id": "byRefId",
-              "options": "Route"
-            },
-            "name": "Route",
-            "tooltip": true,
-            "type": "route"
-          },
-          {
-            "config": {
               "showLegend": true,
               "style": {
                 "color": {
@@ -160,49 +120,6 @@
               }
             },
             "name": "Other Trucks",
-            "tooltip": true,
-            "type": "markers"
-          },
-          {
-            "config": {
-              "showLegend": true,
-              "style": {
-                "color": {
-                  "fixed": "dark-orange"
-                },
-                "opacity": 0.4,
-                "rotation": {
-                  "fixed": 0,
-                  "max": 360,
-                  "min": -360,
-                  "mode": "mod"
-                },
-                "size": {
-                  "fixed": 60,
-                  "max": 15,
-                  "min": 2
-                },
-                "symbol": {
-                  "fixed": "img/icons/unicons/angle-up.svg",
-                  "mode": "fixed"
-                },
-                "textConfig": {
-                  "fontSize": 12,
-                  "offsetX": 0,
-                  "offsetY": 0,
-                  "textAlign": "center",
-                  "textBaseline": "middle"
-                }
-              }
-            },
-            "filterData": {
-              "id": "byRefId",
-              "options": "Current location"
-            },
-            "location": {
-              "mode": "auto"
-            },
-            "name": "Truck Location",
             "tooltip": true,
             "type": "markers"
           },
@@ -248,6 +165,90 @@
             "name": "Stations",
             "tooltip": true,
             "type": "markers"
+          },
+          {
+            "config": {
+              "style": {
+                "color": {
+                  "fixed": "#73BF69"
+                },
+                "lineWidth": 2,
+                "opacity": 1,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "Route"
+            },
+            "name": "Route",
+            "tooltip": true,
+            "type": "route"
+          },
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
+                  "fixed": "dark-orange"
+                },
+                "opacity": 0.4,
+                "rotation": {
+                  "field": "rotation",
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 60,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/unicons/angle-up.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "Current location"
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "Truck Location",
+            "tooltip": true,
+            "type": "markers"
           }
         ],
         "tooltip": {
@@ -274,7 +275,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation') as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\nand data ->> 'ID' = '$truck'\norder by time desc\nlimit 100;\n",
+          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation') as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\nand data ->> 'ID' = '$vehicle'\norder by time desc\nlimit 100;\n",
           "refId": "Route",
           "sql": {
             "columns": [
@@ -303,7 +304,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\nand data ->> 'ID' = '$truck'\norder by id desc\nlimit 1;\n",
+          "rawSql": "select\nconcat(data->>'ID',':',data->>'VehicleType') as vehicle,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\nand data ->> 'ID' = '$vehicle';\n",
           "refId": "Current location",
           "sql": {
             "columns": [
@@ -359,9 +360,9 @@
           },
           "editorMode": "code",
           "format": "table",
-          "hide": false,
+          "hide": true,
           "rawQuery": true,
-          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\nand data ->> 'ID' != '$truck'\norder by id desc\nlimit 1;\n",
+          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\nand data ->> 'ID' <> '$vehicle'\norder by id desc\nlimit 100;\n",
           "refId": "Other Trucks",
           "sql": {
             "columns": [
@@ -672,22 +673,22 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "0",
-          "value": "0"
+          "selected": true,
+          "text": "19",
+          "value": "19"
         },
         "datasource": {
           "type": "postgres",
           "uid": "GhzMNppVk"
         },
-        "definition": "select\ndata->>'ID'\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\norder by id desc\nlimit 1;",
+        "definition": "select\ndata->>'ID'\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\norder by id desc;",
         "hide": 0,
         "includeAll": false,
         "label": "Vehicle",
         "multi": false,
         "name": "vehicle",
         "options": [],
-        "query": "select\ndata->>'ID'\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\norder by id desc\nlimit 1;",
+        "query": "select\ndata->>'ID'\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\norder by id desc;",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -704,6 +705,6 @@
   "timezone": "",
   "title": "Vehicles",
   "uid": "XteIs3cVk",
-  "version": 5,
+  "version": 4,
   "weekStart": ""
 }
