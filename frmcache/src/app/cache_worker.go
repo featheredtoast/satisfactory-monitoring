@@ -85,9 +85,9 @@ func (c *CacheWorker) pullLowCadenceMetrics() {
 }
 
 func (c *CacheWorker) pullRealtimeMetrics() {
-	c.pullMetrics("droneStation", "/getDrone", true)
-	c.pullMetrics("trainStation", "/getTrains", true)
-	c.pullMetrics("truckStation", "/getVehicles", true)
+	c.pullMetrics("drone", "/getDrone", true)
+	c.pullMetrics("train", "/getTrains", true)
+	c.pullMetrics("truck", "/getVehicles", true)
 }
 
 func (c *CacheWorker) Start() {
