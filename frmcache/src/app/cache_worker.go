@@ -47,24 +47,20 @@ func retrieveData(frmAddress string) (string, error) {
 	return buf.String(), nil
 }
 
-func (c *CacheWorker) cacheMetrics(metric string, data string) {
+func (c *CacheWorker) cacheMetrics(metric string, data string) error {
 	insert := `insert into "cache" ("metric","frm_data") values($1,$2) ON CONFLICT (metric) DO UPDATE SET FRM_DATA = EXCLUDED.frm_data`
 	_, err := c.db.Exec(insert, metric, data)
-	if err != nil {
-		fmt.Println("cache metrics db error: ", err)
-	}
+	return err
 }
 
-func (c *CacheWorker) cacheMetricsWithHistory(metric string, data string) {
+func (c *CacheWorker) cacheMetricsWithHistory(metric string, data string) error {
 	insert := `insert into "cache_with_history" ("metric","frm_data", "time") values($1,$2, now())`
 	_, err := c.db.Exec(insert, metric, data)
-	if err != nil {
-		fmt.Println("cache metrics history db error: ", err)
-	}
+	return err
 }
 
 // Keep at most 1 hour of records
-func (c *CacheWorker) rotateMetricHistory(metric string) {
+func (c *CacheWorker) rotateMetricHistory(metric string) error {
 	delete := `delete from "cache_with_history" where
 metric = $1 and
 id NOT IN (
@@ -76,17 +72,29 @@ limit 720
 	if err != nil {
 		fmt.Println("rotate metrics history db error: ", err)
 	}
+	return err
 }
 
 func (c *CacheWorker) pullMetrics(metric string, route string, keepHistory bool) {
 	data, err := retrieveData(c.frmBaseUrl + route)
 	if err != nil {
 		fmt.Println("error when parsing json: ", err)
+		return
 	}
 	c.cacheMetrics(metric, data)
+	if err != nil {
+		fmt.Println("error when caching metrics", err)
+	}
 	if keepHistory {
-		c.cacheMetricsWithHistory(metric, data)
-		c.rotateMetricHistory(metric)
+		err = c.cacheMetricsWithHistory(metric, data)
+		if err != nil {
+			fmt.Println("error when caching metrics history", err)
+			return
+		}
+		err = c.rotateMetricHistory(metric)
+		if err != nil {
+			fmt.Println("error when rotating metrics", err)
+		}
 	}
 }
 
