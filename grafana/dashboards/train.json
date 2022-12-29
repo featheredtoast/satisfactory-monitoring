@@ -306,7 +306,7 @@
           "mode": "details"
         },
         "view": {
-          "allLayers": false,
+          "allLayers": true,
           "id": "fit",
           "lastOnly": false,
           "lat": 0,
@@ -474,11 +474,13 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "fixedColor": "green",
+            "mode": "fixed"
           },
           "custom": {
-            "align": "auto",
-            "displayMode": "auto",
+            "align": "center",
+            "displayMode": "color-text",
+            "filterable": false,
             "inspect": false
           },
           "mappings": [],
@@ -496,35 +498,22 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "d"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 593
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
+        "h": 2,
+        "w": 3,
         "x": 12,
         "y": 0
       },
-      "id": 28,
+      "id": 31,
       "options": {
         "footer": {
           "fields": "",
           "reducer": ["sum"],
           "show": false
         },
-        "showHeader": true,
+        "showHeader": false,
         "sortBy": []
       },
       "pluginVersion": "9.3.1",
@@ -537,7 +526,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT \ndata->>'TrainName' as name,\ndata->>'Status' as status,\ndata->>'TrainStation' as next_station,\ndata->>'TimeTable' as timetable\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'train';",
+          "rawSql": "select\ndata->>'TrainStation' as name\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'train'\nand data ->> 'TrainName' = '$train'\norder by id desc;",
           "refId": "A",
           "sql": {
             "columns": [
@@ -558,7 +547,90 @@
           }
         }
       ],
-      "title": "Train list",
+      "title": "Next stop",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "GhzMNppVk"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "filterable": false,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 2
+      },
+      "id": 30,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": ["sum"],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "9.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "GhzMNppVk"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "select\n      trim(\n        '\"'\n        from\n          jsonb_path_query(timetable, '$[*].StationName') :: TEXT\n      ) as timetable\n    from\n      (\n        select\n          data -> 'TimeTable' as timetable\n        from\n          cache c\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'train'\n          and data ->> 'TrainName' = '$train'\n      ) t",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "$train timetable",
       "type": "table"
     },
     {
@@ -666,43 +738,18 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "type": "postgres",
+        "uid": "GhzMNppVk"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "thresholds"
           },
           "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "Minutes",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
@@ -719,7 +766,20 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "d"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 593
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 8,
@@ -727,34 +787,49 @@
         "x": 12,
         "y": 9
       },
-      "id": 18,
+      "id": 29,
       "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
+        "footer": {
+          "fields": "",
+          "reducer": ["sum"],
+          "show": false
         },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
+        "showHeader": true,
+        "sortBy": []
       },
+      "pluginVersion": "9.3.1",
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "type": "postgres",
+            "uid": "GhzMNppVk"
           },
-          "editorMode": "builder",
-          "expr": "avg by(from, to) (train_segment_trip_seconds) / 60",
-          "legendFormat": "{{from}} -> {{to}}",
-          "range": true,
-          "refId": "A"
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \ndata->>'TrainName' as name,\ndata->>'Status' as status,\ndata->>'TrainStation' as next_station,\ndata->>'TimeTable' as timetable\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'train';",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
         }
       ],
-      "title": "Station Travel Time",
-      "type": "timeseries"
+      "title": "Train list",
+      "type": "table"
     },
     {
       "datasource": {
@@ -850,6 +925,98 @@
     },
     {
       "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Minutes",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 17
+      },
+      "id": 18,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "avg by(from, to) (train_segment_trip_seconds) / 60",
+          "legendFormat": "{{from}} -> {{to}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Station Travel Time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
         "type": "datasource",
         "uid": "grafana"
       },
@@ -857,7 +1024,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 17
+        "y": 25
       },
       "id": 24,
       "options": {
@@ -890,8 +1057,8 @@
       {
         "current": {
           "selected": false,
-          "text": "Dick Mabutt",
-          "value": "Dick Mabutt"
+          "text": "Mushroom Express",
+          "value": "Mushroom Express"
         },
         "datasource": {
           "type": "postgres",
@@ -921,6 +1088,6 @@
   "timezone": "",
   "title": "Trains",
   "uid": "5TN0r0p4k",
-  "version": 6,
+  "version": 9,
   "weekStart": ""
 }
