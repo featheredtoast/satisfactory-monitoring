@@ -1,5 +1,33 @@
 [
    {
+      "StationName":"Other station",
+      "location":{
+         "x":,
+         "y":1000,
+         "z":10589.841797,
+         "rotation":100
+      },
+      "TransferRate":6.0,
+      "InflowRate":0.0,
+      "OutflowRate":0.0,
+      "LoadingMode":"Loading",
+      "LoadingStatus":"Loading",
+      "DockingStatus":"ETPDS_Loading",
+      "features":{
+         "properties":{
+            "type":"Train Station"
+         },
+         "geometry":{
+            "coordinates":{
+               "x":-15742.418945,
+               "y":-110549.765625,
+               "z":10589.841797
+            },
+            "type":"Point"
+         }
+      }
+   },
+   {
       "StationName":"Caterium Ore",
       "location":{
          "x":-15742.418945,
