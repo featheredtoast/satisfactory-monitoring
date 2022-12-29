@@ -49,17 +49,26 @@ func retrieveData(frmAddress string) (string, error) {
 
 func (c *CacheWorker) cacheMetrics(metric string, data string) {
 	insert := `insert into "cache" ("metric","frm_data") values($1,$2) ON CONFLICT (metric) DO UPDATE SET FRM_DATA = EXCLUDED.frm_data`
-	c.db.Exec(insert, metric, data)
+	_, err := c.db.Exec(insert, metric, data)
+	if err != nil {
+		fmt.Println("cache metrics db error: ", err)
+	}
 }
 
 func (c *CacheWorker) cacheMetricsWithHistory(metric string, data string) {
 	insert := `insert into "cache_with_history" ("metric","frm_data", "time") values($1,$2, now())`
-	c.db.Exec(insert, metric, data)
+	_, err := c.db.Exec(insert, metric, data)
+	if err != nil {
+		fmt.Println("cache metrics history db error: ", err)
+	}
 }
 
 func (c *CacheWorker) rotateCacheHistory() {
 	insert := `delete from "cache_history" where time < 'now'::timestamp - '1 hour'::interval`
-	c.db.Exec(insert)
+	_, err := c.db.Exec(insert)
+	if err != nil {
+		fmt.Println("rotate metrics history db error: ", err)
+	}
 }
 
 func (c *CacheWorker) pullMetrics(metric string, route string, keepHistory bool) {
