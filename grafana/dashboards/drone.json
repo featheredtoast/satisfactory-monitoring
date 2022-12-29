@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -93,7 +93,7 @@
                 "color": {
                   "fixed": "blue"
                 },
-                "opacity": 0.5,
+                "opacity": 0.9,
                 "rotation": {
                   "field": "rotation",
                   "fixed": 0,
@@ -220,7 +220,7 @@
                 "color": {
                   "fixed": "dark-orange"
                 },
-                "opacity": 0.4,
+                "opacity": 0.7,
                 "rotation": {
                   "field": "rotation",
                   "fixed": 0,
@@ -262,11 +262,13 @@
           "mode": "details"
         },
         "view": {
-          "allLayers": true,
+          "allLayers": false,
           "id": "fit",
+          "lastOnly": false,
           "lat": 0,
+          "layer": "Route",
           "lon": 0,
-          "zoom": 18
+          "zoom": 17
         }
       },
       "pluginVersion": "9.3.1",
@@ -390,6 +392,87 @@
       ],
       "title": "Drone Routes",
       "type": "geomap"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "GhzMNppVk"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 28,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": ["sum"],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "9.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "GhzMNppVk"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \ndata ->> 'ID' as id,\ndata ->> 'CurrentFlyingMode' as flying_mode\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'drone';",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Drone list",
+      "type": "table"
     },
     {
       "gridPos": {
@@ -596,21 +679,21 @@
       {
         "current": {
           "selected": true,
-          "text": "32",
-          "value": "32"
+          "text": "40",
+          "value": "40"
         },
         "datasource": {
           "type": "postgres",
           "uid": "GhzMNppVk"
         },
-        "definition": "select\ndata ->> 'ID'\nfrom cache c\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'drone'\norder by c.id desc",
+        "definition": "select\ndata ->> 'ID'\nfrom cache c\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'drone'\nand data ->> 'CurrentFlyingMode' <> 'DFM_None'\norder by c.id desc",
         "hide": 0,
         "includeAll": false,
         "label": "Drone ID",
         "multi": false,
         "name": "drone",
         "options": [],
-        "query": "select\ndata ->> 'ID'\nfrom cache c\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'drone'\norder by c.id desc",
+        "query": "select\ndata ->> 'ID'\nfrom cache c\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'drone'\nand data ->> 'CurrentFlyingMode' <> 'DFM_None'\norder by c.id desc",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -627,6 +710,6 @@
   "timezone": "",
   "title": "Drones",
   "uid": "HsE6e0tVz",
-  "version": 3,
+  "version": 1,
   "weekStart": ""
 }
