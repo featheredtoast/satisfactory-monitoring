@@ -86,7 +86,7 @@ func (c *CacheWorker) pullMetrics(metric string, route string, keepHistory bool)
 	c.cacheMetrics(metric, data)
 	if keepHistory {
 		c.cacheMetricsWithHistory(metric, data)
-		c.rotateMetricsHistory(metric)
+		c.rotateMetricHistory(metric)
 	}
 }
 
