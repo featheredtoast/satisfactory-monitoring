@@ -63,9 +63,16 @@ func (c *CacheWorker) cacheMetricsWithHistory(metric string, data string) {
 	}
 }
 
-func (c *CacheWorker) rotateCacheHistory() {
-	insert := `delete from "cache_history" where time < 'now'::timestamp - '1 hour'::interval`
-	_, err := c.db.Exec(insert)
+// Keep at most 1 hour of records
+func (c *CacheWorker) rotateMetricHistory(metric string) {
+	delete := `delete from "cache_with_history" where
+metric = $1 and
+id NOT IN (
+select id from "cache_with_history" where metric = $1
+order by id desc
+limit 720
+);`
+	_, err := c.db.Exec(delete, metric)
 	if err != nil {
 		fmt.Println("rotate metrics history db error: ", err)
 	}
@@ -79,6 +86,7 @@ func (c *CacheWorker) pullMetrics(metric string, route string, keepHistory bool)
 	c.cacheMetrics(metric, data)
 	if keepHistory {
 		c.cacheMetricsWithHistory(metric, data)
+		c.rotateMetricsHistory(metric)
 	}
 }
 
@@ -106,8 +114,6 @@ func (c *CacheWorker) Start() {
 		select {
 		case <-c.ctx.Done():
 			return
-		case <-time.After(10 * time.Minute):
-			c.rotateCacheHistory()
 		case <-time.After(5 * time.Second):
 			counter = counter + 1
 			c.pullRealtimeMetrics()
