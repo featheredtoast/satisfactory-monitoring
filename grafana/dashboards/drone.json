@@ -145,7 +145,7 @@
                   "mode": "mod"
                 },
                 "size": {
-                  "fixed": 15,
+                  "fixed": 7,
                   "max": 15,
                   "min": 2
                 },
@@ -678,9 +678,9 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "40",
-          "value": "40"
+          "selected": true,
+          "text": "33",
+          "value": "33"
         },
         "datasource": {
           "type": "postgres",
@@ -703,13 +703,13 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Drones",
   "uid": "HsE6e0tVz",
-  "version": 6,
+  "version": 8,
   "weekStart": ""
 }
