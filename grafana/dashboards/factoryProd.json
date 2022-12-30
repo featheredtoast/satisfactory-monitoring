@@ -139,7 +139,7 @@
         "layers": [
           {
             "config": {
-              "showLegend": true,
+              "showLegend": false,
               "style": {
                 "color": {
                   "fixed": "text"
@@ -219,7 +219,7 @@
             "location": {
               "mode": "auto"
             },
-            "name": "Targeted",
+            "name": "Selected",
             "tooltip": true,
             "type": "markers"
           }
@@ -604,6 +604,6 @@
   "timezone": "",
   "title": "Factory Production",
   "uid": "pUvf_pt4k",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
