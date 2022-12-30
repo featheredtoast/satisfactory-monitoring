@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 8,
+  "id": 4,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -88,12 +88,12 @@
         "layers": [
           {
             "config": {
-              "showLegend": true,
+              "showLegend": false,
               "style": {
                 "color": {
-                  "fixed": "dark-blue"
+                  "fixed": "text"
                 },
-                "opacity": 0.4,
+                "opacity": 0.5,
                 "rotation": {
                   "field": "rotation",
                   "fixed": 0,
@@ -120,49 +120,6 @@
               }
             },
             "name": "Other Trucks",
-            "tooltip": true,
-            "type": "markers"
-          },
-          {
-            "config": {
-              "showLegend": true,
-              "style": {
-                "color": {
-                  "fixed": "dark-blue"
-                },
-                "opacity": 0.9,
-                "rotation": {
-                  "fixed": 0,
-                  "max": 360,
-                  "min": -360,
-                  "mode": "mod"
-                },
-                "size": {
-                  "fixed": 5,
-                  "max": 15,
-                  "min": 2
-                },
-                "symbol": {
-                  "fixed": "img/icons/marker/circle.svg",
-                  "mode": "fixed"
-                },
-                "textConfig": {
-                  "fontSize": 12,
-                  "offsetX": 0,
-                  "offsetY": 0,
-                  "textAlign": "center",
-                  "textBaseline": "middle"
-                }
-              }
-            },
-            "filterData": {
-              "id": "byRefId",
-              "options": "Stations"
-            },
-            "location": {
-              "mode": "auto"
-            },
-            "name": "Stations",
             "tooltip": true,
             "type": "markers"
           },
@@ -208,10 +165,53 @@
           },
           {
             "config": {
-              "showLegend": true,
+              "showLegend": false,
               "style": {
                 "color": {
-                  "fixed": "dark-red"
+                  "fixed": "text"
+                },
+                "opacity": 0.8,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "Stations"
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "Stations",
+            "tooltip": true,
+            "type": "markers"
+          },
+          {
+            "config": {
+              "showLegend": false,
+              "style": {
+                "color": {
+                  "fixed": "dark-yellow"
                 },
                 "opacity": 1,
                 "rotation": {
@@ -222,7 +222,7 @@
                   "mode": "mod"
                 },
                 "size": {
-                  "fixed": 60,
+                  "fixed": 40,
                   "max": 15,
                   "min": 2
                 },
@@ -674,21 +674,21 @@
       {
         "current": {
           "selected": false,
-          "text": "6",
-          "value": "6"
+          "text": "0 (Factory Cart:)",
+          "value": "0"
         },
         "datasource": {
           "type": "postgres",
           "uid": "GhzMNppVk"
         },
-        "definition": "select\ndata->>'ID'\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\norder by id desc;",
+        "definition": "select\ndata->>'ID' as __value,\nconcat(data->>'ID', ' (', data ->> 'VehicleType', ':', data ->> 'PathName',')') as __text\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\norder by id desc;",
         "hide": 0,
         "includeAll": false,
         "label": "Vehicle",
         "multi": false,
         "name": "vehicle",
         "options": [],
-        "query": "select\ndata->>'ID'\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\norder by id desc;",
+        "query": "select\ndata->>'ID' as __value,\nconcat(data->>'ID', ' (', data ->> 'VehicleType', ':', data ->> 'PathName',')') as __text\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\norder by id desc;",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -705,6 +705,6 @@
   "timezone": "",
   "title": "Vehicles",
   "uid": "XteIs3cVk",
-  "version": 6,
+  "version": 4,
   "weekStart": ""
 }

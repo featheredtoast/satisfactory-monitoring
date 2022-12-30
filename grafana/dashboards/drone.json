@@ -75,6 +75,7 @@
             "url": "https://satisfactory-map.featheredtoast.com/map/{z}/{x}/{y}.png"
           },
           "name": "Layer 0",
+          "tooltip": false,
           "type": "xyz"
         },
         "controls": {
@@ -88,12 +89,12 @@
         "layers": [
           {
             "config": {
-              "showLegend": true,
+              "showLegend": false,
               "style": {
                 "color": {
-                  "fixed": "dark-green"
+                  "fixed": "text"
                 },
-                "opacity": 0.4,
+                "opacity": 0.5,
                 "rotation": {
                   "fixed": 0,
                   "max": 360,
@@ -101,7 +102,7 @@
                   "mode": "mod"
                 },
                 "size": {
-                  "fixed": 7,
+                  "fixed": 3,
                   "max": 15,
                   "min": 2
                 },
@@ -131,12 +132,12 @@
           },
           {
             "config": {
-              "showLegend": true,
+              "showLegend": false,
               "style": {
                 "color": {
-                  "fixed": "dark-green"
+                  "fixed": "text"
                 },
-                "opacity": 0.7,
+                "opacity": 0.3,
                 "rotation": {
                   "field": "rotation",
                   "fixed": 0,
@@ -175,52 +176,9 @@
           },
           {
             "config": {
-              "showLegend": true,
               "style": {
                 "color": {
-                  "fixed": "dark-orange"
-                },
-                "opacity": 0.8,
-                "rotation": {
-                  "fixed": 0,
-                  "max": 360,
-                  "min": -360,
-                  "mode": "mod"
-                },
-                "size": {
-                  "fixed": 7,
-                  "max": 15,
-                  "min": 2
-                },
-                "symbol": {
-                  "fixed": "img/icons/marker/circle.svg",
-                  "mode": "fixed"
-                },
-                "textConfig": {
-                  "fontSize": 12,
-                  "offsetX": 0,
-                  "offsetY": 0,
-                  "textAlign": "center",
-                  "textBaseline": "middle"
-                }
-              }
-            },
-            "filterData": {
-              "id": "byRefId",
-              "options": "Ports"
-            },
-            "location": {
-              "mode": "auto"
-            },
-            "name": "Ports",
-            "tooltip": true,
-            "type": "markers"
-          },
-          {
-            "config": {
-              "style": {
-                "color": {
-                  "fixed": "#FA6400"
+                  "fixed": "#73BF69"
                 },
                 "lineWidth": 2,
                 "opacity": 1,
@@ -258,10 +216,53 @@
           },
           {
             "config": {
-              "showLegend": true,
+              "showLegend": false,
               "style": {
                 "color": {
                   "fixed": "dark-red"
+                },
+                "opacity": 0.8,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "Ports"
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "Ports",
+            "tooltip": true,
+            "type": "markers"
+          },
+          {
+            "config": {
+              "showLegend": false,
+              "style": {
+                "color": {
+                  "fixed": "dark-yellow"
                 },
                 "opacity": 1,
                 "rotation": {
@@ -272,7 +273,7 @@
                   "mode": "mod"
                 },
                 "size": {
-                  "fixed": 60,
+                  "fixed": 40,
                   "max": 15,
                   "min": 2
                 },
@@ -764,22 +765,22 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "23",
-          "value": "23"
+          "selected": true,
+          "text": "32 : I spagheti pasta rocket nitrogen gas",
+          "value": "32"
         },
         "datasource": {
           "type": "postgres",
           "uid": "GhzMNppVk"
         },
-        "definition": "select\ndata ->> 'ID'\nfrom cache c\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'drone'\nand data ->> 'CurrentFlyingMode' <> 'DFM_None'\norder by c.id desc",
+        "definition": "select\ndata ->> 'ID' as __value,\nconcat(data ->> 'ID', ' : ', data ->> 'HomeStation') as __text\nfrom cache c\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'drone'\nand data ->> 'CurrentFlyingMode' <> 'DFM_None'\norder by c.id desc",
         "hide": 0,
         "includeAll": false,
         "label": "Drone ID",
         "multi": false,
         "name": "drone",
         "options": [],
-        "query": "select\ndata ->> 'ID'\nfrom cache c\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'drone'\nand data ->> 'CurrentFlyingMode' <> 'DFM_None'\norder by c.id desc",
+        "query": "select\ndata ->> 'ID' as __value,\nconcat(data ->> 'ID', ' : ', data ->> 'HomeStation') as __text\nfrom cache c\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'drone'\nand data ->> 'CurrentFlyingMode' <> 'DFM_None'\norder by c.id desc",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -789,13 +790,13 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Drones",
   "uid": "HsE6e0tVz",
-  "version": 1,
+  "version": 5,
   "weekStart": ""
 }
