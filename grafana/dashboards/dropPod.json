@@ -219,7 +219,7 @@
           },
           {
             "config": {
-              "showLegend": true,
+              "showLegend": false,
               "style": {
                 "color": {
                   "fixed": "text"
@@ -350,6 +350,6 @@
   "timezone": "",
   "title": "Drop Pods",
   "uid": "1USga2tVk",
-  "version": 1,
+  "version": 3,
   "weekStart": ""
 }

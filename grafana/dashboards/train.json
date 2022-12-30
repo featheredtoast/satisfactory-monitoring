@@ -306,12 +306,13 @@
           "mode": "details"
         },
         "view": {
-          "allLayers": true,
+          "allLayers": false,
           "id": "fit",
           "lastOnly": false,
           "lat": 0,
           "layer": "Route",
           "lon": 0,
+          "padding": 30,
           "zoom": 16
         }
       },
@@ -1088,6 +1089,6 @@
   "timezone": "",
   "title": "Trains",
   "uid": "5TN0r0p4k",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }

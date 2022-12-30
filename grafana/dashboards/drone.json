@@ -306,13 +306,14 @@
           "mode": "details"
         },
         "view": {
-          "allLayers": true,
+          "allLayers": false,
           "id": "fit",
           "lastOnly": false,
           "lat": 0,
           "layer": "Route",
           "lon": 0,
-          "zoom": 17
+          "padding": 30,
+          "zoom": 16
         }
       },
       "pluginVersion": "9.3.1",
@@ -765,7 +766,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "32 : I spagheti pasta rocket nitrogen gas",
           "value": "32"
         },
@@ -797,6 +798,6 @@
   "timezone": "",
   "title": "Drones",
   "uid": "HsE6e0tVz",
-  "version": 5,
+  "version": 7,
   "weekStart": ""
 }

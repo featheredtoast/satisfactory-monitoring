@@ -119,6 +119,10 @@
                 }
               }
             },
+            "filterData": {
+              "id": "byRefId",
+              "options": "Other Trucks"
+            },
             "name": "Other Trucks",
             "tooltip": true,
             "type": "markers"
@@ -673,9 +677,9 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "0 (Factory Cart:)",
-          "value": "0"
+          "selected": true,
+          "text": "6 (Factory Cart:Slightly less dumb coal delive)",
+          "value": "6"
         },
         "datasource": {
           "type": "postgres",
@@ -705,6 +709,6 @@
   "timezone": "",
   "title": "Vehicles",
   "uid": "XteIs3cVk",
-  "version": 4,
+  "version": 5,
   "weekStart": ""
 }
