@@ -174,9 +174,9 @@
               "showLegend": false,
               "style": {
                 "color": {
-                  "fixed": "orange"
+                  "fixed": "dark-red"
                 },
-                "opacity": 0.7,
+                "opacity": 0.9,
                 "rotation": {
                   "fixed": 0,
                   "max": 360,
@@ -184,12 +184,12 @@
                   "mode": "mod"
                 },
                 "size": {
-                  "fixed": 10,
+                  "fixed": 8,
                   "max": 15,
                   "min": 2
                 },
                 "symbol": {
-                  "fixed": "img/icons/marker/circle.svg",
+                  "fixed": "img/icons/marker/x-mark.svg",
                   "mode": "fixed"
                 },
                 "text": {
@@ -206,10 +206,57 @@
                 }
               }
             },
+            "filterData": {
+              "id": "byRefId",
+              "options": "Unlooted"
+            },
             "location": {
               "mode": "auto"
             },
-            "name": "Layer 1",
+            "name": "unlooted",
+            "tooltip": true,
+            "type": "markers"
+          },
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
+                  "fixed": "text"
+                },
+                "opacity": 0.4,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 3,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "Looted"
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "looted",
             "tooltip": true,
             "type": "markers"
           }
@@ -236,7 +283,36 @@
           "format": "table",
           "rawQuery": true,
           "rawSql": "select \ndata ->> 'Looted' as looted,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude,\n(data ->> 'RepairItem') as repair_item,\n(data ->> 'RepairAmount') as repair_item_amount,\n(data ->> 'PowerRequired') as power_required\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'dropPod'\nand data ->> 'Looted' != 'true';",
-          "refId": "A",
+          "refId": "Unlooted",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "GhzMNppVk"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "select \ndata ->> 'Looted' as looted,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude,\n(data ->> 'RepairItem') as repair_item,\n(data ->> 'RepairAmount') as repair_item_amount,\n(data ->> 'PowerRequired') as power_required\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'dropPod'\nand data ->> 'Looted' = 'true';",
+          "refId": "Looted",
           "sql": {
             "columns": [
               {
