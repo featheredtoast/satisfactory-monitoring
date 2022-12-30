@@ -59,6 +59,16 @@ func (c *CacheWorker) cacheMetricsWithHistory(metric string, data string) error 
 	return err
 }
 
+// flush the metric history cache
+func (c *CacheWorker) flushMetricHistory() error {
+	delete := `truncate cache_with_history;`
+	_, err := c.db.Exec(delete)
+	if err != nil {
+		fmt.Println("flush metrics history db error: ", err)
+	}
+	return err
+}
+
 // Keep at most 1 hour of records
 func (c *CacheWorker) rotateMetricHistory(metric string) error {
 	delete := `delete from "cache_with_history" where
@@ -115,6 +125,7 @@ func (c *CacheWorker) pullRealtimeMetrics() {
 }
 
 func (c *CacheWorker) Start() {
+	c.flushMetricHistory()
 	c.pullLowCadenceMetrics()
 	c.pullRealtimeMetrics()
 	counter := 0
