@@ -48,7 +48,7 @@
 		"x":-22668.775391,"y":232038.140625,"z":-40.632812,
     "rotation":"90"
   },
-  "PairedStation":"Drone Port 1",
+  "PairedStation":"Other port",
   "DroneStatus":"EDS_EN_ROUTE",
   "AvgIncRate":11.4,
 	"AvgIncStack":0.1,

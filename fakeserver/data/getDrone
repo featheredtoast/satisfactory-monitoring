@@ -21,6 +21,7 @@
 },{
       "ID":"1",
       "VehicleType":"Drone",
+      "HomeStation":"Drone Port 2",
       "location":{
          "x":-60792.097656,"y":-157388.921875,"z":1549.842285,
          "rotation":10

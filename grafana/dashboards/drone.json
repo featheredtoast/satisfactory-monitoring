@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 6,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -91,6 +91,45 @@
               "showLegend": true,
               "style": {
                 "color": {
+                  "fixed": "dark-green"
+                },
+                "opacity": 0.4,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 7,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "Other ports",
+            "tooltip": true,
+            "type": "markers"
+          },
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
                   "fixed": "blue"
                 },
                 "opacity": 0.8,
@@ -135,7 +174,7 @@
               "showLegend": true,
               "style": {
                 "color": {
-                  "fixed": "dark-green"
+                  "fixed": "dark-orange"
                 },
                 "opacity": 0.8,
                 "rotation": {
@@ -340,7 +379,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata ->> 'HomeStation' as name,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'droneStation'\nlimit 100;\n",
+          "rawSql": "(select\n    data ->> 'HomeStation' as name,\n    data ->> 'PairedStation' as paired,\n    (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n    (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n    (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n    (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n    (\n      ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n    ) as longitude,\n    (\n      ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n    ) as latitude\n  from\n    cache\n    cross join jsonb_path_query(frm_data, '$[*]') as data\n  where\n    metric = 'droneStation'\n    and (data -> 'HomeStation' <@\n(\n  select\n    jsonb_build_array(data -> 'HomeStation',\n    data -> 'PairedStation')\n  from\n    cache\n    cross join jsonb_path_query(frm_data, '$[*]') as data\n    join (\n      SELECT\n        data ->> 'HomeStation' as home_station\n      from\n        cache\n        cross join jsonb_path_query(frm_data, '$[*]') as data\n      where\n        metric = 'drone'\n        and data ->> 'ID' = '$drone'\n    ) as drones on drones.home_station = data ->> 'HomeStation'\n  where\n    metric = 'droneStation'\n)\n)\n)",
           "refId": "Ports",
           "sql": {
             "columns": [
@@ -371,6 +410,35 @@
           "rawQuery": true,
           "rawSql": "select\ndata ->> 'ID' as id,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'drone'\nand data ->> 'ID' <> '$drone'\norder by id desc;\n",
           "refId": "Other drones",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "GhzMNppVk"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "(select\n    data ->> 'HomeStation' as name,\n    data ->> 'PairedStation' as paired,\n    (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n    (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n    (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n    (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n    (\n      ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n    ) as longitude,\n    (\n      ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n    ) as latitude\n  from\n    cache\n    cross join jsonb_path_query(frm_data, '$[*]') as data\n  where\n    metric = 'droneStation'\n    and NOT(data -> 'HomeStation' <@\n(\n  select\n    jsonb_build_array(data -> 'HomeStation',\n    data -> 'PairedStation')\n  from\n    cache\n    cross join jsonb_path_query(frm_data, '$[*]') as data\n    join (\n      SELECT\n        data ->> 'HomeStation' as home_station\n      from\n        cache\n        cross join jsonb_path_query(frm_data, '$[*]') as data\n      where\n        metric = 'drone'\n        and data ->> 'ID' = '$drone'\n    ) as drones on drones.home_station = data ->> 'HomeStation'\n  where\n    metric = 'droneStation'\n)\n)\n)",
+          "refId": "Other ports",
           "sql": {
             "columns": [
               {
@@ -423,7 +491,20 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "data"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 900
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 8,
@@ -438,7 +519,8 @@
           "reducer": ["sum"],
           "show": false
         },
-        "showHeader": true
+        "showHeader": true,
+        "sortBy": []
       },
       "pluginVersion": "9.3.1",
       "targets": [
@@ -450,7 +532,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT \ndata ->> 'ID' as id,\ndata ->> 'CurrentFlyingMode' as flying_mode\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'drone';",
+          "rawSql": "select data ->> 'HomeStation' as drone_port,\ndata ->> 'PairedStation' as paired_port,\ncoalesce(drones.id, '(no drone)') as drone_id\nfrom\ncache cross join jsonb_path_query(frm_data, '$[*]') as data\nleft join\n(SELECT \ndata ->> 'HomeStation' as home_station,\ndata ->> 'ID' as id,\ndata ->> 'CurrentFlyingMode' as flying_mode\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'drone') as drones on drones.home_station = data ->> 'HomeStation'\nwhere metric = 'droneStation'\norder by drones.id",
           "refId": "A",
           "sql": {
             "columns": [
@@ -679,8 +761,8 @@
       {
         "current": {
           "selected": false,
-          "text": "33",
-          "value": "33"
+          "text": "0",
+          "value": "0"
         },
         "datasource": {
           "type": "postgres",
@@ -703,13 +785,13 @@
     ]
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Drones",
   "uid": "HsE6e0tVz",
-  "version": 9,
+  "version": 3,
   "weekStart": ""
 }
