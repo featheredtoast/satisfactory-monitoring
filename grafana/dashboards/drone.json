@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 6,
+  "id": 5,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -118,6 +118,10 @@
                 }
               }
             },
+            "filterData": {
+              "id": "byRefId",
+              "options": "Other ports"
+            },
             "location": {
               "mode": "auto"
             },
@@ -130,9 +134,9 @@
               "showLegend": true,
               "style": {
                 "color": {
-                  "fixed": "blue"
+                  "fixed": "dark-green"
                 },
-                "opacity": 0.8,
+                "opacity": 0.7,
                 "rotation": {
                   "field": "rotation",
                   "fixed": 0,
@@ -141,7 +145,7 @@
                   "mode": "mod"
                 },
                 "size": {
-                  "fixed": 60,
+                  "fixed": 30,
                   "max": 15,
                   "min": 2
                 },
@@ -350,7 +354,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata ->> 'ID' as id,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'drone'\nand data ->> 'ID' = '$drone'\norder by id desc;\n",
+          "rawSql": "select\ndata ->> 'HomeStation' as name,\ndata ->> 'ID' as id,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'drone'\nand data ->> 'ID' = '$drone'\norder by id desc;\n",
           "refId": "Current location",
           "sql": {
             "columns": [
@@ -408,7 +412,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata ->> 'ID' as id,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'drone'\nand data ->> 'ID' <> '$drone'\norder by id desc;\n",
+          "rawSql": "select\ndata ->> 'HomeStation' as name,\ndata ->> 'ID' as id,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'drone'\nand data ->> 'ID' <> '$drone'\norder by id desc;\n",
           "refId": "Other drones",
           "sql": {
             "columns": [
@@ -761,8 +765,8 @@
       {
         "current": {
           "selected": false,
-          "text": "0",
-          "value": "0"
+          "text": "23",
+          "value": "23"
         },
         "datasource": {
           "type": "postgres",
@@ -792,6 +796,6 @@
   "timezone": "",
   "title": "Drones",
   "uid": "HsE6e0tVz",
-  "version": 3,
+  "version": 1,
   "weekStart": ""
 }
