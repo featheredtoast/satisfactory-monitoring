@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 4,
+  "id": 6,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -86,7 +86,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select \ndata ->> 'Looted' as looted,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data ->> 'RepairItem') as repair_item,\n(data ->> 'RepairAmount') as repair_item_amount,\n(data ->> 'PowerRequired') as power_required\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'dropPod'\nand data ->> 'Looted' != 'true'\norder by x, y;",
+          "rawSql": "select \n(data ->> 'RepairItem') as repair_item,\n(data ->> 'RepairAmount') as repair_item_amount,\n(data ->> 'PowerRequired') as power_required,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'dropPod'\nand data ->> 'Looted' != 'true'\norder by x, y;",
           "refId": "A",
           "sql": {
             "columns": [
@@ -107,7 +107,7 @@
           }
         }
       ],
-      "title": "List",
+      "title": "Unlooted drop pods",
       "type": "table"
     },
     {
@@ -274,6 +274,6 @@
   "timezone": "",
   "title": "Drop Pods",
   "uid": "1USga2tVk",
-  "version": 12,
+  "version": 1,
   "weekStart": ""
 }
