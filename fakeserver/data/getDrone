@@ -5,7 +5,8 @@
          "x":-101315.90625,"y":-123853.492188,"z":3984.685059,
          "rotation":47
       },
-      "CurrentDestination":"",
+      "HomeStation":"Drone Port 1",
+      "CurrentDestination":"Drone Port 2",
       "FlyingSpeed":1000,
       "CurrentFlyingMode":"DFM_Travel",
     "features": {

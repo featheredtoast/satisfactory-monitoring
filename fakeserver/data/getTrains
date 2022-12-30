@@ -5,7 +5,7 @@
 		"x":        1000,
 		"y":        2000,
 		"z":        -3000,
-		"Rotation": 20
+		"rotation": 20
 	},
   "ForwardSpeed": 140,
   "TotalMass": 100,
@@ -26,7 +26,7 @@
 		"x":        2000,
 		"y":        3000,
 		"z":        -3000,
-		"Rotation": 100
+		"rotation": 100
 	},
   "ForwardSpeed": 140,
   "TotalMass": 100,
