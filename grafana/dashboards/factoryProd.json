@@ -348,7 +348,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "(select id, x, y,\n((x * 100 + 375000) * 0.0000001015) as longitude,\n((y*100 + 375000) * -0.0000001172) as latitude\nfrom (values(1, $xmin, $ymin)) as coords (id, x, y))\nunion\n(select id, x, y,\n((x * 100 + 375000) * 0.0000001015) as longitude,\n((y*100 + 375000) * -0.0000001172) as latitude\nfrom (values(2, $xmax, $ymin)) as coords (id, x, y))\nunion\n(select id, x, y,\n((x * 100 + 375000) * 0.0000001015) as longitude,\n((y*100 + 375000) * -0.0000001172) as latitude\nfrom (values(3, $xmax, $ymax)) as coords (id, x, y))\nunion\n(select id, x, y,\n((x * 100 + 375000) * 0.0000001015) as longitude,\n((y*100 + 375000) * -0.0000001172) as latitude\nfrom (values(4, $xmin, $ymax)) as coords (id, x, y))\nunion\n(select id, x, y,\n((x * 100 + 375000) * 0.0000001015) as longitude,\n((y*100 + 375000) * -0.0000001172) as latitude\nfrom (values(5, $xmin, $ymin)) as coords (id, x, y))\norder by id",
+          "rawSql": "(\n  select\n    id,\n    x,\n    y,\n    ((x * 100 + 375000) * 0.0000001015) as longitude,\n    ((y * 100 + 375000) * -0.0000001172) as latitude\n  from\n    (\n      values\n(1, $xmin, $ymin),\n        (2, $xmax, $ymin),\n        (3, $xmax, $ymax),\n        (4, $xmin, $ymax),\n        (5, $xmin, $ymin)\n    ) as coords (id, x, y)\n)\norder by\n  id",
           "refId": "Selected Area",
           "sql": {
             "columns": [
@@ -677,6 +677,6 @@
   "timezone": "",
   "title": "Factory Production",
   "uid": "pUvf_pt4k",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }
