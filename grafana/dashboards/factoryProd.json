@@ -222,6 +222,49 @@
             "name": "Selected",
             "tooltip": true,
             "type": "markers"
+          },
+          {
+            "config": {
+              "style": {
+                "color": {
+                  "fixed": "#FF9830"
+                },
+                "lineWidth": 2,
+                "opacity": 1,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "Selected Area"
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "Layer 3",
+            "tooltip": true,
+            "type": "route"
           }
         ],
         "tooltip": {
@@ -244,6 +287,7 @@
           },
           "editorMode": "code",
           "format": "table",
+          "hide": false,
           "rawQuery": true,
           "rawSql": "SELECT\ndata ->> 'building' as building,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nFROM cache\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric in ('factory', 'extractor')\nand (data -> 'location' ->> 'x')::NUMERIC/100 >= $xmin\nand (data -> 'location' ->> 'x')::NUMERIC/100 <= $xmax \nand (data -> 'location' ->> 'y')::NUMERIC/100 >= $ymin\nand (data -> 'location' ->> 'y')::NUMERIC/100 <= $ymax\nLIMIT 500",
           "refId": "Targeted Buildings",
@@ -277,6 +321,35 @@
           "rawQuery": true,
           "rawSql": "SELECT\ndata ->> 'building' as building,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nFROM cache\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric in ('factory', 'extractor')\nand ((data -> 'location' ->> 'x')::NUMERIC/100 < $xmin\nor (data -> 'location' ->> 'x')::NUMERIC/100 > $xmax)\nand ((data -> 'location' ->> 'y')::NUMERIC/100 < $ymin\nor (data -> 'location' ->> 'y')::NUMERIC/100 > $ymax)\nLIMIT 500",
           "refId": "Other Buildings",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "GhzMNppVk"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "(select id, x, y,\n((x * 100 + 375000) * 0.0000001015) as longitude,\n((y*100 + 375000) * -0.0000001172) as latitude\nfrom (values(1, $xmin, $ymin)) as coords (id, x, y))\nunion\n(select id, x, y,\n((x * 100 + 375000) * 0.0000001015) as longitude,\n((y*100 + 375000) * -0.0000001172) as latitude\nfrom (values(2, $xmax, $ymin)) as coords (id, x, y))\nunion\n(select id, x, y,\n((x * 100 + 375000) * 0.0000001015) as longitude,\n((y*100 + 375000) * -0.0000001172) as latitude\nfrom (values(3, $xmax, $ymax)) as coords (id, x, y))\nunion\n(select id, x, y,\n((x * 100 + 375000) * 0.0000001015) as longitude,\n((y*100 + 375000) * -0.0000001172) as latitude\nfrom (values(4, $xmin, $ymax)) as coords (id, x, y))\nunion\n(select id, x, y,\n((x * 100 + 375000) * 0.0000001015) as longitude,\n((y*100 + 375000) * -0.0000001172) as latitude\nfrom (values(5, $xmin, $ymin)) as coords (id, x, y))\norder by id",
+          "refId": "Selected Area",
           "sql": {
             "columns": [
               {
@@ -513,8 +586,8 @@
       {
         "current": {
           "selected": false,
-          "text": "-3000",
-          "value": "-3000"
+          "text": "-2000",
+          "value": "-2000"
         },
         "description": "leftmost bound of factory",
         "hide": 0,
@@ -523,11 +596,32 @@
         "options": [
           {
             "selected": true,
-            "text": "-3000",
-            "value": "-3000"
+            "text": "-2000",
+            "value": "-2000"
           }
         ],
-        "query": "-3000",
+        "query": "-2000",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "300",
+          "value": "300"
+        },
+        "description": "rightmost bound of factory",
+        "hide": 0,
+        "label": "x max",
+        "name": "xmax",
+        "options": [
+          {
+            "selected": true,
+            "text": "300",
+            "value": "300"
+          }
+        ],
+        "query": "300",
         "skipUrlSync": false,
         "type": "textbox"
       },
@@ -537,10 +631,10 @@
           "text": "3000",
           "value": "3000"
         },
-        "description": "rightmost bound of factory",
+        "description": "northern bound of factory",
         "hide": 0,
-        "label": "x max",
-        "name": "xmax",
+        "label": "y max",
+        "name": "ymax",
         "options": [
           {
             "selected": true,
@@ -555,29 +649,8 @@
       {
         "current": {
           "selected": false,
-          "text": "20000",
-          "value": "20000"
-        },
-        "description": "northern bound of factory",
-        "hide": 0,
-        "label": "y max",
-        "name": "ymax",
-        "options": [
-          {
-            "selected": true,
-            "text": "20000",
-            "value": "20000"
-          }
-        ],
-        "query": "20000",
-        "skipUrlSync": false,
-        "type": "textbox"
-      },
-      {
-        "current": {
-          "selected": false,
-          "text": "-2200",
-          "value": "-2200"
+          "text": "1000",
+          "value": "1000"
         },
         "description": "southern bound of factory",
         "hide": 0,
@@ -586,11 +659,11 @@
         "options": [
           {
             "selected": true,
-            "text": "-2200",
-            "value": "-2200"
+            "text": "1000",
+            "value": "1000"
           }
         ],
-        "query": "-2200",
+        "query": "1000",
         "skipUrlSync": false,
         "type": "textbox"
       }
@@ -604,6 +677,6 @@
   "timezone": "",
   "title": "Factory Production",
   "uid": "pUvf_pt4k",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }

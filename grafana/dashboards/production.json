@@ -163,7 +163,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\n  COALESCE(prod.name, cons.name) as name,\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) as rate\nfrom\n  (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.ingredients[*].Name') :: TEXT as name,\n          (\n            jsonb_path_query(data, '$.ingredients[*].CurrentConsumed') :: TEXT :: NUMERIC\n          ) val\n        FROM\n          cache\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'factory'\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as cons full\n  outer join (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.production[*].Name') :: TEXT as name,\n          jsonb_path_query(data, '$.production[*].CurrentProd') :: TEXT :: NUMERIC val\n        FROM\n          cache\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'factory'\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as prod on cons.name = prod.name\nwhere\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) != 0\norder by\n  rate desc,\n  name",
+          "rawSql": "SELECT\n  COALESCE(prod.name, cons.name) as name,\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) as rate\nfrom\n  (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.ingredients[*].Name') :: TEXT as name,\n          (\n            jsonb_path_query(data, '$.ingredients[*].CurrentConsumed') :: TEXT :: NUMERIC\n          ) val\n        FROM\n          cache\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric in ('factory', 'extractor')\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as cons full\n  outer join (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.production[*].Name') :: TEXT as name,\n          jsonb_path_query(data, '$.production[*].CurrentProd') :: TEXT :: NUMERIC val\n        FROM\n          cache\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric in ('factory', 'extractor')\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as prod on cons.name = prod.name\nwhere\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) != 0\norder by\n  rate desc,\n  name",
           "refId": "A",
           "sql": {
             "columns": [
@@ -245,7 +245,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\n  COALESCE(prod.name, cons.name) as name,\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) as rate\nfrom\n  (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.ingredients[*].Name') :: TEXT as name,\n          (\n            jsonb_path_query(data, '$.ingredients[*].MaxConsumed') :: TEXT :: NUMERIC\n          ) val\n        FROM\n          cache\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'factory'\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as cons full\n  outer join (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.production[*].Name') :: TEXT as name,\n          jsonb_path_query(data, '$.production[*].MaxProd') :: TEXT :: NUMERIC val\n        FROM\n          cache\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'factory'\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as prod on cons.name = prod.name\nwhere\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) != 0\norder by\n  rate desc,\n  name",
+          "rawSql": "SELECT\n  COALESCE(prod.name, cons.name) as name,\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) as rate\nfrom\n  (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.ingredients[*].Name') :: TEXT as name,\n          (\n            jsonb_path_query(data, '$.ingredients[*].MaxConsumed') :: TEXT :: NUMERIC\n          ) val\n        FROM\n          cache\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric in('factory', 'extractor')\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as cons full\n  outer join (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.production[*].Name') :: TEXT as name,\n          jsonb_path_query(data, '$.production[*].MaxProd') :: TEXT :: NUMERIC val\n        FROM\n          cache\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric in ('factory', 'extractor')\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as prod on cons.name = prod.name\nwhere\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) != 0\norder by\n  rate desc,\n  name",
           "refId": "A",
           "sql": {
             "columns": [
@@ -633,7 +633,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "Iron Rod",
           "value": "Iron Rod"
         },
@@ -669,6 +669,6 @@
   "timezone": "",
   "title": "Global Production",
   "uid": "gTe4sot4z",
-  "version": 6,
+  "version": 1,
   "weekStart": ""
 }
