@@ -110,6 +110,7 @@ func (c *CacheWorker) pullMetrics(metric string, route string, keepHistory bool)
 
 func (c *CacheWorker) pullLowCadenceMetrics() {
 	c.pullMetrics("factory", "/getFactory", false)
+	c.pullMetrics("extractor", "/getExtractor", false)
 	c.pullMetrics("dropPod", "/getDropPod", false)
 	c.pullMetrics("storageInv", "/getStorageInv", false)
 	c.pullMetrics("worldInv", "/getWorldInv", false)
