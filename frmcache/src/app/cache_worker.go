@@ -3,13 +3,12 @@ package main
 import (
 	"context"
 	"database/sql"
-	"io"
+	"encoding/json"
 	"net/http"
-	"strings"
 
 	"fmt"
-	"time"
 	"github.com/benbjohnson/clock"
+	"time"
 )
 
 var Clock = clock.New()
@@ -32,32 +31,84 @@ func NewCacheWorker(frmBaseUrl string, db *sql.DB) *CacheWorker {
 	}
 }
 
-func retrieveData(frmAddress string) (string, error) {
+func retrieveData(frmAddress string) ([]string, error) {
 	resp, err := http.Get(frmAddress)
 
 	if err != nil {
-		return "", fmt.Errorf("error when parsing json: %s", err)
+		return nil, fmt.Errorf("error when parsing json: %s", err)
 	}
 
-	buf := new(strings.Builder)
-	_, err = io.Copy(buf, resp.Body)
+	var content []json.RawMessage
+	decoder := json.NewDecoder(resp.Body)
+	err = decoder.Decode(&content)
 	if err != nil {
-		return "", fmt.Errorf("error when parsing json: %s", err)
+		return nil, fmt.Errorf("error when parsing json: %s", err)
 	}
 	defer resp.Body.Close()
-	return buf.String(), nil
+	result := []string{}
+	for _, c := range content {
+		result = append(result, string(c[:]))
+	}
+	return result, nil
 }
 
-func (c *CacheWorker) cacheMetrics(metric string, data string) error {
-	insert := `insert into cache (metric,frm_data) values($1,$2) ON CONFLICT (metric) DO UPDATE SET FRM_DATA = EXCLUDED.frm_data`
-	_, err := c.db.Exec(insert, metric, data)
-	return err
+func (c *CacheWorker) cacheMetrics(metric string, data []string) (err error) {
+	tx, err := c.db.Begin()
+	if err != nil {
+		return
+	}
+	defer func() {
+		switch err {
+		case nil:
+			err = tx.Commit()
+		default:
+			tx.Rollback()
+		}
+	}()
+
+	for _, s := range data {
+		insert := `insert into cache (metric,frm_data) values($1,$2) ON CONFLICT (metric) DO UPDATE SET FRM_DATA = EXCLUDED.frm_data`
+		_, err = tx.Exec(insert, metric, s)
+		if err != nil {
+			return
+		}
+	}
+	return
 }
 
-func (c *CacheWorker) cacheMetricsWithHistory(metric string, data string) error {
-	insert := `insert into cache_with_history (metric,frm_data, time) values($1,$2, now())`
-	_, err := c.db.Exec(insert, metric, data)
-	return err
+func (c *CacheWorker) cacheMetricsWithHistory(metric string, data []string) (err error) {
+	tx, err := c.db.Begin()
+	if err != nil {
+		return
+	}
+	defer func() {
+		switch err {
+		case nil:
+			err = tx.Commit()
+		default:
+			tx.Rollback()
+		}
+	}()
+	for _, s := range data {
+		insert := `insert into cache_with_history (metric,frm_data, time) values($1,$2, now())`
+		_, err = tx.Exec(insert, metric, s)
+		if err != nil {
+			return
+		}
+	}
+
+	//720 = 1 hour, 5 second increments. retain that many rows for every data.
+	keep := 720 * len(data)
+
+	delete := `delete from cache_with_history where
+metric = $1 and
+id NOT IN (
+select id from "cache_with_history" where metric = $1
+order by id desc
+limit $2
+);`
+	_, err = c.db.Exec(delete, metric, keep)
+	return
 }
 
 // flush the metric history cache
@@ -66,22 +117,6 @@ func (c *CacheWorker) flushMetricHistory() error {
 	_, err := c.db.Exec(delete)
 	if err != nil {
 		fmt.Println("flush metrics history db error: ", err)
-	}
-	return err
-}
-
-// Keep at most 1 hour of records
-func (c *CacheWorker) rotateMetricHistory(metric string) error {
-	delete := `delete from cache_with_history where
-metric = $1 and
-id NOT IN (
-select id from "cache_with_history" where metric = $1
-order by id desc
-limit 720
-);`
-	_, err := c.db.Exec(delete, metric)
-	if err != nil {
-		fmt.Println("rotate metrics history db error: ", err)
 	}
 	return err
 }
@@ -99,10 +134,6 @@ func (c *CacheWorker) pullMetrics(metric string, route string, keepHistory bool)
 		err = c.cacheMetricsWithHistory(metric, data)
 		if err != nil {
 			return fmt.Errorf("error when caching metrics history %s", err)
-		}
-		err = c.rotateMetricHistory(metric)
-		if err != nil {
-			return fmt.Errorf("error when rotating metrics %s", err)
 		}
 	}
 	return nil
