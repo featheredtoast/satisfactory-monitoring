@@ -36,15 +36,13 @@ func retrieveData(frmAddress string) (string, error) {
 	resp, err := http.Get(frmAddress)
 
 	if err != nil {
-		fmt.Printf("error fetching statistics from FRM: %s\n", err)
-		return "", err
+		return "", fmt.Errorf("error when parsing json: %s", err)
 	}
 
 	buf := new(strings.Builder)
 	_, err = io.Copy(buf, resp.Body)
 	if err != nil {
-		fmt.Printf("error fetching statistics from FRM: %s\n", err)
-		return "", err
+		return "", fmt.Errorf("error when parsing json: %s", err)
 	}
 	defer resp.Body.Close()
 	return buf.String(), nil
@@ -74,7 +72,7 @@ func (c *CacheWorker) flushMetricHistory() error {
 
 // Keep at most 1 hour of records
 func (c *CacheWorker) rotateMetricHistory(metric string) error {
-	delete := `delete from "cache_with_history" where
+	delete := `delete from cache_with_history where
 metric = $1 and
 id NOT IN (
 select id from "cache_with_history" where metric = $1
@@ -88,44 +86,51 @@ limit 720
 	return err
 }
 
-func (c *CacheWorker) pullMetrics(metric string, route string, keepHistory bool) {
+func (c *CacheWorker) pullMetrics(metric string, route string, keepHistory bool) error {
 	data, err := retrieveData(c.frmBaseUrl + route)
 	if err != nil {
-		fmt.Println("error when parsing json: ", err)
-		return
+		return fmt.Errorf("error when parsing json: %s", err)
 	}
 	c.cacheMetrics(metric, data)
 	if err != nil {
-		fmt.Println("error when caching metrics", err)
+		return fmt.Errorf("error when caching metrics %s", err)
 	}
 	if keepHistory {
 		err = c.cacheMetricsWithHistory(metric, data)
 		if err != nil {
-			fmt.Println("error when caching metrics history", err)
-			return
+			return fmt.Errorf("error when caching metrics history %s", err)
 		}
 		err = c.rotateMetricHistory(metric)
 		if err != nil {
-			fmt.Println("error when rotating metrics", err)
+			return fmt.Errorf("error when rotating metrics %s", err)
 		}
 	}
+	return nil
+}
+
+func (c *CacheWorker) pullMetricsLog(metric string, route string, keepHistory bool) error {
+	if err := c.pullMetrics(metric, route, keepHistory); err != nil {
+		fmt.Println("Error when pulling metrics ", metric, ": ", err)
+		return err
+	}
+	return nil
 }
 
 func (c *CacheWorker) pullLowCadenceMetrics() {
-	c.pullMetrics("factory", "/getFactory", false)
-	c.pullMetrics("extractor", "/getExtractor", false)
-	c.pullMetrics("dropPod", "/getDropPod", false)
-	c.pullMetrics("storageInv", "/getStorageInv", false)
-	c.pullMetrics("worldInv", "/getWorldInv", false)
-	c.pullMetrics("droneStation", "/getDroneStation", false)
-	c.pullMetrics("trainStation", "/getTrainStation", false)
-	c.pullMetrics("truckStation", "/getTruckStation", false)
+	c.pullMetricsLog("factory", "/getFactory", false)
+	c.pullMetricsLog("extractor", "/getExtractor", false)
+	c.pullMetricsLog("dropPod", "/getDropPod", false)
+	c.pullMetricsLog("storageInv", "/getStorageInv", false)
+	c.pullMetricsLog("worldInv", "/getWorldInv", false)
+	c.pullMetricsLog("droneStation", "/getDroneStation", false)
+	c.pullMetricsLog("trainStation", "/getTrainStation", false)
+	c.pullMetricsLog("truckStation", "/getTruckStation", false)
 }
 
 func (c *CacheWorker) pullRealtimeMetrics() {
-	c.pullMetrics("drone", "/getDrone", true)
-	c.pullMetrics("train", "/getTrains", true)
-	c.pullMetrics("truck", "/getVehicles", true)
+	c.pullMetricsLog("drone", "/getDrone", true)
+	c.pullMetricsLog("train", "/getTrains", true)
+	c.pullMetricsLog("truck", "/getVehicles", true)
 }
 
 func (c *CacheWorker) Start() {
