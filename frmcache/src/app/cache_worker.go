@@ -66,8 +66,18 @@ func (c *CacheWorker) cacheMetrics(metric string, data []string) (err error) {
 		}
 	}()
 
+	delete := `delete from cache where
+metric = $1 and
+id NOT IN (
+select id from cache where metric = $1
+order by id desc
+);`
+	_, err = c.db.Exec(delete, metric)
+	if (err != nil) {
+		return
+	}
 	for _, s := range data {
-		insert := `insert into cache (metric,frm_data) values($1,$2) ON CONFLICT (metric) DO UPDATE SET FRM_DATA = EXCLUDED.frm_data`
+		insert := `insert into cache (metric,frm_data) values($1,$2)`
 		_, err = tx.Exec(insert, metric, s)
 		if err != nil {
 			return
