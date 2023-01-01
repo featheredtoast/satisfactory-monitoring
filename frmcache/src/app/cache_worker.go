@@ -66,18 +66,13 @@ func (c *CacheWorker) cacheMetrics(metric string, data []string) (err error) {
 		}
 	}()
 
-	delete := `delete from cache where
-metric = $1 and
-id NOT IN (
-select id from cache where metric = $1
-order by id desc
-);`
+	delete := `delete from cache where metric = $1;`
 	_, err = c.db.Exec(delete, metric)
 	if (err != nil) {
 		return
 	}
 	for _, s := range data {
-		insert := `insert into cache (metric,frm_data) values($1,$2)`
+		insert := `insert into cache (metric,data) values($1,$2)`
 		_, err = tx.Exec(insert, metric, s)
 		if err != nil {
 			return
@@ -100,7 +95,7 @@ func (c *CacheWorker) cacheMetricsWithHistory(metric string, data []string) (err
 		}
 	}()
 	for _, s := range data {
-		insert := `insert into cache_with_history (metric,frm_data, time) values($1,$2, now())`
+		insert := `insert into cache_with_history (metric,data, time) values($1,$2, now())`
 		_, err = tx.Exec(insert, metric, s)
 		if err != nil {
 			return
