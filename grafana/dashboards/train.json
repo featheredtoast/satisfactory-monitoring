@@ -327,7 +327,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'train'\nand data ->> 'TrainName' = '$train'\nand $__timeFilter(time)\norder by time desc\nlimit 720;\n",
+          "rawSql": "select\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history where metric = 'train'\nand data ->> 'TrainName' = '$train'\nand $__timeFilter(time)\norder by time desc\nlimit 720;\n",
           "refId": "Route",
           "sql": {
             "columns": [
@@ -356,7 +356,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata->>'TrainName' as name,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'train'\nand data ->> 'TrainName' = '$train'\norder by id desc;\n",
+          "rawSql": "select\ndata->>'TrainName' as name,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'train'\nand data ->> 'TrainName' = '$train'\norder by id desc;\n",
           "refId": "Current location",
           "sql": {
             "columns": [
@@ -385,7 +385,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\n  data -> 'StationName' as station_name,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nfrom\n  cache\n  cross join jsonb_path_query(frm_data, '$[*]') as data\nwhere\n  metric = 'trainStation'\n  and (data ->> 'StationName') in (\n    select\n          trim('\"' from jsonb_path_query(data, '$.TimeTable[*].StationName')::TEXT) as station\n        from\n          cache c\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'train'\n          and data ->> 'TrainName' = '$train'\n  )\nlimit\n  100;",
+          "rawSql": "select\n  data -> 'StationName' as station_name,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nfrom\n  cache\n \nwhere\n  metric = 'trainStation'\n  and (data ->> 'StationName') in (\n    select\n          trim('\"' from jsonb_path_query(data, '$.TimeTable[*].StationName')::TEXT) as station\n        from\n          cache c\n         \n        where\n          metric = 'train'\n          and data ->> 'TrainName' = '$train'\n  )\nlimit\n  100;",
           "refId": "Stations",
           "sql": {
             "columns": [
@@ -414,7 +414,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata->>'TrainName' as name,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'train'\nand data ->> 'TrainName' <> '$train'\norder by id desc;\n",
+          "rawSql": "select\ndata->>'TrainName' as name,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'train'\nand data ->> 'TrainName' <> '$train'\norder by id desc;\n",
           "refId": "Other trains",
           "sql": {
             "columns": [
@@ -443,7 +443,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\n  data -> 'StationName' as station_name,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nfrom\n  cache\n  cross join jsonb_path_query(frm_data, '$[*]') as data\nwhere\n  metric = 'trainStation'\n  and (data ->> 'StationName') not in (\n    select\n          trim('\"' from jsonb_path_query(data, '$.TimeTable[*].StationName')::TEXT) as station\n        from\n          cache c\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'train'\n          and data ->> 'TrainName' = '$train'\n  )\nlimit\n  100;",
+          "rawSql": "select\n  data -> 'StationName' as station_name,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nfrom\n  cache\n \nwhere\n  metric = 'trainStation'\n  and (data ->> 'StationName') not in (\n    select\n          trim('\"' from jsonb_path_query(data, '$.TimeTable[*].StationName')::TEXT) as station\n        from\n          cache c\n         \n        where\n          metric = 'train'\n          and data ->> 'TrainName' = '$train'\n  )\nlimit\n  100;",
           "refId": "Other stations",
           "sql": {
             "columns": [
@@ -527,7 +527,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select\ndata->>'TrainStation' as name\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'train'\nand data ->> 'TrainName' = '$train'\norder by id desc;",
+          "rawSql": "select\ndata->>'TrainStation' as name\nfrom cache where metric = 'train'\nand data ->> 'TrainName' = '$train'\norder by id desc;",
           "refId": "A",
           "sql": {
             "columns": [
@@ -610,7 +610,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select\n          trim('\"' from jsonb_path_query(data, '$.TimeTable[*].StationName')::TEXT) as station\n        from\n          cache c\n          cross join jsonb_path_query(frm_data, '$[*]') as data\n        where\n          metric = 'train'\n          and data ->> 'TrainName' = '$train'",
+          "rawSql": "select\n          trim('\"' from jsonb_path_query(data, '$.TimeTable[*].StationName')::TEXT) as station\n        from\n          cache c\n         \n        where\n          metric = 'train'\n          and data ->> 'TrainName' = '$train'",
           "refId": "A",
           "sql": {
             "columns": [
@@ -808,7 +808,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT \ndata->>'TrainName' as name,\ndata->>'Status' as status,\ndata->>'TrainStation' as next_station,\ndata->>'TimeTable' as timetable\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'train';",
+          "rawSql": "SELECT \ndata->>'TrainName' as name,\ndata->>'Status' as status,\ndata->>'TrainStation' as next_station,\ndata->>'TimeTable' as timetable\nfrom cache where metric = 'train';",
           "refId": "A",
           "sql": {
             "columns": [

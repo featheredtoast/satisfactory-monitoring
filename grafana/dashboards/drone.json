@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 5,
+  "id": 3,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -306,7 +306,7 @@
           "mode": "details"
         },
         "view": {
-          "allLayers": false,
+          "allLayers": true,
           "id": "fit",
           "lastOnly": false,
           "lat": 0,
@@ -327,7 +327,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'drone'\nand data ->> 'ID' = '$drone'\nand $__timeFilter(time)\norder by time desc\nlimit 100;\n",
+          "rawSql": "select\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history where metric = 'drone'\nand data ->> 'ID' = '$drone'\nand $__timeFilter(time)\norder by time desc\nlimit 100;\n",
           "refId": "Route",
           "sql": {
             "columns": [
@@ -356,7 +356,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata ->> 'HomeStation' as name,\ndata ->> 'ID' as id,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'drone'\nand data ->> 'ID' = '$drone'\norder by id desc;\n",
+          "rawSql": "select\ndata ->> 'HomeStation' as name,\ndata ->> 'ID' as id,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'drone'\nand data ->> 'ID' = '$drone'\norder by id desc;\n",
           "refId": "Current location",
           "sql": {
             "columns": [
@@ -385,7 +385,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "(select\n    data ->> 'HomeStation' as name,\n    data ->> 'PairedStation' as paired,\n    (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n    (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n    (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n    (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n    (\n      ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n    ) as longitude,\n    (\n      ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n    ) as latitude\n  from\n    cache\n    cross join jsonb_path_query(frm_data, '$[*]') as data\n  where\n    metric = 'droneStation'\n    and (data -> 'HomeStation' <@\n(\n  select\n    jsonb_build_array(data -> 'HomeStation',\n    data -> 'PairedStation')\n  from\n    cache\n    cross join jsonb_path_query(frm_data, '$[*]') as data\n    join (\n      SELECT\n        data ->> 'HomeStation' as home_station\n      from\n        cache\n        cross join jsonb_path_query(frm_data, '$[*]') as data\n      where\n        metric = 'drone'\n        and data ->> 'ID' = '$drone'\n    ) as drones on drones.home_station = data ->> 'HomeStation'\n  where\n    metric = 'droneStation'\n)\n)\n)",
+          "rawSql": "(select\n    data ->> 'HomeStation' as name,\n    data ->> 'PairedStation' as paired,\n    (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n    (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n    (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n    (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n    (\n      ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n    ) as longitude,\n    (\n      ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n    ) as latitude\n  from\n    cache\n  where\n    metric = 'droneStation'\n    and (data -> 'HomeStation' <@\n(\n  select\n    jsonb_build_array(data -> 'HomeStation',\n    data -> 'PairedStation')\n  from\n    cache\n    join (\n      SELECT\n        data ->> 'HomeStation' as home_station\n      from\n        cache\n      where\n        metric = 'drone'\n        and data ->> 'ID' = '$drone'\n    ) as drones on drones.home_station = data ->> 'HomeStation'\n  where\n    metric = 'droneStation'\n)\n)\n)",
           "refId": "Ports",
           "sql": {
             "columns": [
@@ -414,7 +414,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata ->> 'HomeStation' as name,\ndata ->> 'ID' as id,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'drone'\nand data ->> 'ID' <> '$drone'\norder by id desc;\n",
+          "rawSql": "select\ndata ->> 'HomeStation' as name,\ndata ->> 'ID' as id,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'drone'\nand data ->> 'ID' <> '$drone'\norder by id desc;\n",
           "refId": "Other drones",
           "sql": {
             "columns": [
@@ -443,7 +443,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "(select\n    data ->> 'HomeStation' as name,\n    data ->> 'PairedStation' as paired,\n    (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n    (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n    (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n    (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n    (\n      ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n    ) as longitude,\n    (\n      ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n    ) as latitude\n  from\n    cache\n    cross join jsonb_path_query(frm_data, '$[*]') as data\n  where\n    metric = 'droneStation'\n    and NOT(data -> 'HomeStation' <@\n(\n  select\n    jsonb_build_array(data -> 'HomeStation',\n    data -> 'PairedStation')\n  from\n    cache\n    cross join jsonb_path_query(frm_data, '$[*]') as data\n    join (\n      SELECT\n        data ->> 'HomeStation' as home_station\n      from\n        cache\n        cross join jsonb_path_query(frm_data, '$[*]') as data\n      where\n        metric = 'drone'\n        and data ->> 'ID' = '$drone'\n    ) as drones on drones.home_station = data ->> 'HomeStation'\n  where\n    metric = 'droneStation'\n)\n)\n)",
+          "rawSql": "(select\n    data ->> 'HomeStation' as name,\n    data ->> 'PairedStation' as paired,\n    (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n    (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n    (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n    (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n    (\n      ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n    ) as longitude,\n    (\n      ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n    ) as latitude\n  from\n    cache\n  where\n    metric = 'droneStation'\n    and NOT(data -> 'HomeStation' <@\n(\n  select\n    jsonb_build_array(data -> 'HomeStation',\n    data -> 'PairedStation')\n  from\n    cache\n    join (\n      SELECT\n        data ->> 'HomeStation' as home_station\n      from\n        cache\n      where\n        metric = 'drone'\n        and data ->> 'ID' = '$drone'\n    ) as drones on drones.home_station = data ->> 'HomeStation'\n  where\n    metric = 'droneStation'\n)\n)\n)",
           "refId": "Other ports",
           "sql": {
             "columns": [
@@ -538,7 +538,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select data ->> 'HomeStation' as drone_port,\ndata ->> 'PairedStation' as paired_port,\ncoalesce(drones.id, '(no drone)') as drone_id\nfrom\ncache cross join jsonb_path_query(frm_data, '$[*]') as data\nleft join\n(SELECT \ndata ->> 'HomeStation' as home_station,\ndata ->> 'ID' as id,\ndata ->> 'CurrentFlyingMode' as flying_mode\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'drone') as drones on drones.home_station = data ->> 'HomeStation'\nwhere metric = 'droneStation'\norder by drones.id",
+          "rawSql": "select data ->> 'HomeStation' as drone_port,\ndata ->> 'PairedStation' as paired_port,\ncoalesce(drones.id, '(no drone)') as drone_id\nfrom\ncache\nleft join\n(SELECT \ndata ->> 'HomeStation' as home_station,\ndata ->> 'ID' as id,\ndata ->> 'CurrentFlyingMode' as flying_mode\nfrom cache\nwhere metric = 'drone') as drones on drones.home_station = data ->> 'HomeStation'\nwhere metric = 'droneStation'\norder by drones.id",
           "refId": "A",
           "sql": {
             "columns": [
@@ -767,21 +767,21 @@
       {
         "current": {
           "selected": false,
-          "text": "32 : I spagheti pasta rocket nitrogen gas",
-          "value": "32"
+          "text": "0 : Drone Port 1",
+          "value": "0"
         },
         "datasource": {
           "type": "postgres",
           "uid": "GhzMNppVk"
         },
-        "definition": "select\ndata ->> 'ID' as __value,\nconcat(data ->> 'ID', ' : ', data ->> 'HomeStation') as __text\nfrom cache c\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'drone'\nand data ->> 'CurrentFlyingMode' <> 'DFM_None'\norder by c.id desc",
+        "definition": "select\ndata ->> 'ID' as __value,\nconcat(data ->> 'ID', ' : ', data ->> 'HomeStation') as __text\nfrom cache c\nwhere metric = 'drone'\nand data ->> 'CurrentFlyingMode' <> 'DFM_None'\norder by c.id desc",
         "hide": 0,
         "includeAll": false,
         "label": "Drone ID",
         "multi": false,
         "name": "drone",
         "options": [],
-        "query": "select\ndata ->> 'ID' as __value,\nconcat(data ->> 'ID', ' : ', data ->> 'HomeStation') as __text\nfrom cache c\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'drone'\nand data ->> 'CurrentFlyingMode' <> 'DFM_None'\norder by c.id desc",
+        "query": "select\ndata ->> 'ID' as __value,\nconcat(data ->> 'ID', ' : ', data ->> 'HomeStation') as __text\nfrom cache c\nwhere metric = 'drone'\nand data ->> 'CurrentFlyingMode' <> 'DFM_None'\norder by c.id desc",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -798,6 +798,6 @@
   "timezone": "",
   "title": "Drones",
   "uid": "HsE6e0tVz",
-  "version": 7,
+  "version": 2,
   "weekStart": ""
 }

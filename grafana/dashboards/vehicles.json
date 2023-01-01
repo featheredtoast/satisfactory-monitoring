@@ -279,7 +279,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation') as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\nand data ->> 'ID' = '$vehicle'\nand $__timeFilter(time)\norder by time desc\nlimit 100;\n",
+          "rawSql": "select\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation') as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history where metric = 'truck'\nand data ->> 'ID' = '$vehicle'\nand $__timeFilter(time)\norder by time desc\nlimit 100;\n",
           "refId": "Route",
           "sql": {
             "columns": [
@@ -308,7 +308,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\nconcat(data->>'ID',':',data->>'VehicleType') as vehicle,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\nand data ->> 'ID' = '$vehicle';\n",
+          "rawSql": "select\nconcat(data->>'ID',':',data->>'VehicleType') as vehicle,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'truck'\nand data ->> 'ID' = '$vehicle';\n",
           "refId": "Current location",
           "sql": {
             "columns": [
@@ -337,7 +337,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truckStation'\nlimit 100;\n",
+          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'truckStation'\nlimit 100;\n",
           "refId": "Stations",
           "sql": {
             "columns": [
@@ -366,7 +366,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\nconcat(data->>'ID',':',data->>'VehicleType') as vehicle,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\nand data ->> 'ID' <> '$vehicle'\norder by id desc\n",
+          "rawSql": "select\nconcat(data->>'ID',':',data->>'VehicleType') as vehicle,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'truck'\nand data ->> 'ID' <> '$vehicle'\norder by id desc\n",
           "refId": "Other Trucks",
           "sql": {
             "columns": [
@@ -685,14 +685,14 @@
           "type": "postgres",
           "uid": "GhzMNppVk"
         },
-        "definition": "select\ndata->>'ID' as __value,\nconcat(data->>'ID', ' (', data ->> 'VehicleType', ':', data ->> 'PathName',')') as __text\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\norder by id desc;",
+        "definition": "select\ndata->>'ID' as __value,\nconcat(data->>'ID', ' (', data ->> 'VehicleType', ':', data ->> 'PathName',')') as __text\nfrom cache where metric = 'truck'\norder by id desc;",
         "hide": 0,
         "includeAll": false,
         "label": "Vehicle",
         "multi": false,
         "name": "vehicle",
         "options": [],
-        "query": "select\ndata->>'ID' as __value,\nconcat(data->>'ID', ' (', data ->> 'VehicleType', ':', data ->> 'PathName',')') as __text\nfrom cache cross join jsonb_path_query(frm_data, '$[*]') as data where metric = 'truck'\norder by id desc;",
+        "query": "select\ndata->>'ID' as __value,\nconcat(data->>'ID', ' (', data ->> 'VehicleType', ':', data ->> 'PathName',')') as __text\nfrom cache where metric = 'truck'\norder by id desc;",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
