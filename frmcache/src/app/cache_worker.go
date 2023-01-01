@@ -9,7 +9,10 @@ import (
 
 	"fmt"
 	"time"
+	"github.com/benbjohnson/clock"
 )
+
+var Clock = clock.New()
 
 type CacheWorker struct {
 	ctx        context.Context
@@ -48,13 +51,13 @@ func retrieveData(frmAddress string) (string, error) {
 }
 
 func (c *CacheWorker) cacheMetrics(metric string, data string) error {
-	insert := `insert into "cache" ("metric","frm_data") values($1,$2) ON CONFLICT (metric) DO UPDATE SET FRM_DATA = EXCLUDED.frm_data`
+	insert := `insert into cache (metric,frm_data) values($1,$2) ON CONFLICT (metric) DO UPDATE SET FRM_DATA = EXCLUDED.frm_data`
 	_, err := c.db.Exec(insert, metric, data)
 	return err
 }
 
 func (c *CacheWorker) cacheMetricsWithHistory(metric string, data string) error {
-	insert := `insert into "cache_with_history" ("metric","frm_data", "time") values($1,$2, now())`
+	insert := `insert into cache_with_history (metric,frm_data, time) values($1,$2, now())`
 	_, err := c.db.Exec(insert, metric, data)
 	return err
 }
@@ -134,7 +137,7 @@ func (c *CacheWorker) Start() {
 		select {
 		case <-c.ctx.Done():
 			return
-		case <-time.After(5 * time.Second):
+		case <-Clock.After(5 * time.Second):
 			counter = counter + 1
 			c.pullRealtimeMetrics()
 			if counter > 11 {
