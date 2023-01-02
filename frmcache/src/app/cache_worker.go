@@ -67,7 +67,7 @@ func (c *CacheWorker) cacheMetrics(metric string, data []string) (err error) {
 	}()
 
 	delete := `delete from cache where metric = $1;`
-	_, err = c.db.Exec(delete, metric)
+	_, err = tx.Exec(delete, metric)
 	if (err != nil) {
 		return
 	}
@@ -112,7 +112,7 @@ select id from "cache_with_history" where metric = $1
 order by id desc
 limit $2
 );`
-	_, err = c.db.Exec(delete, metric, keep)
+	_, err = tx.Exec(delete, metric, keep)
 	return
 }
 
