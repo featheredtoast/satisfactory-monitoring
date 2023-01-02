@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 8,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -610,7 +610,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select\n          trim('\"' from jsonb_path_query(data, '$.TimeTable[*].StationName')::TEXT) as station\n        from\n          cache c\n         \n        where\n          metric = 'train'\n          and data ->> 'TrainName' = '$train'",
+          "rawSql": "select\n          jsonb_array_elements_text(jsonb_path_query_array(data, '$.TimeTable[*].StationName')) as station\n        from\n          cache c\n         \n        where\n          metric = 'train'\n          and data ->> 'TrainName' = '$train'",
           "refId": "A",
           "sql": {
             "columns": [
@@ -808,7 +808,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT \ndata->>'TrainName' as name,\ndata->>'Status' as status,\ndata->>'TrainStation' as next_station,\ndata->>'TimeTable' as timetable\nfrom cache where metric = 'train';",
+          "rawSql": "SELECT \ndata->>'TrainName' as name,\ndata->>'Status' as status,\ndata->>'TrainStation' as next_station,\nstring_agg(t.timetable,', ') as timetable\nfrom cache c\njoin (select\nid,\njsonb_array_elements_text(jsonb_path_query_array(data, '$.TimeTable[*].StationName')) as timetable from cache where metric='train'\n) as t on t.id = c.id\nwhere metric = 'train'\ngroup by data->>'TrainName', data->>'Status', data->>'TrainStation';",
           "refId": "A",
           "sql": {
             "columns": [
@@ -1089,6 +1089,6 @@
   "timezone": "",
   "title": "Trains",
   "uid": "5TN0r0p4k",
-  "version": 1,
+  "version": 3,
   "weekStart": ""
 }

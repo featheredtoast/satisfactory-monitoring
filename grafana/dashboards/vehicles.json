@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 4,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -447,7 +447,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\ndata->>'ID' as id,\ndata->>'VehicleType' as type,\ndata->>'PathName' as path_name,\ndata->>'AutoPilot' as autopilot\nfrom (\n  SELECT frm_data from cache_with_history WHERE metric = 'truck' ORDER BY id desc limit 1\n) as t\n cross join jsonb_path_query(t.frm_data, '$[*]') as data limit 100;",
+          "rawSql": "SELECT\ndata->>'ID' as id,\ndata->>'VehicleType' as type,\ndata->>'PathName' as path_name,\ndata->>'AutoPilot' as autopilot\nfrom cache WHERE metric = 'truck';",
           "refId": "A",
           "sql": {
             "columns": [
@@ -677,9 +677,9 @@
     "list": [
       {
         "current": {
-          "selected": true,
-          "text": "6 (Factory Cart:Slightly less dumb coal delive)",
-          "value": "6"
+          "selected": false,
+          "text": "1 (Tractor:test1)",
+          "value": "1"
         },
         "datasource": {
           "type": "postgres",
@@ -709,6 +709,6 @@
   "timezone": "",
   "title": "Vehicles",
   "uid": "XteIs3cVk",
-  "version": 5,
+  "version": 2,
   "weekStart": ""
 }
