@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -102,12 +102,12 @@
                   "mode": "mod"
                 },
                 "size": {
-                  "fixed": 5,
+                  "fixed": 15,
                   "max": 15,
                   "min": 2
                 },
                 "symbol": {
-                  "fixed": "img/icons/unicons/angle-up.svg",
+                  "fixed": "img/icons/satisfactory/location-arrow-alt.svg",
                   "mode": "fixed"
                 },
                 "textConfig": {
@@ -131,7 +131,7 @@
             "config": {
               "style": {
                 "color": {
-                  "fixed": "#73BF69"
+                  "fixed": "#37872D"
                 },
                 "lineWidth": 2,
                 "opacity": 1,
@@ -187,7 +187,7 @@
                   "min": 2
                 },
                 "symbol": {
-                  "fixed": "img/icons/marker/circle.svg",
+                  "fixed": "img/icons/satisfactory/location-point.svg",
                   "mode": "fixed"
                 },
                 "textConfig": {
@@ -215,7 +215,7 @@
               "showLegend": false,
               "style": {
                 "color": {
-                  "fixed": "dark-yellow"
+                  "fixed": "dark-blue"
                 },
                 "opacity": 1,
                 "rotation": {
@@ -231,7 +231,7 @@
                   "min": 2
                 },
                 "symbol": {
-                  "fixed": "img/icons/unicons/angle-up.svg",
+                  "fixed": "img/icons/satisfactory/location-arrow-alt.svg",
                   "mode": "fixed"
                 },
                 "textConfig": {
@@ -709,6 +709,6 @@
   "timezone": "",
   "title": "Vehicles",
   "uid": "XteIs3cVk",
-  "version": 2,
+  "version": 1,
   "weekStart": ""
 }

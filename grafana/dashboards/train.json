@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 8,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -101,12 +101,12 @@
                   "mode": "mod"
                 },
                 "size": {
-                  "fixed": 3,
+                  "fixed": 20,
                   "max": 15,
                   "min": 2
                 },
                 "symbol": {
-                  "fixed": "img/icons/marker/circle.svg",
+                  "fixed": "img/icons/satisfactory/location-point.svg",
                   "mode": "fixed"
                 },
                 "textConfig": {
@@ -145,12 +145,12 @@
                   "mode": "mod"
                 },
                 "size": {
-                  "fixed": 27,
+                  "fixed": 20,
                   "max": 15,
                   "min": 2
                 },
                 "symbol": {
-                  "fixed": "img/icons/unicons/angle-up.svg",
+                  "fixed": "img/icons/satisfactory/location-arrow-alt.svg",
                   "mode": "fixed"
                 },
                 "textConfig": {
@@ -177,7 +177,7 @@
             "config": {
               "style": {
                 "color": {
-                  "fixed": "#73BF69"
+                  "fixed": "#37872D"
                 },
                 "lineWidth": 2,
                 "opacity": 1,
@@ -229,12 +229,12 @@
                   "mode": "mod"
                 },
                 "size": {
-                  "fixed": 5,
+                  "fixed": 20,
                   "max": 15,
                   "min": 2
                 },
                 "symbol": {
-                  "fixed": "img/icons/marker/circle.svg",
+                  "fixed": "img/icons/satisfactory/location-point.svg",
                   "mode": "fixed"
                 },
                 "textConfig": {
@@ -262,7 +262,7 @@
               "showLegend": false,
               "style": {
                 "color": {
-                  "fixed": "dark-yellow"
+                  "fixed": "dark-blue"
                 },
                 "opacity": 1,
                 "rotation": {
@@ -273,12 +273,12 @@
                   "mode": "mod"
                 },
                 "size": {
-                  "fixed": 40,
+                  "fixed": 20,
                   "max": 15,
                   "min": 2
                 },
                 "symbol": {
-                  "fixed": "img/icons/unicons/angle-up.svg",
+                  "fixed": "img/icons/satisfactory/location-arrow-alt.svg",
                   "mode": "fixed"
                 },
                 "textConfig": {
@@ -310,7 +310,7 @@
           "id": "fit",
           "lastOnly": false,
           "lat": 0,
-          "layer": "Route",
+          "layer": "Stations",
           "lon": 0,
           "padding": 30,
           "zoom": 16
@@ -1089,6 +1089,6 @@
   "timezone": "",
   "title": "Trains",
   "uid": "5TN0r0p4k",
-  "version": 4,
+  "version": 2,
   "weekStart": ""
 }
