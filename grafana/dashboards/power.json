@@ -44,7 +44,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 6,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -663,10 +663,10 @@
         "layers": [
           {
             "config": {
-              "showLegend": false,
+              "showLegend": true,
               "style": {
                 "color": {
-                  "fixed": "dark-green"
+                  "fixed": "dark-yellow"
                 },
                 "opacity": 0.4,
                 "rotation": {
@@ -676,7 +676,7 @@
                   "mode": "mod"
                 },
                 "size": {
-                  "fixed": 5,
+                  "fixed": 3,
                   "max": 15,
                   "min": 2
                 },
@@ -695,12 +695,12 @@
             },
             "filterData": {
               "id": "byRefId",
-              "options": "A"
+              "options": "buildings"
             },
             "location": {
               "mode": "auto"
             },
-            "name": "Layer 1",
+            "name": "Buildings",
             "tooltip": true,
             "type": "markers"
           }
@@ -726,8 +726,8 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\ndata ->> 'building' as building,\ndata ->> 'CircuitID' as circuit,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nFROM cache\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric = 'factory'\nand (data ->> 'CircuitID')::numeric = $circuit\nLIMIT 500",
-          "refId": "A",
+          "rawSql": "SELECT\ndata ->> 'building' as building,\ndata ->> 'CircuitID' as circuit,\ndata ->> 'Recipe' as recipe,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric in ('factory', 'extractor')\nand (data ->> 'CircuitID')::numeric = $circuit",
+          "refId": "buildings",
           "sql": {
             "columns": [
               {
@@ -749,6 +749,88 @@
       ],
       "title": "Circuit $circuit map",
       "type": "geomap"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "GhzMNppVk"
+      },
+      "description": "number of buildings on each circuit",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 24
+      },
+      "id": 28,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": ["sum"],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "9.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "GhzMNppVk"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "select \ndata ->> 'CircuitID' as circuit,\ncount(*) as building_count\nfrom cache where metric in ('factory', 'extractor')\ngroup by circuit\norder by building_count",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Circuit and building counts",
+      "type": "table"
     }
   ],
   "refresh": "5s",
@@ -760,8 +842,8 @@
       {
         "current": {
           "selected": true,
-          "text": "1",
-          "value": "1"
+          "text": "46",
+          "value": "46"
         },
         "datasource": {
           "type": "prometheus",
@@ -795,6 +877,6 @@
   "timezone": "",
   "title": "Power",
   "uid": "OFv4PopVz",
-  "version": 3,
+  "version": 1,
   "weekStart": ""
 }
