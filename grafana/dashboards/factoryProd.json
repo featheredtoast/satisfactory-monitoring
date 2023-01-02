@@ -289,7 +289,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "SELECT\ndata ->> 'building' as building,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nFROM cache\nwhere metric in ('factory', 'extractor')\nand (data -> 'location' ->> 'x')::NUMERIC/100 >= $xmin\nand (data -> 'location' ->> 'x')::NUMERIC/100 <= $xmax \nand (data -> 'location' ->> 'y')::NUMERIC/100 >= $ymin\nand (data -> 'location' ->> 'y')::NUMERIC/100 <= $ymax",
+          "rawSql": "SELECT\ndata ->> 'Recipe' as recipe,\ndata ->> 'building' as building,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nFROM cache\nwhere metric in ('factory', 'extractor')\nand (data -> 'location' ->> 'x')::NUMERIC/100 >= $xmin\nand (data -> 'location' ->> 'x')::NUMERIC/100 <= $xmax \nand (data -> 'location' ->> 'y')::NUMERIC/100 >= $ymin\nand (data -> 'location' ->> 'y')::NUMERIC/100 <= $ymax",
           "refId": "Targeted Buildings",
           "sql": {
             "columns": [
@@ -319,7 +319,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "SELECT\ndata ->> 'building' as building,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nFROM cache\nwhere metric in ('factory', 'extractor')\nand ((data -> 'location' ->> 'x')::NUMERIC/100 < $xmin\nor (data -> 'location' ->> 'x')::NUMERIC/100 > $xmax)\nand ((data -> 'location' ->> 'y')::NUMERIC/100 < $ymin\nor (data -> 'location' ->> 'y')::NUMERIC/100 > $ymax)",
+          "rawSql": "SELECT\n  data ->> 'Recipe' as recipe,\n  data ->> 'building' as building,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nFROM\n  cache\nwhere\n  metric in ('factory', 'extractor')\n  and (\n    (data -> 'location' ->> 'x') :: NUMERIC / 100 < $xmin\n    or (data -> 'location' ->> 'x') :: NUMERIC / 100 > $xmax\n    or (data -> 'location' ->> 'y') :: NUMERIC / 100 < $ymin\n    or (data -> 'location' ->> 'y') :: NUMERIC / 100 > $ymax\n  )",
           "refId": "Other Buildings",
           "sql": {
             "columns": [
@@ -445,7 +445,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\n  COALESCE(prod.name, cons.name) as name,\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) as rate\nfrom\n  (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.ingredients[*].Name') :: TEXT as name,\n          (\n            jsonb_path_query(data, '$.ingredients[*].CurrentConsumed') :: TEXT :: NUMERIC\n          ) val\n        FROM\n          cache\n         \n        where\n          metric in ('factory', 'extractor')\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN ($xmin * 100)\n          and ($xmax * 100)\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN ($ymin * 100)\n          and ($ymax * 100)\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as cons full\n  outer join (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.production[*].Name') :: TEXT as name,\n          jsonb_path_query(data, '$.production[*].CurrentProd') :: TEXT :: NUMERIC val\n        FROM\n          cache\n         \n        where\n          metric in ('factory', 'extractor')\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN ($xmin * 100)\n          and ($xmax * 100)\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN ($ymin * 100)\n          and ($ymax * 100)\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as prod on cons.name = prod.name\nwhere\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) != 0\norder by\n  rate desc,\n  name",
+          "rawSql": "SELECT\n  COALESCE(prod.name, cons.name) as name,\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) as rate\nfrom\n  (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.ingredients[*]') ->> 'Name' as name,\n          (\n            (jsonb_path_query(data, '$.ingredients[*]') ->> 'CurrentConsumed') :: NUMERIC\n          ) val\n        FROM\n          cache\n        where\n          metric in ('factory', 'extractor')\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN ($xmin * 100)\n          and ($xmax * 100)\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN ($ymin * 100)\n          and ($ymax * 100)\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as cons full\n  outer join (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.production[*]') ->> 'Name' as name,\n          (jsonb_path_query(data, '$.production[*]') ->> 'CurrentProd') :: NUMERIC val\n        FROM\n          cache\n        where\n          metric in ('factory', 'extractor')\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN ($xmin * 100)\n          and ($xmax * 100)\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN ($ymin * 100)\n          and ($ymax * 100)\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as prod on cons.name = prod.name\nwhere\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) != 0\norder by\n  rate desc,\n  name",
           "refId": "A",
           "sql": {
             "columns": [
@@ -547,7 +547,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\n  COALESCE(prod.name, cons.name) as name,\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) as rate\nfrom\n  (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.ingredients[*].Name') :: TEXT as name,\n          (\n            jsonb_path_query(data, '$.ingredients[*].MaxConsumed') :: TEXT :: NUMERIC\n          ) val\n        FROM\n          cache\n         \n        where\n          metric in ('factory', 'extractor')\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN ($xmin * 100)\n          and ($xmax * 100)\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN ($ymin * 100)\n          and ($ymax * 100)\n      ) as t\n    group by\n      t.name\n  ) as cons full\n  outer join (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.production[*].Name') :: TEXT as name,\n          jsonb_path_query(data, '$.production[*].MaxProd') :: TEXT :: NUMERIC val\n        FROM\n          cache\n         \n        where\n          metric in ('factory', 'extractor')\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN ($xmin * 100)\n          and ($xmax * 100)\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN ($ymin * 100)\n          and ($ymax * 100)\n      ) as t\n    group by\n      t.name\n  ) as prod on cons.name = prod.name\nwhere\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) != 0\norder by\n  rate desc,\n  name",
+          "rawSql": "SELECT\n  COALESCE(prod.name, cons.name) as name,\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) as rate\nfrom\n  (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.ingredients[*]') ->> 'Name' as name,\n          (\n            (jsonb_path_query(data, '$.ingredients[*]') ->> 'MaxConsumed') :: NUMERIC\n          ) val\n        FROM\n          cache\n        where\n          metric in ('factory', 'extractor')\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN ($xmin * 100)\n          and ($xmax * 100)\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN ($ymin * 100)\n          and ($ymax * 100)\n      ) as t\n    group by\n      t.name\n  ) as cons full\n  outer join (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.production[*]') ->> 'Name' as name,\n          (jsonb_path_query(data, '$.production[*]') ->> 'MaxProd') :: NUMERIC val\n        FROM\n          cache\n        where\n          metric in ('factory', 'extractor')\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN ($xmin * 100)\n          and ($xmax * 100)\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN ($ymin * 100)\n          and ($ymax * 100)\n      ) as t\n    group by\n      t.name\n  ) as prod on cons.name = prod.name\nwhere\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) != 0\norder by\n  rate desc,\n  name",
           "refId": "A",
           "sql": {
             "columns": [
@@ -586,8 +586,8 @@
       {
         "current": {
           "selected": false,
-          "text": "-2000",
-          "value": "-2000"
+          "text": "-200",
+          "value": "-200"
         },
         "description": "leftmost bound of factory",
         "hide": 0,
@@ -596,11 +596,11 @@
         "options": [
           {
             "selected": true,
-            "text": "-2000",
-            "value": "-2000"
+            "text": "-200",
+            "value": "-200"
           }
         ],
-        "query": "-2000",
+        "query": "-200",
         "skipUrlSync": false,
         "type": "textbox"
       },
@@ -677,6 +677,6 @@
   "timezone": "",
   "title": "Factory Production",
   "uid": "pUvf_pt4k",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
