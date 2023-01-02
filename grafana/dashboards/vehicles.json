@@ -226,7 +226,7 @@
                   "mode": "mod"
                 },
                 "size": {
-                  "fixed": 40,
+                  "fixed": 20,
                   "max": 15,
                   "min": 2
                 },

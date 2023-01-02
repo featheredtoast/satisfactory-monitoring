@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 5,
+  "id": 3,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -92,7 +92,7 @@
               "showLegend": false,
               "style": {
                 "color": {
-                  "fixed": "dark-green"
+                  "fixed": "dark-red"
                 },
                 "opacity": 0.8,
                 "rotation": {
@@ -107,7 +107,7 @@
                   "min": 2
                 },
                 "symbol": {
-                  "fixed": "img/icons/marker/circle.svg",
+                  "fixed": "img/icons/satisfactory/location-point.svg",
                   "mode": "fixed"
                 },
                 "textConfig": {
@@ -263,8 +263,8 @@
         "allValue": "",
         "current": {
           "selected": true,
-          "text": ["FICSIT Coupon", "Quickwire"],
-          "value": ["FICSIT Coupon", "Quickwire"]
+          "text": ["Quickwire", "FICSIT Coupon"],
+          "value": ["Quickwire", "FICSIT Coupon"]
         },
         "datasource": {
           "type": "postgres",
@@ -295,6 +295,6 @@
   "timezone": "",
   "title": "Storage",
   "uid": "rMkN1op4z",
-  "version": 7,
+  "version": 1,
   "weekStart": ""
 }

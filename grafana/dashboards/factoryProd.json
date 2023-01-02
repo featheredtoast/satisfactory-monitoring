@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 5,
+  "id": 8,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -289,7 +289,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "SELECT\ndata ->> 'building' as building,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nFROM cache\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric in ('factory', 'extractor')\nand (data -> 'location' ->> 'x')::NUMERIC/100 >= $xmin\nand (data -> 'location' ->> 'x')::NUMERIC/100 <= $xmax \nand (data -> 'location' ->> 'y')::NUMERIC/100 >= $ymin\nand (data -> 'location' ->> 'y')::NUMERIC/100 <= $ymax\nLIMIT 500",
+          "rawSql": "SELECT\ndata ->> 'building' as building,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nFROM cache\nwhere metric in ('factory', 'extractor')\nand (data -> 'location' ->> 'x')::NUMERIC/100 >= $xmin\nand (data -> 'location' ->> 'x')::NUMERIC/100 <= $xmax \nand (data -> 'location' ->> 'y')::NUMERIC/100 >= $ymin\nand (data -> 'location' ->> 'y')::NUMERIC/100 <= $ymax",
           "refId": "Targeted Buildings",
           "sql": {
             "columns": [
@@ -319,7 +319,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "SELECT\ndata ->> 'building' as building,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nFROM cache\ncross join jsonb_path_query(frm_data, '$[*]') as data\nwhere metric in ('factory', 'extractor')\nand ((data -> 'location' ->> 'x')::NUMERIC/100 < $xmin\nor (data -> 'location' ->> 'x')::NUMERIC/100 > $xmax)\nand ((data -> 'location' ->> 'y')::NUMERIC/100 < $ymin\nor (data -> 'location' ->> 'y')::NUMERIC/100 > $ymax)\nLIMIT 500",
+          "rawSql": "SELECT\ndata ->> 'building' as building,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nFROM cache\nwhere metric in ('factory', 'extractor')\nand ((data -> 'location' ->> 'x')::NUMERIC/100 < $xmin\nor (data -> 'location' ->> 'x')::NUMERIC/100 > $xmax)\nand ((data -> 'location' ->> 'y')::NUMERIC/100 < $ymin\nor (data -> 'location' ->> 'y')::NUMERIC/100 > $ymax)",
           "refId": "Other Buildings",
           "sql": {
             "columns": [
@@ -677,6 +677,6 @@
   "timezone": "",
   "title": "Factory Production",
   "uid": "pUvf_pt4k",
-  "version": 3,
+  "version": 1,
   "weekStart": ""
 }

@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 6,
+  "id": 7,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -189,7 +189,7 @@
                   "min": 2
                 },
                 "symbol": {
-                  "fixed": "img/icons/marker/x-mark.svg",
+                  "fixed": "img/icons/satisfactory/location-point.svg",
                   "mode": "fixed"
                 },
                 "text": {
@@ -350,6 +350,6 @@
   "timezone": "",
   "title": "Drop Pods",
   "uid": "1USga2tVk",
-  "version": 3,
+  "version": 1,
   "weekStart": ""
 }
