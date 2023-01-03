@@ -153,20 +153,20 @@ func (c *CacheWorker) pullMetricsLog(metric string, route string, keepHistory bo
 }
 
 func (c *CacheWorker) pullLowCadenceMetrics() {
-	c.pullMetricsLog("factory", "/getFactory", false)
-	c.pullMetricsLog("extractor", "/getExtractor", false)
+	c.pullMetricsLog("factory", "/getFactory", true)
+	c.pullMetricsLog("extractor", "/getExtractor", true)
 	c.pullMetricsLog("dropPod", "/getDropPod", false)
 	c.pullMetricsLog("storageInv", "/getStorageInv", false)
 	c.pullMetricsLog("worldInv", "/getWorldInv", false)
 	c.pullMetricsLog("droneStation", "/getDroneStation", false)
-	c.pullMetricsLog("trainStation", "/getTrainStation", false)
-	c.pullMetricsLog("truckStation", "/getTruckStation", false)
 }
 
 func (c *CacheWorker) pullRealtimeMetrics() {
 	c.pullMetricsLog("drone", "/getDrone", true)
 	c.pullMetricsLog("train", "/getTrains", true)
 	c.pullMetricsLog("truck", "/getVehicles", true)
+	c.pullMetricsLog("trainStation", "/getTrainStation", true)
+	c.pullMetricsLog("truckStation", "/getTruckStation", true)
 }
 
 func (c *CacheWorker) Start() {
