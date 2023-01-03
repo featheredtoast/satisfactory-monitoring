@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 8,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -142,9 +142,9 @@
               "showLegend": false,
               "style": {
                 "color": {
-                  "fixed": "text"
+                  "fixed": "dark-blue"
                 },
-                "opacity": 0.4,
+                "opacity": 0.8,
                 "rotation": {
                   "fixed": 0,
                   "max": 360,
@@ -271,9 +271,11 @@
           "mode": "details"
         },
         "view": {
-          "allLayers": true,
+          "allLayers": false,
           "id": "fit",
+          "lastOnly": false,
           "lat": -0.045,
+          "layer": "Selected",
           "lon": 0.045,
           "zoom": 15
         }
@@ -289,7 +291,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "SELECT\ndata ->> 'Recipe' as recipe,\ndata ->> 'building' as building,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nFROM cache\nwhere metric in ('factory', 'extractor')\nand (data -> 'location' ->> 'x')::NUMERIC/100 >= $xmin\nand (data -> 'location' ->> 'x')::NUMERIC/100 <= $xmax \nand (data -> 'location' ->> 'y')::NUMERIC/100 >= $ymin\nand (data -> 'location' ->> 'y')::NUMERIC/100 <= $ymax",
+          "rawSql": "SELECT\ndata ->> 'Recipe' as recipe,\ndata ->> 'building' as building,\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nFROM cache\nwhere metric in ('factory', 'extractor')\nand (data -> 'location' ->> 'x')::NUMERIC/100 >= $xmin\nand (data -> 'location' ->> 'x')::NUMERIC/100 <= $xmax \nand (data -> 'location' ->> 'y')::NUMERIC/100 >= $ymin\nand (data -> 'location' ->> 'y')::NUMERIC/100 <= $ymax",
           "refId": "Targeted Buildings",
           "sql": {
             "columns": [
@@ -377,7 +379,89 @@
         "type": "postgres",
         "uid": "GhzMNppVk"
       },
-      "description": "Current production(+) and consumption(-)",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 12,
+        "x": 12,
+        "y": 7
+      },
+      "id": 13,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": ["sum"],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "9.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "GhzMNppVk"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\ndata ->> 'Recipe' as recipe,\ndata ->> 'building' as building,\ndata ->> 'ManuSpeed' as clockspeed,\ncount(*) as count\nFROM cache\nwhere metric in ('factory', 'extractor')\nand (data -> 'location' ->> 'x')::NUMERIC/100 >= $xmin\nand (data -> 'location' ->> 'x')::NUMERIC/100 <= $xmax \nand (data -> 'location' ->> 'y')::NUMERIC/100 >= $ymin\nand (data -> 'location' ->> 'y')::NUMERIC/100 <= $ymax\ngroup by recipe, building, clockspeed",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Selected buildings and recipes",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "GhzMNppVk"
+      },
+      "description": "Current average production(+) and consumption(-) over the selected time period",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -421,8 +505,8 @@
       "gridPos": {
         "h": 9,
         "w": 12,
-        "x": 12,
-        "y": 7
+        "x": 0,
+        "y": 21
       },
       "id": 2,
       "options": {
@@ -445,7 +529,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\n  COALESCE(prod.name, cons.name) as name,\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) as rate\nfrom\n  (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.ingredients[*]') ->> 'Name' as name,\n          (\n            (jsonb_path_query(data, '$.ingredients[*]') ->> 'CurrentConsumed') :: NUMERIC\n          ) val\n        FROM\n          cache\n        where\n          metric in ('factory', 'extractor')\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN ($xmin * 100)\n          and ($xmax * 100)\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN ($ymin * 100)\n          and ($ymax * 100)\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as cons full\n  outer join (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.production[*]') ->> 'Name' as name,\n          (jsonb_path_query(data, '$.production[*]') ->> 'CurrentProd') :: NUMERIC val\n        FROM\n          cache\n        where\n          metric in ('factory', 'extractor')\n          AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN ($xmin * 100)\n          and ($xmax * 100)\n          AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN ($ymin * 100)\n          and ($ymax * 100)\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as prod on cons.name = prod.name\nwhere\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) != 0\norder by\n  rate desc,\n  name",
+          "rawSql": "SELECT\n  COALESCE(prod.name, cons.name) as name,\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) as rate\nfrom\n  (\n    select\n      t.name,\n      avg(t.rate) as rate\n    from\n      (\n        SELECT\n          t.name,\n          sum(t.val) as rate\n        from\n          (\n            SELECT\n              time,\n              jsonb_path_query(data, '$.ingredients[*]') ->> 'Name' as name,\n              (\n                (\n                  jsonb_path_query(data, '$.ingredients[*]') ->> 'CurrentConsumed'\n                ) :: NUMERIC\n              ) val\n            FROM\n              cache_with_history\n            where\n              metric in ('factory', 'extractor')\n              AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN ($xmin * 100)\n              and ($xmax * 100)\n              AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN ($ymin * 100)\n              and ($ymax * 100)\n              and $__timeFilter(time) \n          ) as t\n        group by\n          t.name,\n          t.time\n        order by\n          t.name\n      ) as t\n    group by\n      t.name\n  ) as cons full\n  outer join (\n    select\n      t.name,\n      avg(t.rate) as rate\n    from\n      (\n        SELECT\n          t.name,\n          sum(t.val) as rate\n        from\n          (\n            SELECT\n              time,\n              jsonb_path_query(data, '$.production[*]') ->> 'Name' as name,\n              (\n                jsonb_path_query(data, '$.production[*]') ->> 'CurrentProd'\n              ) :: NUMERIC val\n            FROM\n              cache_with_history\n            where\n              metric in ('factory', 'extractor')\n              AND (data -> 'location' ->> 'x') :: NUMERIC BETWEEN ($xmin * 100)\n              and ($xmax * 100)\n              AND (data -> 'location' ->> 'y') :: NUMERIC BETWEEN ($ymin * 100)\n              and ($ymax * 100)\n              and $__timeFilter(time) \n          ) as t\n        group by\n          t.name,\n          t.time\n        order by\n          t.name\n      ) as t\n    group by\n      t.name\n  ) as prod on cons.name = prod.name\nwhere\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) != 0\norder by\n  rate desc,\n  name\n",
           "refId": "A",
           "sql": {
             "columns": [
@@ -472,7 +556,7 @@
           "table": "cache"
         }
       ],
-      "title": "Current Production",
+      "title": "Current average Production",
       "type": "table"
     },
     {
@@ -525,7 +609,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 16
+        "y": 21
       },
       "id": 3,
       "options": {
@@ -585,7 +669,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "-200",
           "value": "-200"
         },
@@ -606,9 +690,9 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "300",
-          "value": "300"
+          "selected": true,
+          "text": "650",
+          "value": "650"
         },
         "description": "rightmost bound of factory",
         "hide": 0,
@@ -617,19 +701,19 @@
         "options": [
           {
             "selected": true,
-            "text": "300",
-            "value": "300"
+            "text": "650",
+            "value": "650"
           }
         ],
-        "query": "300",
+        "query": "650",
         "skipUrlSync": false,
         "type": "textbox"
       },
       {
         "current": {
-          "selected": false,
-          "text": "3000",
-          "value": "3000"
+          "selected": true,
+          "text": "950",
+          "value": "950"
         },
         "description": "northern bound of factory",
         "hide": 0,
@@ -638,19 +722,19 @@
         "options": [
           {
             "selected": true,
-            "text": "3000",
-            "value": "3000"
+            "text": "950",
+            "value": "950"
           }
         ],
-        "query": "3000",
+        "query": "950",
         "skipUrlSync": false,
         "type": "textbox"
       },
       {
         "current": {
-          "selected": false,
-          "text": "1000",
-          "value": "1000"
+          "selected": true,
+          "text": "-150",
+          "value": "-150"
         },
         "description": "southern bound of factory",
         "hide": 0,
@@ -659,24 +743,24 @@
         "options": [
           {
             "selected": true,
-            "text": "1000",
-            "value": "1000"
+            "text": "-150",
+            "value": "-150"
           }
         ],
-        "query": "1000",
+        "query": "-150",
         "skipUrlSync": false,
         "type": "textbox"
       }
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Factory Production",
   "uid": "pUvf_pt4k",
-  "version": 2,
+  "version": 5,
   "weekStart": ""
 }
