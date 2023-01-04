@@ -18,6 +18,7 @@ type CacheWorker struct {
 	cancel     context.CancelFunc
 	frmBaseUrl string
 	db         *sql.DB
+	now time.Time
 }
 
 func NewCacheWorker(frmBaseUrl string, db *sql.DB) *CacheWorker {
@@ -95,8 +96,8 @@ func (c *CacheWorker) cacheMetricsWithHistory(metric string, data []string) (err
 		}
 	}()
 	for _, s := range data {
-		insert := `insert into cache_with_history (metric,data, time) values($1,$2, now())`
-		_, err = tx.Exec(insert, metric, s)
+		insert := `insert into cache_with_history (metric,data, time) values($1,$2,$3)`
+		_, err = tx.Exec(insert, metric, s, c.now)
 		if err != nil {
 			return
 		}
@@ -170,6 +171,8 @@ func (c *CacheWorker) pullRealtimeMetrics() {
 }
 
 func (c *CacheWorker) Start() {
+	//TODO: grab current time, update here instead of using postgres time.now so all metrics can sync on the same time and can aggregate properly.
+	c.now = Clock.Now()
 	c.flushMetricHistory()
 	c.pullLowCadenceMetrics()
 	c.pullRealtimeMetrics()
@@ -179,6 +182,7 @@ func (c *CacheWorker) Start() {
 		case <-c.ctx.Done():
 			return
 		case <-Clock.After(5 * time.Second):
+			c.now = Clock.Now()
 			counter = counter + 1
 			c.pullRealtimeMetrics()
 			if counter > 11 {

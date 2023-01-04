@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	"github.com/benbjohnson/clock"
 )
 
 func setupServer(expectedResponse string) *httptest.Server {
@@ -38,18 +39,21 @@ func TestCacheHistory(t *testing.T) {
 	defer db.Close()
 	frm := setupServer(`[{"ID":"0","VehicleType":"Drone"},{"ID":"1","VehicleType":"Drone"}]`)
 	defer frm.Close()
+	Clock = clock.NewMock()
+	now := Clock.Now()
 	mock.ExpectBegin()
 	mock.ExpectExec(`^delete from cache (.+)`).WithArgs("drone").WillReturnResult(sql.NewResult(1, 1))
 	mock.ExpectExec(`^insert into cache \(metric,data\)(.+)`).WithArgs("drone", `{"ID":"0","VehicleType":"Drone"}`).WillReturnResult(sql.NewResult(1, 1))
 	mock.ExpectExec(`^insert into cache \(metric,data\)(.+)`).WithArgs("drone", `{"ID":"1","VehicleType":"Drone"}`).WillReturnResult(sql.NewResult(1, 1))
 	mock.ExpectCommit()
 	mock.ExpectBegin()
-	mock.ExpectExec(`^insert into cache_with_history (.+)`).WithArgs("drone", `{"ID":"0","VehicleType":"Drone"}`).WillReturnResult(sql.NewResult(1, 1))
-	mock.ExpectExec(`^insert into cache_with_history (.+)`).WithArgs("drone", `{"ID":"1","VehicleType":"Drone"}`).WillReturnResult(sql.NewResult(1, 1))
+	mock.ExpectExec(`^insert into cache_with_history (.+)`).WithArgs("drone", `{"ID":"0","VehicleType":"Drone"}`, now).WillReturnResult(sql.NewResult(1, 1))
+	mock.ExpectExec(`^insert into cache_with_history (.+)`).WithArgs("drone", `{"ID":"1","VehicleType":"Drone"}`, now).WillReturnResult(sql.NewResult(1, 1))
 	mock.ExpectExec(`^delete from cache_with_history (.+)`).WithArgs("drone", 720*2).WillReturnResult(sql.NewResult(1, 1))
 	mock.ExpectCommit()
 
 	c := NewCacheWorker(frm.URL, db)
+	c.now = now
 	if err := c.pullMetrics("drone", "/getDrone", true); err != nil {
 		t.Fatal(err)
 	}
