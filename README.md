@@ -39,13 +39,72 @@ With FicsitRemoteMonitoring plugin, make sure you boot the http server `/frmweb 
 
 ## Services and ports
 
+- [grafana](http://localhost:3000): Time series graphing dashboard. Default username/password is `admin/admin`. This is the main front end for the app.
 - [frmcompanion](http://localhost:9000/metrics): A webapp that converts JSON data from FRM into Prometheus metrics at `localhost:9000/metrics`. There is also a realtime map app. `localhost:8000?frmhost=localhost&frmport=8080`.
 - [prometheus](http://localhost:9090): Ingest metrics from the remote monitoring companion. Generates alert metrics for interesting anomalies.
 - [alertmanager](http://localhost:9093): Forwards critical alerts to notification components.
 - alertmanager-discord: Sends critical alerts to Discord.
-- [grafana](http://localhost:3000): Time series graphing dashboard. Default username/password is `admin/admin`
+- frmcache: a caching server that pushes json metrics to a running postgres container
+- postgres - the database server that frm cache pushes to, and acts as an additional data source for grafana.
 - fakeserver: Test server for fake metrics used for testing. Maps to host port 8081 to avoid port conflicts if FRM is running on localhost.
   - [getFactory](http://localhost:8081/getFactory)
   - [getPower](http://localhost:8081/getPower)
   - [getProdStats](http://localhost:8081/getProdStats)
   - [getTrains](http://localhost:8081/getTrains)
+
+## Getting started
+
+### Installing and configuring the mod
+
+Install the [ficsit remote monitoring](https://ficsit.app/mod/FicsitRemoteMonitoring) mod with the [Satisfactory Mod Manager](https://smm.ficsit.app/)[^1].
+
+[^1]: Mods are currently unavailable on dedicated servers.
+
+Edit the web server config -- on steam this is something like `C:\\Program Files (x86)\Steam\steamapps\common\Satisfactory\FactoryGame\Configs\FicsitRemoteMonitoring\WebServer.cfg`
+
+We are interested in two settings:
+`Listen_IP`: the address to listen for requests. This is by default localhost which will not allow external IPs. Setting to `0.0.0.0` will allow the containers to query the mod's data.
+`Web_Autostart`: set to true to autostart the webserver when we load the game.
+
+An example configuration can look like the following:
+```
+{
+  "Listen_IP": "0.0.0.0",
+  "HTTP_Port": 8080,
+  "Web_Autostart": true,
+  "Web_Root": "",
+  "SML_ModVersion_DoNotChange": "0.8.22"
+}
+```
+
+### Installing docker-compose
+
+Follow a [docker engine install guide](https://docs.docker.com/engine/install/). At the end of it, running `docker compose` from a command line or terminal should print out help options for [docker-compose](https://docs.docker.com/compose/).
+
+Download the project files, either cloned through git, or Download Zip and extract it somewhere.
+
+### Setup environment
+
+#### Optional: Discord alerts
+
+You can set up a webhook for Discord by creating a webhook [following the guide](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks). Save the webhook link. It will look something like `https://discord.com/api/webhooks/12345/abcd12345`.
+
+#### Server configuration
+
+Find your IP address eg, in windows running `ipconfig` in command line and note the IPv4 address, it will look something like `192.168.1.30`.
+
+Create an [.env file](https://docs.docker.com/compose/environment-variables/set-environment-variables/) in the `satisfactory-monitoring` directory. We will store our secrets in here.
+
+Add the saved data (IP address and webhook) to the .env file. It will look something like the following:
+```
+FRM_HOST=192.168.1.30
+DISCORD_WEBHOOK=https://discord.com/api/webhooks/12345/abcd12345
+```
+
+Start satisfactory, and run `docker compose up -d` from the `satisfactory-monitoring` directory.
+
+Navigate to `localhost:3000`. Log in with username: admin, password: admin. You should now see the dashboard. Navigate to the left side for available dashboards.
+
+### Remove environment
+
+When you're done with the data, you can run `docker compose down` which will remove the monitoring stack.
