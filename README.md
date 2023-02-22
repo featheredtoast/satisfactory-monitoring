@@ -103,7 +103,7 @@ DISCORD_WEBHOOK=https://discord.com/api/webhooks/12345/abcd12345
 
 Start satisfactory, and run `docker compose up -d` from the `satisfactory-monitoring` directory.
 
-Navigate to `localhost:3000`. Log in with username: admin, password: admin. You should now see the dashboard. Navigate to the left side for available dashboards.
+Navigate to `localhost:3000`. Log in with username: admin, password: admin. You should now be able to see the dashboards. Use the navigation on the left side to view available dashboards.
 
 ### Remove environment
 
