@@ -93,7 +93,7 @@ You can set up a webhook for Discord by creating a webhook [following the guide]
 
 Find your IP address eg, in windows running `ipconfig` in command line and note the IPv4 address, it will look something like `192.168.1.30`.
 
-Create an [.env file](https://docs.docker.com/compose/environment-variables/set-environment-variables/) in the `satisfactory-monitoring` directory. We will store our secrets in here.
+Create an [.env file](https://docs.docker.com/compose/environment-variables/set-environment-variables/) in the `satisfactory-monitoring` directory. We will store our configuration in here.
 
 Add the saved data (IP address and webhook) to the .env file. It will look something like the following:
 ```
