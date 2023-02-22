@@ -12,7 +12,7 @@ services:
       - ./fakeserver/data:/usr/share/nginx/html/data
       - ./fakeserver/default.conf:/etc/nginx/conf.d/default.conf
     ports:
-      - "8081:8080"
+      - "8082:8080"
     networks:
       - grafana
   frmcompanion:

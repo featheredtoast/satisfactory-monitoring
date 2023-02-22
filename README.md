@@ -46,11 +46,11 @@ With FicsitRemoteMonitoring plugin, make sure you boot the http server `/frmweb 
 - alertmanager-discord: Sends critical alerts to Discord.
 - frmcache: a caching server that pushes json metrics to a running postgres container
 - postgres - the database server that frm cache pushes to, and acts as an additional data source for grafana.
-- fakeserver: Test server for fake metrics used for testing. Maps to host port 8081 to avoid port conflicts if FRM is running on localhost.
-  - [getFactory](http://localhost:8081/getFactory)
-  - [getPower](http://localhost:8081/getPower)
-  - [getProdStats](http://localhost:8081/getProdStats)
-  - [getTrains](http://localhost:8081/getTrains)
+- fakeserver: Test server for fake metrics used for testing. Maps to host port 8082 to avoid port conflicts if FRM is running on localhost.
+  - [getFactory](http://localhost:8082/getFactory)
+  - [getPower](http://localhost:8082/getPower)
+  - [getProdStats](http://localhost:8082/getProdStats)
+  - [getTrains](http://localhost:8082/getTrains)
 
 ## Getting started
 
@@ -107,4 +107,4 @@ Navigate to `localhost:3000`. Log in with username: admin, password: admin. You 
 
 ### Remove environment
 
-When you're done with the data, you can run `docker compose down` which will remove the monitoring stack.
+When you're done with the data, you can run `docker compose down` which will completely delete and remove the monitoring stack.
