@@ -2,31 +2,55 @@
 
 A docker-compose for getting Satisfactory dashboards and alerting. Configured to view dashboards and alerts including:
 
-### General production and power stats
-![dashboard](resources/satisfactory-dash.png)
+Production overview
+![production overview](resources/global-production.png)
 
-Power grid overview and Production vs Consumption levels.
-![alert-dashboard](resources/satisfactory-alerts-dash.png)
+View global production stats - current vs max production, and production/consumption per item, over time.
 
-Power and production alerts are also displayed.
+View overconsumption/underproduction alerts so your factories can stay efficient.
 
-### Discord alerts
+Power grid
+![power-grid](resources/power.png)
+
+Overview of power and battery, as well as a map of what locations the power grid is serving.
+
+View power alerts so you are alerted of power problems before any circuits trip.
+
+Drones
+![drones](resources/drones.png)
+
+View drone paths, round trip times, and battery consumption rates.
+
+Trains
+![trains](resources/trains.png)
+
+View train paths, timetables, round trip times, and station travel times.
+Timeseries allows you to view how changes to tracks or added trains affect station travel times.
+
+Trucks
+![trucks](resources/trucks.png)
+
+View truck paths, round trip times, and fuel consumption.
+
+Drop pod locations
+![droppods](resources/drop-pods.png)
+
+View drop pod locations of opened vs unopened drop pods, using a map that updates in real time.
+
+Factory Production
+![factory-production](resources/factory-production.png)
+
+Inspect a square grid subsection of production buildings. Allows you to inspect the group's production vs consumption rates.
+
+Storage
+![storage](resources/storage.png)
+
+Search for items in containers on the map.
+
+Discord alerts
 ![discord alert](resources/satisfactory-alert.png)
 
 Discord alerting for tripped grids.
-
-### Vehicle dashboard overview
-![vehicle-dash](resources/vehicle-dash1.png)
-
-Get an overview of your vehicle, train, and drone infrastructure.
-
-View vehicles real-time round trip times and fuel.
-
-View Trains round trip times and travel times between stations.
-
-![vehicle-dash2](resources/vehicle-dash2.png)
-
-View drone battery usage and round trip times.
 
 Docker compose setup for Ficsit Remote Monitoring and alerting. Requires [FicsitRemoteMonitoring](https://ficsit.app/mod/FicsitRemoteMonitoring) plugin.
 With FicsitRemoteMonitoring plugin, make sure you boot the http server `/frmweb start` in game or autostart the webserver.
