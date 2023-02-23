@@ -22,7 +22,7 @@ services:
     volumes:
       - ./frmcompanion/init.sh:/usr/local/bin/init.sh
     environment:
-      - FRM_HOST=${FRM_HOST:-fakeserver}
+      - FRM_HOST=${FRM_HOST:-host.docker.internal}
       - FRM_PORT=${FRM_PORT:-8080}
     ports:
       - "9000:9000"
@@ -46,7 +46,7 @@ services:
       - ./frmcache/init.sh:/usr/local/bin/init.sh
       - ./frmcache/src:/usr/src
     environment:
-      - FRM_HOST=${FRM_HOST:-fakeserver}
+      - FRM_HOST=${FRM_HOST:-host.docker.internal}
       - FRM_PORT=${FRM_PORT:-8080}
       - PG_HOST=${PG_HOST:-postgres}
       - PG_PORT=${PG_PORT:-5432}
