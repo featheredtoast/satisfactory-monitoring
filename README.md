@@ -1,59 +1,59 @@
 # Ficsit Remote Monitoring Companion Bundle
 
-A docker-compose for getting Satisfactory dashboards and alerting. Configured to view dashboards and alerts including:
+A docker compose setup for Ficsit Remote Monitoring and alerting. Requires [FicsitRemoteMonitoring](https://ficsit.app/mod/FicsitRemoteMonitoring) plugin.
+With FicsitRemoteMonitoring plugin, make sure you boot the http server `/frmweb start` in game or autostart the webserver.
 
-Production overview
+Configured to view dashboards and alerts including:
+
+## Production overview
 ![production overview](resources/global-production.png)
 
 View global production stats - current vs max production, and production/consumption per item, over time.
 
 View overconsumption/underproduction alerts so your factories can stay efficient.
 
-Power grid
+## Power grid
 ![power-grid](resources/power.png)
 
 Overview of power and battery, as well as a map of what locations the power grid is serving.
 
 View power alerts so you are alerted of power problems before any circuits trip.
 
-Drones
+## Drones
 ![drones](resources/drones.png)
 
 View drone paths, round trip times, and battery consumption rates.
 
-Trains
+## Trains
 ![trains](resources/trains.png)
 
 View train paths, timetables, round trip times, and station travel times.
 Timeseries allows you to view how changes to tracks or added trains affect station travel times.
 
-Trucks
+## Trucks
 ![trucks](resources/trucks.png)
 
 View truck paths, round trip times, and fuel consumption.
 
-Drop pod locations
+## Drop pod locations
 ![droppods](resources/drop-pods.png)
 
 View drop pod locations of opened vs unopened drop pods, using a map that updates in real time.
 
-Factory Production
+## Factory Production
 ![factory-production](resources/factory-production.png)
 
 Inspect a square grid subsection of production buildings. Allows you to inspect the group's production vs consumption rates.
 
-Storage
+## Storage
 ![storage](resources/storage.png)
 
 Search for items in containers on the map.
 
-Discord alerts
+## Discord alerts
 ![discord alert](resources/satisfactory-alert.png)
 
 Discord alerting for tripped grids.
-
-Docker compose setup for Ficsit Remote Monitoring and alerting. Requires [FicsitRemoteMonitoring](https://ficsit.app/mod/FicsitRemoteMonitoring) plugin.
-With FicsitRemoteMonitoring plugin, make sure you boot the http server `/frmweb start` in game or autostart the webserver.
 
 ## Env Vars
 
