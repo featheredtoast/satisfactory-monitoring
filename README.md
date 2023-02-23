@@ -1,6 +1,6 @@
 # Ficsit Remote Monitoring Companion Bundle
 
-A docker-compose for getting Satisfactory dashboards and alerting. Configured for:
+A docker-compose for getting Satisfactory dashboards and alerting. Configured to view dashboards and alerts including:
 
 ### General production and power stats
 ![dashboard](resources/satisfactory-dash.png)
@@ -29,7 +29,7 @@ View Trains round trip times and travel times between stations.
 View drone battery usage and round trip times.
 
 Docker compose setup for Ficsit Remote Monitoring and alerting. Requires [FicsitRemoteMonitoring](https://ficsit.app/mod/FicsitRemoteMonitoring) plugin.
-With FicsitRemoteMonitoring plugin, make sure you boot the http server `/frmweb start` in game.
+With FicsitRemoteMonitoring plugin, make sure you boot the http server `/frmweb start` in game or autostart the webserver.
 
 ## Env Vars
 
@@ -63,17 +63,17 @@ Install the [ficsit remote monitoring](https://ficsit.app/mod/FicsitRemoteMonito
 Edit the web server config -- on steam this is something like `C:\\Program Files (x86)\Steam\steamapps\common\Satisfactory\FactoryGame\Configs\FicsitRemoteMonitoring\WebServer.cfg`
 
 We are interested in two settings:
-`Listen_IP`: the address to listen for requests. This is by default localhost which will not allow external IPs. Setting to `0.0.0.0` will allow the containers to query the mod's data.
+`Listen_IP`: the address to listen for requests. This is by default localhost which will not allow external IPs. If you're running the monitoring stack on a different computer, you may need to set this to `0.0.0.0` to allow the monitoring computer access to the factory data.
 `Web_Autostart`: set to true to autostart the webserver when we load the game.
 
 An example configuration can look like the following:
 ```
 {
-  "Listen_IP": "0.0.0.0",
+  "Listen_IP": "127.0.0.1",
   "HTTP_Port": 8080,
   "Web_Autostart": true,
   "Web_Root": "",
-  "SML_ModVersion_DoNotChange": "0.8.22"
+  "SML_ModVersion_DoNotChange": "0.8.30"
 }
 ```
 
@@ -81,25 +81,37 @@ An example configuration can look like the following:
 
 Follow a [docker engine install guide](https://docs.docker.com/engine/install/). At the end of it, running `docker compose` from a command line or terminal should print out help options for [docker-compose](https://docs.docker.com/compose/).
 
-Download the project files, either cloned through git, or Download Zip and extract it somewhere.
+#### Windows docker troubleshooting
+
+[Consult the following docker topics for troubleshooting](https://docs.docker.com/desktop/troubleshoot/topics/#virtualization). TLDR, you need virtualization enabled in your bios, and windows features for WSL/Hyper-V.
 
 ### Setup environment
+
+Download the project files, either [cloned through git](https://github.com/featheredtoast/satisfactory-monitoring.git), or [Download the zip](https://github.com/featheredtoast/satisfactory-monitoring/archive/refs/heads/main.zip) and extract it.
 
 #### Optional: Discord alerts
 
 You can set up a webhook for Discord by creating a webhook [following the guide](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks). Save the webhook link. It will look something like `https://discord.com/api/webhooks/12345/abcd12345`.
 
-#### Server configuration
+### Optional: running monitoring on a separate computer
 
-Find your IP address eg, in windows running `ipconfig` in command line and note the IPv4 address, it will look something like `192.168.1.30`.
+If running the monitoring app on a separate computer, find the IP address for the computer running Satisfactory eg, in windows running `ipconfig` in command line and note the IPv4 address, it will look something like `192.168.1.30`.
+
+Ensure that the `Listen_IP` is set to `0.0.0.0` in the mod's `WebServer.cfg`.
+
+#### Server configuration
 
 Create an [.env file](https://docs.docker.com/compose/environment-variables/set-environment-variables/) in the `satisfactory-monitoring` directory. We will store our configuration in here.
 
-Add the saved data (IP address and webhook) to the .env file. It will look something like the following:
+Add the saved data (IP address and webhook, if desired) to the .env file. It will look something like the following:
 ```
 FRM_HOST=192.168.1.30
 DISCORD_WEBHOOK=https://discord.com/api/webhooks/12345/abcd12345
 ```
+
+You may omit the FRM_HOST if you're running the monitoring on the same computer as Satisfactory.
+You may omit the DISCORD_WEBHOOK if you are not using discord for alerts.
+You do not need the `.env` file if you do not need either of these.
 
 Start satisfactory, and run `docker compose up -d` from the `satisfactory-monitoring` directory.
 
