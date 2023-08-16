@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -138,7 +138,7 @@
           "zoom": 15
         }
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -184,7 +184,9 @@
           },
           "custom": {
             "align": "auto",
-            "displayMode": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
             "inspect": false
           },
           "mappings": [],
@@ -212,14 +214,18 @@
       },
       "id": 2,
       "options": {
+        "cellHeight": "sm",
         "footer": {
+          "countRows": false,
           "fields": "",
-          "reducer": ["sum"],
+          "reducer": [
+            "sum"
+          ],
           "show": false
         },
         "showHeader": true
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -229,7 +235,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select \ndata ->> 'Name' as name,\n(data ->> 'Count')::NUMERIC as count\nfrom cache where metric = 'worldInv';",
+          "rawSql": "select \ndata ->> 'Name' as name,\n(data ->> 'Amount')::NUMERIC as count\nfrom cache where metric = 'worldInv';",
           "refId": "A",
           "sql": {
             "columns": [
@@ -254,7 +260,8 @@
       "type": "table"
     }
   ],
-  "schemaVersion": 37,
+  "refresh": "",
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -263,8 +270,14 @@
         "allValue": "",
         "current": {
           "selected": true,
-          "text": [],
-          "value": []
+          "text": [
+            "Hard Drive",
+            "Nobelisk Detonator"
+          ],
+          "value": [
+            "Hard Drive",
+            "Nobelisk Detonator"
+          ]
         },
         "datasource": {
           "type": "postgres",
@@ -295,6 +308,6 @@
   "timezone": "",
   "title": "Storage",
   "uid": "rMkN1op4z",
-  "version": 3,
+  "version": 1,
   "weekStart": ""
 }
