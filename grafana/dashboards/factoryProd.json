@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 6,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -60,7 +60,7 @@
         "content": "Calculate input and output by a square region, bounded by variables.\n\nEdit the map displayed and inspect buildings to get approximate x + y coordinates.\nThen plugin bounds for x and y. Factory exports (+/min) and imports (-/min) will be updated according to the new area.\n\nx min, x max, y min and y max are ingame coordinates.",
         "mode": "markdown"
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "10.0.3",
       "title": "Factory production calculator by region",
       "type": "text"
     },
@@ -280,7 +280,7 @@
           "zoom": 15
         }
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -291,7 +291,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "SELECT\ndata ->> 'Recipe' as recipe,\ndata ->> 'building' as building,\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nFROM cache\nwhere metric in ('factory', 'extractor')\nand (data -> 'location' ->> 'x')::NUMERIC/100 >= $xmin\nand (data -> 'location' ->> 'x')::NUMERIC/100 <= $xmax \nand (data -> 'location' ->> 'y')::NUMERIC/100 >= $ymin\nand (data -> 'location' ->> 'y')::NUMERIC/100 <= $ymax",
+          "rawSql": "SELECT\ndata ->> 'Recipe' as recipe,\ndata ->> 'Name' as building,\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nFROM cache\nwhere metric in ('factory', 'extractor')\nand (data -> 'location' ->> 'x')::NUMERIC/100 >= $xmin\nand (data -> 'location' ->> 'x')::NUMERIC/100 <= $xmax \nand (data -> 'location' ->> 'y')::NUMERIC/100 >= $ymin\nand (data -> 'location' ->> 'y')::NUMERIC/100 <= $ymax",
           "refId": "Targeted Buildings",
           "sql": {
             "columns": [
@@ -387,7 +387,9 @@
           },
           "custom": {
             "align": "auto",
-            "displayMode": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
             "inspect": false
           },
           "mappings": [],
@@ -415,14 +417,18 @@
       },
       "id": 13,
       "options": {
+        "cellHeight": "sm",
         "footer": {
+          "countRows": false,
           "fields": "",
-          "reducer": ["sum"],
+          "reducer": [
+            "sum"
+          ],
           "show": false
         },
         "showHeader": true
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -432,7 +438,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\ndata ->> 'Recipe' as recipe,\ndata ->> 'building' as building,\ndata ->> 'ManuSpeed' as clockspeed,\ncount(*) as count\nFROM cache\nwhere metric in ('factory', 'extractor')\nand (data -> 'location' ->> 'x')::NUMERIC/100 >= $xmin\nand (data -> 'location' ->> 'x')::NUMERIC/100 <= $xmax \nand (data -> 'location' ->> 'y')::NUMERIC/100 >= $ymin\nand (data -> 'location' ->> 'y')::NUMERIC/100 <= $ymax\ngroup by recipe, building, clockspeed",
+          "rawSql": "SELECT\ndata ->> 'Recipe' as recipe,\ndata ->> 'Name' as building,\ndata ->> 'ManuSpeed' as clockspeed,\ncount(*) as count\nFROM cache\nwhere metric in ('factory', 'extractor')\nand (data -> 'location' ->> 'x')::NUMERIC/100 >= $xmin\nand (data -> 'location' ->> 'x')::NUMERIC/100 <= $xmax \nand (data -> 'location' ->> 'y')::NUMERIC/100 >= $ymin\nand (data -> 'location' ->> 'y')::NUMERIC/100 <= $ymax\ngroup by recipe, building, clockspeed",
           "refId": "A",
           "sql": {
             "columns": [
@@ -469,7 +475,9 @@
           },
           "custom": {
             "align": "auto",
-            "displayMode": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
             "inspect": false
           },
           "mappings": [],
@@ -510,16 +518,20 @@
       },
       "id": 2,
       "options": {
+        "cellHeight": "sm",
         "footer": {
+          "countRows": false,
           "fields": "",
-          "reducer": ["sum"],
+          "reducer": [
+            "sum"
+          ],
           "show": false
         },
         "frameIndex": 2,
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -572,7 +584,9 @@
           },
           "custom": {
             "align": "auto",
-            "displayMode": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
             "inspect": false
           },
           "mappings": [],
@@ -613,15 +627,19 @@
       },
       "id": 3,
       "options": {
+        "cellHeight": "sm",
         "footer": {
+          "countRows": false,
           "fields": "",
-          "reducer": ["sum"],
+          "reducer": [
+            "sum"
+          ],
           "show": false
         },
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -662,7 +680,8 @@
       "type": "table"
     }
   ],
-  "schemaVersion": 37,
+  "refresh": "",
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -761,6 +780,6 @@
   "timezone": "",
   "title": "Factory Production",
   "uid": "pUvf_pt4k",
-  "version": 5,
+  "version": 1,
   "weekStart": ""
 }

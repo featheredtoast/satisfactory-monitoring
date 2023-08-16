@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 4,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -316,7 +316,7 @@
           "zoom": 16
         }
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -385,7 +385,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "(select\n    data ->> 'HomeStation' as name,\n    data ->> 'PairedStation' as paired,\n    (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n    (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n    (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n    (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n    (\n      ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n    ) as longitude,\n    (\n      ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n    ) as latitude\n  from\n    cache\n  where\n    metric = 'droneStation'\n    and (data -> 'HomeStation' <@\n(\n  select\n    jsonb_build_array(data -> 'HomeStation',\n    data -> 'PairedStation')\n  from\n    cache\n    join (\n      SELECT\n        data ->> 'HomeStation' as home_station\n      from\n        cache\n      where\n        metric = 'drone'\n        and data ->> 'ID' = '$drone'\n    ) as drones on drones.home_station = data ->> 'HomeStation'\n  where\n    metric = 'droneStation'\n)\n)\n)",
+          "rawSql": "(select\n    data ->> 'Name' as name,\n    data ->> 'PairedStation' as paired,\n    (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n    (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n    (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n    (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n    (\n      ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n    ) as longitude,\n    (\n      ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n    ) as latitude\n  from\n    cache\n  where\n    metric = 'droneStation'\n    and (data -> 'Name' <@\n(\n  select\n    jsonb_build_array(data -> 'Name',\n    data -> 'PairedStation')\n  from\n    cache\n    join (\n      SELECT\n        data ->> 'HomeStation' as home_station\n      from\n        cache\n      where\n        metric = 'drone'\n        and data ->> 'ID' = '$drone'\n    ) as drones on drones.home_station = data ->> 'Name'\n  where\n    metric = 'droneStation'\n)\n)\n)",
           "refId": "Ports",
           "sql": {
             "columns": [
@@ -443,7 +443,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "(select\n    data ->> 'HomeStation' as name,\n    data ->> 'PairedStation' as paired,\n    (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n    (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n    (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n    (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n    (\n      ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n    ) as longitude,\n    (\n      ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n    ) as latitude\n  from\n    cache\n  where\n    metric = 'droneStation'\n    and NOT(data -> 'HomeStation' <@\n(\n  select\n    jsonb_build_array(data -> 'HomeStation',\n    data -> 'PairedStation')\n  from\n    cache\n    join (\n      SELECT\n        data ->> 'HomeStation' as home_station\n      from\n        cache\n      where\n        metric = 'drone'\n        and data ->> 'ID' = '$drone'\n    ) as drones on drones.home_station = data ->> 'HomeStation'\n  where\n    metric = 'droneStation'\n)\n)\n)",
+          "rawSql": "(select\n    data ->> 'Name' as name,\n    data ->> 'PairedStation' as paired,\n    (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n    (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n    (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n    (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n    (\n      ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n    ) as longitude,\n    (\n      ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n    ) as latitude\n  from\n    cache\n  where\n    metric = 'droneStation'\n    and NOT(data -> 'Name' <@\n(\n  select\n    jsonb_build_array(data -> 'HomeStation',\n    data -> 'PairedStation')\n  from\n    cache\n    join (\n      SELECT\n        data ->> 'HomeStation' as home_station\n      from\n        cache\n      where\n        metric = 'drone'\n        and data ->> 'ID' = '$drone'\n    ) as drones on drones.home_station = data ->> 'Name'\n  where\n    metric = 'droneStation'\n)\n)\n)",
           "refId": "Other ports",
           "sql": {
             "columns": [
@@ -479,7 +479,9 @@
           },
           "custom": {
             "align": "auto",
-            "displayMode": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
             "inspect": false
           },
           "mappings": [],
@@ -520,15 +522,19 @@
       },
       "id": 28,
       "options": {
+        "cellHeight": "sm",
         "footer": {
+          "countRows": false,
           "fields": "",
-          "reducer": ["sum"],
+          "reducer": [
+            "sum"
+          ],
           "show": false
         },
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -538,7 +544,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select data ->> 'HomeStation' as drone_port,\ndata ->> 'PairedStation' as paired_port,\ncoalesce(drones.id, '(no drone)') as drone_id\nfrom\ncache\nleft join\n(SELECT \ndata ->> 'HomeStation' as home_station,\ndata ->> 'ID' as id,\ndata ->> 'CurrentFlyingMode' as flying_mode\nfrom cache\nwhere metric = 'drone') as drones on drones.home_station = data ->> 'HomeStation'\nwhere metric = 'droneStation'\norder by drones.id",
+          "rawSql": "select data ->> 'Name' as drone_port,\ndata ->> 'PairedStation' as paired_port,\ncoalesce(drones.id, '(no drone)') as drone_id\nfrom\ncache\nleft join\n(SELECT \ndata ->> 'HomeStation' as home_station,\ndata ->> 'ID' as id,\ndata ->> 'CurrentFlyingMode' as flying_mode\nfrom cache\nwhere metric = 'drone') as drones on drones.home_station = data ->> 'Name'\nwhere metric = 'droneStation'\norder by drones.id",
           "refId": "A",
           "sql": {
             "columns": [
@@ -759,16 +765,16 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 37,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "0 : Drone Port 1",
-          "value": "0"
+          "selected": true,
+          "text": "BP_DroneTransport_C_2147371287 : ADS mag assembly",
+          "value": "BP_DroneTransport_C_2147371287"
         },
         "datasource": {
           "type": "postgres",

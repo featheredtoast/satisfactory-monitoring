@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 7,
+  "id": 5,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -41,7 +41,9 @@
           },
           "custom": {
             "align": "auto",
-            "displayMode": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
             "inspect": false
           },
           "mappings": [],
@@ -69,14 +71,18 @@
       },
       "id": 4,
       "options": {
+        "cellHeight": "sm",
         "footer": {
+          "countRows": false,
           "fields": "",
-          "reducer": ["sum"],
+          "reducer": [
+            "sum"
+          ],
           "show": false
         },
         "showHeader": true
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -86,7 +92,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select \n(data ->> 'RepairItem') as repair_item,\n(data ->> 'RepairAmount') as repair_item_amount,\n(data ->> 'PowerRequired') as power_required,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z\nfrom cache where metric = 'dropPod'\nand data ->> 'Looted' != 'true'\norder by x, y;",
+          "rawSql": "select \n(data ->> 'RepairItem') as repair_item,\n(data ->> 'RepairAmount') as repair_item_amount,\n(data ->> 'PowerRequired') as power_required,\n(data -> 'location' ->> 'X')::NUMERIC/100 as x,\n(data -> 'location' ->> 'Y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'Z')::NUMERIC/100 as z\nfrom cache where metric = 'dropPod'\nand data ->> 'Looted' != 'true'\norder by x, y;",
           "refId": "A",
           "sql": {
             "columns": [
@@ -272,7 +278,7 @@
           "zoom": 15
         }
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -282,7 +288,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select \ndata ->> 'Looted' as looted,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude,\n(data ->> 'RepairItem') as repair_item,\n(data ->> 'RepairAmount') as repair_item_amount,\n(data ->> 'PowerRequired') as power_required\nfrom cache where metric = 'dropPod'\nand data ->> 'Looted' != 'true';",
+          "rawSql": "select \ndata ->> 'Looted' as looted,\n(data -> 'location' ->> 'X')::NUMERIC/100 as x,\n(data -> 'location' ->> 'Y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'Z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'X')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'Y')::NUMERIC + 375000) * -0.0000001172) as latitude,\n(data ->> 'RepairItem') as repair_item,\n(data ->> 'RepairAmount') as repair_item_amount,\n(data ->> 'PowerRequired') as power_required\nfrom cache where metric = 'dropPod'\nand data ->> 'Looted' != 'true';",
           "refId": "Unlooted",
           "sql": {
             "columns": [
@@ -336,7 +342,8 @@
       "type": "geomap"
     }
   ],
-  "schemaVersion": 37,
+  "refresh": "",
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {

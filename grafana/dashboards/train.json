@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 4,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -63,7 +63,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
         "x": 0,
         "y": 0
@@ -316,7 +316,7 @@
           "zoom": 16
         }
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -327,7 +327,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history where metric = 'train'\nand data ->> 'TrainName' = '$train'\nand $__timeFilter(time)\norder by time desc\nlimit 720;\n",
+          "rawSql": "select\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history where metric = 'train'\nand data ->> 'Name' = '$train'\nand $__timeFilter(time)\norder by time desc\nlimit 720;\n",
           "refId": "Route",
           "sql": {
             "columns": [
@@ -356,7 +356,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata->>'TrainName' as name,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'train'\nand data ->> 'TrainName' = '$train'\norder by id desc;\n",
+          "rawSql": "select\ndata->>'Name' as name,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'train'\nand data ->> 'Name' = '$train'\norder by id desc;\n",
           "refId": "Current location",
           "sql": {
             "columns": [
@@ -385,7 +385,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\n  data ->> 'StationName' as station_name,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nfrom\n  cache\n \nwhere\n  metric = 'trainStation'\n  and (data -> 'StationName') <@ (\n    select\n          jsonb_path_query_array(data, '$.TimeTable[*].StationName') as station\n        from\n          cache c\n         \n        where\n          metric = 'train'\n          and data ->> 'TrainName' = '$train'\n  )",
+          "rawSql": "select\n  data ->> 'StationName' as station_name,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nfrom\n  cache\n \nwhere\n  metric = 'trainStation'\n  and (data -> 'Name') <@ (\n    select\n          jsonb_path_query_array(data, '$.TimeTable[*].StationName') as station\n        from\n          cache c\n         \n        where\n          metric = 'train'\n          and data ->> 'Name' = '$train'\n  )",
           "refId": "Stations",
           "sql": {
             "columns": [
@@ -414,7 +414,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata->>'TrainName' as name,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'train'\nand data ->> 'TrainName' <> '$train'\norder by id desc;\n",
+          "rawSql": "select\ndata->>'Name' as name,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'train'\nand data ->> 'Name' <> '$train'\norder by id desc;\n",
           "refId": "Other trains",
           "sql": {
             "columns": [
@@ -443,7 +443,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\n  data ->> 'StationName' as station_name,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nfrom\n  cache\n \nwhere\n  metric = 'trainStation'\n  and not (data -> 'StationName') <@ (\n    select\n          jsonb_path_query_array(data, '$.TimeTable[*].StationName') as station\n        from\n          cache c\n         \n        where\n          metric = 'train'\n          and data ->> 'TrainName' = '$train'\n  );",
+          "rawSql": "select\n  data ->> 'StationName' as station_name,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nfrom\n  cache\n \nwhere\n  metric = 'trainStation'\n  and not (data -> 'Name') <@ (\n    select\n          jsonb_path_query_array(data, '$.TimeTable[*].StationName') as station\n        from\n          cache c\n         \n        where\n          metric = 'train'\n          and data ->> 'Name' = '$train'\n  );",
           "refId": "Other stations",
           "sql": {
             "columns": [
@@ -480,7 +480,9 @@
           },
           "custom": {
             "align": "center",
-            "displayMode": "color-text",
+            "cellOptions": {
+              "type": "color-text"
+            },
             "filterable": false,
             "inspect": false
           },
@@ -502,22 +504,26 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 2,
+        "h": 3,
         "w": 3,
         "x": 12,
         "y": 0
       },
       "id": 31,
       "options": {
+        "cellHeight": "sm",
         "footer": {
+          "countRows": false,
           "fields": "",
-          "reducer": ["sum"],
+          "reducer": [
+            "sum"
+          ],
           "show": false
         },
         "showHeader": false,
         "sortBy": []
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -527,7 +533,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select\ndata->>'TrainStation' as name\nfrom cache where metric = 'train'\nand data ->> 'TrainName' = '$train'\norder by id desc;",
+          "rawSql": "select\ndata->>'TrainStation' as name\nfrom cache where metric = 'train'\nand data ->> 'Name' = '$train'\norder by id desc;",
           "refId": "A",
           "sql": {
             "columns": [
@@ -563,7 +569,9 @@
           },
           "custom": {
             "align": "auto",
-            "displayMode": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
             "filterable": false,
             "inspect": false
           },
@@ -588,19 +596,23 @@
         "h": 6,
         "w": 12,
         "x": 12,
-        "y": 2
+        "y": 3
       },
       "id": 30,
       "options": {
+        "cellHeight": "sm",
         "footer": {
+          "countRows": false,
           "fields": "",
-          "reducer": ["sum"],
+          "reducer": [
+            "sum"
+          ],
           "show": false
         },
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -610,7 +622,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select\n          jsonb_array_elements_text(jsonb_path_query_array(data, '$.TimeTable[*].StationName')) as station\n        from\n          cache c\n         \n        where\n          metric = 'train'\n          and data ->> 'TrainName' = '$train'",
+          "rawSql": "select\n          jsonb_array_elements_text(jsonb_path_query_array(data, '$.TimeTable[*].StationName')) as station\n        from\n          cache c\n         \n        where\n          metric = 'train'\n          and data ->> 'Name' = '$train'",
           "refId": "A",
           "sql": {
             "columns": [
@@ -639,7 +651,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 8
+        "y": 9
       },
       "id": 4,
       "title": "All Train Stats",
@@ -706,7 +718,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 9
+        "y": 10
       },
       "id": 16,
       "options": {
@@ -749,7 +761,9 @@
           },
           "custom": {
             "align": "auto",
-            "displayMode": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
             "inspect": false
           },
           "mappings": [],
@@ -786,19 +800,23 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 9
+        "y": 10
       },
       "id": 29,
       "options": {
+        "cellHeight": "sm",
         "footer": {
+          "countRows": false,
           "fields": "",
-          "reducer": ["sum"],
+          "reducer": [
+            "sum"
+          ],
           "show": false
         },
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -808,7 +826,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT \ndata->>'TrainName' as name,\ndata->>'Status' as status,\ndata->>'TrainStation' as next_station,\nstring_agg(t.timetable,', ') as timetable\nfrom cache c\njoin (select\nid,\njsonb_array_elements_text(jsonb_path_query_array(data, '$.TimeTable[*].StationName')) as timetable from cache where metric='train'\n) as t on t.id = c.id\nwhere metric = 'train'\ngroup by data->>'TrainName', data->>'Status', data->>'TrainStation';",
+          "rawSql": "SELECT \ndata->>'Name' as name,\ndata->>'Status' as status,\ndata->>'TrainStation' as next_station,\nstring_agg(t.timetable,', ') as timetable\nfrom cache c\njoin (select\nid,\njsonb_array_elements_text(jsonb_path_query_array(data, '$.TimeTable[*].StationName')) as timetable from cache where metric='train'\n) as t on t.id = c.id\nwhere metric = 'train'\ngroup by data->>'Name', data->>'Status', data->>'TrainStation';",
           "refId": "A",
           "sql": {
             "columns": [
@@ -893,7 +911,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 17
+        "y": 18
       },
       "id": 14,
       "options": {
@@ -985,7 +1003,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 17
+        "y": 18
       },
       "id": 18,
       "options": {
@@ -1025,14 +1043,16 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 25
+        "y": 26
       },
       "id": 24,
       "options": {
         "alertInstanceLabelFilter": "",
         "alertName": "TrainDerailed",
         "dashboardAlerts": false,
-        "groupBy": ["name"],
+        "groupBy": [
+          "name"
+        ],
         "groupMode": "custom",
         "maxItems": 20,
         "sortOrder": 1,
@@ -1050,7 +1070,7 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 37,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1065,14 +1085,14 @@
           "type": "postgres",
           "uid": "GhzMNppVk"
         },
-        "definition": "select\ndata ->> 'TrainName'\nfrom cache_with_history c\nwhere metric = 'train'\norder by c.id desc",
+        "definition": "select\ndata ->> 'Name'\nfrom cache_with_history c\nwhere metric = 'train'\norder by c.id desc",
         "hide": 0,
         "includeAll": false,
         "label": "Train name",
         "multi": false,
         "name": "train",
         "options": [],
-        "query": "select\ndata ->> 'TrainName'\nfrom cache_with_history c\nwhere metric = 'train'\norder by c.id desc",
+        "query": "select\ndata ->> 'Name'\nfrom cache_with_history c\nwhere metric = 'train'\norder by c.id desc",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1089,6 +1109,6 @@
   "timezone": "",
   "title": "Trains",
   "uid": "5TN0r0p4k",
-  "version": 3,
+  "version": 2,
   "weekStart": ""
 }
