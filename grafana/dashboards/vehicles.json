@@ -268,7 +268,7 @@
           "zoom": 16
         }
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -402,7 +402,9 @@
           },
           "custom": {
             "align": "auto",
-            "displayMode": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
             "inspect": false
           },
           "mappings": [],
@@ -430,14 +432,18 @@
       },
       "id": 28,
       "options": {
+        "cellHeight": "sm",
         "footer": {
+          "countRows": false,
           "fields": "",
-          "reducer": ["sum"],
+          "reducer": [
+            "sum"
+          ],
           "show": false
         },
         "showHeader": true
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "10.0.3",
       "targets": [
         {
           "datasource": {
@@ -447,7 +453,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\ndata->>'ID' as id,\ndata->>'VehicleType' as type,\ndata->>'PathName' as path_name,\ndata->>'AutoPilot' as autopilot\nfrom cache WHERE metric = 'truck';",
+          "rawSql": "SELECT\ndata->>'ID' as id,\ndata->>'Name' as type,\ndata->>'PathName' as path_name,\ndata->>'AutoPilot' as autopilot\nfrom cache WHERE metric = 'truck';",
           "refId": "A",
           "sql": {
             "columns": [
@@ -567,7 +573,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "vehicle_fuel{vehicle_type!=\"Factory Cart\"}",
+          "expr": "vehicle_fuel{vehicle_type!=\"Factory Cart™\"}",
           "legendFormat": "{{id}} ({{vehicle_type}}) - {{fuel_type}}",
           "range": true,
           "refId": "A"
@@ -670,29 +676,29 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 37,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "1 (Tractor:test1)",
-          "value": "1"
+          "selected": true,
+          "text": "BP_Truck_C_2147034165 (Truck:)",
+          "value": "BP_Truck_C_2147034165"
         },
         "datasource": {
           "type": "postgres",
           "uid": "GhzMNppVk"
         },
-        "definition": "select\ndata->>'ID' as __value,\nconcat(data->>'ID', ' (', data ->> 'VehicleType', ':', data ->> 'PathName',')') as __text\nfrom cache where metric = 'truck'\norder by id desc;",
+        "definition": "select\ndata->>'ID' as __value,\nconcat(data->>'ID', ' (', data ->> 'Name', ':', data ->> 'PathName',')') as __text\nfrom cache where metric = 'truck'\norder by id desc;",
         "hide": 0,
         "includeAll": false,
         "label": "Vehicle",
         "multi": false,
         "name": "vehicle",
         "options": [],
-        "query": "select\ndata->>'ID' as __value,\nconcat(data->>'ID', ' (', data ->> 'VehicleType', ':', data ->> 'PathName',')') as __text\nfrom cache where metric = 'truck'\norder by id desc;",
+        "query": "select\ndata->>'ID' as __value,\nconcat(data->>'ID', ' (', data ->> 'Name', ':', data ->> 'PathName',')') as __text\nfrom cache where metric = 'truck'\norder by id desc;",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
