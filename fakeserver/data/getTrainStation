@@ -1,86 +1,143 @@
 [
-   {
-      "StationName":"Other station",
-      "location":{
-         "x": 1000,
-         "y":1000,
-         "z":10589.841797,
-         "rotation":100
-      },
-      "TransferRate":6.0,
-      "InflowRate":0.0,
-      "OutflowRate":0.0,
-      "LoadingMode":"Loading",
-      "LoadingStatus":"Loading",
-      "DockingStatus":"ETPDS_Loading",
-      "features":{
-         "properties":{
-            "type":"Train Station"
-         },
-         "geometry":{
-            "coordinates":{
-               "x":-15742.418945,
-               "y":-110549.765625,
-               "z":10589.841797
-            },
-            "type":"Point"
-         }
+  {
+    "StationName": "Other station",
+    "location": {
+      "x": 1000,
+      "y": 1000,
+      "z": 10589.841797,
+      "rotation": 100
+    },
+    "CargoPlatforms": [
+      {
+        "LoadingDock": "Freight Platform",
+        "ClassName": "Build_TrainDockingStation_C_2146516300",
+        "location": {
+          "x": -51420.69921875,
+          "y": 278615.21875,
+          "z": -1237.5,
+          "rotation": 80
+        },
+        "TransferRate": 0.665565550327301,
+        "InflowRate": 0,
+        "OutflowRate": 0,
+        "LoadingMode": "Unloading",
+        "LoadingStatus": "Unloading",
+        "DockingStatus": "Unloading",
+        "Inventory": []
       }
-   },
-   {
-      "StationName":"Caterium Ore",
-      "location":{
-         "x":-15742.418945,
-         "y":-110549.765625,
-         "z":10589.841797,
-         "rotation":100
+    ],
+    "TransferRate": 6.0,
+    "InflowRate": 0.0,
+    "OutflowRate": 0.0,
+    "LoadingMode": "Loading",
+    "LoadingStatus": "Loading",
+    "DockingStatus": "Loading",
+    "features": {
+      "properties": {
+        "type": "Train Station"
       },
-      "TransferRate":6.0,
-      "InflowRate":0.0,
-      "OutflowRate":0.0,
-      "LoadingMode":"Loading",
-      "LoadingStatus":"Loading",
-      "DockingStatus":"ETPDS_Loading",
-      "features":{
-         "properties":{
-            "type":"Train Station"
-         },
-         "geometry":{
-            "coordinates":{
-               "x":-15742.418945,
-               "y":-110549.765625,
-               "z":10589.841797
-            },
-            "type":"Point"
-         }
+      "geometry": {
+        "coordinates": {
+          "x": -15742.418945,
+          "y": -110549.765625,
+          "z": 10589.841797
+        },
+        "type": "Point"
       }
-   },
-   {
-      "StationName":"Quickwire Central",
-      "location":{
-         "x":-41261.640625,
-         "y":-134549.375,
-         "z":8189.842285,
-         "rotation":100
+    }
+  },
+  {
+    "StationName": "Caterium Ore",
+    "location": {
+      "x": -15742.418945,
+      "y": -110549.765625,
+      "z": 10589.841797,
+      "rotation": 100
+    },
+    "CargoPlatforms": [
+      {
+        "LoadingDock": "Freight Platform",
+        "ClassName": "Build_TrainDockingStation_C_2146516300",
+        "location": {
+          "x": -51420.69921875,
+          "y": 278615.21875,
+          "z": -1237.5,
+          "rotation": 80
+        },
+        "TransferRate": 0.665565550327301,
+        "InflowRate": 0,
+        "OutflowRate": 0,
+        "LoadingMode": "Unloading",
+        "LoadingStatus": "Unloading",
+        "DockingStatus": "Unloading",
+        "Inventory": []
+      }
+    ],
+    "TransferRate": 6.0,
+    "InflowRate": 0.0,
+    "OutflowRate": 0.0,
+    "LoadingMode": "Loading",
+    "LoadingStatus": "Loading",
+    "DockingStatus": "Loading",
+    "features": {
+      "properties": {
+        "type": "Train Station"
       },
-      "TransferRate":0.0,
-      "InflowRate":0.0,
-      "OutflowRate":0.0,
-      "LoadingMode":"Unloading",
-      "LoadingStatus":"Idle",
-      "DockingStatus":"ETPDS_None",
-      "features":{
-         "properties":{
-            "type":"Train Station"
-         },
-         "geometry":{
-            "coordinates":{
-               "x":-41261.640625,
-               "y":-134549.375,
-               "z":8189.842285
-            },
-            "type":"Point"
-         }
+      "geometry": {
+        "coordinates": {
+          "x": -15742.418945,
+          "y": -110549.765625,
+          "z": 10589.841797
+        },
+        "type": "Point"
       }
-   }
+    }
+  },
+  {
+    "StationName": "Quickwire Central",
+    "location": {
+      "x": -41261.640625,
+      "y": -134549.375,
+      "z": 8189.842285,
+      "rotation": 100
+    },
+    "CargoPlatforms": [
+      {
+        "LoadingDock": "Freight Platform",
+        "ClassName": "Build_TrainDockingStation_C_2146516300",
+        "location": {
+          "x": -51420.69921875,
+          "y": 278615.21875,
+          "z": -1237.5,
+          "rotation": 80
+        },
+        "TransferRate": 0.665565550327301,
+        "InflowRate": 0,
+        "OutflowRate": 0,
+        "LoadingMode": "Unloading",
+        "LoadingStatus": "Idle",
+        "DockingStatus": "Idle",
+        "Inventory": []
+      }
+    ],
+    "TransferRate": 0.0,
+    "InflowRate": 0.0,
+    "OutflowRate": 0.0,
+    "LoadingMode": "Unloading",
+    "LoadingStatus": "Idle",
+    "DockingStatus": "Idle",
+    "features": {
+      "properties": {
+        "type": "Train Station"
+      },
+      "geometry": {
+        "coordinates": {
+          "x": -41261.640625,
+          "y": -134549.375,
+          "z": 8189.842285
+        },
+        "type": "Point"
+      }
+    }
+  }
 ]

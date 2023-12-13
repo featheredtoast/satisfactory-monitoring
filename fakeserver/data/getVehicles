@@ -1,6 +1,6 @@
 [{
   "ID":"0",
-  "VehicleType":"Truck",
+  "Name":"Truck",
   "location":{
     "x":0,"y":0,"z":0,
     "rotation":0
@@ -29,7 +29,7 @@
 },
  {
   "ID":"1",
-  "VehicleType":"Tractor",
+  "Name":"Tractor",
   "location":{
     "x":0,"y":0,"z":0,
     "rotation":0

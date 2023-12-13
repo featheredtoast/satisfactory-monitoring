@@ -1,43 +1,128 @@
 [
-{
-  "TrainName": "choo",
-	"location": {
-		"x":        1000,
-		"y":        2000,
-		"z":        -3000,
-		"rotation": 20
-	},
-  "ForwardSpeed": 140,
-  "TotalMass": 100,
-  "PayloadMass": 30,
-  "PowerConsumed": 35,
-  "TrainStation": "Volskya",
-  "ThrottlePercent": 0.9,
-  "Derailed": false,
-  "PendingDerail": false,
-  "Status": "TS_SelfDriving",
-  "TimeTable": [{"StationName": "Caterium Ore"},
-                {"StationName": "Quickwire Central"}]
-},
-
   {
-  "TrainName": "not-choo",
-	"location": {
-		"x":        2000,
-		"y":        3000,
-		"z":        -3000,
-		"rotation": 100
-	},
-  "ForwardSpeed": 140,
-  "TotalMass": 100,
-  "PayloadMass": 30,
-  "PowerConsumed": 35,
-  "TrainStation": "Volskya",
-  "ThrottlePercent": 0.9,
-  "Derailed": false,
-  "PendingDerail": false,
-  "Status": "TS_SelfDriving",
-  "TimeTable": [{"StationName": "Caterium Ore"},
-                {"StationName": "Quickwire Central"}]
-}
+    "Name": "choo",
+    "location": {
+      "x": 1000,
+      "y": 2000,
+      "z": -3000,
+      "rotation": 20
+    },
+    "ForwardSpeed": 140,
+    "TotalMass": 100,
+    "PayloadMass": 30,
+    "PowerConsumed": 35,
+    "TrainStation": "Volskya",
+    "ThrottlePercent": 0.9,
+    "Derailed": false,
+    "PendingDerail": false,
+    "Status": "TS_SelfDriving",
+    "TimeTable": [
+      {
+        "StationName": "Caterium Ore"
+      },
+      {
+        "StationName": "Quickwire Central"
+      }
+    ],
+    "TrainConsist": [
+      {
+        "Name": "Electric Locomotive",
+        "ClassName": "BP_Locomotive_C_2147321154",
+        "TotalMass": 300000,
+        "PayloadMass": 0,
+        "MaxPayloadMass": 0
+      },
+      {
+        "Name": "Freight Car",
+        "ClassName": "BP_FreightWagon_C_2147320199",
+        "TotalMass": 30000,
+        "PayloadMass": 0,
+        "MaxPayloadMass": 70000
+      },
+      {
+        "Name": "Freight Car",
+        "ClassName": "BP_FreightWagon_C_2147320044",
+        "TotalMass": 30000,
+        "PayloadMass": 0,
+        "MaxPayloadMass": 70000
+      },
+      {
+        "Name": "Freight Car",
+        "ClassName": "BP_FreightWagon_C_2147319888",
+        "TotalMass": 30000,
+        "PayloadMass": 0,
+        "MaxPayloadMass": 70000
+      },
+      {
+        "Name": "Electric Locomotive",
+        "ClassName": "BP_Locomotive_C_2147319611",
+        "TotalMass": 300000,
+        "PayloadMass": 0,
+        "MaxPayloadMass": 0
+      }
+    ]
+  },
+  {
+    "Name": "not-choo",
+    "location": {
+      "x": 2000,
+      "y": 3000,
+      "z": -3000,
+      "rotation": 100
+    },
+    "ForwardSpeed": 140,
+    "TotalMass": 100,
+    "PayloadMass": 30,
+    "PowerConsumed": 35,
+    "TrainStation": "Volskya",
+    "ThrottlePercent": 0.9,
+    "Derailed": false,
+    "PendingDerail": false,
+    "Status": "TS_SelfDriving",
+    "TimeTable": [
+      {
+        "StationName": "Caterium Ore"
+      },
+      {
+        "StationName": "Quickwire Central"
+      }
+    ],
+    "TrainConsist": [
+      {
+        "Name": "Electric Locomotive",
+        "ClassName": "BP_Locomotive_C_2147321154",
+        "TotalMass": 300000,
+        "PayloadMass": 0,
+        "MaxPayloadMass": 0
+      },
+      {
+        "Name": "Freight Car",
+        "ClassName": "BP_FreightWagon_C_2147320199",
+        "TotalMass": 30000,
+        "PayloadMass": 0,
+        "MaxPayloadMass": 70000
+      },
+      {
+        "Name": "Freight Car",
+        "ClassName": "BP_FreightWagon_C_2147320044",
+        "TotalMass": 30000,
+        "PayloadMass": 0,
+        "MaxPayloadMass": 70000
+      },
+      {
+        "Name": "Freight Car",
+        "ClassName": "BP_FreightWagon_C_2147319888",
+        "TotalMass": 30000,
+        "PayloadMass": 0,
+        "MaxPayloadMass": 70000
+      },
+      {
+        "Name": "Electric Locomotive",
+        "ClassName": "BP_Locomotive_C_2147319611",
+        "TotalMass": 300000,
+        "PayloadMass": 0,
+        "MaxPayloadMass": 0
+      }
+    ]
+  }
 ]

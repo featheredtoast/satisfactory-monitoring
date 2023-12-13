@@ -1,6 +1,6 @@
 [{
   "ID":"0",
-  "HomeStation":"Drone Port 1",
+  "Name":"Drone Port 1",
   "location":{
 		"x":-30655.789062,"y":221870.6875,"z":-40.63269,
     "rotation":"90"
@@ -43,7 +43,7 @@
 	}	
 },{
   "ID":"1",
-  "HomeStation":"Drone Port 2",
+  "Name":"Drone Port 2",
   "location":{
 		"x":-22668.775391,"y":232038.140625,"z":-40.632812,
     "rotation":"90"
@@ -86,7 +86,7 @@
 	}	
 },{
   "ID":"2",
-  "HomeStation":"Other port",
+  "Name":"Other port",
   "location":{
 		"x":0.0,"y":0.0,"z":0.0,
     "rotation":"90"

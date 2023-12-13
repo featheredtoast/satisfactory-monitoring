@@ -1,18 +1,18 @@
 [
    {
       "Name":"FICSIT Coupon",
-      "Count":91
+      "Amount":91
    },
    {
       "Name":"Quickwire",
-      "Count":500
+      "Amount":500
    },
    {
       "Name":"Wire",
-      "Count":500
+      "Amount":500
    },
    {
       "Name":"FICSMAS Bow",
-      "Count":25
+      "Amount":25
    }
 ]
