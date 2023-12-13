@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 8,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -933,8 +933,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "train_power_consumed",
-          "legendFormat": "{{name}}",
+          "expr": "train_power_consumed{name=\"$train\"}",
+          "legendFormat": "{{name}} power use",
           "range": true,
           "refId": "A"
         }
@@ -1078,8 +1078,8 @@
       {
         "current": {
           "selected": false,
-          "text": "pipe express",
-          "value": "pipe express"
+          "text": "Train",
+          "value": "Train"
         },
         "datasource": {
           "type": "postgres",
