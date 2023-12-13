@@ -44,7 +44,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 5,
+  "id": 8,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -770,6 +770,19 @@
           "legendFormat": "{{__name__}}",
           "range": true,
           "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "train_power_circuit_consumed{circuit_id=\"$circuit\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Trains",
+          "range": true,
+          "refId": "A"
         },
         {
           "datasource": {
