@@ -689,7 +689,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "dark-red",
+                  "fixedColor": "orange",
                   "mode": "fixed"
                 }
               }
