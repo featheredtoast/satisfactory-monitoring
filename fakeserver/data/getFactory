@@ -47,7 +47,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 15,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -99,7 +99,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 15,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -152,7 +152,7 @@
     },
 
     "PowerInfo": {
-      "CircuitID": 15,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -191,7 +191,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 15,
+    "ID": 1,
     "features": {
       "properties": { "type": "Assembler" },
       "geometry": {
@@ -205,7 +205,7 @@
     },
 
     "PowerInfo": {
-      "CircuitID": 15,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -258,7 +258,7 @@
     },
 
     "PowerInfo": {
-      "CircuitID": 18,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -311,7 +311,7 @@
     },
 
     "PowerInfo": {
-      "CircuitID": 18,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -363,7 +363,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 18,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -415,7 +415,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 18,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -467,7 +467,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 18,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -519,7 +519,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 18,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -571,7 +571,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 0,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -623,7 +623,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 0,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -675,7 +675,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 0,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -727,7 +727,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 0,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -779,7 +779,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 0,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -825,7 +825,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 3,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -871,7 +871,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 13,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -917,7 +917,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 7,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -963,7 +963,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 7,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1009,7 +1009,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 10,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1055,7 +1055,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 10,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1101,7 +1101,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 10,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1147,7 +1147,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 10,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1193,7 +1193,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1239,7 +1239,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1285,7 +1285,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1331,7 +1331,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1377,7 +1377,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 13,
+      "ID": 13,
       "PowerConsumed": 30
     }
   },
@@ -1423,7 +1423,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 13,
+      "ID": 13,
       "PowerConsumed": 30
     }
   },
@@ -1456,7 +1456,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 4,
+    "CircuitID": 1,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1469,7 +1469,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 4,
+      "ID": 4,
       "PowerConsumed": 30
     }
   },
@@ -1515,7 +1515,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 4,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1561,7 +1561,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 4,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1607,7 +1607,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 4,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1653,7 +1653,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 4,
+      "ID": 1,
       "PowerConsumed": 30
     }
   },

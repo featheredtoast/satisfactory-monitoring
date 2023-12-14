@@ -1,8 +1,8 @@
 [{
   "CircuitId": 1,
-  "PowerConsumed": 30,
-  "PowerCapacity": 44,
-  "PowerMaxConsumed": 50,
+  "PowerConsumed": 3000,
+  "PowerCapacity": 4400,
+  "PowerMaxConsumed": 5000,
   "BatteryDifferential": 12,
   "BatteryPercent": 60,
   "BatteryCapacity": 100,

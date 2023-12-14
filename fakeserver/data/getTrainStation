@@ -46,7 +46,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 15,
+      "ID": 1,
       "PowerConsumed": 50
     }
   },
@@ -97,7 +97,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 15,
+      "ID": 1,
       "PowerConsumed": 50
     }
   },
@@ -148,7 +148,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 15,
+      "ID": 1,
       "PowerConsumed": 50
     }
   }

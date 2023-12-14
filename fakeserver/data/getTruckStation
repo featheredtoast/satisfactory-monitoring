@@ -33,7 +33,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 15,
+      "ID": 1,
       "PowerConsumed": 30
     }
   }
