@@ -659,7 +659,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "green",
+                  "fixedColor": "blue",
                   "mode": "fixed"
                 }
               }
@@ -674,7 +674,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "blue",
+                  "fixedColor": "red",
                   "mode": "fixed"
                 }
               }
@@ -689,7 +689,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "dark-blue",
+                  "fixedColor": "dark-red",
                   "mode": "fixed"
                 }
               }
@@ -719,7 +719,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "red",
+                  "fixedColor": "green",
                   "mode": "fixed"
                 }
               }
@@ -1093,7 +1093,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "1",
           "value": "1"
         },
