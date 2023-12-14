@@ -40,7 +40,11 @@
 			},
 			"type": "Point"
 		}
-	}	
+	},
+  "PowerInfo": {
+      "CircuitID": 15,
+      "PowerConsumed": 50
+    }
 },{
   "ID":"1",
   "Name":"Drone Port 2",
@@ -83,7 +87,11 @@
 			},
 			"type": "Point"
 		}
-	}	
+	},
+  "PowerInfo": {
+      "CircuitID": 15,
+      "PowerConsumed": 50
+    }
 },{
   "ID":"2",
   "Name":"Other port",
@@ -126,5 +134,9 @@
 			},
 			"type": "Point"
 		}
-	}
+	},
+  "PowerInfo": {
+      "CircuitID": 15,
+      "PowerConsumed": 50
+    }
 }]

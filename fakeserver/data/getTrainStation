@@ -44,6 +44,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 15,
+      "PowerConsumed": 50
     }
   },
   {
@@ -91,6 +95,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 15,
+      "PowerConsumed": 50
     }
   },
   {
@@ -138,6 +146,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 15,
+      "PowerConsumed": 50
     }
   }
 ]

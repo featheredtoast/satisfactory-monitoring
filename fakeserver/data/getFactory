@@ -45,6 +45,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 15,
+      "PowerConsumed": 30
     }
   },
   {
@@ -93,6 +97,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 15,
+      "PowerConsumed": 30
     }
   },
   {
@@ -141,6 +149,11 @@
         },
         "type": "Point"
       }
+    },
+
+    "PowerInfo": {
+      "CircuitID": 15,
+      "PowerConsumed": 30
     }
   },
   {
@@ -189,6 +202,11 @@
         },
         "type": "Point"
       }
+    },
+
+    "PowerInfo": {
+      "CircuitID": 15,
+      "PowerConsumed": 30
     }
   },
   {
@@ -237,6 +255,11 @@
         },
         "type": "Point"
       }
+    },
+
+    "PowerInfo": {
+      "CircuitID": 18,
+      "PowerConsumed": 30
     }
   },
   {
@@ -285,6 +308,11 @@
         },
         "type": "Point"
       }
+    },
+
+    "PowerInfo": {
+      "CircuitID": 18,
+      "PowerConsumed": 30
     }
   },
   {
@@ -333,6 +361,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 18,
+      "PowerConsumed": 30
     }
   },
   {
@@ -381,6 +413,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 18,
+      "PowerConsumed": 30
     }
   },
   {
@@ -429,6 +465,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 18,
+      "PowerConsumed": 30
     }
   },
   {
@@ -477,6 +517,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 18,
+      "PowerConsumed": 30
     }
   },
   {
@@ -525,6 +569,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 0,
+      "PowerConsumed": 30
     }
   },
   {
@@ -573,6 +621,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 0,
+      "PowerConsumed": 30
     }
   },
   {
@@ -621,6 +673,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 0,
+      "PowerConsumed": 30
     }
   },
   {
@@ -669,6 +725,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 0,
+      "PowerConsumed": 30
     }
   },
   {
@@ -717,6 +777,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 0,
+      "PowerConsumed": 30
     }
   },
   {
@@ -759,6 +823,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 3,
+      "PowerConsumed": 30
     }
   },
   {
@@ -801,6 +869,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 13,
+      "PowerConsumed": 30
     }
   },
   {
@@ -843,6 +915,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 7,
+      "PowerConsumed": 30
     }
   },
   {
@@ -885,6 +961,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 7,
+      "PowerConsumed": 30
     }
   },
   {
@@ -927,6 +1007,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 10,
+      "PowerConsumed": 30
     }
   },
   {
@@ -969,6 +1053,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 10,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1011,6 +1099,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 10,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1053,6 +1145,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 10,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1095,6 +1191,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 1,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1137,6 +1237,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 1,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1179,6 +1283,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 1,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1221,6 +1329,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 1,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1263,6 +1375,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 13,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1305,6 +1421,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 13,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1347,6 +1467,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 4,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1389,6 +1513,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 4,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1431,6 +1559,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 4,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1473,6 +1605,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 4,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1515,6 +1651,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 4,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1557,6 +1697,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 4,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1599,6 +1743,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 4,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1641,6 +1789,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 4,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1683,6 +1835,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 12,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1725,6 +1881,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 12,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1767,6 +1927,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 12,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1809,6 +1973,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 12,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1851,6 +2019,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 4,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1893,6 +2065,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 4,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1935,6 +2111,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 4,
+      "PowerConsumed": 30
     }
   },
   {
@@ -1977,6 +2157,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 12,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2019,6 +2203,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 12,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2061,6 +2249,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 12,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2103,6 +2295,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 12,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2145,6 +2341,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 4,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2187,6 +2387,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 4,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2229,6 +2433,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 4,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2271,6 +2479,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 4,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2313,6 +2525,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 4,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2355,6 +2571,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 18,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2397,6 +2617,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 18,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2439,6 +2663,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 18,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2481,6 +2709,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 18,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2523,6 +2755,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 18,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2565,6 +2801,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 18,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2607,6 +2847,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 18,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2649,6 +2893,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 18,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2691,6 +2939,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 18,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2733,6 +2985,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 18,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2775,6 +3031,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 5,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2817,6 +3077,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 5,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2859,6 +3123,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 5,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2901,6 +3169,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 5,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2943,6 +3215,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 17,
+      "PowerConsumed": 30
     }
   },
   {
@@ -2985,6 +3261,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 17,
+      "PowerConsumed": 30
     }
   },
   {
@@ -3027,6 +3307,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 17,
+      "PowerConsumed": 30
     }
   },
   {
@@ -3069,6 +3353,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 17,
+      "PowerConsumed": 30
     }
   },
   {
@@ -3111,6 +3399,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 17,
+      "PowerConsumed": 30
     }
   },
   {
@@ -3153,6 +3445,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 17,
+      "PowerConsumed": 30
     }
   },
   {
@@ -3195,6 +3491,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 17,
+      "PowerConsumed": 30
     }
   },
   {
@@ -3237,6 +3537,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 17,
+      "PowerConsumed": 30
     }
   },
   {
@@ -3279,6 +3583,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 17,
+      "PowerConsumed": 30
     }
   },
   {
@@ -3321,6 +3629,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 17,
+      "PowerConsumed": 30
     }
   },
   {
@@ -3363,6 +3675,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 17,
+      "PowerConsumed": 30
     }
   },
   {
@@ -3405,6 +3721,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 17,
+      "PowerConsumed": 30
     }
   },
   {
@@ -3447,6 +3767,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 17,
+      "PowerConsumed": 30
     }
   },
   {
@@ -3489,6 +3813,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 17,
+      "PowerConsumed": 30
     }
   },
   {
@@ -3531,6 +3859,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 17,
+      "PowerConsumed": 30
     }
   },
   {
@@ -3573,6 +3905,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 17,
+      "PowerConsumed": 30
     }
   },
   {
@@ -3615,6 +3951,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 17,
+      "PowerConsumed": 30
     }
   },
   {
@@ -3657,6 +3997,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 17,
+      "PowerConsumed": 30
     }
   },
   {
@@ -3699,6 +4043,10 @@
         },
         "type": "Point"
       }
+    },
+    "PowerInfo": {
+      "CircuitID": 17,
+      "PowerConsumed": 30
     }
   }
 ]

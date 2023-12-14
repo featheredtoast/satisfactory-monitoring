@@ -1,36 +1,40 @@
 [
-   {
-      "ID":"0",
-      "StationName":"",
-      "location":{
-         "x":-88860.914062,
-         "y":-128932.007812,
-         "z":-1410.142822,
-         "rotation":100
+  {
+    "ID":"0",
+    "StationName":"",
+    "location":{
+      "x":-88860.914062,
+      "y":-128932.007812,
+      "z":-1410.142822,
+      "rotation":100
+    },
+    "DockVehicleCount":0,
+    "LoadMode":"Loading",
+    "TransferRate":0.0,
+    "MaxTransferRate":0.0,
+    "StationStatus":"IS_ERROR",
+    "FuelRate":0.0,
+    "FuelType":"N/A",
+    "FuelInventory":0,
+    "StationActivity":"Idle",
+    "Inventory":"N/A",
+    "InvCount":0,
+    "features":{
+      "properties":{
+        "type":"Truck Station"
       },
-      "DockVehicleCount":0,
-      "LoadMode":"Loading",
-      "TransferRate":0.0,
-      "MaxTransferRate":0.0,
-      "StationStatus":"IS_ERROR",
-      "FuelRate":0.0,
-      "FuelType":"N/A",
-      "FuelInventory":0,
-      "StationActivity":"Idle",
-      "Inventory":"N/A",
-      "InvCount":0,
-      "features":{
-         "properties":{
-            "type":"Truck Station"
-         },
-         "geometry":{
-            "coordinates":{
-               "x":-88860.914062,
-               "y":-128932.007812,
-               "z":-1410.142822
-            },
-            "type":"Point"
-         }
+      "geometry":{
+        "coordinates":{
+          "x":-88860.914062,
+          "y":-128932.007812,
+          "z":-1410.142822
+        },
+        "type":"Point"
       }
-   }
+    },
+    "PowerInfo": {
+      "CircuitID": 15,
+      "PowerConsumed": 30
+    }
+  }
 ]
