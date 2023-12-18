@@ -44,140 +44,17 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 6,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "MW",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "factory_power_max"
-            },
-            "properties": [
-              {
-                "id": "custom.lineStyle",
-                "value": {
-                  "dash": [
-                    10,
-                    10
-                  ],
-                  "fill": "dash"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 0
-      },
-      "id": 34,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "builder",
-          "expr": "factory_power{circuit_id=\"$circuit\"}",
-          "legendFormat": "{{__name__}}",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "builder",
-          "expr": "factory_power_max{circuit_id=\"$circuit\"}",
-          "hide": false,
-          "legendFormat": "{{__name__}}",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "Factory Power",
-      "type": "timeseries"
-    },
     {
       "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 8
+        "y": 0
       },
       "id": 24,
       "panels": [
@@ -223,7 +100,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 1
       },
       "id": 8,
       "panels": [],
@@ -277,7 +154,7 @@
         "h": 6,
         "w": 4,
         "x": 0,
-        "y": 10
+        "y": 2
       },
       "id": 12,
       "options": {
@@ -358,7 +235,7 @@
         "h": 6,
         "w": 5,
         "x": 4,
-        "y": 10
+        "y": 2
       },
       "id": 4,
       "options": {
@@ -439,7 +316,7 @@
         "h": 6,
         "w": 5,
         "x": 9,
-        "y": 10
+        "y": 2
       },
       "id": 10,
       "options": {
@@ -532,7 +409,7 @@
         "h": 6,
         "w": 10,
         "x": 14,
-        "y": 10
+        "y": 2
       },
       "id": 19,
       "options": {
@@ -680,7 +557,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 16
+        "y": 8
       },
       "id": 2,
       "options": {
@@ -854,7 +731,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 16
+        "y": 8
       },
       "id": 29,
       "options": {
@@ -1010,7 +887,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 24
+        "y": 16
       },
       "id": 26,
       "options": {
@@ -1158,7 +1035,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 24
+        "y": 16
       },
       "id": 28,
       "options": {
@@ -1213,7 +1090,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 32
+        "y": 24
       },
       "id": 33,
       "panels": [],
@@ -1300,7 +1177,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 33
+        "y": 25
       },
       "id": 30,
       "options": {
@@ -1423,7 +1300,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 33
+        "y": 25
       },
       "id": 31,
       "options": {
@@ -1546,7 +1423,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 41
+        "y": 33
       },
       "id": 35,
       "options": {
@@ -1669,7 +1546,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 41
+        "y": 33
       },
       "id": 36,
       "options": {
@@ -1722,8 +1599,8 @@
       {
         "current": {
           "selected": false,
-          "text": "1",
-          "value": "1"
+          "text": "0",
+          "value": "0"
         },
         "datasource": {
           "type": "prometheus",
