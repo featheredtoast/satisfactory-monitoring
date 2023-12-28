@@ -85,6 +85,14 @@ tests:
         values: '50+0x10'
       - series: 'power_max_consumed{circuit_id="1"}'
         values: '20+5x10'
+      - series: 'power_consumed{circuit_id="1"}'
+        values: '20+5x10'
+      - series: 'power_capacity{circuit_id="2"}'
+        values: '50+0x10'
+      - series: 'power_max_consumed{circuit_id="2"}'
+        values: '20+0x10'
+      - series: 'power_consumed{circuit_id="2"}'
+        values: '20+0x10'
     alert_rule_test:
       - eval_time: 10m
         alertname: MaxConsumption
@@ -100,6 +108,33 @@ tests:
       - series: 'power_capacity{circuit_id="1"}'
         values: '50+0x10'
       - series: 'power_max_consumed{circuit_id="1"}'
+        values: '20+0x10'
+      - series: 'power_consumed{circuit_id="1"}'
+        values: '20+0x10'
+      - series: 'power_capacity{circuit_id="2"}'
+        values: '50+0x10'
+      - series: 'power_max_consumed{circuit_id="2"}'
+        values: '20+0x10'
+      - series: 'power_consumed{circuit_id="2"}'
+        values: '20+0x10'
+    alert_rule_test:
+      - eval_time: 10m
+        alertname: MaxConsumption
+        exp_alerts:
+# also do not alert when max consumption is way high but power consumed is still low enough
+  - interval: 1m
+    input_series:
+      - series: 'power_capacity{circuit_id="1"}'
+        values: '50+0x10'
+      - series: 'power_max_consumed{circuit_id="1"}'
+        values: '20+5x10'
+      - series: 'power_consumed{circuit_id="1"}'
+        values: '20+0x10'
+      - series: 'power_capacity{circuit_id="2"}'
+        values: '50+0x10'
+      - series: 'power_max_consumed{circuit_id="2"}'
+        values: '20+0x10'
+      - series: 'power_consumed{circuit_id="2"}'
         values: '20+0x10'
     alert_rule_test:
       - eval_time: 10m
