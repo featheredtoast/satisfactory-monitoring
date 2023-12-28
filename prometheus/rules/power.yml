@@ -4,6 +4,8 @@ groups:
 # record power consumped with 20% margin of overhead
     - record: power_consumed_overhead:min6h
       expr: min (1.2 * max_over_time(power_consumed[6h])) by (circuit_id)
+    - record: power_consumed_overhead_or_max_consumed:min6h
+      expr: min(power_consumed_overhead:min6h or last_over_time(power_max_consumed[1h])) by (circuit_id)
 
     - alert: FuseTriggered
       expr: fuse_triggered > 0
@@ -31,7 +33,7 @@ groups:
 
 # Alert when consumption is *likely* to overtake power capacity - when both max consumption and observed consumption -- with a 20% capacity margin is over power capacity
     - alert: MaxConsumption
-      expr: power_capacity < min(power_consumed_overhead:min6h or last_over_time(power_max_consumed[1h])) by (circuit_id)
+      expr: power_capacity < power_consumed_overhead_or_max_consumed:min6h
       for: 10s
       labels:
         category: power
