@@ -44,7 +44,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 4,
+  "id": 6,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -504,7 +504,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "green",
+                  "fixedColor": "blue",
                   "mode": "fixed"
                 }
               }
@@ -519,7 +519,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "red",
+                  "fixedColor": "#7e7e7e",
                   "mode": "fixed"
                 }
               },
@@ -544,7 +544,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "red",
+                  "fixedColor": "green",
                   "mode": "fixed"
                 }
               }
@@ -553,7 +553,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "power_consumed_overhead"
+              "options": "real_power_consumed_max"
             },
             "properties": [
               {
@@ -569,7 +569,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "dark-orange",
+                  "fixedColor": "red",
                   "mode": "fixed"
                 }
               }
@@ -638,10 +638,10 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "power_consumed_overhead:min6h{circuit_id=\"$circuit\"}",
+          "expr": "power_consumed_overhead_or_max_consumed:min6h{circuit_id=\"$circuit\"}",
           "hide": false,
           "instant": false,
-          "legendFormat": "power_consumed_overhead",
+          "legendFormat": "real_power_consumed_max",
           "range": true,
           "refId": "OVERHEAD"
         }
@@ -1635,7 +1635,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "1",
           "value": "1"
         },
