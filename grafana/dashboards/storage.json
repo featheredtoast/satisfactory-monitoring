@@ -24,13 +24,14 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
-        "type": "postgres",
+        "default": true,
+        "type": "grafana-postgresql-datasource",
         "uid": "GhzMNppVk"
       },
       "description": "Map of storage containers",
@@ -138,7 +139,7 @@
           "zoom": 15
         }
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "datasource": {
@@ -148,7 +149,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select t.building,\nt.inventory,\nt.x,\nt.y,\nt.z,\nt.longitude,\nt.latitude\nfrom (\nselect \ndata ->> 'building' as building,\ndata -> 'inventory' as inventory,\nitem ->> 'Name' as item,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache\ncross join jsonb_path_query(data, '$.inventory[*]') as item where metric = 'storageInv'\nand item->>'Name' = some(array[$item]::text[])\n) as t\ngroup by \nt.building,\nt.inventory,\nt.x,\nt.y,\nt.z,\nt.longitude,\nt.latitude\n;",
+          "rawSql": "select t.building,\nt.inventory,\nt.x,\nt.y,\nt.z,\nt.longitude,\nt.latitude\nfrom (\nselect \ndata ->> 'building' as building,\ndata -> 'inventory' as inventory,\nitem ->> 'Name' as item,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache\ncross join jsonb_path_query(data, '$.inventory[*]') as item where metric = 'storageInv'\nand item->>'Name' = some(array[$item]::text[])\nand url = '$server'\nand save = '$save'\n) as t\ngroup by \nt.building,\nt.inventory,\nt.x,\nt.y,\nt.z,\nt.longitude,\nt.latitude\n;",
           "refId": "A",
           "sql": {
             "columns": [
@@ -225,7 +226,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "datasource": {
@@ -261,22 +262,73 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "http://fakeserver:8080",
+          "value": "http://fakeserver:8080"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "definition": "label_values(url)",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "server",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(url)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "default",
+          "value": "default"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "definition": "label_values(save_name)",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "save",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(save_name)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
       {
         "allValue": "",
         "current": {
           "selected": true,
           "text": [
-            "Hard Drive",
-            "Nobelisk Detonator"
+            "All"
           ],
           "value": [
-            "Hard Drive",
-            "Nobelisk Detonator"
+            "$__all"
           ]
         },
         "datasource": {
@@ -308,6 +360,6 @@
   "timezone": "",
   "title": "Storage",
   "uid": "rMkN1op4z",
-  "version": 1,
+  "version": 3,
   "weekStart": ""
 }
