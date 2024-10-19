@@ -337,7 +337,7 @@
           },
           "editorMode": "code",
           "format": "table",
-          "hide": true,
+          "hide": false,
           "rawQuery": true,
           "rawSql": "SELECT\ndata ->> 'Recipe' as recipe,\ndata ->> 'Name' as building,\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nFROM cache\nwhere metric in ('factory', 'extractor')\nand (data -> 'location' ->> 'x')::NUMERIC/100 >= $xmin\nand (data -> 'location' ->> 'x')::NUMERIC/100 <= $xmax \nand (data -> 'location' ->> 'y')::NUMERIC/100 >= $ymin\nand (data -> 'location' ->> 'y')::NUMERIC/100 <= $ymax\nand url = '$server'\nand save = '$save'",
           "refId": "Targeted Buildings",
@@ -367,7 +367,7 @@
           },
           "editorMode": "code",
           "format": "table",
-          "hide": true,
+          "hide": false,
           "rawQuery": true,
           "rawSql": "SELECT\n  data ->> 'Recipe' as recipe,\n  data ->> 'building' as building,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nFROM\n  cache\nwhere\n  metric in ('factory', 'extractor')\n  and (\n    (data -> 'location' ->> 'x') :: NUMERIC / 100 < $xmin\n    or (data -> 'location' ->> 'x') :: NUMERIC / 100 > $xmax\n    or (data -> 'location' ->> 'y') :: NUMERIC / 100 < $ymin\n    or (data -> 'location' ->> 'y') :: NUMERIC / 100 > $ymax\n  )\n  and url = '$server'\n  and save = '$save'",
           "refId": "Other Buildings",
@@ -738,7 +738,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "http://fakeserver:8080",
           "value": "http://fakeserver:8080"
         },
@@ -884,6 +884,6 @@
   "timezone": "",
   "title": "Factory Production",
   "uid": "pUvf_pt4k",
-  "version": 2,
+  "version": 5,
   "weekStart": ""
 }
