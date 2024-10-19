@@ -24,13 +24,14 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 4,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
-        "type": "postgres",
+        "default": true,
+        "type": "grafana-postgresql-datasource",
         "uid": "GhzMNppVk"
       },
       "fieldConfig": {
@@ -268,7 +269,7 @@
           "zoom": 16
         }
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "datasource": {
@@ -279,7 +280,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation') as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history where metric = 'truck'\nand data ->> 'ID' = '$vehicle'\nand $__timeFilter(time)\norder by time desc\nlimit 100;\n",
+          "rawSql": "select\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation') as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history where metric = 'truck'\nand data ->> 'ID' = '$vehicle'\nand $__timeFilter(time)\nand url = '$server'\nand save = '$save'\norder by time desc\nlimit 100;\n",
           "refId": "Route",
           "sql": {
             "columns": [
@@ -308,7 +309,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\nconcat(data->>'ID',':',data->>'VehicleType') as vehicle,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'truck'\nand data ->> 'ID' = '$vehicle';\n",
+          "rawSql": "select\nconcat(data->>'ID',':',data->>'VehicleType') as vehicle,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'truck'\nand data ->> 'ID' = '$vehicle'\nand url = '$server'\nand save = '$save';\n",
           "refId": "Current location",
           "sql": {
             "columns": [
@@ -337,7 +338,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'truckStation'\nlimit 100;\n",
+          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'truckStation'\nand url = '$server'\nand save = '$save'\nlimit 100;\n",
           "refId": "Stations",
           "sql": {
             "columns": [
@@ -366,7 +367,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\nconcat(data->>'ID',':',data->>'VehicleType') as vehicle,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'truck'\nand data ->> 'ID' <> '$vehicle'\norder by id desc\n",
+          "rawSql": "select\nconcat(data->>'ID',':',data->>'VehicleType') as vehicle,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'truck'\nand data ->> 'ID' <> '$vehicle'\nand url = '$server'\nand save = '$save'\norder by id desc\n",
           "refId": "Other Trucks",
           "sql": {
             "columns": [
@@ -392,7 +393,8 @@
     },
     {
       "datasource": {
-        "type": "postgres",
+        "default": true,
+        "type": "grafana-postgresql-datasource",
         "uid": "GhzMNppVk"
       },
       "fieldConfig": {
@@ -443,7 +445,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "datasource": {
@@ -453,7 +455,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\ndata->>'ID' as id,\ndata->>'Name' as type,\ndata->>'PathName' as path_name,\ndata->>'AutoPilot' as autopilot\nfrom cache WHERE metric = 'truck';",
+          "rawSql": "SELECT\ndata->>'ID' as id,\ndata->>'Name' as type,\ndata->>'PathName' as path_name,\ndata->>'AutoPilot' as autopilot\nfrom cache WHERE metric = 'truck'\nand url = '$server'\nand save = '$save';",
           "refId": "A",
           "sql": {
             "columns": [
@@ -492,6 +494,7 @@
     },
     {
       "datasource": {
+        "default": false,
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
@@ -501,11 +504,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -514,6 +519,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -572,11 +578,15 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "vehicle_fuel{vehicle_type!=\"Factory Cart™\"}",
+          "expr": "vehicle_fuel{vehicle_type!=\"Factory Cart™\", url=\"$server\", save_name=\"$save\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "legendFormat": "{{id}} ({{vehicle_type}}) - {{fuel_type}}",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "Fuel Loadout",
@@ -584,6 +594,7 @@
     },
     {
       "datasource": {
+        "default": false,
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
@@ -593,11 +604,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "Minutes",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -606,6 +619,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -664,11 +678,15 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "vehicle_round_trip_seconds / 60",
+          "expr": "vehicle_round_trip_seconds{url=\"$server\", save_name=\"$save\"} / 60",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "legendFormat": "{{id}} ({{vehicle_type}}) - {{path_name}}",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "Vehicle Round trip",
@@ -676,16 +694,69 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": true,
-          "text": "BP_Truck_C_2147034165 (Truck:)",
-          "value": "BP_Truck_C_2147034165"
+          "selected": false,
+          "text": "http://fakeserver:8080",
+          "value": "http://fakeserver:8080"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "definition": "label_values(url)",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "server",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(url)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "default",
+          "value": "default"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "definition": "label_values(save_name)",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "save",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(save_name)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "1 (Tractor:test1)",
+          "value": "1"
         },
         "datasource": {
           "type": "postgres",
@@ -715,6 +786,6 @@
   "timezone": "",
   "title": "Vehicles",
   "uid": "XteIs3cVk",
-  "version": 1,
+  "version": 3,
   "weekStart": ""
 }
