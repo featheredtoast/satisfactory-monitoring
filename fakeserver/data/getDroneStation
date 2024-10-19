@@ -42,7 +42,7 @@
 		}
 	},
   "PowerInfo": {
-      "ID": 1,
+      "CircuitID": 1,
       "PowerConsumed": 50
     }
 },{
@@ -89,7 +89,7 @@
 		}
 	},
   "PowerInfo": {
-      "ID": 1,
+      "CircuitID": 1,
       "PowerConsumed": 50
     }
 },{
