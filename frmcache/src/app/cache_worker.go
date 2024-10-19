@@ -17,8 +17,9 @@ type CacheWorker struct {
 	ctx        context.Context
 	cancel     context.CancelFunc
 	frmBaseUrl string
+	saveName   string
 	db         *sql.DB
-	now time.Time
+	now        time.Time
 }
 
 func NewCacheWorker(frmBaseUrl string, db *sql.DB) *CacheWorker {
@@ -26,6 +27,7 @@ func NewCacheWorker(frmBaseUrl string, db *sql.DB) *CacheWorker {
 
 	return &CacheWorker{
 		frmBaseUrl: frmBaseUrl,
+		saveName:   "default",
 		db:         db,
 		ctx:        ctx,
 		cancel:     cancel,
@@ -67,14 +69,14 @@ func (c *CacheWorker) cacheMetrics(metric string, data []string) (err error) {
 		}
 	}()
 
-	delete := `delete from cache where metric = $1;`
-	_, err = tx.Exec(delete, metric)
-	if (err != nil) {
+	delete := `delete from cache where metric = $1 AND url = $2 AND save = $3;`
+	_, err = tx.Exec(delete, metric, c.frmBaseUrl, c.saveName)
+	if err != nil {
 		return
 	}
 	for _, s := range data {
-		insert := `insert into cache (metric,data) values($1,$2)`
-		_, err = tx.Exec(insert, metric, s)
+		insert := `insert into cache (metric,data,url,save) values($1,$2,$3,$4)`
+		_, err = tx.Exec(insert, metric, s, c.frmBaseUrl, c.saveName)
 		if err != nil {
 			return
 		}
@@ -96,8 +98,8 @@ func (c *CacheWorker) cacheMetricsWithHistory(metric string, data []string) (err
 		}
 	}()
 	for _, s := range data {
-		insert := `insert into cache_with_history (metric,data, time) values($1,$2,$3)`
-		_, err = tx.Exec(insert, metric, s, c.now)
+		insert := `insert into cache_with_history (metric,data,time,url,save) values($1,$2,$3,$4,$5)`
+		_, err = tx.Exec(insert, metric, s, c.now, c.frmBaseUrl, c.saveName)
 		if err != nil {
 			return
 		}
@@ -107,20 +109,22 @@ func (c *CacheWorker) cacheMetricsWithHistory(metric string, data []string) (err
 	keep := 720 * len(data)
 
 	delete := `delete from cache_with_history where
-metric = $1 and
+metric = $1 AND
+url = $2 AND save = $3
 id NOT IN (
 select id from "cache_with_history" where metric = $1
+AND url = $2 AND save = $3
 order by id desc
-limit $2
+limit $4
 );`
-	_, err = tx.Exec(delete, metric, keep)
+	_, err = tx.Exec(delete, metric, c.frmBaseUrl, c.saveName, keep)
 	return
 }
 
 // flush the metric history cache
 func (c *CacheWorker) flushMetricHistory() error {
-	delete := `truncate cache_with_history;`
-	_, err := c.db.Exec(delete)
+	delete := `DELETE from cache_with_history c WHERE c.url = $1;`
+	_, err := c.db.Exec(delete, c.frmBaseUrl)
 	if err != nil {
 		fmt.Println("flush metrics history db error: ", err)
 	}
@@ -170,9 +174,13 @@ func (c *CacheWorker) pullRealtimeMetrics() {
 	c.pullMetricsLog("truckStation", "/getTruckStation", true)
 }
 
+func (c *CacheWorker) pullSaveName() {
+	// TODO: query and update saveName if changed
+}
+
 func (c *CacheWorker) Start() {
-	//TODO: grab current time, update here instead of using postgres time.now so all metrics can sync on the same time and can aggregate properly.
 	c.now = Clock.Now()
+	c.pullSaveName()
 	c.flushMetricHistory()
 	c.pullLowCadenceMetrics()
 	c.pullRealtimeMetrics()
@@ -184,6 +192,7 @@ func (c *CacheWorker) Start() {
 		case <-Clock.After(5 * time.Second):
 			c.now = Clock.Now()
 			counter = counter + 1
+			c.pullSaveName()
 			c.pullRealtimeMetrics()
 			if counter > 11 {
 				c.pullLowCadenceMetrics()
