@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 8,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -335,7 +335,7 @@
           "type": "postgres",
           "uid": "GhzMNppVk"
         },
-        "definition": "select \ndata ->> 'Name' as name\nfrom cache where metric = 'worldInv';",
+        "definition": "select \ndata ->> 'Name' as name\nfrom cache where metric = 'worldInv'\nand url = '$server'\nand save = '$save';",
         "description": "Item to filter for",
         "hide": 0,
         "includeAll": true,
@@ -343,7 +343,7 @@
         "multi": true,
         "name": "item",
         "options": [],
-        "query": "select \ndata ->> 'Name' as name\nfrom cache where metric = 'worldInv';",
+        "query": "select \ndata ->> 'Name' as name\nfrom cache where metric = 'worldInv'\nand url = '$server'\nand save = '$save';",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -360,6 +360,6 @@
   "timezone": "",
   "title": "Storage",
   "uid": "rMkN1op4z",
-  "version": 5,
+  "version": 2,
   "weekStart": ""
 }
