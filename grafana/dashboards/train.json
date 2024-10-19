@@ -1139,7 +1139,7 @@
           "type": "prometheus",
           "uid": "PBFA97CFB590B2093"
         },
-        "definition": "label_values(save_name)",
+        "definition": "label_values({url=\"$server\"},save_name)",
         "hide": 0,
         "includeAll": false,
         "multi": false,
@@ -1147,7 +1147,7 @@
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(save_name)",
+          "query": "label_values({url=\"$server\"},save_name)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -1190,6 +1190,6 @@
   "timezone": "",
   "title": "Trains",
   "uid": "5TN0r0p4k",
-  "version": 3,
+  "version": 5,
   "weekStart": ""
 }
