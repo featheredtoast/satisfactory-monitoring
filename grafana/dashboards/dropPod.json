@@ -24,13 +24,14 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 5,
+  "id": 6,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
-        "type": "postgres",
+        "default": true,
+        "type": "grafana-postgresql-datasource",
         "uid": "GhzMNppVk"
       },
       "description": "List of drop pods remaining",
@@ -82,7 +83,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "datasource": {
@@ -92,7 +93,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select \n(data ->> 'RepairItem') as repair_item,\n(data ->> 'RepairAmount') as repair_item_amount,\n(data ->> 'PowerRequired') as power_required,\n(data -> 'location' ->> 'X')::NUMERIC/100 as x,\n(data -> 'location' ->> 'Y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'Z')::NUMERIC/100 as z\nfrom cache where metric = 'dropPod'\nand data ->> 'Looted' != 'true'\norder by x, y;",
+          "rawSql": "select \n(data ->> 'RepairItem') as repair_item,\n(data ->> 'RepairAmount') as repair_item_amount,\n(data ->> 'PowerRequired') as power_required,\n(data -> 'location' ->> 'X')::NUMERIC/100 as x,\n(data -> 'location' ->> 'Y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'Z')::NUMERIC/100 as z\nfrom cache where metric = 'dropPod'\nand data ->> 'Looted' != 'true'\nand url = '$server'\nand save = '$save'\norder by x, y;",
           "refId": "A",
           "sql": {
             "columns": [
@@ -118,7 +119,8 @@
     },
     {
       "datasource": {
-        "type": "postgres",
+        "default": true,
+        "type": "grafana-postgresql-datasource",
         "uid": "GhzMNppVk"
       },
       "description": "Map of drop pods",
@@ -278,7 +280,7 @@
           "zoom": 15
         }
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "datasource": {
@@ -288,7 +290,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select \ndata ->> 'Looted' as looted,\n(data -> 'location' ->> 'X')::NUMERIC/100 as x,\n(data -> 'location' ->> 'Y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'Z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'X')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'Y')::NUMERIC + 375000) * -0.0000001172) as latitude,\n(data ->> 'RepairItem') as repair_item,\n(data ->> 'RepairAmount') as repair_item_amount,\n(data ->> 'PowerRequired') as power_required\nfrom cache where metric = 'dropPod'\nand data ->> 'Looted' != 'true';",
+          "rawSql": "select \ndata ->> 'Looted' as looted,\n(data -> 'location' ->> 'X')::NUMERIC/100 as x,\n(data -> 'location' ->> 'Y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'Z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'X')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'Y')::NUMERIC + 375000) * -0.0000001172) as latitude,\n(data ->> 'RepairItem') as repair_item,\n(data ->> 'RepairAmount') as repair_item_amount,\n(data ->> 'PowerRequired') as power_required\nfrom cache where metric = 'dropPod'\nand data ->> 'Looted' != 'true'\nand url = '$server'\nand save = '$save';",
           "refId": "Unlooted",
           "sql": {
             "columns": [
@@ -317,7 +319,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select \ndata ->> 'Looted' as looted,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude,\n(data ->> 'RepairItem') as repair_item,\n(data ->> 'RepairAmount') as repair_item_amount,\n(data ->> 'PowerRequired') as power_required\nfrom cache where metric = 'dropPod'\nand data ->> 'Looted' = 'true';",
+          "rawSql": "select \ndata ->> 'Looted' as looted,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude,\n(data ->> 'RepairItem') as repair_item,\n(data ->> 'RepairAmount') as repair_item_amount,\n(data ->> 'PowerRequired') as power_required\nfrom cache where metric = 'dropPod'\nand data ->> 'Looted' = 'true'\nand url = '$server'\nand save = '$save';",
           "refId": "Looted",
           "sql": {
             "columns": [
@@ -343,11 +345,66 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "http://fakeserver:8080",
+          "value": "http://fakeserver:8080"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "definition": "label_values(url)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Server",
+        "multi": false,
+        "name": "server",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(url)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "default",
+          "value": "default"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "definition": "label_values(save_name)",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "save",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(save_name)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
   },
   "time": {
     "from": "now-6h",
@@ -357,6 +414,6 @@
   "timezone": "",
   "title": "Drop Pods",
   "uid": "1USga2tVk",
-  "version": 1,
+  "version": 3,
   "weekStart": ""
 }
