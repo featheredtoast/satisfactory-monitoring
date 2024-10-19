@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 7,
+  "id": 4,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -263,9 +263,56 @@
             "location": {
               "mode": "auto"
             },
-            "name": "Layer 3",
+            "name": "boundary",
             "tooltip": true,
             "type": "route"
+          },
+          {
+            "config": {
+              "showLegend": false,
+              "style": {
+                "color": {
+                  "fixed": "transparent"
+                },
+                "opacity": 0,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "symbolAlign": {
+                  "horizontal": "center",
+                  "vertical": "center"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "Selected Area"
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "boundary view",
+            "tooltip": false,
+            "type": "markers"
           }
         ],
         "tooltip": {
@@ -276,7 +323,7 @@
           "id": "fit",
           "lastOnly": false,
           "lat": -0.045,
-          "layer": "Selected",
+          "layer": "boundary view",
           "lon": 0.045,
           "zoom": 15
         }
@@ -290,7 +337,7 @@
           },
           "editorMode": "code",
           "format": "table",
-          "hide": false,
+          "hide": true,
           "rawQuery": true,
           "rawSql": "SELECT\ndata ->> 'Recipe' as recipe,\ndata ->> 'Name' as building,\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nFROM cache\nwhere metric in ('factory', 'extractor')\nand (data -> 'location' ->> 'x')::NUMERIC/100 >= $xmin\nand (data -> 'location' ->> 'x')::NUMERIC/100 <= $xmax \nand (data -> 'location' ->> 'y')::NUMERIC/100 >= $ymin\nand (data -> 'location' ->> 'y')::NUMERIC/100 <= $ymax\nand url = '$server'\nand save = '$save'",
           "refId": "Targeted Buildings",
@@ -320,7 +367,7 @@
           },
           "editorMode": "code",
           "format": "table",
-          "hide": false,
+          "hide": true,
           "rawQuery": true,
           "rawSql": "SELECT\n  data ->> 'Recipe' as recipe,\n  data ->> 'building' as building,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nFROM\n  cache\nwhere\n  metric in ('factory', 'extractor')\n  and (\n    (data -> 'location' ->> 'x') :: NUMERIC / 100 < $xmin\n    or (data -> 'location' ->> 'x') :: NUMERIC / 100 > $xmax\n    or (data -> 'location' ->> 'y') :: NUMERIC / 100 < $ymin\n    or (data -> 'location' ->> 'y') :: NUMERIC / 100 > $ymax\n  )\n  and url = '$server'\n  and save = '$save'",
           "refId": "Other Buildings",
@@ -837,6 +884,6 @@
   "timezone": "",
   "title": "Factory Production",
   "uid": "pUvf_pt4k",
-  "version": 5,
+  "version": 2,
   "weekStart": ""
 }
