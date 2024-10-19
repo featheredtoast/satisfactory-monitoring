@@ -15,7 +15,7 @@ else
     cp -R index.html map-16k.png vendor/ img/ js/ ../Companion/bin/map
 fi
 cd ../Companion/bin
-./companion -hostname $FRM_HOST -port $FRM_PORT &
+./companion -hostname $FRM_HOST -port $FRM_PORT -hostnames $FRM_HOSTS &
 PID="$!"
 
 trap 'kill $PID; exit 0' EXIT INT TERM

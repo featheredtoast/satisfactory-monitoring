@@ -20,7 +20,7 @@ func main() {
 	flag.IntVar(&frmPort, "port", 8080, "port of Ficsit Remote Monitoring webserver")
 
 	var frmHostnames string
-	flag.StringVar(&frmHostname, "hostnames", "", "comma separated values of multiple Ficsit Remote Monitoring webservers, of the form http://myserver1:8080,http://myserver2:8080. If defined, this will be used instead of hostname+port")
+	flag.StringVar(&frmHostnames, "hostnames", "", "comma separated values of multiple Ficsit Remote Monitoring webservers, of the form http://myserver1:8080,http://myserver2:8080. If defined, this will be used instead of hostname+port")
 
 	var pgHost string
 	flag.StringVar(&pgHost, "pghost", "postgres", "postgres hostname")

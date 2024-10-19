@@ -24,6 +24,7 @@ services:
     environment:
       - FRM_HOST=${FRM_HOST:-host.docker.internal}
       - FRM_PORT=${FRM_PORT:-8080}
+      - FRM_HOSTS=${FRM_HOSTS}
     ports:
       - "9000:9000"
       - "8000:8000"
@@ -48,6 +49,7 @@ services:
     environment:
       - FRM_HOST=${FRM_HOST:-host.docker.internal}
       - FRM_PORT=${FRM_PORT:-8080}
+      - FRM_HOSTS=${FRM_HOSTS}
       - PG_HOST=${PG_HOST:-postgres}
       - PG_PORT=${PG_PORT:-5432}
       - PG_PASSWORD=${PG_PASSWORD:-secretpassword}
