@@ -59,6 +59,7 @@ Discord alerting for tripped grids.
 
 - `FRM_HOST` - Host where the Ficsit Remote Monitoring webserver is running. Generally this is your computer's IP address, EG: `192.168.1.20`. (Default: `fakeserver`)
 - `FRM_PORT` - Port where the Ficsit Remote Monitoring webserver is running. `8080` is FRM's default at the time of writing. (Default: `8080`)
+- `FROM_HOSTS` - Comma separated list of servers. Advanced option for players interested in monitoring multiple Ficsit Remote Monitoring webservers simultaneously. EG: `server1:8080,server2:9090` Uses this value over FRM_HOST + FRM_PORT if defined. (Defaults to an empty string)
 - `DISCORD_WEBHOOK` - Webhook for discord fuse and low battery notifications. Something like `https://discord.com/api/webhooks/12345/abcd12345`.
 
 ## Services and ports
@@ -80,9 +81,7 @@ Discord alerting for tripped grids.
 
 ### Installing and configuring the mod
 
-Install the [ficsit remote monitoring](https://ficsit.app/mod/FicsitRemoteMonitoring) mod with the [Satisfactory Mod Manager](https://smm.ficsit.app/)[^1].
-
-[^1]: Mods are currently unavailable on dedicated servers.
+Install the [ficsit remote monitoring](https://ficsit.app/mod/FicsitRemoteMonitoring) mod with the [Satisfactory Mod Manager](https://smm.ficsit.app/).
 
 Edit the web server config -- on steam this is something like `C:\\Program Files (x86)\Steam\steamapps\common\Satisfactory\FactoryGame\Configs\FicsitRemoteMonitoring\WebServer.cfg`
 
