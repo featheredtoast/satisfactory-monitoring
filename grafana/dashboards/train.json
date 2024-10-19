@@ -1075,7 +1075,7 @@
       },
       "id": 24,
       "options": {
-        "alertInstanceLabelFilter": "",
+        "alertInstanceLabelFilter": "url=~\"$server\",save_name=~\"$save\"",
         "alertName": "TrainDerailed",
         "dashboardAlerts": false,
         "groupBy": [
@@ -1190,6 +1190,6 @@
   "timezone": "",
   "title": "Trains",
   "uid": "5TN0r0p4k",
-  "version": 5,
+  "version": 7,
   "weekStart": ""
 }
