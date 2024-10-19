@@ -42,7 +42,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 7,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -730,7 +730,7 @@
           "type": "prometheus",
           "uid": "PBFA97CFB590B2093"
         },
-        "definition": "{item_name=~\".+\"}",
+        "definition": "{item_name=~\".+\",url=~\"$server\",save_name=~\"$save\"}",
         "description": "Item",
         "hide": 0,
         "includeAll": false,
@@ -739,8 +739,9 @@
         "name": "item",
         "options": [],
         "query": {
-          "query": "{item_name=~\".+\"}",
-          "refId": "StandardVariableQuery"
+          "qryType": 4,
+          "query": "{item_name=~\".+\",url=~\"$server\",save_name=~\"$save\"}",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
         "regex": ".*item_name=\"([^\"]*)\".*",
@@ -758,6 +759,6 @@
   "timezone": "",
   "title": "Global Production",
   "uid": "gTe4sot4z",
-  "version": 8,
+  "version": 2,
   "weekStart": ""
 }
