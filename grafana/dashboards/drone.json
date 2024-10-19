@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 5,
+  "id": 3,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -386,7 +386,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "(select\n    data ->> 'Name' as name,\n    data ->> 'PairedStation' as paired,\n    (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n    (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n    (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n    (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n    (\n      ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n    ) as longitude,\n    (\n      ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n    ) as latitude\n  from\n    cache\n  where\n    metric = 'droneStation'\n    and url = '$server'\n    and save = '$save'\n    and (data -> 'Name' <@\n(\n  select\n    jsonb_build_array(data -> 'Name',\n    data -> 'PairedStation')\n  from\n    cache\n    join (\n      SELECT\n        data ->> 'HomeStation' as home_station\n      from\n        cache\n      where\n        metric = 'drone'\n        and data ->> 'ID' = '$drone'\n        and url = '$server'\n        and save = '$save'\n    ) as drones on drones.home_station = data ->> 'Name'\n  where\n    metric = 'droneStation'\n    and url = '$server'\n    and save = '$save'\n)\n)\n)",
+          "rawSql": "(select\n    data ->> 'Name' as name,\n    data ->> 'PairedStation' as paired,\n    (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n    (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n    (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n    (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n    (\n      ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n    ) as longitude,\n    (\n      ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n    ) as latitude\n  from\n    cache\n  where\n    metric = 'droneStation'\n    and url = '$server'\n    and save = '$save'\n    and (data -> 'Name' <@\n(\n  select\n    jsonb_build_array(data -> 'Name',\n    data -> 'PairedStation')\n  from\n    cache\n    join (\n      SELECT\n        data ->> 'HomeStation' as home_station\n      from\n        cache\n      where\n        metric = 'drone'\n        and data ->> 'ID' = '$drone'\n        and url = '$server'\n        and save = '$save'\n    ) as drones on drones.home_station = data ->> 'Name'\n  where\n    metric = 'droneStation'\n    and url = '$server'\n    and save = '$save'\n    limit 1\n)\n)\n)",
           "refId": "Ports",
           "sql": {
             "columns": [
@@ -444,7 +444,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "(select\n    data ->> 'Name' as name,\n    data ->> 'PairedStation' as paired,\n    (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n    (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n    (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n    (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n    (\n      ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n    ) as longitude,\n    (\n      ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n    ) as latitude\n  from\n    cache\n  where\n    metric = 'droneStation'\n    and url = '$server'\n    and save = '$save'\n    and NOT(data -> 'Name' <@\n(\n  select\n    jsonb_build_array(data -> 'HomeStation',\n    data -> 'PairedStation')\n  from\n    cache\n    join (\n      SELECT\n        data ->> 'HomeStation' as home_station\n      from\n        cache\n      where\n        metric = 'drone'\n        and data ->> 'ID' = '$drone'\n        and url = '$server'\n        and save = '$save'\n    ) as drones on drones.home_station = data ->> 'Name'\n  where\n    metric = 'droneStation'\n    and url = '$server'\n    and save = '$save'\n)\n)\n)",
+          "rawSql": "(select\n    data ->> 'Name' as name,\n    data ->> 'PairedStation' as paired,\n    (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n    (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n    (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n    (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n    (\n      ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n    ) as longitude,\n    (\n      ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n    ) as latitude\n  from\n    cache\n  where\n    metric = 'droneStation'\n    and url = '$server'\n    and save = '$save'\n    and NOT(data -> 'Name' <@\n(\n  select\n    jsonb_build_array(data -> 'HomeStation',\n    data -> 'PairedStation')\n  from\n    cache\n    join (\n      SELECT\n        data ->> 'HomeStation' as home_station\n      from\n        cache\n      where\n        metric = 'drone'\n        and data ->> 'ID' = '$drone'\n        and url = '$server'\n        and save = '$save'\n    ) as drones on drones.home_station = data ->> 'Name'\n  where\n    metric = 'droneStation'\n    and url = '$server'\n    and save = '$save'\n    limit 1\n)\n)\n)",
           "refId": "Other ports",
           "sql": {
             "columns": [
@@ -789,7 +789,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "http://fakeserver:8080",
           "value": "http://fakeserver:8080"
         },
@@ -853,14 +853,14 @@
           "type": "postgres",
           "uid": "GhzMNppVk"
         },
-        "definition": "select\ndata ->> 'ID' as __value,\nconcat(data ->> 'ID', ' : ', data ->> 'HomeStation') as __text\nfrom cache c\nwhere metric = 'drone'\nand data ->> 'CurrentFlyingMode' <> 'DFM_None'\norder by c.id desc",
+        "definition": "select\ndata ->> 'ID' as __value,\nconcat(data ->> 'ID', ' : ', data ->> 'HomeStation') as __text\nfrom cache c\nwhere metric = 'drone'\nand data ->> 'CurrentFlyingMode' <> 'DFM_None'\nand url = '$server'\nand save = '$save'\norder by c.id desc",
         "hide": 0,
         "includeAll": false,
         "label": "Drone ID",
         "multi": false,
         "name": "drone",
         "options": [],
-        "query": "select\ndata ->> 'ID' as __value,\nconcat(data ->> 'ID', ' : ', data ->> 'HomeStation') as __text\nfrom cache c\nwhere metric = 'drone'\nand data ->> 'CurrentFlyingMode' <> 'DFM_None'\norder by c.id desc",
+        "query": "select\ndata ->> 'ID' as __value,\nconcat(data ->> 'ID', ' : ', data ->> 'HomeStation') as __text\nfrom cache c\nwhere metric = 'drone'\nand data ->> 'CurrentFlyingMode' <> 'DFM_None'\nand url = '$server'\nand save = '$save'\norder by c.id desc",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -877,6 +877,6 @@
   "timezone": "",
   "title": "Drones",
   "uid": "HsE6e0tVz",
-  "version": 6,
+  "version": 3,
   "weekStart": ""
 }
