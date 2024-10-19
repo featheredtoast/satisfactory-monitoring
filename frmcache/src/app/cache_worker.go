@@ -123,8 +123,8 @@ limit $4
 
 // flush the metric history cache
 func (c *CacheWorker) flushMetricHistory() error {
-	delete := `DELETE from cache_with_history c WHERE c.url = $1;`
-	_, err := c.db.Exec(delete, c.frmBaseUrl)
+	delete := `DELETE from cache_with_history c WHERE c.url = $1 and c.save = $2;`
+	_, err := c.db.Exec(delete, c.frmBaseUrl, c.saveName)
 	if err != nil {
 		fmt.Println("flush metrics history db error: ", err)
 	}
