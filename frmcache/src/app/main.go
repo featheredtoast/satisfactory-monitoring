@@ -9,6 +9,7 @@ import (
 	"os/signal"
 	"runtime"
 	"strconv"
+	"strings"
 	"syscall"
 )
 
@@ -17,6 +18,9 @@ func main() {
 	flag.StringVar(&frmHostname, "hostname", "localhost", "hostname of Ficsit Remote Monitoring webserver")
 	var frmPort int
 	flag.IntVar(&frmPort, "port", 8080, "port of Ficsit Remote Monitoring webserver")
+
+	var frmHostnames string
+	flag.StringVar(&frmHostname, "hostnames", "", "comma separated values of multiple Ficsit Remote Monitoring webservers, of the form http://myserver1:8080,http://myserver2:8080. If defined, this will be used instead of hostname+port")
 
 	var pgHost string
 	flag.StringVar(&pgHost, "pghost", "postgres", "postgres hostname")
@@ -37,8 +41,20 @@ func main() {
 	err = db.Ping()
 	CheckError(err)
 
-	cacheWorker := NewCacheWorker("http://"+frmHostname+":"+strconv.Itoa(frmPort), db)
-	go cacheWorker.Start()
+	cacheWorkers := []*CacheWorker{}
+	if frmHostnames == "" {
+		cacheWorkers = append(cacheWorkers, NewCacheWorker("http://"+frmHostname+":"+strconv.Itoa(frmPort), db))
+	} else {
+		for _, frmServer := range strings.Split(frmHostnames, ",") {
+			if !strings.HasPrefix(frmServer, "http://") && !strings.HasPrefix(frmServer, "https://") {
+				frmServer = "http://" + frmServer
+			}
+			cacheWorkers = append(cacheWorkers, NewCacheWorker(frmServer, db))
+		}
+	}
+	for _, cacheWorker := range cacheWorkers {
+		go cacheWorker.Start()
+	}
 
 	fmt.Printf(`
 FRM Cache started
@@ -54,7 +70,9 @@ Press ctrl-c to exit`)
 	}
 	<-sigChan
 
-	cacheWorker.Stop()
+	for _, cacheWorker := range cacheWorkers {
+		cacheWorker.Stop()
+	}
 }
 
 func CheckError(err error) {
