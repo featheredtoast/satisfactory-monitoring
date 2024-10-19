@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 7,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -260,11 +260,11 @@
           "mode": "details"
         },
         "view": {
-          "allLayers": false,
+          "allLayers": true,
           "id": "fit",
           "lastOnly": false,
           "lat": 0,
-          "layer": "Route",
+          "layer": "Truck Location",
           "lon": 0,
           "zoom": 16
         }
@@ -280,8 +280,8 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation') as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history where metric = 'truck'\nand data ->> 'ID' = '$vehicle'\nand $__timeFilter(time)\nand url = '$server'\nand save = '$save'\norder by time desc\nlimit 100;\n",
-          "refId": "Route",
+          "rawSql": "select\nconcat(data->>'ID',':',data->>'VehicleType') as vehicle,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'truck'\nand data ->> 'ID' = '$vehicle'\nand url = '$server'\nand save = '$save';\n",
+          "refId": "Current location",
           "sql": {
             "columns": [
               {
@@ -309,8 +309,8 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\nconcat(data->>'ID',':',data->>'VehicleType') as vehicle,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'truck'\nand data ->> 'ID' = '$vehicle'\nand url = '$server'\nand save = '$save';\n",
-          "refId": "Current location",
+          "rawSql": "select\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation') as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history where metric = 'truck'\nand data ->> 'ID' = '$vehicle'\nand $__timeFilter(time)\nand url = '$server'\nand save = '$save'\norder by time desc\nlimit 100;\n",
+          "refId": "Route",
           "sql": {
             "columns": [
               {
@@ -700,7 +700,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "http://fakeserver:8080",
           "value": "http://fakeserver:8080"
         },
