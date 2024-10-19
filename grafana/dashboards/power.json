@@ -44,7 +44,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 6,
+  "id": 8,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -108,6 +108,7 @@
     },
     {
       "datasource": {
+        "default": false,
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
@@ -161,6 +162,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -168,20 +170,26 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "fuse_triggered{circuit_id=\"$circuit\"}",
+          "expr": "fuse_triggered{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "legendFormat": "__auto",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "Fuse",
@@ -189,6 +197,7 @@
     },
     {
       "datasource": {
+        "default": false,
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
@@ -238,6 +247,8 @@
       },
       "id": 4,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -247,20 +258,25 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": false
+        "showThresholdMarkers": false,
+        "sizing": "auto"
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "battery_percent{circuit_id=\"$circuit\"}",
+          "expr": "battery_percent{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "legendFormat": "__auto",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "Battery charge",
@@ -268,6 +284,7 @@
     },
     {
       "datasource": {
+        "default": false,
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
@@ -319,6 +336,8 @@
       },
       "id": 10,
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -328,20 +347,25 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": false
+        "showThresholdMarkers": false,
+        "sizing": "auto"
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "battery_seconds_empty{circuit_id=\"$circuit\"} / 60",
+          "expr": "battery_seconds_empty{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"} / 60",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "legendFormat": "__auto",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "Battery minutes remaining",
@@ -349,6 +373,7 @@
     },
     {
       "datasource": {
+        "default": false,
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
@@ -358,11 +383,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": true,
             "axisColorMode": "text",
             "axisLabel": "MW/H",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -371,6 +398,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -429,11 +457,15 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "battery_differential{circuit_id=\"$circuit\"}",
+          "expr": "battery_differential{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "legendFormat": "{{__name__}}",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "Battery charge rate",
@@ -441,6 +473,7 @@
     },
     {
       "datasource": {
+        "default": false,
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
@@ -450,11 +483,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "MW",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -463,6 +498,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -602,48 +638,64 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "power_capacity{circuit_id=\"$circuit\"}",
+          "expr": "power_capacity{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "legendFormat": "{{__name__}}",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "power_max_consumed{circuit_id=\"$circuit\"}",
+          "expr": "power_max_consumed{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"}",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "legendFormat": "{{__name__}}",
           "range": true,
-          "refId": "MAX"
+          "refId": "MAX",
+          "useBackend": false
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "power_consumed{circuit_id=\"$circuit\"}",
+          "expr": "power_consumed{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"}",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "legendFormat": "{{__name__}}",
           "range": true,
-          "refId": "C"
+          "refId": "C",
+          "useBackend": false
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "power_consumed_overhead_or_max_consumed:min6h{circuit_id=\"$circuit\"}",
+          "expr": "power_consumed_overhead_or_max_consumed:min6h{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"}",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "real_power_consumed_max",
           "range": true,
-          "refId": "OVERHEAD"
+          "refId": "OVERHEAD",
+          "useBackend": false
         }
       ],
       "title": "Power",
@@ -651,6 +703,7 @@
     },
     {
       "datasource": {
+        "default": false,
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
@@ -797,13 +850,17 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "power_consumed{circuit_id=\"$circuit\"}",
+          "expr": "power_consumed{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"}",
+          "fullMetaSearch": false,
           "hide": true,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "Total Power Consumption",
           "range": true,
-          "refId": "TOTAL"
+          "refId": "TOTAL",
+          "useBackend": false
         },
         {
           "datasource": {
@@ -811,7 +868,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum(vehicle_station_power{circuit_id=\"$circuit\"} or vector(0))",
+          "expr": "sum(vehicle_station_power{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"} or vector(0))",
           "hide": false,
           "instant": false,
           "legendFormat": "Truck Stations",
@@ -824,7 +881,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum(train_station_power{circuit_id=\"$circuit\"} or vector(0))",
+          "expr": "sum(train_station_power{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"} or vector(0))",
           "hide": false,
           "instant": false,
           "legendFormat": "Train Stations",
@@ -837,7 +894,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum(train_power_circuit_consumed{circuit_id=\"$circuit\"} or vector(0))",
+          "expr": "sum(train_power_circuit_consumed{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"} or vector(0))",
           "hide": false,
           "instant": false,
           "legendFormat": "Trains",
@@ -850,7 +907,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum(drone_port_power{circuit_id=\"$circuit\"} or vector(0))",
+          "expr": "sum(drone_port_power{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"} or vector(0))",
           "hide": false,
           "instant": false,
           "legendFormat": "Drone Ports",
@@ -863,7 +920,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum(factory_power{circuit_id=\"$circuit\"} or vector(0))",
+          "expr": "sum(factory_power{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"} or vector(0))",
           "hide": false,
           "instant": false,
           "legendFormat": "Factory",
@@ -887,7 +944,8 @@
     },
     {
       "datasource": {
-        "type": "postgres",
+        "default": true,
+        "type": "grafana-postgresql-datasource",
         "uid": "GhzMNppVk"
       },
       "description": "Map of where circuit $circuit is operating",
@@ -999,7 +1057,7 @@
           "zoom": 15
         }
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "datasource": {
@@ -1009,7 +1067,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\ndata ->> 'building' as building,\ndata ->> 'CircuitID' as circuit,\ndata ->> 'Recipe' as recipe,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric in ('factory', 'extractor')\nand (data ->> 'CircuitID')::numeric = $circuit",
+          "rawSql": "SELECT\ndata ->> 'building' as building,\ndata ->> 'CircuitID' as circuit,\ndata ->> 'Recipe' as recipe,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric in ('factory', 'extractor')\nand (data ->> 'CircuitID')::numeric = $circuit\nand url = '$server'\nand save = '$save'",
           "refId": "buildings",
           "sql": {
             "columns": [
@@ -1035,7 +1093,8 @@
     },
     {
       "datasource": {
-        "type": "postgres",
+        "default": true,
+        "type": "grafana-postgresql-datasource",
         "uid": "GhzMNppVk"
       },
       "description": "number of buildings on each circuit",
@@ -1087,7 +1146,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "10.0.3",
+      "pluginVersion": "11.2.2",
       "targets": [
         {
           "datasource": {
@@ -1097,7 +1156,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select \ndata ->> 'CircuitID' as circuit,\ncount(*) as building_count\nfrom cache where metric in ('factory', 'extractor')\ngroup by circuit\norder by building_count",
+          "rawSql": "select \ndata ->> 'CircuitID' as circuit,\ncount(*) as building_count\nfrom cache where metric in ('factory', 'extractor')\nand url = '$server'\nand save = '$save'\ngroup by circuit\norder by building_count",
           "refId": "A",
           "sql": {
             "columns": [
@@ -1136,6 +1195,7 @@
     },
     {
       "datasource": {
+        "default": false,
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
@@ -1145,11 +1205,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "MW",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1158,6 +1220,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1235,23 +1298,31 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "factory_power{circuit_id=\"$circuit\"}",
+          "expr": "factory_power{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "legendFormat": "{{__name__}}",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "factory_power_max{circuit_id=\"$circuit\"}",
+          "expr": "factory_power_max{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"}",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "legendFormat": "{{__name__}}",
           "range": true,
-          "refId": "B"
+          "refId": "B",
+          "useBackend": false
         }
       ],
       "title": "Factory Power",
@@ -1259,6 +1330,7 @@
     },
     {
       "datasource": {
+        "default": false,
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
@@ -1268,11 +1340,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "MW",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1281,6 +1355,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1358,23 +1433,31 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "vehicle_station_power{circuit_id=\"$circuit\"}",
+          "expr": "vehicle_station_power{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "legendFormat": "{{__name__}}",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "vehicle_station_power_max{circuit_id=\"$circuit\"}",
+          "expr": "vehicle_station_power_max{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"}",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "legendFormat": "{{__name__}}",
           "range": true,
-          "refId": "B"
+          "refId": "B",
+          "useBackend": false
         }
       ],
       "title": "Vehicle Station Power",
@@ -1382,6 +1465,7 @@
     },
     {
       "datasource": {
+        "default": false,
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
@@ -1391,11 +1475,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "MW",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1404,6 +1490,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1481,23 +1568,31 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "train_station_power{circuit_id=\"$circuit\"}",
+          "expr": "train_station_power{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "legendFormat": "{{__name__}}",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "train_station_power_max{circuit_id=\"$circuit\"}",
+          "expr": "train_station_power_max{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"}",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "legendFormat": "{{__name__}}",
           "range": true,
-          "refId": "B"
+          "refId": "B",
+          "useBackend": false
         }
       ],
       "title": "Train Station Power",
@@ -1505,6 +1600,7 @@
     },
     {
       "datasource": {
+        "default": false,
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
@@ -1514,11 +1610,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "MW",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1527,6 +1625,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1604,23 +1703,31 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "train_power_circuit_consumed{circuit_id=\"$circuit\"}",
+          "expr": "train_power_circuit_consumed{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "legendFormat": "{{__name__}}",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "train_power_circuit_consumed_max{circuit_id=\"$circuit\"}",
+          "expr": "train_power_circuit_consumed_max{circuit_id=\"$circuit\", url=\"$server\", save_name=\"$save\"}",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "legendFormat": "{{__name__}}",
           "range": true,
-          "refId": "B"
+          "refId": "B",
+          "useBackend": false
         }
       ],
       "title": "Train Power",
@@ -1628,11 +1735,64 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "http://fakeserver:8080",
+          "value": "http://fakeserver:8080"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "definition": "label_values(url)",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "server",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(url)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "default",
+          "value": "default"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "definition": "label_values(save_name)",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "save",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(save_name)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
       {
         "current": {
           "selected": false,
@@ -1671,6 +1831,6 @@
   "timezone": "",
   "title": "Power",
   "uid": "OFv4PopVz",
-  "version": 1,
+  "version": 3,
   "weekStart": ""
 }
