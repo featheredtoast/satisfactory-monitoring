@@ -455,7 +455,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\ndata->>'ID' as id,\ndata->>'Name' as type,\ndata->>'PathName' as path_name,\ndata->>'Autopilot' as autopilot\nfrom cache WHERE metric = 'truck'\nand url = '$server'\nand save = '$save';",
+          "rawSql": "SELECT\ndata->>'ID' as id,\ndata->>'Name' as type,\ndata->>'PathName' as path_name,\ndata->>'Autopilot' as autopilot,\ndata->>'Status' as status\nfrom cache WHERE metric = 'truck'\nand url = '$server'\nand save = '$save';",
           "refId": "A",
           "sql": {
             "columns": [
@@ -786,6 +786,6 @@
   "timezone": "",
   "title": "Vehicles",
   "uid": "XteIs3cVk",
-  "version": 2,
+  "version": 4,
   "weekStart": ""
 }
