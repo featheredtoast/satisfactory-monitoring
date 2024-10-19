@@ -74,7 +74,7 @@
       },
       "id": 21,
       "options": {
-        "alertInstanceLabelFilter": "category=~\"power\"",
+        "alertInstanceLabelFilter": "category=~\"power\",url=~\"$server\",save_name=~\"$save\"",
         "alertName": "",
         "dashboardAlerts": false,
         "groupBy": [],
@@ -1827,6 +1827,6 @@
   "timezone": "",
   "title": "Power",
   "uid": "OFv4PopVz",
-  "version": 5,
+  "version": 7,
   "weekStart": ""
 }
