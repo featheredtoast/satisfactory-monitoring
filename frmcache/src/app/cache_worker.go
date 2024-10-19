@@ -110,7 +110,7 @@ func (c *CacheWorker) cacheMetricsWithHistory(metric string, data []string) (err
 
 	delete := `delete from cache_with_history where
 metric = $1 AND
-url = $2 AND save = $3
+url = $2 AND save = $3 AND
 id NOT IN (
 select id from "cache_with_history" where metric = $1
 AND url = $2 AND save = $3
