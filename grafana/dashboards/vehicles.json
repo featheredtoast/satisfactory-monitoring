@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 4,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -762,14 +762,14 @@
           "type": "postgres",
           "uid": "GhzMNppVk"
         },
-        "definition": "select\ndata->>'ID' as __value,\nconcat(data->>'ID', ' (', data ->> 'Name', ':', data ->> 'PathName',')') as __text\nfrom cache where metric = 'truck'\norder by id desc;",
+        "definition": "select\ndata->>'ID' as __value,\nconcat(data->>'ID', ' (', data ->> 'Name', ':', data ->> 'PathName',')') as __text\nfrom cache where metric = 'truck'\nand url = '$server'\nand save = '$save'\norder by id desc;",
         "hide": 0,
         "includeAll": false,
         "label": "Vehicle",
         "multi": false,
         "name": "vehicle",
         "options": [],
-        "query": "select\ndata->>'ID' as __value,\nconcat(data->>'ID', ' (', data ->> 'Name', ':', data ->> 'PathName',')') as __text\nfrom cache where metric = 'truck'\norder by id desc;",
+        "query": "select\ndata->>'ID' as __value,\nconcat(data->>'ID', ' (', data ->> 'Name', ':', data ->> 'PathName',')') as __text\nfrom cache where metric = 'truck'\nand url = '$server'\nand save = '$save'\norder by id desc;",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -786,6 +786,6 @@
   "timezone": "",
   "title": "Vehicles",
   "uid": "XteIs3cVk",
-  "version": 5,
+  "version": 2,
   "weekStart": ""
 }

@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -386,7 +386,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\n  data ->> 'StationName' as station_name,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nfrom\n  cache\n \nwhere\n  metric = 'trainStation'\n  and url = '$server'\n  and save = '$save'\n  and (data -> 'Name') <@ (\n    select\n          jsonb_path_query_array(data, '$.TimeTable[*].StationName') as station\n        from\n          cache c\n         \n        where\n          metric = 'train'\n          and data ->> 'Name' = '$train'\n          and url = '$server'\n          and save = '$save'\n  )",
+          "rawSql": "select\n  data ->> 'StationName' as station_name,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nfrom\n  cache\n \nwhere\n  metric = 'trainStation'\n  and url = '$server'\n  and save = '$save'\n  and (data -> 'Name') <@ (\n    select\n          jsonb_path_query_array(data, '$.TimeTable[*].StationName') as station\n        from\n          cache c\n         \n        where\n          metric = 'train'\n          and data ->> 'Name' = '$train'\n          and url = '$server'\n          and save = '$save'\n        limit 1\n  )",
           "refId": "Stations",
           "sql": {
             "columns": [
@@ -444,7 +444,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\n  data ->> 'StationName' as station_name,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nfrom\n  cache\n \nwhere\n  metric = 'trainStation'\n  and url = '$server'\n  and save = '$save'\n  and not (data -> 'Name') <@ (\n    select\n          jsonb_path_query_array(data, '$.TimeTable[*].StationName') as station\n        from\n          cache c\n         \n        where\n          metric = 'train'\n          and data ->> 'Name' = '$train'\n          and url = '$server'\n          and save = '$save'\n  );",
+          "rawSql": "select\n  data ->> 'StationName' as station_name,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nfrom\n  cache\n \nwhere\n  metric = 'trainStation'\n  and url = '$server'\n  and save = '$save'\n  and not (data -> 'Name') <@ (\n    select\n          jsonb_path_query_array(data, '$.TimeTable[*].StationName') as station\n        from\n          cache c\n         \n        where\n          metric = 'train'\n          and data ->> 'Name' = '$train'\n          and url = '$server'\n          and save = '$save'\n        limit 1\n  );",
           "refId": "Other stations",
           "sql": {
             "columns": [
@@ -1159,21 +1159,21 @@
       {
         "current": {
           "selected": false,
-          "text": "not-choo",
-          "value": "not-choo"
+          "text": "Train",
+          "value": "Train"
         },
         "datasource": {
           "type": "postgres",
           "uid": "GhzMNppVk"
         },
-        "definition": "select\ndata ->> 'Name'\nfrom cache_with_history c\nwhere metric = 'train'\norder by c.id desc",
+        "definition": "select\ndata ->> 'Name'\nfrom cache_with_history c\nwhere metric = 'train'\nand url = '$server'\nand save = '$save'\norder by c.id desc",
         "hide": 0,
         "includeAll": false,
         "label": "Train name",
         "multi": false,
         "name": "train",
         "options": [],
-        "query": "select\ndata ->> 'Name'\nfrom cache_with_history c\nwhere metric = 'train'\norder by c.id desc",
+        "query": "select\ndata ->> 'Name'\nfrom cache_with_history c\nwhere metric = 'train'\nand url = '$server'\nand save = '$save'\norder by c.id desc",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1190,6 +1190,6 @@
   "timezone": "",
   "title": "Trains",
   "uid": "5TN0r0p4k",
-  "version": 7,
+  "version": 4,
   "weekStart": ""
 }
