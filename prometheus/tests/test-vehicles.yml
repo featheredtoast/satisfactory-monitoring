@@ -4,7 +4,7 @@ evaluation_interval: 1m
 tests:
   - interval: 1m
     input_series:
-      - series: 'train_derailed{name="choo"}'
+      - series: 'train_derailed{name="choo",url="http://test:8080"}'
         values: '0 0 0 0 0 0 1 1 1 1'
     alert_rule_test:
       - eval_time: 10m
@@ -13,6 +13,7 @@ tests:
           - exp_labels:
               category: vehicles
               name: "choo"
+              url: http://test:8080
             exp_annotations:
               summary: "A train has derailed"
               description: "Train choo has gone off the rails!"
@@ -20,7 +21,7 @@ tests:
 # No alert when train isn't derailed
   - interval: 1m
     input_series:
-      - series: 'train_derailed{name="choo"}'
+      - series: 'train_derailed{name="choo",url="http://test:8080"}'
         values: '0'
     alert_rule_test:
       - eval_time: 10m

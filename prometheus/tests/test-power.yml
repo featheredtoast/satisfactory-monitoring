@@ -4,7 +4,7 @@ evaluation_interval: 1m
 tests:
   - interval: 1m
     input_series:
-      - series: 'fuse_triggered{circuit_id="1"}'
+      - series: 'fuse_triggered{circuit_id="1",url="http://test:8080"}'
         values: '0 0 0 0 0 0 1 1 1 1'
     alert_rule_test:
       - eval_time: 10m
@@ -13,6 +13,7 @@ tests:
           - exp_labels:
               circuit_id: 1
               category: power
+              url: http://test:8080
             exp_annotations:
               summary: "Fuse triggered on circuit 1"
               description: Fuse triggered - a power grid is without power.
@@ -20,7 +21,7 @@ tests:
 # No alert when fuse is not 1
   - interval: 1m
     input_series:
-      - series: 'fuse_triggered{circuit_id="1"}'
+      - series: 'fuse_triggered{circuit_id="1",url="http://test:8080"}'
         values: '0'
     alert_rule_test:
       - eval_time: 10m
@@ -30,7 +31,7 @@ tests:
 # Alert when battery begins to drain
   - interval: 1m
     input_series:
-      - series: 'battery_differential{circuit_id="1"}'
+      - series: 'battery_differential{circuit_id="1",url="http://test:8080"}'
         values: '-1+0x10'
     alert_rule_test:
       - eval_time: 10m
@@ -39,13 +40,14 @@ tests:
           - exp_labels:
               circuit_id: 1
               category: power
+              url: http://test:8080
             exp_annotations:
               summary: "Battery draining on circuit 1"
               description: A battery has started to drain on circuit 1.
 # No alert when we're charging
   - interval: 1m
     input_series:
-      - series: 'battery_differential{circuit_id="1"}'
+      - series: 'battery_differential{circuit_id="1",url="http://test:8080"}'
         values: '1+0x10'
     alert_rule_test:
       - eval_time: 1m
@@ -55,7 +57,7 @@ tests:
 # Alert again when battery drained under 30 mins
   - interval: 1m
     input_series:
-      - series: 'battery_seconds_empty{circuit_id="2"}'
+      - series: 'battery_seconds_empty{circuit_id="2",url="http://test:8080"}'
         values: '3000+0x5 1000+0x5'
     alert_rule_test:
       - eval_time: 10m
@@ -64,6 +66,7 @@ tests:
           - exp_labels:
               circuit_id: 2
               category: power
+              url: http://test:8080
             exp_annotations:
               summary: "Under 30 minutes of power left on circuit 2"
               description: A battery has nearly drained on circuit 2. Under thirty minutes of power remaining.
@@ -71,7 +74,7 @@ tests:
 # No alert when charging - battery seconds empty is 0
   - interval: 1m
     input_series:
-      - series: 'battery_seconds_empty{circuit_id="1"}'
+      - series: 'battery_seconds_empty{circuit_id="1",url="http://test:8080"}'
         values: '0+0x10'
     alert_rule_test:
       - eval_time: 10m
@@ -81,17 +84,17 @@ tests:
 # Alert when power capacity is under max consumption
   - interval: 1m
     input_series:
-      - series: 'power_capacity{circuit_id="1"}'
+      - series: 'power_capacity{circuit_id="1",url="http://test:8080"}'
         values: '50+0x10'
-      - series: 'power_max_consumed{circuit_id="1"}'
+      - series: 'power_max_consumed{circuit_id="1",url="http://test:8080"}'
         values: '20+5x10'
-      - series: 'power_consumed{circuit_id="1"}'
+      - series: 'power_consumed{circuit_id="1",url="http://test:8080"}'
         values: '20+5x10'
-      - series: 'power_capacity{circuit_id="2"}'
+      - series: 'power_capacity{circuit_id="2",url="http://test:8080"}'
         values: '50+0x10'
-      - series: 'power_max_consumed{circuit_id="2"}'
+      - series: 'power_max_consumed{circuit_id="2",url="http://test:8080"}'
         values: '20+0x10'
-      - series: 'power_consumed{circuit_id="2"}'
+      - series: 'power_consumed{circuit_id="2",url="http://test:8080"}'
         values: '20+0x10'
     alert_rule_test:
       - eval_time: 10m
@@ -100,22 +103,23 @@ tests:
           - exp_labels:
               circuit_id: 1
               category: power
+              url: http://test:8080
             exp_annotations:
               summary: "Max consumption too high on circuit 1"
               description: Max consumption on power grid 1 has exceeded production. Power instability may occur.
   - interval: 1m
     input_series:
-      - series: 'power_capacity{circuit_id="1"}'
+      - series: 'power_capacity{circuit_id="1",url="http://test:8080"}'
         values: '50+0x10'
-      - series: 'power_max_consumed{circuit_id="1"}'
+      - series: 'power_max_consumed{circuit_id="1",url="http://test:8080"}'
         values: '20+0x10'
-      - series: 'power_consumed{circuit_id="1"}'
+      - series: 'power_consumed{circuit_id="1",url="http://test:8080"}'
         values: '20+0x10'
-      - series: 'power_capacity{circuit_id="2"}'
+      - series: 'power_capacity{circuit_id="2",url="http://test:8080"}'
         values: '50+0x10'
-      - series: 'power_max_consumed{circuit_id="2"}'
+      - series: 'power_max_consumed{circuit_id="2",url="http://test:8080"}'
         values: '20+0x10'
-      - series: 'power_consumed{circuit_id="2"}'
+      - series: 'power_consumed{circuit_id="2",url="http://test:8080"}'
         values: '20+0x10'
     alert_rule_test:
       - eval_time: 10m
@@ -124,17 +128,17 @@ tests:
 # also do not alert when max consumption is way high but power consumed is still low enough
   - interval: 1m
     input_series:
-      - series: 'power_capacity{circuit_id="1"}'
+      - series: 'power_capacity{circuit_id="1",url="http://test:8080"}'
         values: '50+0x10'
-      - series: 'power_max_consumed{circuit_id="1"}'
+      - series: 'power_max_consumed{circuit_id="1",url="http://test:8080"}'
         values: '20+5x10'
-      - series: 'power_consumed{circuit_id="1"}'
+      - series: 'power_consumed{circuit_id="1",url="http://test:8080"}'
         values: '20+0x10'
-      - series: 'power_capacity{circuit_id="2"}'
+      - series: 'power_capacity{circuit_id="2",url="http://test:8080"}'
         values: '50+0x10'
-      - series: 'power_max_consumed{circuit_id="2"}'
+      - series: 'power_max_consumed{circuit_id="2",url="http://test:8080"}'
         values: '20+0x10'
-      - series: 'power_consumed{circuit_id="2"}'
+      - series: 'power_consumed{circuit_id="2",url="http://test:8080"}'
         values: '20+0x10'
     alert_rule_test:
       - eval_time: 10m

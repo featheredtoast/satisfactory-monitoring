@@ -3,9 +3,9 @@ groups:
     rules:
 # record power consumped with 20% margin of overhead
     - record: power_consumed_overhead:min6h
-      expr: min (1.2 * max_over_time(power_consumed[6h])) by (circuit_id)
+      expr: min (1.2 * max_over_time(power_consumed[6h])) by (circuit_id,url,save_name)
     - record: power_consumed_overhead_or_max_consumed:min6h
-      expr: min(power_consumed_overhead:min6h or last_over_time(power_max_consumed[1h])) by (circuit_id)
+      expr: min(power_consumed_overhead:min6h or last_over_time(power_max_consumed[1h])) by (circuit_id,url,save_name)
 
     - alert: FuseTriggered
       expr: fuse_triggered > 0
