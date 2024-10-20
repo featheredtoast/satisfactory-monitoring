@@ -4,7 +4,7 @@ route:
   receiver: ignore
   routes:
     - receiver: webhook_receiver
-      group_by: [alertname]
+      group_by: [alertname,url,save_name]
       matchers:
         - category =~ "power"
         - alertname =~ "FuseTriggered|BatteryDrained"
