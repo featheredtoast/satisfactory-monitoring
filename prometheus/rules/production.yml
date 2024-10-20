@@ -7,7 +7,7 @@ groups:
       labels:
         category: production
       annotations:
-        summary: "Overconsuming {{ $labels.item_name }}"
+        summary: "Overconsuming item"
         description: "{{ $labels.item_name }} consumption has overtaken consumption. Produce more {{ $labels.item_name }} so as to not run out"
     - alert: Underproducing
       expr: item_production_capacity_pc < 0.2
@@ -15,5 +15,5 @@ groups:
       labels:
         category: production
       annotations:
-        summary: "Underproducing {{ $labels.item_name }}"
+        summary: "Underproducing item"
         description: "{{ $labels.item_name }} production is low - under 20% production capacity. Check production sites?"

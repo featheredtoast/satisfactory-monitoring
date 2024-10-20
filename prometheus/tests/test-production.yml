@@ -18,7 +18,7 @@ tests:
               category: production
               url: http://test:8080
             exp_annotations:
-              summary: "Overconsuming Iron Plate"
+              summary: "Overconsuming item"
               description: Iron Plate consumption has overtaken consumption. Produce more Iron Plate so as to not run out
   # no alert when production is = consumption
   - interval: 1m
@@ -46,7 +46,7 @@ tests:
               category: production
               url: http://test:8080
             exp_annotations:
-              summary: "Underproducing Iron Plate"
+              summary: "Underproducing item"
               description: Iron Plate production is low - under 20% production capacity. Check production sites?
 
 # No alerts for anything over 20%

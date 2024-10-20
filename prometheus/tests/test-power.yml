@@ -15,8 +15,8 @@ tests:
               category: power
               url: http://test:8080
             exp_annotations:
-              summary: "Fuse triggered on circuit 1"
-              description: Fuse triggered - a power grid is without power.
+              summary: Fuse triggered
+              description: "Fuse triggered - power grid 1 is without power."
 
 # No alert when fuse is not 1
   - interval: 1m
@@ -42,7 +42,7 @@ tests:
               category: power
               url: http://test:8080
             exp_annotations:
-              summary: "Battery draining on circuit 1"
+              summary: "Battery draining"
               description: A battery has started to drain on circuit 1.
 # No alert when we're charging
   - interval: 1m
@@ -68,8 +68,8 @@ tests:
               category: power
               url: http://test:8080
             exp_annotations:
-              summary: "Under 30 minutes of power left on circuit 2"
-              description: A battery has nearly drained on circuit 2. Under thirty minutes of power remaining.
+              summary: "Battery drained"
+              description: A battery has nearly drained on circuit 2. Under 17 minutes of power remaining.
 
 # No alert when charging - battery seconds empty is 0
   - interval: 1m
@@ -105,7 +105,7 @@ tests:
               category: power
               url: http://test:8080
             exp_annotations:
-              summary: "Max consumption too high on circuit 1"
+              summary: "Max consumption too high"
               description: Max consumption on power grid 1 has exceeded production. Power instability may occur.
   - interval: 1m
     input_series:
