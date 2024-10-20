@@ -5,10 +5,12 @@ route:
   routes:
     - receiver: webhook_receiver
       group_by: [alertname,url,save_name]
-      group_wait: 1s
+      group_wait: 0s
       matchers:
         - category =~ "power"
         - alertname =~ "FuseTriggered|BatteryDrained"
+        # An example of filtering by URL - can add more receivers for different servers.
+        #- url = "http://fakeserver:8080"
 #  repeat_interval: 5m
 receivers:
   - name: ignore
