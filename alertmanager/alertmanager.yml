@@ -5,6 +5,7 @@ route:
   routes:
     - receiver: webhook_receiver
       group_by: [alertname,url,save_name]
+      group_wait: 1s
       matchers:
         - category =~ "power"
         - alertname =~ "FuseTriggered|BatteryDrained"
