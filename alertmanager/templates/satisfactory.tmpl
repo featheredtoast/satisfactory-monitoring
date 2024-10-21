@@ -10,11 +10,10 @@
 {{ if gt (len .Alerts.Firing) 0 -}}
 Alerts Firing:
 {{ template "__satisfactory_text_alert_list" .Alerts.Firing }}
-{{ end -}}
+{{ end }}
 {{ if gt (len .Alerts.Resolved) 0 -}}
 Alerts Resolved:
 {{ template "__satisfactory_text_alert_list" .Alerts.Resolved }}
-{{ end -}}
-
+{{ end }}
 server {{ index .GroupLabels "url" -}}
 {{ end -}}
