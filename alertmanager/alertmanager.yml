@@ -1,5 +1,7 @@
 global:
   resolve_timeout: 5m
+templates:
+  - 'templates/*.tmpl'
 route:
   receiver: ignore
   routes:
