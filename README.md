@@ -59,8 +59,17 @@ Discord alerting for tripped grids.
 
 - `FRM_HOST` - Host where the Ficsit Remote Monitoring webserver is running. Generally this is your computer's IP address, EG: `192.168.1.20`. (Default: `fakeserver`)
 - `FRM_PORT` - Port where the Ficsit Remote Monitoring webserver is running. `8080` is FRM's default at the time of writing. (Default: `8080`)
-- `FROM_HOSTS` - Comma separated list of servers. Advanced option for players interested in monitoring multiple Ficsit Remote Monitoring webservers simultaneously. EG: `server1:8080,server2:9090` Uses this value over FRM_HOST + FRM_PORT if defined. (Defaults to an empty string)
+- `FRM_HOSTS` - Comma separated list of servers. Advanced option for players interested in monitoring multiple Ficsit Remote Monitoring webservers simultaneously. EG: `server1:8080,server2:9090` Uses this value over FRM_HOST + FRM_PORT if defined. (Defaults to an empty string)
 - `DISCORD_WEBHOOK` - Webhook for discord fuse and low battery notifications. Something like `https://discord.com/api/webhooks/12345/abcd12345`.
+- `DISCORD_WEBHOOKS` - Comma separated list of webhooks. Advanced option for players interested in alerting multiple Ficsit Remote Monitoring webservers simultaneously. EG `https://discord.com/api/webhooks/12345/abcd12345,https://discord.com/api/webhooks/12345/hjkl`.
+
+### Mapping of multiple hosts and webhooks
+
+When using `FRM_HOSTS` or `DISCORD_WEBHOOKS`, the hosts are paired with the corresponding webhook at the same index position.
+
+The configuration associates the first webhook with the first host, the second webhook with the second host, etc.
+
+If there are more hosts than webhooks, the remaining hosts do not have webhooks. If there are more webhooks than hosts, the remaining webhooks are ignored.
 
 ## Services and ports
 
