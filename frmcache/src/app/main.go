@@ -2,7 +2,6 @@ package main
 
 import (
 	"database/sql"
-	"flag"
 	"fmt"
 	_ "github.com/lib/pq"
 	"os"
@@ -13,26 +12,27 @@ import (
 	"syscall"
 )
 
+func lookupWithDefault(variable string, defaultVal string) string {
+	val, exist := os.LookupEnv(variable)
+	if exist {
+		return val
+	}
+	return defaultVal
+}
+
 func main() {
-	var frmHostname string
-	flag.StringVar(&frmHostname, "hostname", "localhost", "hostname of Ficsit Remote Monitoring webserver")
-	var frmPort int
-	flag.IntVar(&frmPort, "port", 8080, "port of Ficsit Remote Monitoring webserver")
+	frmHostname, _ := os.LookupEnv("FRM_HOST")
+	frmPort, _ := os.LookupEnv("FRM_HOST")
+	frmHostnames, _ := os.LookupEnv("FRM_HOSTS")
 
-	var frmHostnames string
-	flag.StringVar(&frmHostnames, "hostnames", "", "comma separated values of multiple Ficsit Remote Monitoring webservers, of the form http://myserver1:8080,http://myserver2:8080. If defined, this will be used instead of hostname+port")
-
-	var pgHost string
-	flag.StringVar(&pgHost, "pghost", "postgres", "postgres hostname")
-	var pgPort int
-	flag.IntVar(&pgPort, "pgport", 5432, "postgres port")
-	var pgPassword string
-	flag.StringVar(&pgPassword, "pgpassword", "secretpassword", "postgres password")
-	var pgUser string
-	flag.StringVar(&pgUser, "pguser", "postgres", "postgres username")
-	var pgDb string
-	flag.StringVar(&pgDb, "pgdb", "postgres", "postgres db")
-	flag.Parse()
+	pgHost := lookupWithDefault("PG_HOST", "postgres")
+	pgPort, err := strconv.Atoi(lookupWithDefault("PG_HOST", "5432"))
+	if err != nil {
+		pgPort = 5432
+	}
+	pgPassword := lookupWithDefault("PG_PASSWORD", "secretpassword")
+	pgUser := lookupWithDefault("PG_USER", "postgres")
+	pgDb := lookupWithDefault("PG_DB", "postgres")
 
 	psqlconn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", pgHost, pgPort, pgUser, pgPassword, pgDb)
 	db, err := sql.Open("postgres", psqlconn)
@@ -43,7 +43,7 @@ func main() {
 
 	cacheWorkers := []*CacheWorker{}
 	if frmHostnames == "" {
-		cacheWorkers = append(cacheWorkers, NewCacheWorker("http://"+frmHostname+":"+strconv.Itoa(frmPort), db))
+		cacheWorkers = append(cacheWorkers, NewCacheWorker("http://"+frmHostname+":"+frmPort, db))
 	} else {
 		for _, frmServer := range strings.Split(frmHostnames, ",") {
 			if !strings.HasPrefix(frmServer, "http://") && !strings.HasPrefix(frmServer, "https://") {
