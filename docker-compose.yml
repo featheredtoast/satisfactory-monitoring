@@ -48,10 +48,20 @@ services:
     environment:
       - POSTGRES_PASSWORD=secretpassword
 
-  discord:
-    image: benjojo/alertmanager-discord
+  alertmanager-config:
+    image: golang
+    working_dir: /usr/src/app
+    entrypoint: /usr/local/bin/init.sh
+    volumes:
+      - ./alertmanager:/etc/alertmanager
+      - ./alertmanager-config/init.sh:/usr/local/bin/init.sh
+      - ./alertmanager-config/src:/usr/src
     environment:
-        - DISCORD_WEBHOOK=${DISCORD_WEBHOOK}
+      - FRM_HOST=${FRM_HOST:-host.docker.internal}
+      - FRM_PORT=${FRM_PORT:-8080}
+      - FRM_HOSTS=${FRM_HOSTS}
+      - DISCORD_WEBHOOK=${DISCORD_WEBHOOK}
+      - DISCORD_WEBHOOKS=${DISCORD_WEBHOOKS}
 
   alertmanager:
     image: prom/alertmanager
@@ -59,6 +69,10 @@ services:
       - ./alertmanager:/etc/alertmanager
     ports:
       - "9093:9093"
+    depends_on:
+      alertmanager-config:
+        condition: service_completed_successfully
+        restart: true
 
   grafana:
     image: grafana/grafana-oss
