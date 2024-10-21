@@ -15,5 +15,6 @@ Alerts Firing:
 Alerts Resolved:
 {{ template "__satisfactory_text_alert_list" .Alerts.Resolved }}
 {{ end -}}
+
 server {{ index .GroupLabels "url" -}}
 {{ end -}}
