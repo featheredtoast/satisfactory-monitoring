@@ -16,7 +16,7 @@ else
 fi
 cd ../Companion/bin
 touch ./frmc.log
-./companion -hostname $FRM_HOST -port $FRM_PORT -hostnames $FRM_HOSTS &
+./companion &
 PID="$!"
 trap 'kill $PID; exit 0' EXIT INT TERM
 tail -f ./frmc.log &
