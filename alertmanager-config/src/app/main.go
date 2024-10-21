@@ -14,7 +14,7 @@ type HostWebhookPair struct {
 
 func main() {
 	frmHostname, _ := os.LookupEnv("FRM_HOST")
-	frmPort, _ := os.LookupEnv("FRM_HOST")
+	frmPort, _ := os.LookupEnv("FRM_PORT")
 	frmHostnames, _ := os.LookupEnv("FRM_HOSTS")
 	discordWebhook, _ := os.LookupEnv("DISCORD_WEBHOOK")
 	discordWebhooks, _ := os.LookupEnv("DISCORD_WEBHOOKS")
