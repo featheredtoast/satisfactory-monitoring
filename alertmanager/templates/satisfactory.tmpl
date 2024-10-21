@@ -1,11 +1,10 @@
+{{define "discord.satisfactory.title"}}
+[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ index .CommonAnnotations "summary" }}
+{{end}}
+
 {{ define "__satisfactory_text_alert_list" }}{{ range . -}}
 {{ index .Annotations "description" }}
 {{ end }}{{ end }}
-
-{{define "discord.satisfactory.title"}}
-[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] at {{ index .GroupLabels "url" }}
-{{ index .CommonAnnotations "summary" }}
-{{end}}
 
 {{define "discord.satisfactory.message"}}
 {{ if gt (len .Alerts.Firing) 0 }}
@@ -15,5 +14,6 @@ Alerts Firing:
 {{ if gt (len .Alerts.Resolved) 0 }}
 Alerts Resolved:
 {{ template "__satisfactory_text_alert_list" .Alerts.Resolved }}
-{{ end -}}
+{{ end }}
+server {{ index .GroupLabels "url" -}}
 {{ end -}}
