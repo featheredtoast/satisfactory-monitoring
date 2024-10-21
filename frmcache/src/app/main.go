@@ -22,7 +22,7 @@ func lookupEnvWithDefault(variable string, defaultVal string) string {
 
 func main() {
 	frmHostname, _ := os.LookupEnv("FRM_HOST")
-	frmPort, _ := os.LookupEnv("FRM_HOST")
+	frmPort, _ := os.LookupEnv("FRM_PORT")
 	frmHostnames, _ := os.LookupEnv("FRM_HOSTS")
 
 	pgHost := lookupEnvWithDefault("PG_HOST", "postgres")
