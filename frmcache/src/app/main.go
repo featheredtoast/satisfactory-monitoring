@@ -12,7 +12,7 @@ import (
 	"syscall"
 )
 
-func lookupWithDefault(variable string, defaultVal string) string {
+func lookupEnvWithDefault(variable string, defaultVal string) string {
 	val, exist := os.LookupEnv(variable)
 	if exist {
 		return val
@@ -25,14 +25,14 @@ func main() {
 	frmPort, _ := os.LookupEnv("FRM_HOST")
 	frmHostnames, _ := os.LookupEnv("FRM_HOSTS")
 
-	pgHost := lookupWithDefault("PG_HOST", "postgres")
-	pgPort, err := strconv.Atoi(lookupWithDefault("PG_HOST", "5432"))
+	pgHost := lookupEnvWithDefault("PG_HOST", "postgres")
+	pgPort, err := strconv.Atoi(lookupEnvWithDefault("PG_HOST", "5432"))
 	if err != nil {
 		pgPort = 5432
 	}
-	pgPassword := lookupWithDefault("PG_PASSWORD", "secretpassword")
-	pgUser := lookupWithDefault("PG_USER", "postgres")
-	pgDb := lookupWithDefault("PG_DB", "postgres")
+	pgPassword := lookupEnvWithDefault("PG_PASSWORD", "secretpassword")
+	pgUser := lookupEnvWithDefault("PG_USER", "postgres")
+	pgDb := lookupEnvWithDefault("PG_DB", "postgres")
 
 	psqlconn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", pgHost, pgPort, pgUser, pgPassword, pgDb)
 	db, err := sql.Open("postgres", psqlconn)
