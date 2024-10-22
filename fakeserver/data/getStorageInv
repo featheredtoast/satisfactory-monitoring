@@ -1,13 +1,13 @@
 [
    {
-      "building":"Personal Storage Box",
+      "Name":"Personal Storage Box",
       "location":{
          "x":-119106.390625,
          "y":-24466.974609,
          "z":12334.641602,
          "rotation":15
       },
-      "inventory":[
+      "Inventory":[
          {
             "Name":"FICSIT Coupon",
             "Count":91
@@ -15,14 +15,14 @@
       ]
    },
    {
-      "building":"Storage Container",
+      "Name":"Storage Container",
       "location":{
          "x":-19499.332031,
          "y":-109025.773438,
          "z":9105.4375,
          "rotation":90
       },
-      "inventory":[
+      "Inventory":[
          {
             "Name":"Quickwire",
             "Count":41
@@ -34,14 +34,14 @@
       ]
    },
    {
-      "building":"Storage Container",
+      "Name":"Storage Container",
       "location":{
          "x":-66847.226562,
          "y":-132937.21875,
          "z":4359.524902,
          "rotation":320
       },
-      "inventory":[
+      "Inventory":[
 
       ]
    }
