@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 8,
+  "id": 4,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -149,7 +149,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select t.building,\nt.inventory,\nt.x,\nt.y,\nt.z,\nt.longitude,\nt.latitude\nfrom (\nselect \ndata ->> 'building' as building,\ndata -> 'inventory' as inventory,\nitem ->> 'Name' as item,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache\ncross join jsonb_path_query(data, '$.inventory[*]') as item where metric = 'storageInv'\nand item->>'Name' = some(array[$item]::text[])\nand url = '$server'\nand save = '$save'\n) as t\ngroup by \nt.building,\nt.inventory,\nt.x,\nt.y,\nt.z,\nt.longitude,\nt.latitude\n;",
+          "rawSql": "select t.name,\nt.inventory,\nt.x,\nt.y,\nt.z,\nt.longitude,\nt.latitude\nfrom (\nselect \ndata ->> 'Name' as name,\ndata -> 'Inventory' as inventory,\nitem ->> 'Name' as item,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache\ncross join jsonb_path_query(data, '$.Inventory[*]') as item where metric = 'storageInv'\nand item->>'Name' = some(array[$item]::text[])\nand url = '$server'\nand save = '$save'\n) as t\ngroup by \nt.name,\nt.inventory,\nt.x,\nt.y,\nt.z,\nt.longitude,\nt.latitude\n;",
           "refId": "A",
           "sql": {
             "columns": [
