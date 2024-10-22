@@ -50,7 +50,7 @@ func main() {
 	// associate webhooks with hostnames
 	config := []HostWebhookPair{}
 	for i, hostname := range hostnames {
-		if i < len(webhooks) {
+		if i < len(webhooks) && webhooks[i] != "" {
 			config = append(config, HostWebhookPair{Host: hostname, Webhook: webhooks[i]})
 		}
 	}
