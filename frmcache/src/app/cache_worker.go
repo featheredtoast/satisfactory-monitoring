@@ -176,6 +176,11 @@ func (c *CacheWorker) pullRealtimeMetrics() {
 
 func (c *CacheWorker) pullSaveName() {
 	// TODO: query and update saveName if changed
+	newSaveName := "default"
+	if newSaveName != c.saveName {
+		c.saveName = newSaveName
+		c.flushMetricHistory()
+	}
 }
 
 func (c *CacheWorker) Start() {
