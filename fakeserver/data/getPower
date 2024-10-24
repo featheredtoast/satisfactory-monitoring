@@ -1,5 +1,5 @@
 [{
-  "CircuitId": 1,
+  "CircuitGroupID": 1,
   "PowerConsumed": 2000,
   "PowerCapacity": 3400,
   "PowerMaxConsumed": 4000,
@@ -12,7 +12,7 @@
 },
  {
 
-  "CircuitId": 2,
+  "CircuitGroupID": 2,
   "PowerConsumed": 55,
   "PowerCapacity": 44,
   "PowerMaxConsumed": 60,
