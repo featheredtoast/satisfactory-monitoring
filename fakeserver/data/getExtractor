@@ -17,7 +17,7 @@
       "IsConfigured":true,
       "IsProducing":true,
       "IsPaused":false,
-      "CircuitID":44
+      "CircuitGroupID":44
 }, {
       "building":"Miner Mk.2",
       "location":{
@@ -37,5 +37,5 @@
       "IsConfigured":true,
       "IsProducing":true,
       "IsPaused":false,
-      "CircuitID":44
+      "CircuitGroupID":44
 }]

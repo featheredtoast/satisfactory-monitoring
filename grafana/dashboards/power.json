@@ -1066,7 +1066,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\ndata ->> 'building' as building,\ndata ->> 'CircuitID' as circuit,\ndata ->> 'Recipe' as recipe,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric in ('factory', 'extractor')\nand (data ->> 'CircuitID')::numeric = $circuit\nand url = '$server'\nand save = '$save'",
+          "rawSql": "SELECT\ndata ->> 'building' as building,\ndata ->> 'CircuitGroupID' as circuit,\ndata ->> 'Recipe' as recipe,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric in ('factory', 'extractor')\nand (data ->> 'CircuitGroupID')::numeric = $circuit\nand url = '$server'\nand save = '$save'",
           "refId": "buildings",
           "sql": {
             "columns": [
@@ -1154,7 +1154,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select \ndata ->> 'CircuitID' as circuit,\ncount(*) as building_count\nfrom cache where metric in ('factory', 'extractor')\nand url = '$server'\nand save = '$save'\ngroup by circuit\norder by building_count",
+          "rawSql": "select \ndata ->> 'CircuitGroupID' as circuit,\ncount(*) as building_count\nfrom cache where metric in ('factory', 'extractor')\nand url = '$server'\nand save = '$save'\ngroup by circuit\norder by building_count",
           "refId": "A",
           "sql": {
             "columns": [

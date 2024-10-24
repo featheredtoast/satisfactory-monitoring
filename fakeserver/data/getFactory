@@ -34,7 +34,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 15,
+    "CircuitGroupID": 15,
     "features": {
       "properties": { "type": "Assembler" },
       "geometry": {
@@ -47,7 +47,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -86,7 +86,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 15,
+    "CircuitGroupID": 15,
     "features": {
       "properties": { "type": "Assembler" },
       "geometry": {
@@ -99,7 +99,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -138,7 +138,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 15,
+    "CircuitGroupID": 15,
     "features": {
       "properties": { "type": "Assembler" },
       "geometry": {
@@ -152,7 +152,7 @@
     },
 
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -205,7 +205,7 @@
     },
 
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -244,7 +244,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 18,
+    "CircuitGroupID": 18,
     "features": {
       "properties": { "type": "Assembler" },
       "geometry": {
@@ -258,7 +258,7 @@
     },
 
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -297,7 +297,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 18,
+    "CircuitGroupID": 18,
     "features": {
       "properties": { "type": "Assembler" },
       "geometry": {
@@ -311,7 +311,7 @@
     },
 
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -350,7 +350,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 18,
+    "CircuitGroupID": 18,
     "features": {
       "properties": { "type": "Assembler" },
       "geometry": {
@@ -363,7 +363,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -402,7 +402,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 18,
+    "CircuitGroupID": 18,
     "features": {
       "properties": { "type": "Assembler" },
       "geometry": {
@@ -415,7 +415,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -454,7 +454,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 18,
+    "CircuitGroupID": 18,
     "features": {
       "properties": { "type": "Assembler" },
       "geometry": {
@@ -467,7 +467,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -506,7 +506,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 18,
+    "CircuitGroupID": 18,
     "features": {
       "properties": { "type": "Assembler" },
       "geometry": {
@@ -519,7 +519,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -558,7 +558,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 0,
+    "CircuitGroupID": 0,
     "features": {
       "properties": { "type": "Assembler" },
       "geometry": {
@@ -571,7 +571,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -610,7 +610,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 0,
+    "CircuitGroupID": 0,
     "features": {
       "properties": { "type": "Assembler" },
       "geometry": {
@@ -623,7 +623,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -662,7 +662,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 0,
+    "CircuitGroupID": 0,
     "features": {
       "properties": { "type": "Assembler" },
       "geometry": {
@@ -675,7 +675,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -714,7 +714,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 0,
+    "CircuitGroupID": 0,
     "features": {
       "properties": { "type": "Assembler" },
       "geometry": {
@@ -727,7 +727,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -766,7 +766,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 0,
+    "CircuitGroupID": 0,
     "features": {
       "properties": { "type": "Assembler" },
       "geometry": {
@@ -779,7 +779,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -812,7 +812,7 @@
     "IsConfigured": true,
     "IsProducing": true,
     "IsPaused": false,
-    "CircuitID": 3,
+    "CircuitGroupID": 3,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -825,7 +825,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -858,7 +858,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 13,
+    "CircuitGroupID": 13,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -871,7 +871,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -904,7 +904,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 7,
+    "CircuitGroupID": 7,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -917,7 +917,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -950,7 +950,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 7,
+    "CircuitGroupID": 7,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -963,7 +963,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -996,7 +996,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 10,
+    "CircuitGroupID": 10,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1009,7 +1009,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1042,7 +1042,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 10,
+    "CircuitGroupID": 10,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1055,7 +1055,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1088,7 +1088,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 10,
+    "CircuitGroupID": 10,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1101,7 +1101,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1134,7 +1134,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 10,
+    "CircuitGroupID": 10,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1147,7 +1147,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1180,7 +1180,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 1,
+    "CircuitGroupID": 1,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1193,7 +1193,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1226,7 +1226,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 1,
+    "CircuitGroupID": 1,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1239,7 +1239,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1272,7 +1272,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 1,
+    "CircuitGroupID": 1,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1285,7 +1285,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1318,7 +1318,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 1,
+    "CircuitGroupID": 1,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1331,7 +1331,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1364,7 +1364,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 13,
+    "CircuitGroupID": 13,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1377,7 +1377,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 13,
+      "CircuitGroupID": 13,
       "PowerConsumed": 30
     }
   },
@@ -1410,7 +1410,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 13,
+    "CircuitGroupID": 13,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1423,7 +1423,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 13,
+      "CircuitGroupID": 13,
       "PowerConsumed": 30
     }
   },
@@ -1456,7 +1456,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 1,
+    "CircuitGroupID": 1,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1469,7 +1469,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 4,
+      "CircuitGroupID": 4,
       "PowerConsumed": 30
     }
   },
@@ -1502,7 +1502,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 4,
+    "CircuitGroupID": 4,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1515,7 +1515,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1548,7 +1548,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 4,
+    "CircuitGroupID": 4,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1561,7 +1561,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1594,7 +1594,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 4,
+    "CircuitGroupID": 4,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1607,7 +1607,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1640,7 +1640,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 4,
+    "CircuitGroupID": 4,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1653,7 +1653,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 1,
+      "CircuitGroupID": 1,
       "PowerConsumed": 30
     }
   },
@@ -1686,7 +1686,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 4,
+    "CircuitGroupID": 4,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1699,7 +1699,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 4,
+      "CircuitGroupID": 4,
       "PowerConsumed": 30
     }
   },
@@ -1732,7 +1732,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 4,
+    "CircuitGroupID": 4,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1745,7 +1745,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 4,
+      "CircuitGroupID": 4,
       "PowerConsumed": 30
     }
   },
@@ -1778,7 +1778,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 4,
+    "CircuitGroupID": 4,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1791,7 +1791,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 4,
+      "CircuitGroupID": 4,
       "PowerConsumed": 30
     }
   },
@@ -1824,7 +1824,7 @@
     "IsConfigured": true,
     "IsProducing": true,
     "IsPaused": false,
-    "CircuitID": 12,
+    "CircuitGroupID": 12,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1837,7 +1837,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 12,
+      "CircuitGroupID": 12,
       "PowerConsumed": 30
     }
   },
@@ -1870,7 +1870,7 @@
     "IsConfigured": true,
     "IsProducing": true,
     "IsPaused": false,
-    "CircuitID": 12,
+    "CircuitGroupID": 12,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1883,7 +1883,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 12,
+      "CircuitGroupID": 12,
       "PowerConsumed": 30
     }
   },
@@ -1916,7 +1916,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 12,
+    "CircuitGroupID": 12,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1929,7 +1929,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 12,
+      "CircuitGroupID": 12,
       "PowerConsumed": 30
     }
   },
@@ -1962,7 +1962,7 @@
     "IsConfigured": true,
     "IsProducing": true,
     "IsPaused": false,
-    "CircuitID": 12,
+    "CircuitGroupID": 12,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -1975,7 +1975,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 12,
+      "CircuitGroupID": 12,
       "PowerConsumed": 30
     }
   },
@@ -2008,7 +2008,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 4,
+    "CircuitGroupID": 4,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2021,7 +2021,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 4,
+      "CircuitGroupID": 4,
       "PowerConsumed": 30
     }
   },
@@ -2054,7 +2054,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 4,
+    "CircuitGroupID": 4,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2067,7 +2067,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 4,
+      "CircuitGroupID": 4,
       "PowerConsumed": 30
     }
   },
@@ -2100,7 +2100,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 4,
+    "CircuitGroupID": 4,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2113,7 +2113,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 4,
+      "CircuitGroupID": 4,
       "PowerConsumed": 30
     }
   },
@@ -2146,7 +2146,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 12,
+    "CircuitGroupID": 12,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2159,7 +2159,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 12,
+      "CircuitGroupID": 12,
       "PowerConsumed": 30
     }
   },
@@ -2192,7 +2192,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 12,
+    "CircuitGroupID": 12,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2205,7 +2205,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 12,
+      "CircuitGroupID": 12,
       "PowerConsumed": 30
     }
   },
@@ -2238,7 +2238,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 12,
+    "CircuitGroupID": 12,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2251,7 +2251,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 12,
+      "CircuitGroupID": 12,
       "PowerConsumed": 30
     }
   },
@@ -2284,7 +2284,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 12,
+    "CircuitGroupID": 12,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2297,7 +2297,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 12,
+      "CircuitGroupID": 12,
       "PowerConsumed": 30
     }
   },
@@ -2330,7 +2330,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 4,
+    "CircuitGroupID": 4,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2343,7 +2343,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 4,
+      "CircuitGroupID": 4,
       "PowerConsumed": 30
     }
   },
@@ -2376,7 +2376,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 4,
+    "CircuitGroupID": 4,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2389,7 +2389,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 4,
+      "CircuitGroupID": 4,
       "PowerConsumed": 30
     }
   },
@@ -2422,7 +2422,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 4,
+    "CircuitGroupID": 4,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2435,7 +2435,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 4,
+      "CircuitGroupID": 4,
       "PowerConsumed": 30
     }
   },
@@ -2468,7 +2468,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 4,
+    "CircuitGroupID": 4,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2481,7 +2481,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 4,
+      "CircuitGroupID": 4,
       "PowerConsumed": 30
     }
   },
@@ -2514,7 +2514,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 4,
+    "CircuitGroupID": 4,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2527,7 +2527,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 4,
+      "CircuitGroupID": 4,
       "PowerConsumed": 30
     }
   },
@@ -2560,7 +2560,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 18,
+    "CircuitGroupID": 18,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2573,7 +2573,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 18,
+      "CircuitGroupID": 18,
       "PowerConsumed": 30
     }
   },
@@ -2606,7 +2606,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 18,
+    "CircuitGroupID": 18,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2619,7 +2619,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 18,
+      "CircuitGroupID": 18,
       "PowerConsumed": 30
     }
   },
@@ -2652,7 +2652,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 18,
+    "CircuitGroupID": 18,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2665,7 +2665,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 18,
+      "CircuitGroupID": 18,
       "PowerConsumed": 30
     }
   },
@@ -2698,7 +2698,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 18,
+    "CircuitGroupID": 18,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2711,7 +2711,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 18,
+      "CircuitGroupID": 18,
       "PowerConsumed": 30
     }
   },
@@ -2744,7 +2744,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 18,
+    "CircuitGroupID": 18,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2757,7 +2757,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 18,
+      "CircuitGroupID": 18,
       "PowerConsumed": 30
     }
   },
@@ -2790,7 +2790,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 18,
+    "CircuitGroupID": 18,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2803,7 +2803,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 18,
+      "CircuitGroupID": 18,
       "PowerConsumed": 30
     }
   },
@@ -2836,7 +2836,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 18,
+    "CircuitGroupID": 18,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2849,7 +2849,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 18,
+      "CircuitGroupID": 18,
       "PowerConsumed": 30
     }
   },
@@ -2882,7 +2882,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 18,
+    "CircuitGroupID": 18,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2895,7 +2895,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 18,
+      "CircuitGroupID": 18,
       "PowerConsumed": 30
     }
   },
@@ -2928,7 +2928,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 18,
+    "CircuitGroupID": 18,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2941,7 +2941,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 18,
+      "CircuitGroupID": 18,
       "PowerConsumed": 30
     }
   },
@@ -2974,7 +2974,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 18,
+    "CircuitGroupID": 18,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -2987,7 +2987,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 18,
+      "CircuitGroupID": 18,
       "PowerConsumed": 30
     }
   },
@@ -3020,7 +3020,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 5,
+    "CircuitGroupID": 5,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3033,7 +3033,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 5,
+      "CircuitGroupID": 5,
       "PowerConsumed": 30
     }
   },
@@ -3066,7 +3066,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 5,
+    "CircuitGroupID": 5,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3079,7 +3079,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 5,
+      "CircuitGroupID": 5,
       "PowerConsumed": 30
     }
   },
@@ -3112,7 +3112,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 5,
+    "CircuitGroupID": 5,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3125,7 +3125,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 5,
+      "CircuitGroupID": 5,
       "PowerConsumed": 30
     }
   },
@@ -3158,7 +3158,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 5,
+    "CircuitGroupID": 5,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3171,7 +3171,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 5,
+      "CircuitGroupID": 5,
       "PowerConsumed": 30
     }
   },
@@ -3204,7 +3204,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 17,
+    "CircuitGroupID": 17,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3217,7 +3217,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 17,
+      "CircuitGroupID": 17,
       "PowerConsumed": 30
     }
   },
@@ -3250,7 +3250,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 17,
+    "CircuitGroupID": 17,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3263,7 +3263,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 17,
+      "CircuitGroupID": 17,
       "PowerConsumed": 30
     }
   },
@@ -3296,7 +3296,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 17,
+    "CircuitGroupID": 17,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3309,7 +3309,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 17,
+      "CircuitGroupID": 17,
       "PowerConsumed": 30
     }
   },
@@ -3342,7 +3342,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 17,
+    "CircuitGroupID": 17,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3355,7 +3355,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 17,
+      "CircuitGroupID": 17,
       "PowerConsumed": 30
     }
   },
@@ -3388,7 +3388,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 17,
+    "CircuitGroupID": 17,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3401,7 +3401,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 17,
+      "CircuitGroupID": 17,
       "PowerConsumed": 30
     }
   },
@@ -3434,7 +3434,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 17,
+    "CircuitGroupID": 17,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3447,7 +3447,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 17,
+      "CircuitGroupID": 17,
       "PowerConsumed": 30
     }
   },
@@ -3480,7 +3480,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 17,
+    "CircuitGroupID": 17,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3493,7 +3493,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 17,
+      "CircuitGroupID": 17,
       "PowerConsumed": 30
     }
   },
@@ -3526,7 +3526,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 17,
+    "CircuitGroupID": 17,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3539,7 +3539,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 17,
+      "CircuitGroupID": 17,
       "PowerConsumed": 30
     }
   },
@@ -3572,7 +3572,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 17,
+    "CircuitGroupID": 17,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3585,7 +3585,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 17,
+      "CircuitGroupID": 17,
       "PowerConsumed": 30
     }
   },
@@ -3618,7 +3618,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 17,
+    "CircuitGroupID": 17,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3631,7 +3631,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 17,
+      "CircuitGroupID": 17,
       "PowerConsumed": 30
     }
   },
@@ -3664,7 +3664,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 17,
+    "CircuitGroupID": 17,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3677,7 +3677,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 17,
+      "CircuitGroupID": 17,
       "PowerConsumed": 30
     }
   },
@@ -3710,7 +3710,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 17,
+    "CircuitGroupID": 17,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3723,7 +3723,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 17,
+      "CircuitGroupID": 17,
       "PowerConsumed": 30
     }
   },
@@ -3756,7 +3756,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 17,
+    "CircuitGroupID": 17,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3769,7 +3769,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 17,
+      "CircuitGroupID": 17,
       "PowerConsumed": 30
     }
   },
@@ -3802,7 +3802,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 17,
+    "CircuitGroupID": 17,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3815,7 +3815,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 17,
+      "CircuitGroupID": 17,
       "PowerConsumed": 30
     }
   },
@@ -3848,7 +3848,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 17,
+    "CircuitGroupID": 17,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3861,7 +3861,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 17,
+      "CircuitGroupID": 17,
       "PowerConsumed": 30
     }
   },
@@ -3894,7 +3894,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 17,
+    "CircuitGroupID": 17,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3907,7 +3907,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 17,
+      "CircuitGroupID": 17,
       "PowerConsumed": 30
     }
   },
@@ -3940,7 +3940,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 17,
+    "CircuitGroupID": 17,
     "features": {
       "properties": { "type": "Smelter" },
       "geometry": {
@@ -3953,7 +3953,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 17,
+      "CircuitGroupID": 17,
       "PowerConsumed": 30
     }
   },
@@ -3986,7 +3986,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 17,
+    "CircuitGroupID": 17,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -3999,7 +3999,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 17,
+      "CircuitGroupID": 17,
       "PowerConsumed": 30
     }
   },
@@ -4032,7 +4032,7 @@
     "IsConfigured": true,
     "IsProducing": false,
     "IsPaused": false,
-    "CircuitID": 17,
+    "CircuitGroupID": 17,
     "features": {
       "properties": { "type": "Constructor" },
       "geometry": {
@@ -4045,7 +4045,7 @@
       }
     },
     "PowerInfo": {
-      "CircuitID": 17,
+      "CircuitGroupID": 17,
       "PowerConsumed": 30
     }
   }
