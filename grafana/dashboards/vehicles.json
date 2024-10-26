@@ -280,7 +280,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\nconcat(data->>'ID',':',data->>'VehicleType') as vehicle,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'truck'\nand data ->> 'ID' = '$vehicle'\nand url = '$server'\nand save = '$save';\n",
+          "rawSql": "select\nconcat(data->>'ID',':',data->>'VehicleType') as vehicle,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'truck'\nand data ->> 'ID' = '$vehicle'\nand url = '$server'\nand session_name = '$session';\n",
           "refId": "Current location",
           "sql": {
             "columns": [
@@ -309,7 +309,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation') as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history where metric = 'truck'\nand data ->> 'ID' = '$vehicle'\nand $__timeFilter(time)\nand url = '$server'\nand save = '$save'\norder by time desc\nlimit 100;\n",
+          "rawSql": "select\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation') as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history where metric = 'truck'\nand data ->> 'ID' = '$vehicle'\nand $__timeFilter(time)\nand url = '$server'\nand session_name = '$session'\norder by time desc\nlimit 100;\n",
           "refId": "Route",
           "sql": {
             "columns": [
@@ -338,7 +338,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'truckStation'\nand url = '$server'\nand save = '$save'\nlimit 100;\n",
+          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'truckStation'\nand url = '$server'\nand session_name = '$session'\nlimit 100;\n",
           "refId": "Stations",
           "sql": {
             "columns": [
@@ -367,7 +367,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\nconcat(data->>'ID',':',data->>'VehicleType') as vehicle,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'truck'\nand data ->> 'ID' <> '$vehicle'\nand url = '$server'\nand save = '$save'\norder by id desc\n",
+          "rawSql": "select\nconcat(data->>'ID',':',data->>'VehicleType') as vehicle,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'truck'\nand data ->> 'ID' <> '$vehicle'\nand url = '$server'\nand session_name = '$session'\norder by id desc\n",
           "refId": "Other Trucks",
           "sql": {
             "columns": [
@@ -455,7 +455,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\ndata->>'ID' as id,\ndata->>'Name' as type,\ndata->>'PathName' as path_name,\ndata->>'Autopilot' as autopilot,\ndata->>'Status' as status\nfrom cache WHERE metric = 'truck'\nand url = '$server'\nand save = '$save';",
+          "rawSql": "SELECT\ndata->>'ID' as id,\ndata->>'Name' as type,\ndata->>'PathName' as path_name,\ndata->>'Autopilot' as autopilot,\ndata->>'Status' as status\nfrom cache WHERE metric = 'truck'\nand url = '$server'\nand session_name = '$session';",
           "refId": "A",
           "sql": {
             "columns": [
@@ -580,7 +580,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "vehicle_fuel{vehicle_type!=\"Factory Cart™\", url=\"$server\", save_name=\"$save\"}",
+          "expr": "vehicle_fuel{vehicle_type!=\"Factory Cart™\", url=\"$server\", session_name=\"$session\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "{{id}} ({{vehicle_type}}) - {{fuel_type}}",
@@ -680,7 +680,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "vehicle_round_trip_seconds{url=\"$server\", save_name=\"$save\"} / 60",
+          "expr": "vehicle_round_trip_seconds{url=\"$server\", session_name=\"$session\"} / 60",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "{{id}} ({{vehicle_type}}) - {{path_name}}",
@@ -735,15 +735,15 @@
           "type": "prometheus",
           "uid": "PBFA97CFB590B2093"
         },
-        "definition": "label_values({url=\"$server\"},save_name)",
+        "definition": "label_values({url=\"$server\"},session_name)",
         "hide": 0,
         "includeAll": false,
         "multi": false,
-        "name": "save",
+        "name": "session",
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values({url=\"$server\"},save_name)",
+          "query": "label_values({url=\"$server\"},session_name)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -762,14 +762,14 @@
           "type": "postgres",
           "uid": "GhzMNppVk"
         },
-        "definition": "select\ndata->>'ID' as __value,\nconcat(data->>'ID', ' (', data ->> 'Name', ':', data ->> 'PathName',')') as __text\nfrom cache where metric = 'truck'\nand url = '$server'\nand save = '$save'\norder by id desc;",
+        "definition": "select\ndata->>'ID' as __value,\nconcat(data->>'ID', ' (', data ->> 'Name', ':', data ->> 'PathName',')') as __text\nfrom cache where metric = 'truck'\nand url = '$server'\nand session_name = '$session'\norder by id desc;",
         "hide": 0,
         "includeAll": false,
         "label": "Vehicle",
         "multi": false,
         "name": "vehicle",
         "options": [],
-        "query": "select\ndata->>'ID' as __value,\nconcat(data->>'ID', ' (', data ->> 'Name', ':', data ->> 'PathName',')') as __text\nfrom cache where metric = 'truck'\nand url = '$server'\nand save = '$save'\norder by id desc;",
+        "query": "select\ndata->>'ID' as __value,\nconcat(data->>'ID', ' (', data ->> 'Name', ':', data ->> 'PathName',')') as __text\nfrom cache where metric = 'truck'\nand url = '$server'\nand session_name = '$session'\norder by id desc;",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,

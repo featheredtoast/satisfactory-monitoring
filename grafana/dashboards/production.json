@@ -73,7 +73,7 @@
       },
       "id": 30,
       "options": {
-        "alertInstanceLabelFilter": "category=\"production\",url=$server,save_name=$save",
+        "alertInstanceLabelFilter": "category=\"production\",url=$server,session_name=$session",
         "alertName": "",
         "dashboardAlerts": false,
         "groupBy": [],
@@ -170,7 +170,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\n  COALESCE(prod.name, cons.name) as name,\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) as rate\nfrom\n  (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.ingredients[*]') ->> 'Name' as name,\n          (\n            (jsonb_path_query(data, '$.ingredients[*]') ->> 'CurrentConsumed') :: NUMERIC\n          ) as val\n        FROM\n          cache\n         \n        where\n          metric in ('factory', 'extractor')\n          and url = '$server'\n          and save = '$save'\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as cons full\n  outer join (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.production[*]') ->> 'Name' as name,\n          (jsonb_path_query(data, '$.production[*]') ->> 'CurrentProd') :: NUMERIC as val\n        FROM\n          cache\n         \n        where\n          metric in ('factory', 'extractor')\n          and url = '$server'\n          and save = '$save'\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as prod on cons.name = prod.name\nwhere\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) != 0\norder by\n  rate desc,\n  name",
+          "rawSql": "SELECT\n  COALESCE(prod.name, cons.name) as name,\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) as rate\nfrom\n  (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.ingredients[*]') ->> 'Name' as name,\n          (\n            (jsonb_path_query(data, '$.ingredients[*]') ->> 'CurrentConsumed') :: NUMERIC\n          ) as val\n        FROM\n          cache\n         \n        where\n          metric in ('factory', 'extractor')\n          and url = '$server'\n          and session_name = '$session'\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as cons full\n  outer join (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.production[*]') ->> 'Name' as name,\n          (jsonb_path_query(data, '$.production[*]') ->> 'CurrentProd') :: NUMERIC as val\n        FROM\n          cache\n         \n        where\n          metric in ('factory', 'extractor')\n          and url = '$server'\n          and session_name = '$session'\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as prod on cons.name = prod.name\nwhere\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) != 0\norder by\n  rate desc,\n  name",
           "refId": "A",
           "sql": {
             "columns": [
@@ -259,7 +259,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\n  COALESCE(prod.name, cons.name) as name,\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) as rate\nfrom\n  (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.ingredients[*]') ->> 'Name' as name,\n          (\n            (jsonb_path_query(data, '$.ingredients[*]') ->> 'MaxConsumed') :: NUMERIC\n          ) val\n        FROM\n          cache\n         \n        where\n          metric in('factory', 'extractor')\n          and url = '$server'\n          and save = '$save'\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as cons full\n  outer join (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.production[*]') ->> 'Name' as name,\n          (jsonb_path_query(data, '$.production[*]') ->> 'MaxProd') :: NUMERIC val\n        FROM\n          cache\n         \n        where\n          metric in ('factory', 'extractor')\n          and url = '$server'\n          and save = '$save'\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as prod on cons.name = prod.name\nwhere\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) != 0\norder by\n  rate desc,\n  name",
+          "rawSql": "SELECT\n  COALESCE(prod.name, cons.name) as name,\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) as rate\nfrom\n  (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.ingredients[*]') ->> 'Name' as name,\n          (\n            (jsonb_path_query(data, '$.ingredients[*]') ->> 'MaxConsumed') :: NUMERIC\n          ) val\n        FROM\n          cache\n         \n        where\n          metric in('factory', 'extractor')\n          and url = '$server'\n          and session_name = '$session'\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as cons full\n  outer join (\n    SELECT\n      t.name,\n      sum(t.val) as rate\n    from\n      (\n        SELECT\n          jsonb_path_query(data, '$.production[*]') ->> 'Name' as name,\n          (jsonb_path_query(data, '$.production[*]') ->> 'MaxProd') :: NUMERIC val\n        FROM\n          cache\n         \n        where\n          metric in ('factory', 'extractor')\n          and url = '$server'\n          and session_name = '$session'\n      ) as t\n    group by\n      t.name\n    order by\n      t.name\n  ) as prod on cons.name = prod.name\nwhere\n  COALESCE(prod.rate, 0) - COALESCE(cons.rate, 0) != 0\norder by\n  rate desc,\n  name",
           "refId": "A",
           "sql": {
             "columns": [
@@ -466,7 +466,7 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "item_production_capacity_per_min{item_name=\"$item\", url=\"$server\", save_name=\"$save\"}",
+          "expr": "item_production_capacity_per_min{item_name=\"$item\", url=\"$server\", session_name=\"$session\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -636,7 +636,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "item_production_capacity_pc{item_name=\"$item\", url=\"$server\", save_name=\"$save\"}",
+          "expr": "item_production_capacity_pc{item_name=\"$item\", url=\"$server\", session_name=\"$session\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "{{__name__}}",
@@ -703,15 +703,15 @@
           "type": "prometheus",
           "uid": "PBFA97CFB590B2093"
         },
-        "definition": "label_values({url=\"$server\"},save_name)",
+        "definition": "label_values({url=\"$server\"},session_name)",
         "hide": 0,
         "includeAll": false,
         "multi": false,
-        "name": "save",
+        "name": "session",
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values({url=\"$server\"},save_name)",
+          "query": "label_values({url=\"$server\"},session_name)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -730,7 +730,7 @@
           "type": "prometheus",
           "uid": "PBFA97CFB590B2093"
         },
-        "definition": "{item_name=~\".+\",url=~\"$server\",save_name=~\"$save\"}",
+        "definition": "{item_name=~\".+\",url=~\"$server\",session_name=~\"$session\"}",
         "description": "Item",
         "hide": 0,
         "includeAll": false,
@@ -740,7 +740,7 @@
         "options": [],
         "query": {
           "qryType": 4,
-          "query": "{item_name=~\".+\",url=~\"$server\",save_name=~\"$save\"}",
+          "query": "{item_name=~\".+\",url=~\"$server\",session_name=~\"$session\"}",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,

@@ -7,7 +7,7 @@ route:
   routes:
 {{- range $i, $hostWebhookPair := . }}
     - receiver: discord_receiver_{{ $i }}
-      group_by: [alertname,url,save_name]
+      group_by: [alertname,url,session_name]
       group_wait: 0s
       group_interval: 10s
       continue: true
