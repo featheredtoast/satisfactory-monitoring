@@ -23,7 +23,7 @@
         "StationName": "Quickwire Central"
       }
     ],
-    "TrainConsist": [
+    "Vehicles": [
       {
         "Name": "Electric Locomotive",
         "ClassName": "BP_Locomotive_C_2147321154",
@@ -85,7 +85,7 @@
         "StationName": "Quickwire Central"
       }
     ],
-    "TrainConsist": [
+    "Vehicles": [
       {
         "Name": "Electric Locomotive",
         "ClassName": "BP_Locomotive_C_2147321154",
