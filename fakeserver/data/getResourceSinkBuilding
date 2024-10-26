@@ -1,0 +1,24 @@
+[{
+    "location": {
+      "x": -59260.058594,
+      "y": 265099.25,
+      "z": -3760.552002,
+      "rotation": -80
+    },
+    "PowerInfo": {
+      "CircuitGroupID": 1,
+      "PowerConsumed": 30
+    }
+},
+ {
+    "location": {
+      "x": -60260.058594,
+      "y": 265099.25,
+      "z": -3760.552002,
+      "rotation": -80
+    },
+    "PowerInfo": {
+      "CircuitGroupID": 1,
+      "PowerConsumed": 30
+    }
+}]

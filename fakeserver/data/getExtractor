@@ -1,41 +1,47 @@
 [{
-      "building":"Oil Extractor",
-      "location":{
-         "x":-36415.085938,"y":-199979.984375,"z":2486.057617,
-         "rotation":150
-      },
-      "Recipe":"Crude Oil",
-      "production":[
-         {
-            "Name":"Crude Oil",
-            "CurrentProd":294.100006,
-            "MaxProd":750.0,
-            "ProdPercent":"39.200001"
-         }
-      ],
-      "ManuSpeed":2.5,
-      "IsConfigured":true,
-      "IsProducing":true,
-      "IsPaused":false,
-      "CircuitGroupID":44
+  "building":"Oil Extractor",
+  "location":{
+    "x":-36415.085938,"y":-199979.984375,"z":2486.057617,
+    "rotation":150
+  },
+  "Recipe":"Crude Oil",
+  "production":[
+    {
+      "Name":"Crude Oil",
+      "CurrentProd":294.100006,
+      "MaxProd":750.0,
+      "ProdPercent":"39.200001"
+    }
+  ],
+  "ManuSpeed":2.5,
+  "IsConfigured":true,
+  "IsProducing":true,
+  "IsPaused":false,
+  "PowerInfo": {
+    "CircuitGroupID": 44,
+    "PowerConsumed": 20
+  }
 }, {
-      "building":"Miner Mk.2",
-      "location":{
-         "x":-110109.101562,"y":-129159.960938,"z":-1213.412354,
-         "rotation":10
-      },
-      "Recipe":"Coal",
-      "production":[
-         {
-            "Name":"Coal",
-            "CurrentProd":119.300003,
-            "MaxProd":270.0,
-            "ProdPercent":"44.200001"
-         }
-      ],
-      "ManuSpeed":1.5,
-      "IsConfigured":true,
-      "IsProducing":true,
-      "IsPaused":false,
-      "CircuitGroupID":44
+  "building":"Miner Mk.2",
+  "location":{
+    "x":-110109.101562,"y":-129159.960938,"z":-1213.412354,
+    "rotation":10
+  },
+  "Recipe":"Coal",
+  "production":[
+    {
+      "Name":"Coal",
+      "CurrentProd":119.300003,
+      "MaxProd":270.0,
+      "ProdPercent":"44.200001"
+    }
+  ],
+  "ManuSpeed":1.5,
+  "IsConfigured":true,
+  "IsProducing":true,
+  "IsPaused":false,
+  "PowerInfo": {
+    "CircuitGroupID": 44,
+    "PowerConsumed": 20
+  }
 }]
