@@ -65,9 +65,15 @@ func retrieveData(frmAddress string) ([]string, error) {
 
 func retrieveSessionInfo(frmAddress string, data any) error {
 	resp, err := http.Get(frmAddress)
+
 	if err != nil {
 		return err
 	}
+
+	if resp.StatusCode != 200 {
+		return fmt.Errorf("non-200 returned when retireving data: %d", resp.StatusCode)
+	}
+
 	defer resp.Body.Close()
 	decoder := json.NewDecoder(resp.Body)
 	err = decoder.Decode(&data)
