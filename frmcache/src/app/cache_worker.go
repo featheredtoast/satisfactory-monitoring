@@ -45,6 +45,10 @@ func retrieveData(frmAddress string) ([]string, error) {
 		return nil, fmt.Errorf("error when parsing json: %s", err)
 	}
 
+	if resp.StatusCode != 200 {
+		return nil, fmt.Errorf("non-200 returned when retireving data: %d", resp.StatusCode)
+	}
+
 	var content []json.RawMessage
 	decoder := json.NewDecoder(resp.Body)
 	err = decoder.Decode(&content)
