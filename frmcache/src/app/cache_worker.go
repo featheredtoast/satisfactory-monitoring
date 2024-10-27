@@ -22,6 +22,10 @@ type CacheWorker struct {
 	now         time.Time
 }
 
+type SessionInfo struct {
+	sessionName string `json:"SessionName"`
+}
+
 func NewCacheWorker(frmBaseUrl string, db *sql.DB) *CacheWorker {
 	ctx, cancel := context.WithCancel(context.Background())
 
@@ -53,6 +57,14 @@ func retrieveData(frmAddress string) ([]string, error) {
 		result = append(result, string(c[:]))
 	}
 	return result, nil
+}
+
+func retrieveSessionInfo(frmAddress string, sessionInfo *SessionInfo) error {
+	resp, err := http.Get(frmAddress)
+	defer resp.Body.Close()
+	decoder := json.NewDecoder(resp.Body)
+	err = decoder.Decode(&sessionInfo)
+	return err
 }
 
 func (c *CacheWorker) cacheMetrics(metric string, data []string) (err error) {
@@ -175,9 +187,13 @@ func (c *CacheWorker) pullRealtimeMetrics() {
 }
 
 func (c *CacheWorker) pullSessionName() {
-	// TODO: query and update sessionName if changed
-	newSessionName := "default"
-	if newSessionName != c.sessionName {
+	sessionInfo := SessionInfo{}
+	err := retrieveSessionInfo(c.frmBaseUrl+"/getSessionInfo", &sessionInfo)
+	if err != nil {
+		fmt.Printf("error reading session name from FRM: %s\n", err)
+	}
+	newSessionName := sessionInfo.sessionName
+	if newSessionName != "" && newSessionName != c.sessionName {
 		c.sessionName = newSessionName
 		c.flushMetricHistory()
 	}
