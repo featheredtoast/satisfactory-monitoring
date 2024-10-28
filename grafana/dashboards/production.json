@@ -713,7 +713,7 @@
           "type": "prometheus",
           "uid": "PBFA97CFB590B2093"
         },
-        "definition": "{item_name=~\".+\",url=~\"$server\",session_name=~\"$session\"}",
+        "definition": "label_values(item_production_capacity_per_min,item_name)",
         "description": "Item",
         "hide": 0,
         "includeAll": false,
@@ -722,12 +722,12 @@
         "name": "item",
         "options": [],
         "query": {
-          "qryType": 4,
-          "query": "{item_name=~\".+\",url=~\"$server\",session_name=~\"$session\"}",
+          "qryType": 1,
+          "query": "label_values(item_production_capacity_per_min,item_name)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
-        "regex": ".*item_name=\"([^\"]*)\".*",
+        "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
