@@ -1184,7 +1184,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select \ndata ->> 'CircuitGroupID' as circuit,\ncount(*) as building_count\nfrom cache where metric in ('factory', 'extractor')\nand url = '$server'\nand session_name = '$session'\ngroup by circuit\norder by building_count",
+          "rawSql": "select \ndata -> 'PowerInfo' ->> 'CircuitGroupID' as circuit,\ncount(*) as building_count\nfrom cache where metric in ('factory', 'extractor')\nand url = '$server'\nand session_name = '$session'\ngroup by circuit\norder by building_count",
           "refId": "A",
           "sql": {
             "columns": [
