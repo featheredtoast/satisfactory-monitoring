@@ -883,7 +883,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum(vehicle_station_power{circuit_id=\"$circuit\", url=\"$server\", session_name=\"$session\"} or vector(0))",
+          "expr": "sum(last_over_time(vehicle_station_power{circuit_id=\"$circuit\", url=\"$server\", session_name=\"$session\"}[$__range]) or vector(0))",
           "hide": false,
           "instant": false,
           "legendFormat": "Truck Stations",
@@ -896,7 +896,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum(train_station_power{circuit_id=\"$circuit\", url=\"$server\", session_name=\"$session\"} or vector(0))",
+          "expr": "sum(last_over_time(train_station_power{circuit_id=\"$circuit\", url=\"$server\", session_name=\"$session\"}[$__range]) or vector(0))",
           "hide": false,
           "instant": false,
           "legendFormat": "Train Stations",
@@ -909,7 +909,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum(train_power_circuit_consumed{circuit_id=\"$circuit\", url=\"$server\", session_name=\"$session\"} or vector(0))",
+          "expr": "sum(last_over_time(train_power_circuit_consumed{circuit_id=\"$circuit\", url=\"$server\", session_name=\"$session\"}[$__range]) or vector(0))",
           "hide": false,
           "instant": false,
           "legendFormat": "Trains",
@@ -922,7 +922,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum(drone_port_power{circuit_id=\"$circuit\", url=\"$server\", session_name=\"$session\"} or vector(0))",
+          "expr": "sum(last_over_time(drone_port_power{circuit_id=\"$circuit\", url=\"$server\", session_name=\"$session\"}[$__range]) or vector(0))",
           "hide": false,
           "instant": false,
           "legendFormat": "Drone Ports",
@@ -935,7 +935,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum(factory_power{circuit_id=\"$circuit\", url=\"$server\", session_name=\"$session\"} or vector(0))",
+          "expr": "sum(last_over_time(factory_power{circuit_id=\"$circuit\", url=\"$server\", session_name=\"$session\"}[$__range]) or vector(0))",
           "hide": false,
           "instant": false,
           "legendFormat": "Factory",
@@ -948,7 +948,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "sum(resource_sink_power{circuit_id=\"$circuit\", url=\"$server\", session_name=\"$session\"} or vector(0))",
+          "expr": "sum(last_over_time(resource_sink_power{circuit_id=\"$circuit\", url=\"$server\", session_name=\"$session\"}[$__range]) or vector(0))",
           "hide": false,
           "instant": false,
           "legendFormat": "Sinks",
