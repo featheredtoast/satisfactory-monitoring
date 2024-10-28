@@ -25,7 +25,7 @@
           "uid": "PBFA97CFB590B2093"
         },
         "enable": true,
-        "expr": "ALERTS{alertname=\"FuseTriggered\", alertstate=\"firing\"}",
+        "expr": "ALERTS{alertname=\"FuseTriggered\", alertstate=\"firing\",url=\"$server\",circuit_id=\"$circuit\"}",
         "iconColor": "red",
         "name": "Fuse triggered",
         "step": "5m",
