@@ -696,7 +696,7 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "batteries/min",
+            "axisLabel": "fuel/min",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
@@ -769,16 +769,16 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(drone_port_battery_rate{url=\"$server\", session_name=\"$session\"}) > 0",
+          "expr": "drone_port_fuel_rate{url=\"$server\", session_name=\"$session\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
-          "legendFormat": "Batteries",
+          "legendFormat": "{{home_station}} - {{fuel_name}}",
           "range": true,
           "refId": "A",
           "useBackend": false
         }
       ],
-      "title": "Battery Consumption Rate",
+      "title": "Fuel Consumption Rate",
       "type": "timeseries"
     }
   ],
