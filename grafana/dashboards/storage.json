@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 4,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -175,7 +175,8 @@
     },
     {
       "datasource": {
-        "type": "postgres",
+        "default": true,
+        "type": "grafana-postgresql-datasource",
         "uid": "GhzMNppVk"
       },
       "fieldConfig": {
@@ -236,7 +237,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select \ndata ->> 'Name' as name,\n(data ->> 'Amount')::NUMERIC as count\nfrom cache where metric = 'worldInv';",
+          "rawSql": "select \ndata ->> 'Name' as name,\n(data ->> 'Amount')::NUMERIC as count\nfrom cache where metric = 'worldInv'\nand url = '$server'\nand session_name = '$session';",
           "refId": "A",
           "sql": {
             "columns": [
