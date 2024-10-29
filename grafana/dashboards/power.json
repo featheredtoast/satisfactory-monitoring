@@ -844,6 +844,21 @@
                 }
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Extractors"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
           }
         ]
       },
@@ -985,11 +1000,24 @@
         },
         {
           "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "sum(last_over_time(extractor_power{circuit_id=\"$circuit\", url=\"$server\", session_name=\"$session\"}[$__range]) or vector(0))",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Extractors",
+          "range": true,
+          "refId": "EXTRACTORS"
+        },
+        {
+          "datasource": {
             "name": "Expression",
             "type": "__expr__",
             "uid": "__expr__"
           },
-          "expression": "$TOTAL-$DRONE-$TRAIN-$TRAIN_STATION-$VEHICLE_STATION-$FACTORY-$SINK-$PUMPS",
+          "expression": "$TOTAL-$DRONE-$TRAIN-$TRAIN_STATION-$VEHICLE_STATION-$FACTORY-$SINK-$PUMPS-$EXTRACTORS",
           "hide": false,
           "refId": "OTHER",
           "type": "math"
