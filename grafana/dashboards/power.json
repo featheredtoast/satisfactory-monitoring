@@ -1093,7 +1093,7 @@
           "instant": false,
           "legendFormat": "Resource Well Pressurizers",
           "range": true,
-          "refId": "RESOURCE_WELL"
+          "refId": "RESOURCE_WELLS"
         },
         {
           "datasource": {
@@ -1101,7 +1101,7 @@
             "type": "__expr__",
             "uid": "__expr__"
           },
-          "expression": "$TOTAL-$DRONE-$TRAIN-$TRAIN_STATION-$VEHICLE_STATION-$FACTORY-$SINK-$PUMPS-$EXTRACTORS-$PORTALS-$HYPERTUBES",
+          "expression": "$TOTAL-$DRONE-$TRAIN-$TRAIN_STATION-$VEHICLE_STATION-$FACTORY-$SINK-$PUMPS-$EXTRACTORS-$PORTALS-$HYPERTUBES-$RESOURCE_WELLS",
           "hide": false,
           "refId": "OTHER",
           "type": "math"
