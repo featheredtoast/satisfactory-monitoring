@@ -889,6 +889,21 @@
                 }
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Resource Well Pressurizers"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
           }
         ]
       },
@@ -1066,6 +1081,19 @@
           "legendFormat": "Hypertubes",
           "range": true,
           "refId": "HYPERTUBES"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "sum(last_over_time(fracking_power{circuit_id=\"$circuit\", url=\"$server\", session_name=\"$session\"}[$__range]) or vector(0))",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Resource Well Pressurizers",
+          "range": true,
+          "refId": "RESOURCE_WELL"
         },
         {
           "datasource": {
