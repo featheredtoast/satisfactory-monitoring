@@ -859,6 +859,36 @@
                 }
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Hypertubes"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Portals"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
           }
         ]
       },
@@ -1013,11 +1043,37 @@
         },
         {
           "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "sum(last_over_time(portal_power{circuit_id=\"$circuit\", url=\"$server\", session_name=\"$session\"}[$__range]) or vector(0))",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Portals",
+          "range": true,
+          "refId": "PORTALS"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "sum(last_over_time(hypertube_power{circuit_id=\"$circuit\", url=\"$server\", session_name=\"$session\"}[$__range]) or vector(0))",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Hypertubes",
+          "range": true,
+          "refId": "HYPERTUBES"
+        },
+        {
+          "datasource": {
             "name": "Expression",
             "type": "__expr__",
             "uid": "__expr__"
           },
-          "expression": "$TOTAL-$DRONE-$TRAIN-$TRAIN_STATION-$VEHICLE_STATION-$FACTORY-$SINK-$PUMPS-$EXTRACTORS",
+          "expression": "$TOTAL-$DRONE-$TRAIN-$TRAIN_STATION-$VEHICLE_STATION-$FACTORY-$SINK-$PUMPS-$EXTRACTORS-$PORTALS-$HYPERTUBES",
           "hide": false,
           "refId": "OTHER",
           "type": "math"
