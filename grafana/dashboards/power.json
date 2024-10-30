@@ -1235,7 +1235,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\ndata ->> 'building' as building,\ndata ->> 'CircuitGroupID' as circuit,\ndata ->> 'Recipe' as recipe,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric in ('factory', 'extractor')\nand (data -> 'PowerInfo' ->> 'CircuitGroupID')::numeric = $circuit\nand url = '$server'\nand session_name = '$session'",
+          "rawSql": "SELECT\ndata ->> 'Name' as building,\ndata ->'PowerInfo' ->> 'CircuitGroupID' as circuit,\ndata ->> 'Recipe' as recipe,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric in ('factory', 'extractor')\nand (data -> 'PowerInfo' ->> 'CircuitGroupID')::numeric = $circuit\nand url = '$server'\nand session_name = '$session'",
           "refId": "buildings",
           "sql": {
             "columns": [
