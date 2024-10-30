@@ -43,6 +43,8 @@ services:
       - PG_PASSWORD=${PG_PASSWORD:-secretpassword}
       - PG_USER=${PG_USER:-postgres}
       - PG_DB=${PG_DB:-postgres}
+    depends_on:
+      - postgres
   postgres:
     image: postgres
     environment:
