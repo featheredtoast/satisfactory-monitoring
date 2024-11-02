@@ -1,0 +1,486 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 9,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "default": true,
+        "type": "grafana-postgresql-datasource",
+        "uid": "GhzMNppVk"
+      },
+      "description": "Search for buildings by item production name, and filter out for buildings that are underperforming.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "percent"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "continuous-RdYlGr"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "basemap": {
+          "config": {
+            "url": "https://satisfactory-map.featheredtoast.com/map/{z}/{x}/{y}.png"
+          },
+          "name": "Layer 0",
+          "type": "xyz"
+        },
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showMeasure": false,
+          "showScale": false,
+          "showZoom": true
+        },
+        "layers": [
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
+                  "field": "percent",
+                  "fixed": "dark-green"
+                },
+                "opacity": 0.5,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "symbolAlign": {
+                  "horizontal": "center",
+                  "vertical": "center"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "Buildings production %",
+            "tooltip": true,
+            "type": "markers"
+          }
+        ],
+        "tooltip": {
+          "mode": "details"
+        },
+        "view": {
+          "allLayers": true,
+          "id": "fit",
+          "lat": -0.045834,
+          "lon": 0.045748,
+          "zoom": 15
+        }
+      },
+      "pluginVersion": "11.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "GhzMNppVk"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\ndata ->> 'Name' as building,\ndata ->> 'Recipe' as recipe,\n(data -> 'production' -> 0 ->> 'ProdPercent')::NUMERIC as percent,\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nFROM cache\nwhere metric in ('factory', 'extractor')\nand (data -> 'production' -> 0 ->> 'ProdPercent')::NUMERIC <= $percent\nand data -> 'production' -> 0 ->> 'Name' in($item)\nand url = '$server'\nand session_name = '$session'",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Efficiency Map",
+      "type": "geomap"
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "http://192.168.2.97:8080",
+          "value": "http://192.168.2.97:8080"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "definition": "label_values(url)",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "server",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(url)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "Quarantine Factory Time",
+          "value": "Quarantine Factory Time"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "definition": "label_values({url=\"$server\"},session_name)",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "session",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values({url=\"$server\"},session_name)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": [
+            "AI Limiter",
+            "Adaptive Control Unit",
+            "Alclad Aluminum Sheet",
+            "Alumina Solution",
+            "Aluminum Casing",
+            "Aluminum Ingot",
+            "Aluminum Scrap",
+            "Assembly Director System",
+            "Automated Wiring",
+            "Battery",
+            "Bauxite",
+            "Biomass",
+            "Black Powder",
+            "Cable",
+            "Caterium Ingot",
+            "Caterium Ore",
+            "Circuit Board",
+            "Coal",
+            "Compacted Coal",
+            "Computer",
+            "Concrete",
+            "Cooling System",
+            "Copper Ingot",
+            "Copper Ore",
+            "Copper Powder",
+            "Copper Sheet",
+            "Crude Oil",
+            "Crystal Oscillator",
+            "Electromagnetic Control Rod",
+            "Empty Canister",
+            "Empty Fluid Tank",
+            "Encased Industrial Beam",
+            "Encased Uranium Cell",
+            "Fabric",
+            "Fuel",
+            "Fused Modular Frame",
+            "Gas Filter",
+            "Heat Sink",
+            "Heavy Modular Frame",
+            "Heavy Oil Residue",
+            "High-Speed Connector",
+            "Iodine-Infused Filter",
+            "Iron Ingot",
+            "Iron Ore",
+            "Iron Plate",
+            "Iron Rod",
+            "Leaves",
+            "Limestone",
+            "Modular Engine",
+            "Modular Frame",
+            "Motor",
+            "Nitric Acid",
+            "Nitrogen Gas",
+            "Nobelisk",
+            "Non-Fissile Uranium",
+            "Nuclear Pasta",
+            "Packaged Fuel",
+            "Packaged Nitrogen Gas",
+            "Packaged Water",
+            "Petroleum Coke",
+            "Plastic",
+            "Polymer Resin",
+            "Pressure Conversion Cube",
+            "Quartz Crystal",
+            "Quickwire",
+            "Radio Control Unit",
+            "Raw Quartz",
+            "Reinforced Iron Plate",
+            "Rotor",
+            "Rubber",
+            "Screw",
+            "Silica",
+            "Smart Plating",
+            "Solid Biofuel",
+            "Stator",
+            "Steel Beam",
+            "Steel Ingot",
+            "Steel Pipe",
+            "Sulfur",
+            "Sulfuric Acid",
+            "Supercomputer",
+            "Thermal Propulsion Rocket",
+            "Turbo Motor",
+            "Turbofuel",
+            "Uranium",
+            "Uranium Fuel Rod",
+            "Uranium Waste",
+            "Versatile Framework",
+            "Water",
+            "Wire"
+          ],
+          "value": [
+            "AI Limiter",
+            "Adaptive Control Unit",
+            "Alclad Aluminum Sheet",
+            "Alumina Solution",
+            "Aluminum Casing",
+            "Aluminum Ingot",
+            "Aluminum Scrap",
+            "Assembly Director System",
+            "Automated Wiring",
+            "Battery",
+            "Bauxite",
+            "Biomass",
+            "Black Powder",
+            "Cable",
+            "Caterium Ingot",
+            "Caterium Ore",
+            "Circuit Board",
+            "Coal",
+            "Compacted Coal",
+            "Computer",
+            "Concrete",
+            "Cooling System",
+            "Copper Ingot",
+            "Copper Ore",
+            "Copper Powder",
+            "Copper Sheet",
+            "Crude Oil",
+            "Crystal Oscillator",
+            "Electromagnetic Control Rod",
+            "Empty Canister",
+            "Empty Fluid Tank",
+            "Encased Industrial Beam",
+            "Encased Uranium Cell",
+            "Fabric",
+            "Fuel",
+            "Fused Modular Frame",
+            "Gas Filter",
+            "Heat Sink",
+            "Heavy Modular Frame",
+            "Heavy Oil Residue",
+            "High-Speed Connector",
+            "Iodine-Infused Filter",
+            "Iron Ingot",
+            "Iron Ore",
+            "Iron Plate",
+            "Iron Rod",
+            "Leaves",
+            "Limestone",
+            "Modular Engine",
+            "Modular Frame",
+            "Motor",
+            "Nitric Acid",
+            "Nitrogen Gas",
+            "Nobelisk",
+            "Non-Fissile Uranium",
+            "Nuclear Pasta",
+            "Packaged Fuel",
+            "Packaged Nitrogen Gas",
+            "Packaged Water",
+            "Petroleum Coke",
+            "Plastic",
+            "Polymer Resin",
+            "Pressure Conversion Cube",
+            "Quartz Crystal",
+            "Quickwire",
+            "Radio Control Unit",
+            "Raw Quartz",
+            "Reinforced Iron Plate",
+            "Rotor",
+            "Rubber",
+            "Screw",
+            "Silica",
+            "Smart Plating",
+            "Solid Biofuel",
+            "Stator",
+            "Steel Beam",
+            "Steel Ingot",
+            "Steel Pipe",
+            "Sulfur",
+            "Sulfuric Acid",
+            "Supercomputer",
+            "Thermal Propulsion Rocket",
+            "Turbo Motor",
+            "Turbofuel",
+            "Uranium",
+            "Uranium Fuel Rod",
+            "Uranium Waste",
+            "Versatile Framework",
+            "Water",
+            "Wire"
+          ]
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "definition": "label_values(item_production_capacity_per_min{url=\"$server\", session_name=\"$session\"},item_name)",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "item",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(item_production_capacity_per_min{url=\"$server\", session_name=\"$session\"},item_name)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "100",
+          "value": "100"
+        },
+        "description": "Filter for production above a certain percent, anything less than the listed percent appears on the map",
+        "hide": 0,
+        "label": "Percent Filter",
+        "name": "percent",
+        "options": [
+          {
+            "selected": true,
+            "text": "100",
+            "value": "100"
+          }
+        ],
+        "query": "100",
+        "skipUrlSync": false,
+        "type": "textbox"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Efficiency",
+  "uid": "ae2ra224hhjwgf",
+  "version": 12,
+  "weekStart": ""
+}
