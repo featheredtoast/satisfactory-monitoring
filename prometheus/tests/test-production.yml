@@ -19,7 +19,7 @@ tests:
               url: http://test:8080
             exp_annotations:
               summary: "Overconsuming item"
-              description: Iron Plate consumption has overtaken consumption. Produce more Iron Plate so as to not run out
+              description: Iron Plate consumption has overtaken production. Produce more Iron Plate so as to not run out
   # no alert when production is = consumption
   - interval: 1m
     input_series:
