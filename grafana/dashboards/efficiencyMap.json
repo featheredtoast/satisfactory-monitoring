@@ -31,7 +31,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "continuous-RdYlGr"
           },
           "custom": {
             "hideFrom": {
@@ -40,7 +40,10 @@
               "viz": false
             }
           },
+          "fieldMinMax": false,
           "mappings": [],
+          "max": 100,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -51,22 +54,7 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "percent"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "mode": "continuous-RdYlGr"
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 14,
@@ -243,7 +231,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": [
             "AI Limiter",
             "Adaptive Control Unit",
@@ -481,6 +469,6 @@
   "timezone": "browser",
   "title": "Efficiency",
   "uid": "ae2ra224hhjwgf",
-  "version": 12,
+  "version": 14,
   "weekStart": ""
 }
