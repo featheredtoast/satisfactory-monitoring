@@ -88,6 +88,10 @@ If there are more hosts than webhooks, the remaining hosts do not have webhooks.
 
 ## Getting started
 
+### Requirements
+
+This monitoring stack may require a minimum of 2GB of RAM, the stack may not run properly otherwise.
+
 ### Installing and configuring the mod
 
 Install the [ficsit remote monitoring](https://ficsit.app/mod/FicsitRemoteMonitoring) mod with the [Satisfactory Mod Manager](https://smm.ficsit.app/).
