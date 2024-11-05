@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"encoding/json"
 	"net/http"
+	"regexp"
 
 	"fmt"
 	"github.com/benbjohnson/clock"
@@ -12,6 +13,11 @@ import (
 )
 
 var Clock = clock.New()
+
+func sanitizeSessionName(sessionName string) string {
+	re := regexp.MustCompile(`[^\w\s]`)
+	return re.ReplaceAllString(sessionName, "")
+}
 
 type CacheWorker struct {
 	ctx         context.Context
@@ -205,7 +211,7 @@ func (c *CacheWorker) pullSessionName() {
 	if err != nil {
 		fmt.Printf("error reading session name from FRM: %s\n", err)
 	}
-	newSessionName := sessionInfo.SessionName
+	newSessionName := sanitizeSessionName(sessionInfo.SessionName)
 	if newSessionName != "" && newSessionName != c.sessionName {
 		fmt.Println(c.frmBaseUrl + " has a new session name: " + newSessionName)
 		c.sessionName = newSessionName

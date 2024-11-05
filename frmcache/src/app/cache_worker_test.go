@@ -63,3 +63,10 @@ func TestCacheHistory(t *testing.T) {
 		t.Fatal("frm didn't update correctly", err)
 	}
 }
+
+func TestSessionReplace(t *testing.T) {
+
+	if sanitizeSessionName(`it's giving -- 123456!@#$%^&*() yo hollar "'"`) != `its giving  123456 yo hollar ` {
+		t.Fatal("Session name wasn't sanitized correctly")
+	}
+}
