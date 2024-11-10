@@ -46,11 +46,12 @@ func NewCacheWorker(frmBaseUrl string, db *sql.DB) *CacheWorker {
 
 func retrieveData(frmAddress string) ([]string, error) {
 	resp, err := http.Get(frmAddress)
-	defer resp.Body.Close()
 
 	if err != nil {
 		return nil, fmt.Errorf("error when parsing json: %s", err)
 	}
+
+	defer resp.Body.Close()
 
 	if resp.StatusCode != 200 {
 		return nil, fmt.Errorf("non-200 returned when retireving data: %d", resp.StatusCode)
