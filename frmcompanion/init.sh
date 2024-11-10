@@ -1,6 +1,6 @@
 #!/bin/bash
 
-test ! -e Companion && /usr/bin/git clone --depth 1 -b monitor-multiple https://github.com/featheredtoast/FicsitRemoteMonitoringCompanion.git .
+test ! -e Companion && /usr/bin/git clone --depth 1 -b fix-mem-leak https://github.com/featheredtoast/FicsitRemoteMonitoringCompanion.git .
 cd Companion
 mkdir -p ./bin/map
 test ! -e ./bin/companion && /usr/local/go/bin/go build -o bin/companion main.go
