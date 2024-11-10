@@ -16,10 +16,7 @@ else
 fi
 cd ../Companion/bin
 touch ./frmc.log
-./companion &
+FRM_LOG_STDOUT=1 ./companion &
 PID="$!"
-trap 'kill $PID; exit 0' EXIT INT TERM
-tail -f ./frmc.log &
-PID2="$!"
 trap 'kill $PID; exit 0' EXIT INT TERM
 wait
