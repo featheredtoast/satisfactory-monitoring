@@ -11,6 +11,7 @@ services:
       - "8082:8080"
   frmcompanion:
     build: ./frmcompanion
+    image: featheredtoast/ficsit-remote-monitoring-companion
     environment:
       - FRM_HOST=${FRM_HOST:-host.docker.internal}
       - FRM_PORT=${FRM_PORT:-8080}
@@ -26,6 +27,7 @@ services:
 
   frmcache:
     build: ./frmcache
+    image: featheredtoast/ficsit-remote-monitoring-cache
     environment:
       - FRM_HOST=${FRM_HOST:-host.docker.internal}
       - FRM_PORT=${FRM_PORT:-8080}
@@ -44,6 +46,7 @@ services:
 
   alertmanager-config:
     build: ./alertmanager-config
+    image: featheredtoast/ficsit-remote-monitoring-alertmanager-config
     volumes:
       - ./alertmanager:/etc/alertmanager
     environment:
