@@ -63,7 +63,6 @@ func retrieveData(frmAddress string) ([]string, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error when parsing json: %s", err)
 	}
-	defer resp.Body.Close()
 	result := []string{}
 	for _, c := range content {
 		result = append(result, string(c[:]))
