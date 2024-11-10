@@ -77,11 +77,11 @@ func retrieveSessionInfo(frmAddress string, data any) error {
 		return err
 	}
 
+	defer resp.Body.Close()
 	if resp.StatusCode != 200 {
 		return fmt.Errorf("non-200 returned when retireving data: %d", resp.StatusCode)
 	}
 
-	defer resp.Body.Close()
 	decoder := json.NewDecoder(resp.Body)
 	err = decoder.Decode(&data)
 	return err
