@@ -1,0 +1,59 @@
+on:
+  push:
+  pull_request:
+
+env:
+  BUILDKIT_PROGRESS: plain
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ">=1.22.0"
+      - name: gofmt cache
+        working-directory: ./frmcache/src/app
+        run: |
+          if [ "$(gofmt -l . | wc -l)" -gt 0 ]; then
+            exit 1
+          fi
+      - name: gofmt alertmanager-config
+        working-directory: ./alertmanager-config/src/app
+        run: |
+          if [ "$(gofmt -l . | wc -l)" -gt 0 ]; then
+            exit 1
+          fi
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ">=1.22.0"
+      - name: Run tests
+        working-directory: ./frmcache/src/app
+        run: go test ./...
+
+  push:
+    if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev') && github.repository == 'featheredtoast/satisfactory-monitoring'
+    environment: docker deploy
+    runs-on: ubuntu-latest
+    needs: [lint, test]
+    env:
+      TAG: ${{ (github.ref == 'refs/heads/main' && 'latest') || (github.ref == 'refs/heads/dev' && 'dev') || '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: build images
+        run: |
+          docker login --username featheredtoast --password ${{ secrets.DOCKER_PASSWORD }}
+          docker buildx build --push --load --tag featheredtoast/ficsit-remote-monitoring-cache:${{ env.TAG }} ./frmcache
+          docker buildx build --push --load --tag featheredtoast/ficsit-remote-monitoring-alertmanager-config:${{ env.TAG }} ./alertmanager-config
+          docker buildx build --push --load --tag featheredtoast/ficsit-remote-monitoring-companion:${{ env.TAG }} ./frmcompanion

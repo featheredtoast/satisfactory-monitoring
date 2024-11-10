@@ -4,12 +4,13 @@ import (
 	"context"
 	"database/sql"
 	"encoding/json"
+	"fmt"
+	"log"
 	"net/http"
 	"regexp"
-
-	"fmt"
-	"github.com/benbjohnson/clock"
 	"time"
+
+	"github.com/benbjohnson/clock"
 )
 
 var Clock = clock.New()
@@ -158,7 +159,7 @@ func (c *CacheWorker) flushMetricHistory() error {
 	delete := `DELETE from cache_with_history c WHERE c.url = $1 and c.session_name = $2;`
 	_, err := c.db.Exec(delete, c.frmBaseUrl, c.sessionName)
 	if err != nil {
-		fmt.Println("flush metrics history db error: ", err)
+		log.Println("flush metrics history db error: ", err)
 	}
 	return err
 }
@@ -183,7 +184,7 @@ func (c *CacheWorker) pullMetrics(metric string, route string, keepHistory bool)
 
 func (c *CacheWorker) pullMetricsLog(metric string, route string, keepHistory bool) error {
 	if err := c.pullMetrics(metric, route, keepHistory); err != nil {
-		fmt.Println("Error when pulling metrics ", metric, ": ", err)
+		log.Println("Error when pulling metrics ", metric, ": ", err)
 		return err
 	}
 	return nil
@@ -210,11 +211,11 @@ func (c *CacheWorker) pullSessionName() {
 	sessionInfo := SessionInfo{}
 	err := retrieveSessionInfo(c.frmBaseUrl+"/getSessionInfo", &sessionInfo)
 	if err != nil {
-		fmt.Printf("error reading session name from FRM: %s\n", err)
+		log.Printf("error reading session name from FRM: %s\n", err)
 	}
 	newSessionName := sanitizeSessionName(sessionInfo.SessionName)
 	if newSessionName != "" && newSessionName != c.sessionName {
-		fmt.Println(c.frmBaseUrl + " has a new session name: " + newSessionName)
+		log.Println(c.frmBaseUrl + " has a new session name: " + newSessionName)
 		c.sessionName = newSessionName
 		c.flushMetricHistory()
 	}

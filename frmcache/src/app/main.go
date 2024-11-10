@@ -1,15 +1,21 @@
 package main
 
 import (
+	"context"
 	"database/sql"
 	"fmt"
-	_ "github.com/lib/pq"
+	"log"
 	"os"
 	"os/signal"
 	"runtime"
 	"strconv"
 	"strings"
 	"syscall"
+	"time"
+
+	"github.com/jackc/pgx/v5"
+	"github.com/jackc/tern/v2/migrate"
+	_ "github.com/lib/pq"
 )
 
 func lookupEnvWithDefault(variable string, defaultVal string) string {
@@ -33,13 +39,42 @@ func main() {
 	pgPassword := lookupEnvWithDefault("PG_PASSWORD", "secretpassword")
 	pgUser := lookupEnvWithDefault("PG_USER", "postgres")
 	pgDb := lookupEnvWithDefault("PG_DB", "postgres")
+	migrationLocation := lookupEnvWithDefault("MIGRATION_DIR", "/var/lib/frmcache")
 
 	psqlconn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", pgHost, pgPort, pgUser, pgPassword, pgDb)
 	db, err := sql.Open("postgres", psqlconn)
 	CheckError(err)
 	defer db.Close()
-	err = db.Ping()
+	retries := 5
+	for i := 0; i < retries; i++ {
+		err = db.Ping()
+		if err == nil {
+			break
+		}
+		log.Printf("connecting to database...")
+		time.Sleep(2 * time.Second)
+	}
 	CheckError(err)
+
+	var m *migrate.Migrator
+	migrateConn, err := pgx.Connect(context.Background(), psqlconn)
+	if err != nil {
+		log.Printf("Unable to establish connection: %v", err)
+		return
+	}
+	m, err = migrate.NewMigrator(context.Background(), migrateConn, "schema_version")
+	if err != nil {
+		log.Printf("Unable to create migrator: %v", err)
+		return
+	}
+	m.LoadMigrations(os.DirFS(migrationLocation))
+	m.OnStart = func(_ int32, name, direction, _ string) {
+		log.Printf("Migrating %s: %s", direction, name)
+	}
+	if err = m.Migrate(context.Background()); err != nil {
+		log.Printf("Unexpected failure migrating: %v", err)
+		return
+	}
 
 	cacheWorkers := []*CacheWorker{}
 	if frmHostnames == "" {
@@ -56,7 +91,7 @@ func main() {
 		go cacheWorker.Start()
 	}
 
-	fmt.Printf(`
+	log.Printf(`
 FRM Cache started
 Press ctrl-c to exit`)
 

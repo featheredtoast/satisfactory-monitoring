@@ -8,7 +8,7 @@ import (
 )
 
 type HostWebhookPair struct {
-	Host string
+	Host    string
 	Webhook string
 }
 

@@ -1,5 +1,7 @@
 services:
   fakeserver:
+    profiles:
+      - debug
     image: nginx
     volumes:
       - ./fakeserver/metrics:/usr/share/nginx/html/metrics
@@ -8,18 +10,13 @@ services:
     ports:
       - "8082:8080"
   frmcompanion:
-    image: golang
-    working_dir: /usr/src
-    entrypoint: /usr/local/bin/init.sh
-    volumes:
-      - ./frmcompanion/init.sh:/usr/local/bin/init.sh
+    build: ./frmcompanion
     environment:
       - FRM_HOST=${FRM_HOST:-host.docker.internal}
       - FRM_PORT=${FRM_PORT:-8080}
       - FRM_HOSTS=${FRM_HOSTS:-}
     ports:
       - "9000:9000"
-      - "8000:8000"
   prometheus:
     image: prom/prometheus
     volumes:
@@ -28,12 +25,7 @@ services:
       - "9090:9090"
 
   frmcache:
-    image: golang
-    working_dir: /usr/src/app
-    entrypoint: /usr/local/bin/init.sh
-    volumes:
-      - ./frmcache/init.sh:/usr/local/bin/init.sh
-      - ./frmcache/src:/usr/src
+    build: ./frmcache
     environment:
       - FRM_HOST=${FRM_HOST:-host.docker.internal}
       - FRM_PORT=${FRM_PORT:-8080}
@@ -51,13 +43,9 @@ services:
       - POSTGRES_PASSWORD=${PG_PASSWORD:-secretpassword}
 
   alertmanager-config:
-    image: golang
-    working_dir: /usr/src/app
-    entrypoint: /usr/local/bin/init.sh
+    build: ./alertmanager-config
     volumes:
       - ./alertmanager:/etc/alertmanager
-      - ./alertmanager-config/init.sh:/usr/local/bin/init.sh
-      - ./alertmanager-config/src:/usr/src
     environment:
       - FRM_HOST=${FRM_HOST:-host.docker.internal}
       - FRM_PORT=${FRM_PORT:-8080}

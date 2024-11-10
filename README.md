@@ -74,7 +74,7 @@ If there are more hosts than webhooks, the remaining hosts do not have webhooks.
 ## Services and ports
 
 - [grafana](http://localhost:3000): Time series graphing dashboard. Default username/password is `admin/admin`. This is the main front end for the app.
-- [frmcompanion](http://localhost:9000/metrics): A webapp that converts JSON data from FRM into Prometheus metrics at `localhost:9000/metrics`. There is also a realtime map app. `localhost:8000?frmhost=localhost&frmport=8080`.
+- [frmcompanion](http://localhost:9000/metrics): A webapp that converts JSON data from FRM into Prometheus metrics at `localhost:9000/metrics`.
 - [prometheus](http://localhost:9090): Ingest metrics from the remote monitoring companion. Generates alert metrics for interesting anomalies.
 - [alertmanager](http://localhost:9093): Forwards critical alerts to notification components.
 - alertmanager-discord: Sends critical alerts to Discord.
