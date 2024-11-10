@@ -15,7 +15,6 @@ else
     cp -R index.html map-16k.png vendor/ img/ js/ ../Companion/bin/map
 fi
 cd ../Companion/bin
-touch ./frmc.log
 FRM_LOG_STDOUT=1 ./companion &
 PID="$!"
 trap 'kill $PID; exit 0' EXIT INT TERM
