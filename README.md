@@ -128,13 +128,13 @@ Download the project files, either [cloned through git](https://github.com/feath
 
 You can set up a webhook for Discord by creating a webhook [following the guide](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks). Save the webhook link. It will look something like `https://discord.com/api/webhooks/12345/abcd12345`.
 
-### Optional: running monitoring on a separate computer
+### Optional: Find IP if running monitoring stack on a separate computer
 
 If running the monitoring app on a separate computer, find the IP address for the computer running Satisfactory eg, in windows running `ipconfig` in command line and note the IPv4 address, it will look something like `192.168.1.30`.
 
 Ensure that the `Listen_IP` is set to `0.0.0.0` in the mod's `WebServer.cfg`.
 
-#### Server configuration
+### Server configuration
 
 Create an [.env file](https://docs.docker.com/compose/environment-variables/set-environment-variables/) in the `satisfactory-monitoring` directory. We will store our configuration in here.
 
@@ -146,13 +146,13 @@ DISCORD_WEBHOOK=https://discord.com/api/webhooks/12345/abcd12345
 
 You may omit the DISCORD_WEBHOOK if you are not using discord for alerts.
 
-##### Local Windows
+#### Local Windows
 
 You may omit the FRM_HOST if you're running the monitoring on the same computer as Satisfactory on windows.
 
-You do not need to create the `.env` file if you are running locally and do not need discord webhooks.
+You do not need to create the `.env` file at all if you are running both the game and the monitoring stack locally on one computer, and you do not need discord webhooks.
 
-##### Local Linux
+#### Local Linux
 
  For Linux, the FRM_HOST will need to be set. The default host IP on the networking stack is `172.17.0.1`, and your .env can be:
 
@@ -160,7 +160,7 @@ You do not need to create the `.env` file if you are running locally and do not 
  FRM_HOST=172.17.0.1
  ```
 
-##### Startup
+#### Startup
 
 Start satisfactory, and run `docker compose up -d` from the `satisfactory-monitoring` directory.
 
