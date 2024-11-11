@@ -144,13 +144,29 @@ FRM_HOST=192.168.1.30
 DISCORD_WEBHOOK=https://discord.com/api/webhooks/12345/abcd12345
 ```
 
-You may omit the FRM_HOST if you're running the monitoring on the same computer as Satisfactory on windows. For Linux, the FRM_HOST will need to be set. The default host IP on the networking stack is `172.17.0.1`.
 You may omit the DISCORD_WEBHOOK if you are not using discord for alerts.
-You do not need the `.env` file if you do not need either of these.
+
+##### Local Windows
+
+You may omit the FRM_HOST if you're running the monitoring on the same computer as Satisfactory on windows.
+
+You do not need to create the `.env` file if you are running locally and do not need discord webhooks.
+
+##### Local Linux
+
+ For Linux, the FRM_HOST will need to be set. The default host IP on the networking stack is `172.17.0.1`, and your .env can be:
+
+ ```
+ FRM_HOST=172.17.0.1
+ ```
+
+##### Startup
 
 Start satisfactory, and run `docker compose up -d` from the `satisfactory-monitoring` directory.
 
 Navigate to `localhost:3000`. Log in with username: admin, password: admin. You should now be able to see the dashboards. Use the navigation on the left side to view available dashboards.
+
+If you do not see any data or your server populate in the top, the monitoring stack most likely cannot reach your game.
 
 ### Remove environment
 
@@ -173,6 +189,10 @@ If you installed via a zip, run `docker compose down`, download and replace the 
 docker compose pull
 docker compose up -d
 ```
+
+### Debugging
+
+If you are getting blank dashboards, you can view logs with `docker compose logs` to check for any errors. Specifically: `docker compose logs frmcompanion` and `docker compose logs frmcache` as those are the two apps that are pulling data.
 
 ### Development
 
