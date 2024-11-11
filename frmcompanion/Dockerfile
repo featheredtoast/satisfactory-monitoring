@@ -8,4 +8,5 @@ RUN /usr/bin/git clone --depth 1 -b fix-mem-leak https://github.com/featheredtoa
 FROM scratch
 COPY --from=builder /usr/src/Companion/bin/companion /usr/local/bin/companion
 EXPOSE 9000
+ENV FRM_LOG_STDOUT=1
 ENTRYPOINT ["/usr/local/bin/companion"]

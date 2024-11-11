@@ -16,7 +16,6 @@ services:
       - FRM_HOST=${FRM_HOST:-host.docker.internal}
       - FRM_PORT=${FRM_PORT:-8080}
       - FRM_HOSTS=${FRM_HOSTS:-}
-      - FRM_LOG_STDOUT=1
     ports:
       - "9000:9000"
   prometheus:
