@@ -138,19 +138,11 @@ func (c *CacheWorker) cacheMetricsWithHistory(metric string, data []string) (err
 		}
 	}
 
-	//720 = 1 hour, 5 second increments. retain that many rows for every data.
-	keep := 720 * len(data)
-
 	delete := `delete from cache_with_history where
 metric = $1 AND
 url = $2 AND session_name = $3 AND
-id NOT IN (
-select id from "cache_with_history" where metric = $1
-AND url = $2 AND session_name = $3
-order by id desc
-limit $4
-);`
-	_, err = tx.Exec(delete, metric, c.frmBaseUrl, c.sessionName, keep)
+time < $4;`
+	_, err = tx.Exec(delete, metric, c.frmBaseUrl, c.sessionName, c.now.Add(time.Duration(-1) * time.Hour))
 	return
 }
 

@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	"time"
 )
 
 func setupServer(expectedResponse string) *httptest.Server {
@@ -51,7 +52,7 @@ func TestCacheHistory(t *testing.T) {
 	mock.ExpectBegin()
 	mock.ExpectExec(`^insert into cache_with_history (.+)`).WithArgs("drone", `{"ID":"0","VehicleType":"Drone"}`, now, frm.URL, sessionName).WillReturnResult(sql.NewResult(1, 1))
 	mock.ExpectExec(`^insert into cache_with_history (.+)`).WithArgs("drone", `{"ID":"1","VehicleType":"Drone"}`, now, frm.URL, sessionName).WillReturnResult(sql.NewResult(1, 1))
-	mock.ExpectExec(`^delete from cache_with_history (.+)`).WithArgs("drone", frm.URL, sessionName, 720*2).WillReturnResult(sql.NewResult(1, 1))
+	mock.ExpectExec(`^delete from cache_with_history (.+)`).WithArgs("drone", frm.URL, sessionName, now.Add(time.Duration(-1)*time.Hour)).WillReturnResult(sql.NewResult(1, 1))
 	mock.ExpectCommit()
 
 	c := NewCacheWorker(frm.URL, db)
