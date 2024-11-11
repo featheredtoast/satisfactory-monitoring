@@ -142,7 +142,7 @@ func (c *CacheWorker) cacheMetricsWithHistory(metric string, data []string) (err
 metric = $1 AND
 url = $2 AND session_name = $3 AND
 time < $4;`
-	_, err = tx.Exec(delete, metric, c.frmBaseUrl, c.sessionName, c.now.Add(time.Duration(-1) * time.Hour))
+	_, err = tx.Exec(delete, metric, c.frmBaseUrl, c.sessionName, c.now.Add(time.Duration(-1)*time.Hour))
 	return
 }
 
