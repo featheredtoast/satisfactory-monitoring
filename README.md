@@ -95,20 +95,17 @@ This monitoring stack may require a minimum of 2GB of RAM, the stack may not run
 
 Install the [ficsit remote monitoring](https://ficsit.app/mod/FicsitRemoteMonitoring) mod with the [Satisfactory Mod Manager](https://smm.ficsit.app/).
 
-Edit the web server config -- on steam this is something like `C:\\Program Files (x86)\Steam\steamapps\common\Satisfactory\FactoryGame\Configs\FicsitRemoteMonitoring\WebServer.cfg`
+Edit the web server config -- on steam this is something like `C:\\Program Files (x86)\Steam\steamapps\common\Satisfactory\FactoryGame\Configs\FicsitRemoteMonitoring\WebServer.cfg` You may need to enter the game once with the mod installed for the config file to be generated.
 
-We are interested in two settings:
-`Listen_IP`: the address to listen for requests. This is by default localhost which will not allow external IPs. If you're running the monitoring stack on a different computer, you may need to set this to `0.0.0.0` to allow the monitoring computer access to the factory data.
-`Web_Autostart`: set to true to autostart the webserver when we load the game.
+We are interested in `Web_Autostart`: we want to set this to true to autostart the webserver when we load the game. While this is optional, otherwise you will have to run `/frm http start` every time you launch the game.
 
 An example configuration can look like the following:
 ```
 {
-  "Listen_IP": "127.0.0.1",
   "HTTP_Port": 8080,
   "Web_Autostart": true,
   "Web_Root": "",
-  "SML_ModVersion_DoNotChange": "0.8.30"
+  "SML_ModVersion_DoNotChange": "1.3.0"
 }
 ```
 
@@ -128,11 +125,11 @@ Download the project files, either [cloned through git](https://github.com/feath
 
 You can set up a webhook for Discord by creating a webhook [following the guide](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks). Save the webhook link. It will look something like `https://discord.com/api/webhooks/12345/abcd12345`.
 
-### Optional: Find IP if running monitoring stack on a separate computer
+### Find IP if running monitoring stack on a separate computer
 
 If running the monitoring app on a separate computer, find the IP address for the computer running Satisfactory eg, in windows running `ipconfig` in command line and note the IPv4 address, it will look something like `192.168.1.30`.
 
-Ensure that the `Listen_IP` is set to `0.0.0.0` in the mod's `WebServer.cfg`.
+In linux, use `ip a` in a terminal window.
 
 ### Server configuration
 
