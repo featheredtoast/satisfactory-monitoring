@@ -1,5 +1,9 @@
 on:
   push:
+    paths-ignore:
+      - "**.md"
+      - "resources/**"
+      - "**.gitignore"
   pull_request:
 
 env:
