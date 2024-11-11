@@ -77,10 +77,9 @@ If there are more hosts than webhooks, the remaining hosts do not have webhooks.
 - [frmcompanion](http://localhost:9000/metrics): A webapp that converts JSON data from FRM into Prometheus metrics at `localhost:9000/metrics`.
 - [prometheus](http://localhost:9090): Ingest metrics from the remote monitoring companion. Generates alert metrics for interesting anomalies.
 - [alertmanager](http://localhost:9093): Forwards critical alerts to notification components.
-- alertmanager-discord: Sends critical alerts to Discord.
 - frmcache: a caching server that pushes json metrics to a running postgres container
 - postgres - the database server that frm cache pushes to, and acts as an additional data source for grafana.
-- fakeserver: Test server for fake metrics used for testing. Maps to host port 8082 to avoid port conflicts if FRM is running on localhost.
+- fakeserver: Test server for fake metrics used for testing. Maps to host port 8082 to avoid port conflicts if FRM is running on localhost. For testing, runs with `--profile debug`.
   - [getFactory](http://localhost:8082/getFactory)
   - [getPower](http://localhost:8082/getPower)
   - [getProdStats](http://localhost:8082/getProdStats)
@@ -145,7 +144,7 @@ FRM_HOST=192.168.1.30
 DISCORD_WEBHOOK=https://discord.com/api/webhooks/12345/abcd12345
 ```
 
-You may omit the FRM_HOST if you're running the monitoring on the same computer as Satisfactory.
+You may omit the FRM_HOST if you're running the monitoring on the same computer as Satisfactory on windows. For Linux, the FRM_HOST will need to be set. The default host IP on the networking stack is `172.17.0.1`.
 You may omit the DISCORD_WEBHOOK if you are not using discord for alerts.
 You do not need the `.env` file if you do not need either of these.
 
@@ -156,3 +155,27 @@ Navigate to `localhost:3000`. Log in with username: admin, password: admin. You 
 ### Remove environment
 
 When you're done with the data, you can run `docker compose down` which will completely delete and remove the monitoring stack.
+
+### Update environment
+
+Make sure you destroy your old environment and pull in the new stack to upgrade and fully restart.
+
+If you installed via git:
+```
+docker compose down
+git pull
+docker compose pull
+docker compose up -d
+```
+
+If you installed via a zip, run `docker compose down`, download and replace the folder, and then run
+```
+docker compose pull
+docker compose up -d
+```
+
+### Development
+
+You are able to run `docker compose build --no-cache` to build the local docker images.
+
+There is a fake server you can run with `docker compose up -d --profile debug` that will report some fake metrics. The FRM_HOST and FRM_PORT is: fakeserver:8080.

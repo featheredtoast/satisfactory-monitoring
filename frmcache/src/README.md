@@ -29,3 +29,17 @@ cross join jsonb_path_query(frm_data, '$[*]') as data
 where metric = 'factory'
 LIMIT 500
 ```
+
+## Env vars
+
+Configuration is done strictly through ENV vars.
+
+`FRM_HOST`: The host to the Ficsit Remote Monitoring server. EG: `172.17.0.1`.
+`FRM_PORT`: The port of the Ficist Remote Monitoring server. EG: `8080`.
+`FRM_HOSTS`: A comma separated list of Ficsit Remote Monitoring servers. If protocol is unspecified, it defaults to http. EG: `http://myserver1.frm.example:8080,myserver2.frm.example:8080,https://myserver3.frm.example:8081`
+`PG_HOST`: Postgres host. Defaults to `postgres`
+`PG_PORT`: Postgres port. Defaults to `5432`
+`PG_PASSWORD`: Postgres password. Defaults to `secretpassword`
+`PG_USER`: Postgres user to connect as. Defaults to `postgres`
+`PG_DB`: Postgres database to connect to. Defaults to `postgres`
+`MIGRATION_DIR`: List of [tern](https://github.com/jackc/tern) migrations to execute. Defaults to `/var/lib/cache`
