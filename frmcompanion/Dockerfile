@@ -1,7 +1,7 @@
 FROM golang AS builder
 WORKDIR /usr/src/
 ENV GOOS=linux GARCH=amd64 CGO_ENABLED=0
-RUN /usr/bin/git clone --depth 1 -b fix-mem-leak https://github.com/featheredtoast/FicsitRemoteMonitoringCompanion.git . &&\
+RUN /usr/bin/git clone --depth 1 -b featheredtoast-main https://github.com/featheredtoast/FicsitRemoteMonitoringCompanion.git . &&\
   cd Companion &&\
   /usr/local/go/bin/go build -o bin/companion main.go
 
