@@ -42,4 +42,4 @@ Configuration is done strictly through ENV vars.
 `PG_PASSWORD`: Postgres password. Defaults to `secretpassword`
 `PG_USER`: Postgres user to connect as. Defaults to `postgres`
 `PG_DB`: Postgres database to connect to. Defaults to `postgres`
-`MIGRATION_DIR`: List of [tern](https://github.com/jackc/tern) migrations to execute. Defaults to `/var/lib/cache`
+`MIGRATION_DIR`: List of [tern](https://github.com/jackc/tern) migrations to execute. Defaults to `/var/lib/frmcache`
