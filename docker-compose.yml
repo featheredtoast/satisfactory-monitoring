@@ -21,6 +21,7 @@ services:
       - "9000:9000"
   prometheus:
     image: prom/prometheus
+    restart: unless-stopped
     volumes:
       - ./prometheus:/etc/prometheus
     ports:
