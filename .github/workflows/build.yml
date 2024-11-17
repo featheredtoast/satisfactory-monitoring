@@ -1,6 +1,8 @@
 on:
   push:
     paths-ignore:
+      - "*.md"
+      - "docker-compose.yml"
       - "**.md"
       - "resources/**"
       - "**.gitignore"
