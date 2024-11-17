@@ -19,7 +19,7 @@ services:
       - FRM_PORT=${FRM_PORT:-8080}
       - FRM_HOSTS=${FRM_HOSTS:-}
     #extra_hosts:
-    #  - "frm-server:192.168.1.100"
+    #  - "my-server:192.168.1.100"
     ports:
       - "9000:9000"
   prometheus:
@@ -36,7 +36,7 @@ services:
     image: featheredtoast/ficsit-remote-monitoring-cache
     restart: unless-stopped
     #extra_hosts:
-    #  - "frm-server:192.168.1.100"
+    #  - "my-server:192.168.1.100"
     environment:
       - FRM_HOST=${FRM_HOST:-host.docker.internal}
       - FRM_PORT=${FRM_PORT:-8080}

@@ -184,7 +184,7 @@ Uncomment (remove the # character) on both `extra_hosts` lines and replace `192.
 EG:
 ```
 extra_hosts:
-  - "frm-server:192.168.1.100"
+  - "my-server:192.168.1.100"
 ```
 
 ### Remove environment
