@@ -175,9 +175,29 @@ Navigate to `localhost:3000`. Log in with username: admin, password: admin. You 
 
 If you do not see any data or your server populate in the top, the monitoring stack most likely cannot reach your game.
 
+#### Hiding IPs from the dashboard
+
+In case you need to hide IPs from the dashboard, you may update `docker-compose.yml` to include `extra_hosts` - this is a way of telling the internal services how to access the FRM host by a hostname alias.
+
+Uncomment (remove the # character) on both `extra_hosts` lines and replace `192.168.1.100` lines with your IP. Then use `FRM_HOST=my-server` in your .env file. The resulting configuration will allow the FRM companion and cache to access the data by IP, and the dashboards will list the server(s) by their alias (`my-server`).
+
+EG:
+```
+extra_hosts:
+  - "frm-server:192.168.1.100"
+```
+
 ### Remove environment
 
-When you're done with the data, you can run `docker compose down` which will completely delete and remove the monitoring stack.
+When you're done with stack, you can run `docker compose down` which will completely delete and remove the monitoring stack.
+
+#### Removing data
+
+Data is saved to [docker volumes](https://docs.docker.com/engine/storage/volumes/). To remove the data after you stop the stack run:
+
+`docker volume rm satisfactory-monitoring_grafana satisfactory-monitoring_postgresql satisfactory-monitoring_prometheus`
+
+When you're done with the data you can run `docker volume rm satisfactory-monitoring_grafana`
 
 ### Update environment
 
