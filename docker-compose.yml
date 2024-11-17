@@ -3,6 +3,7 @@ services:
     profiles:
       - debug
     image: nginx
+    restart: unless-stopped
     volumes:
       - ./fakeserver/metrics:/usr/share/nginx/html/metrics
       - ./fakeserver/data:/usr/share/nginx/html/data
