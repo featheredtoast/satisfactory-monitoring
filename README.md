@@ -6,7 +6,8 @@ With FicsitRemoteMonitoring plugin, make sure you boot the http server `/frmweb 
 Configured to view dashboards and alerts including:
 
 ## Production overview
-![production overview](resources/global-production.png)
+![production overview](resources/global-production-1.png)
+![production overview 2](resources/global-production-2.png)
 
 View global production stats - current vs max production, and production/consumption per item, over time.
 
@@ -14,6 +15,7 @@ View overconsumption/underproduction alerts so your factories can stay efficient
 
 ## Power grid
 ![power-grid](resources/power.png)
+![power-grid-2](resources/power2.png)
 
 Overview of power and battery, as well as a map of what locations the power grid is serving.
 
@@ -26,6 +28,7 @@ View drone paths, round trip times, and battery consumption rates.
 
 ## Trains
 ![trains](resources/trains.png)
+![trains2](resources/trains2.png)
 
 View train paths, timetables, round trip times, and station travel times.
 Timeseries allows you to view how changes to tracks or added trains affect station travel times.
@@ -42,8 +45,15 @@ View drop pod locations of opened vs unopened drop pods, using a map that update
 
 ## Factory Production
 ![factory-production](resources/factory-production.png)
+![factory-production-2](resources/factory-production2.png)
 
 Inspect a square grid subsection of production buildings. Allows you to inspect the group's production vs consumption rates.
+
+## Machine Efficiency
+![efficiency](resources/efficiency1.png)
+![efficiency2](resources/efficiency2.png)
+
+Inspect machines' efficiency for producting specific items. Heatmap of color from red to green indicates 0-100% efficiency.
 
 ## Storage
 ![storage](resources/storage.png)
