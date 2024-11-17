@@ -12,6 +12,7 @@ services:
   frmcompanion:
     build: ./frmcompanion
     image: featheredtoast/ficsit-remote-monitoring-companion
+    restart: unless-stopped
     environment:
       - FRM_HOST=${FRM_HOST:-host.docker.internal}
       - FRM_PORT=${FRM_PORT:-8080}
@@ -28,6 +29,7 @@ services:
   frmcache:
     build: ./frmcache
     image: featheredtoast/ficsit-remote-monitoring-cache
+    restart: unless-stopped
     environment:
       - FRM_HOST=${FRM_HOST:-host.docker.internal}
       - FRM_PORT=${FRM_PORT:-8080}
@@ -41,6 +43,7 @@ services:
       - postgres
   postgres:
     image: postgres
+    restart: unless-stopped
     environment:
       - POSTGRES_PASSWORD=${PG_PASSWORD:-secretpassword}
 
@@ -58,6 +61,7 @@ services:
 
   alertmanager:
     image: prom/alertmanager
+    restart: unless-stopped
     volumes:
       - ./alertmanager:/etc/alertmanager
     ports:
@@ -69,6 +73,7 @@ services:
 
   grafana:
     image: grafana/grafana-oss
+    restart: unless-stopped
     volumes:
       - ./grafana/datasources:/etc/grafana/provisioning/datasources
       - ./grafana/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml
