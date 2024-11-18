@@ -193,11 +193,9 @@ When you're done with stack, you can run `docker compose down` which will comple
 
 #### Removing data
 
-Data is saved to [docker volumes](https://docs.docker.com/engine/storage/volumes/). To remove the data after you stop the stack run:
+Data is saved to [docker volumes](https://docs.docker.com/engine/storage/volumes/). To stop the stack AND remove the data run:
 
-`docker volume rm satisfactory-monitoring_grafana satisfactory-monitoring_postgresql satisfactory-monitoring_prometheus`
-
-When you're done with the data you can run `docker volume rm satisfactory-monitoring_grafana`
+`docker compose down --volumes`
 
 ### Update environment
 
