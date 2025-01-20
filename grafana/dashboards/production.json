@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 1,
   "links": [],
   "panels": [
     {
@@ -71,7 +71,7 @@
         },
         "viewMode": "list"
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.4.0",
       "title": "Production Alerts",
       "type": "alertlist"
     },
@@ -143,7 +143,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -232,7 +232,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -440,7 +440,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -612,7 +612,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -672,7 +672,7 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "",
+            "axisLabel": "p/min",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
@@ -737,7 +737,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -746,7 +746,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "resource_sink_total_points{url=\"$server\", session_name=\"$session\"}",
+          "expr": "rate(resource_sink_total_points{url=\"$server\", session_name=\"$session\"}[$__rate_interval]) * 60",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -756,7 +756,7 @@
           "useBackend": false
         }
       ],
-      "title": "Sink Points",
+      "title": "Sink Points Rate",
       "type": "timeseries"
     },
     {
@@ -806,19 +806,23 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "editorMode": "code",
-          "expr": "resource_sink_points_to_coupon",
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "resource_sink_points_to_coupon{url=\"$server\", session_name=\"$session\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "{{sink_type}}",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "Points to coupon",
@@ -871,7 +875,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.3.0",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -946,8 +950,8 @@
       },
       {
         "current": {
-          "text": "",
-          "value": ""
+          "text": "AI Limiter",
+          "value": "AI Limiter"
         },
         "datasource": {
           "type": "prometheus",
@@ -977,6 +981,6 @@
   "timezone": "",
   "title": "Global Production",
   "uid": "gTe4sot4z",
-  "version": 8,
+  "version": 3,
   "weekStart": ""
 }
