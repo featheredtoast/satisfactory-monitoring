@@ -49,7 +49,7 @@ services:
     depends_on:
       - postgres
   postgres:
-    image: postgres
+    image: postgres:17
     restart: unless-stopped
     environment:
       - POSTGRES_PASSWORD=${PG_PASSWORD:-secretpassword}
