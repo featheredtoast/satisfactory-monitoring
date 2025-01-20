@@ -97,7 +97,7 @@
               "showLegend": true,
               "style": {
                 "color": {
-                  "fixed": "dark-blue"
+                  "fixed": "dark-green"
                 },
                 "opacity": 0.9,
                 "rotation": {
@@ -448,6 +448,7 @@
     }
   ],
   "preload": false,
+  "refresh": "auto",
   "schemaVersion": 40,
   "tags": [],
   "templating": {
@@ -531,13 +532,13 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Players",
   "uid": "bealrl6frj6rke",
-  "version": 3,
+  "version": 2,
   "weekStart": ""
 }
