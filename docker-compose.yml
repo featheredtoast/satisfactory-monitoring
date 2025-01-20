@@ -88,6 +88,7 @@ services:
       - ./grafana/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml
       - ./grafana/dashboards:/etc/grafana/dashboards
       - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+      - ./grafana/home-dashboard.json:/usr/share/grafana/public/dashboards/home.json
       - ./grafana/icons:/usr/share/grafana/public/img/icons/satisfactory
       - grafana:/var/lib/grafana
     ports:
