@@ -26,6 +26,12 @@
       "version": ""
     },
     {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
@@ -727,7 +733,7 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "",
+            "axisLabel": "p/min",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
@@ -801,7 +807,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "resource_sink_total_points{url=\"$server\", session_name=\"$session\"}",
+          "expr": "rate(resource_sink_total_points{url=\"$server\", session_name=\"$session\"}[$__rate_interval]) * 60",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -811,7 +817,7 @@
           "useBackend": false
         }
       ],
-      "title": "Sink Points",
+      "title": "Sink Points Rate",
       "type": "timeseries"
     },
     {
@@ -824,6 +830,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "fieldMinMax": false,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -838,7 +845,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 2,
         "w": 8,
         "x": 12,
         "y": 28
@@ -846,7 +853,7 @@
       "id": 34,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "center",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -868,12 +875,16 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "editorMode": "code",
-          "expr": "resource_sink_points_to_coupon",
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "resource_sink_points_to_coupon{url=\"$server\", session_name=\"$session\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "{{sink_type}}",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "Points to coupon",
@@ -945,8 +956,77 @@
           "useBackend": false
         }
       ],
-      "title": "Available Tickets",
+      "title": "Collected Coupons",
       "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 12,
+        "y": 30
+      },
+      "id": 35,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "resource_sink_percent{url=\"$server\", session_name=\"$session\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "{{sink_type}}",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Next coupon",
+      "type": "gauge"
     }
   ],
   "refresh": "5s",
@@ -1015,13 +1095,13 @@
     ]
   },
   "time": {
-    "from": "now-3h",
-    "to": "now"
+    "from": "2025-01-20T19:59:22.384Z",
+    "to": "2025-01-20T20:49:22.384Z"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Global Production",
   "uid": "gTe4sot4z",
-  "version": 9,
+  "version": 7,
   "weekStart": ""
 }
