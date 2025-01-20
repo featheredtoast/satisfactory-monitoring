@@ -5,12 +5,5 @@
 "Percent": 30,
 "TotalPoints": 2000,
 "PointsToCoupon": 5000
-},
-{
-"Name": "Exploration",
-"NumCoupon": 120,
-"Percent": 50,
-"TotalPoints": 1000,
-"PointsToCoupon": 2000
 }
 ]
