@@ -188,6 +188,7 @@ func (c *CacheWorker) pullLowCadenceMetrics() {
 	c.pullMetricsLog("dropPod", "/getDropPod", false)
 	c.pullMetricsLog("storageInv", "/getStorageInv", false)
 	c.pullMetricsLog("worldInv", "/getWorldInv", false)
+	c.pullMetricsLog("cloudInv", "/getCloudInv", false)
 	c.pullMetricsLog("droneStation", "/getDroneStation", false)
 }
 
