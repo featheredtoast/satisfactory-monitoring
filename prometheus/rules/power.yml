@@ -5,7 +5,7 @@ groups:
     - record: power_consumed_overhead:min6h
       expr: min(1.2 * max_over_time(power_consumed[6h])) by (circuit_id,url,session_name)
     - record: power_consumed_overhead_or_max_consumed:min6h
-      expr: max(power_consumed_overhead:min6h < power_consumed_overhead:min6h or last_over_time(power_max_consumed[1h])) by (circuit_id,url,session_name)
+      expr: min(power_consumed_overhead:min6h or last_over_time(power_max_consumed[1h])) by (circuit_id,url,session_name)
     - record: battery_minutes_empty
       expr: round(battery_seconds_empty/60)
 
