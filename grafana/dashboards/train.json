@@ -51,8 +51,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -493,8 +492,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -583,8 +581,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -650,6 +647,7 @@
       "type": "table"
     },
     {
+
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -657,6 +655,7 @@
         "y": 9
       },
       "id": 4,
+
       "title": "All Train Stats",
       "type": "row"
     },
@@ -675,8 +674,9 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "Minutes",
+            "axisLabel": "",
             "axisPlacement": "auto",
+            "axisSoftMin": 0,
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
@@ -709,15 +709,15 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "dthms"
         },
         "overrides": []
       },
@@ -736,10 +736,12 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
+
       "targets": [
         {
           "datasource": {
@@ -748,7 +750,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "train_round_trip_seconds{url=\"$server\", session_name=\"$session\"} / 60",
+          "expr": "train_round_trip_seconds{url=\"$server\", session_name=\"$session\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "{{name}}",
@@ -783,8 +785,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -877,7 +878,7 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "MW",
+            "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
@@ -911,15 +912,15 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "megwatt"
         },
         "overrides": []
       },
@@ -938,10 +939,12 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
+
       "targets": [
         {
           "datasource": {
@@ -977,7 +980,7 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "Minutes",
+            "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
@@ -1011,15 +1014,15 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "dthms"
         },
         "overrides": []
       },
@@ -1038,10 +1041,12 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
+
       "targets": [
         {
           "datasource": {
@@ -1050,7 +1055,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "avg by(from, to) (train_segment_trip_seconds{url=\"$server\", session_name=\"$session\"}) / 60",
+          "expr": "avg by(from, to) (train_segment_trip_seconds{url=\"$server\", session_name=\"$session\"})",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "{{from}} -> {{to}}",
@@ -1083,6 +1088,7 @@
         ],
         "groupMode": "custom",
         "maxItems": 20,
+
         "sortOrder": 1,
         "stateFilter": {
           "error": true,
@@ -1093,10 +1099,12 @@
         },
         "viewMode": "list"
       },
+
       "title": "Derail Alerts",
       "type": "alertlist"
     }
   ],
+
   "refresh": "5s",
   "schemaVersion": 39,
   "tags": [],
