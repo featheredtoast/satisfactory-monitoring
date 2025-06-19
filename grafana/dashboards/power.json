@@ -26,6 +26,7 @@
         },
         "enable": true,
         "expr": "ALERTS{alertname=\"FuseTriggered\", alertstate=\"firing\",url=\"$server\",session_name=\"$session\",circuit_id=\"$circuit\"}",
+
         "iconColor": "red",
         "name": "Fuse triggered",
         "step": "5m",
@@ -80,6 +81,7 @@
         "groupBy": [],
         "groupMode": "default",
         "maxItems": 20,
+
         "sortOrder": 1,
         "stateFilter": {
           "error": true,
@@ -90,6 +92,7 @@
         },
         "viewMode": "list"
       },
+
       "title": "Power Alerts",
       "type": "alertlist"
     },
@@ -138,8 +141,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -214,8 +216,7 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "dark-red",
@@ -312,8 +313,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "#EAB839",
@@ -386,7 +386,7 @@
             "axisBorderShow": false,
             "axisCenteredZero": true,
             "axisColorMode": "text",
-            "axisLabel": "MW/H",
+            "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
@@ -420,15 +420,15 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": null
+                "color": "red"
               },
               {
                 "color": "green",
                 "value": 1
               }
             ]
-          }
+          },
+          "unit": "mwatth"
         },
         "overrides": []
       },
@@ -447,10 +447,12 @@
           "showLegend": true
         },
         "tooltip": {
+
           "mode": "single",
           "sort": "none"
         }
       },
+
       "targets": [
         {
           "datasource": {
@@ -486,7 +488,7 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "MW",
+            "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
@@ -520,15 +522,15 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "megwatt"
         },
         "overrides": [
           {
@@ -628,10 +630,12 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
+
       "targets": [
         {
           "datasource": {
@@ -719,7 +723,8 @@
               "viz": false
             }
           },
-          "mappings": []
+          "mappings": [],
+          "unit": "megwatt"
         },
         "overrides": [
           {
@@ -930,10 +935,12 @@
           "values": false
         },
         "tooltip": {
+
           "mode": "single",
           "sort": "none"
         }
       },
+
       "targets": [
         {
           "datasource": {
@@ -1134,8 +1141,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1283,15 +1289,15 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "locale"
         },
         "overrides": []
       },
@@ -1376,7 +1382,7 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "MW",
+            "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
@@ -1410,15 +1416,15 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "megwatt"
         },
         "overrides": [
           {
@@ -1456,10 +1462,12 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
+
       "targets": [
         {
           "datasource": {
@@ -1511,7 +1519,7 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "MW",
+            "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
@@ -1545,15 +1553,15 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "megwatt"
         },
         "overrides": [
           {
@@ -1591,10 +1599,12 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
+
       "targets": [
         {
           "datasource": {
@@ -1646,7 +1656,7 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "MW",
+            "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
@@ -1687,7 +1697,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "megwatt"
         },
         "overrides": [
           {
@@ -1725,10 +1736,12 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
+
       "targets": [
         {
           "datasource": {
@@ -1780,7 +1793,7 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "MW",
+            "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
@@ -1821,7 +1834,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "megwatt"
         },
         "overrides": [
           {
@@ -1859,10 +1873,12 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
+
       "targets": [
         {
           "datasource": {
@@ -1900,6 +1916,7 @@
       "type": "timeseries"
     }
   ],
+
   "refresh": "5s",
   "schemaVersion": 39,
   "tags": [],
