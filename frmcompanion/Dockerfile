@@ -2,7 +2,7 @@ FROM --platform=$BUILDPLATFORM golang AS builder
 ARG TARGETOS
 ARG TARGETARCH
 WORKDIR /usr/src/
-RUN /usr/bin/git clone --depth 1 -b featheredtoast-main https://github.com/featheredtoast/FicsitRemoteMonitoringCompanion.git . &&\
+RUN /usr/bin/git clone --depth 1 -b main https://github.com/azzeloof/FicsitRemoteMonitoringCompanion.git . &&\
   cd Companion &&\
   GOOS=${TARGETOS} GOARCH=${TARGETARCH} CGO_ENABLED=0 /usr/local/go/bin/go build -o bin/companion main.go
 
