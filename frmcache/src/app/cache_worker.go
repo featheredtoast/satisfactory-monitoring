@@ -1,17 +1,35 @@
 package main
 
 import (
+	"bytes"
 	"context"
+	"crypto/tls"
 	"database/sql"
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
+	"net/url"
 	"regexp"
+	"strings"
 	"time"
 
 	"github.com/benbjohnson/clock"
 )
+
+// Struct for the JSON body of POST requests
+type FrmApiRequest struct {
+	Function string `json:"function"`
+	Endpoint string `json:"endpoint"`
+}
+
+// Reusable HTTP client for HTTPS w/ self-signed certs
+var tlsClient = &http.Client{
+	Timeout: 10 * time.Second,
+	Transport: &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	},
+}
 
 var Clock = clock.New()
 
@@ -45,7 +63,7 @@ func NewCacheWorker(frmBaseUrl string, db *sql.DB) *CacheWorker {
 	}
 }
 
-func retrieveData(frmAddress string) ([]string, error) {
+func retrieveDataViaGET(frmAddress string) ([]string, error) {
 	resp, err := http.Get(frmAddress)
 
 	if err != nil {
@@ -71,7 +89,7 @@ func retrieveData(frmAddress string) ([]string, error) {
 	return result, nil
 }
 
-func retrieveSessionInfo(frmAddress string, data any) error {
+func retrieveSessionInfoViaGET(frmAddress string, data any) error {
 	resp, err := http.Get(frmAddress)
 
 	if err != nil {
@@ -86,6 +104,99 @@ func retrieveSessionInfo(frmAddress string, data any) error {
 	decoder := json.NewDecoder(resp.Body)
 	err = decoder.Decode(&data)
 	return err
+}
+
+func retrieveDataViaPOST(frmApiUrl string, endpointName string, details any) error {
+	reqBody := FrmApiRequest{
+		Function: "frm",
+		Endpoint: endpointName,
+	}
+	jsonData, err := json.Marshal(reqBody)
+	if err != nil {
+		return fmt.Errorf("error marshalling request body: %s", err)
+	}
+
+	req, err := http.NewRequest("POST", frmApiUrl, bytes.NewBuffer(jsonData))
+	if err != nil {
+		return fmt.Errorf("error creating POST request: %s", err)
+	}
+	req.Header.Set("Content-Type", "application/json")
+
+	resp, err := tlsClient.Do(req)
+	if err != nil {
+		return fmt.Errorf("error making POST request: %s", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != 200 {
+		return fmt.Errorf("non-200 returned: %d", resp.StatusCode)
+	}
+
+	return json.NewDecoder(resp.Body).Decode(&details)
+}
+
+func retrieveData(frmAddress string) ([]string, error) {
+	u, err := url.Parse(frmAddress)
+	if err != nil {
+		return nil, fmt.Errorf("invalid FRM address URL: %s", err)
+	}
+
+	// Check if we're using the Dedicated Server API
+	if strings.HasPrefix(u.Scheme, "https") && strings.HasSuffix(u.Path, "/api/v1") {
+		return nil, fmt.Errorf("dedicated server API detected in retrieveData, but this function expects old URL format")
+	} else if strings.HasPrefix(u.Scheme, "https") && strings.Contains(u.Path, "/api/v1/") {
+		parts := strings.SplitN(frmAddress, "/api/v1/", 2)
+		if len(parts) < 2 {
+			return nil, fmt.Errorf("invalid dedicated server API URL format: %s", frmAddress)
+		}
+
+		baseUrl := parts[0] + "/api/v1"
+		endpointName := parts[1] // "getDrone", "getTrains", etc.
+
+		var content []json.RawMessage
+		err = retrieveDataViaPOST(baseUrl, endpointName, &content)
+		if err != nil {
+			return nil, fmt.Errorf("error when parsing json: %s", err)
+		}
+
+		// Convert []json.RawMessage to []string
+		result := []string{}
+		for _, c := range content {
+			result = append(result, string(c[:]))
+		}
+		return result, nil
+
+	} else {
+		// Standard Web Server mode.
+		return retrieveDataViaGET(frmAddress)
+	}
+}
+
+func retrieveSessionInfo(frmAddress string, data any) error {
+	u, err := url.Parse(frmAddress)
+	if err != nil {
+		return fmt.Errorf("invalid FRM address URL: %s", err)
+	}
+
+	// Check if we're using the Dedicated Server API
+	if strings.HasPrefix(u.Scheme, "https") && strings.HasSuffix(u.Path, "/api/v1") {
+		// This should not be hit by this function, but we handle it.
+		return fmt.Errorf("dedicated server API detected in retrieveSessionInfo, but this function expects old URL format")
+	} else if strings.HasPrefix(u.Scheme, "https") && strings.Contains(u.Path, "/api/v1/") {
+		// This is the one we see in the logs: "https://.../api/v1/getSessionInfo"
+		parts := strings.SplitN(frmAddress, "/api/v1/", 2)
+		if len(parts) < 2 {
+			return fmt.Errorf("invalid dedicated server API URL format: %s", frmAddress)
+		}
+		baseUrl := parts[0] + "/api/v1"
+		endpointName := parts[1] // This will be "getSessionInfo"
+
+		return retrieveDataViaPOST(baseUrl, endpointName, data)
+
+	} else {
+		// Standard Web Server mode.
+		return retrieveSessionInfoViaGET(frmAddress, data)
+	}
 }
 
 func (c *CacheWorker) cacheMetrics(metric string, data []string) (err error) {
