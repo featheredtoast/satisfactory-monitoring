@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 7,
+  "id": 8,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -63,7 +63,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
         "x": 0,
         "y": 0
@@ -95,6 +95,49 @@
                 },
                 "opacity": 0.5,
                 "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 20,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/satisfactory/location-point.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "Other stations"
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "Other stations",
+            "tooltip": true,
+            "type": "markers"
+          },
+          {
+            "config": {
+              "showLegend": false,
+              "style": {
+                "color": {
+                  "fixed": "text"
+                },
+                "opacity": 0.5,
+                "rotation": {
                   "field": "rotation",
                   "fixed": 0,
                   "max": 360,
@@ -102,7 +145,7 @@
                   "mode": "mod"
                 },
                 "size": {
-                  "fixed": 15,
+                  "fixed": 20,
                   "max": 15,
                   "min": 2
                 },
@@ -121,9 +164,12 @@
             },
             "filterData": {
               "id": "byRefId",
-              "options": "Other Trucks"
+              "options": "Other trains"
             },
-            "name": "Other Trucks",
+            "location": {
+              "mode": "auto"
+            },
+            "name": "Other trains",
             "tooltip": true,
             "type": "markers"
           },
@@ -164,6 +210,7 @@
               "options": "Route"
             },
             "name": "Route",
+            "opacity": 0.9,
             "tooltip": true,
             "type": "route"
           },
@@ -172,7 +219,7 @@
               "showLegend": false,
               "style": {
                 "color": {
-                  "fixed": "text"
+                  "fixed": "dark-red"
                 },
                 "opacity": 0.8,
                 "rotation": {
@@ -182,7 +229,7 @@
                   "mode": "mod"
                 },
                 "size": {
-                  "fixed": 5,
+                  "fixed": 20,
                   "max": 15,
                   "min": 2
                 },
@@ -250,7 +297,7 @@
             "location": {
               "mode": "auto"
             },
-            "name": "Truck Location",
+            "name": "Train location",
             "tooltip": true,
             "type": "markers"
           }
@@ -263,8 +310,9 @@
           "id": "fit",
           "lastOnly": false,
           "lat": 0,
-          "layer": "Truck Location",
+          "layer": "Stations",
           "lon": 0,
+          "padding": 30,
           "zoom": 16
         }
       },
@@ -279,36 +327,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\nconcat(data->>'ID',':',data->>'VehicleType') as vehicle,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'truck'\nand data ->> 'ID' = '$vehicle'\nand url = '$server'\nand session_name = '$session';\n",
-          "refId": "Current location",
-          "sql": {
-            "columns": [
-              {
-                "parameters": [],
-                "type": "function"
-              }
-            ],
-            "groupBy": [
-              {
-                "property": {
-                  "type": "string"
-                },
-                "type": "groupBy"
-              }
-            ],
-            "limit": 50
-          }
-        },
-        {
-          "datasource": {
-            "type": "postgres",
-            "uid": "GhzMNppVk"
-          },
-          "editorMode": "code",
-          "format": "table",
-          "hide": false,
-          "rawQuery": true,
-          "rawSql": "select\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation') as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history where metric = 'truck'\nand data ->> 'ID' = '$vehicle'\nand $__timeFilter(time)\nand url = '$server'\nand session_name = '$session'\norder by time desc\nlimit 100;\n",
+          "rawSql": "select\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache_with_history where metric = 'train'\nand data ->> 'Name' = '$train'\nand $__timeFilter(time)\nand url = '$server'\nand session_name = '$session'\norder by time desc\nlimit 720;\n",
           "refId": "Route",
           "sql": {
             "columns": [
@@ -337,7 +356,36 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\ndata,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'truckStation'\nand url = '$server'\nand session_name = '$session'\nlimit 100;\n",
+          "rawSql": "select\ndata->>'Name' as name,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'train'\nand data ->> 'Name' = '$train'\nand url = '$server'\nand session_name = '$session'\norder by id desc;\n",
+          "refId": "Current location",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "GhzMNppVk"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "select\n  data ->> 'Name' as station_name,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nfrom\n  cache\n \nwhere\n  metric = 'trainStation'\n  and url = '$server'\n  and session_name = '$session'\n  and (data -> 'Name') <@ (\n    select\n          jsonb_path_query_array(data, '$.TimeTable[*].StationName') as station\n        from\n          cache c\n         \n        where\n          metric = 'train'\n          and data ->> 'Name' = '$train'\n          and url = '$server'\n          and session_name = '$session'\n        limit 1\n  )",
           "refId": "Stations",
           "sql": {
             "columns": [
@@ -366,8 +414,37 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "select\nconcat(data->>'ID',':',data->>'VehicleType') as vehicle,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'truck'\nand data ->> 'ID' <> '$vehicle'\nand url = '$server'\nand session_name = '$session'\norder by id desc\n",
-          "refId": "Other Trucks",
+          "rawSql": "select\ndata->>'Name' as name,\n(data -> 'location' ->> 'x')::NUMERIC/100 as x,\n(data -> 'location' ->> 'y')::NUMERIC/100 as y,\n(data -> 'location' ->> 'z')::NUMERIC/100 as z,\n(data -> 'location' ->> 'rotation')::NUMERIC as rotation,\n(((data -> 'location' ->> 'x')::NUMERIC + 375000) * 0.0000001015) as longitude,\n(((data -> 'location' ->> 'y')::NUMERIC + 375000) * -0.0000001172) as latitude\nfrom cache where metric = 'train'\nand data ->> 'Name' <> '$train'\nand url = '$server'\nand session_name = '$session'\norder by id desc;\n",
+          "refId": "Other trains",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "GhzMNppVk"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "select\n  data ->> 'Name' as station_name,\n  (data -> 'location' ->> 'x') :: NUMERIC / 100 as x,\n  (data -> 'location' ->> 'y') :: NUMERIC / 100 as y,\n  (data -> 'location' ->> 'z') :: NUMERIC / 100 as z,\n  (data -> 'location' ->> 'rotation') :: NUMERIC as rotation,\n  (\n    ((data -> 'location' ->> 'x') :: NUMERIC + 375000) * 0.0000001015\n  ) as longitude,\n  (\n    ((data -> 'location' ->> 'y') :: NUMERIC + 375000) * -0.0000001172\n  ) as latitude\nfrom\n  cache\n \nwhere\n  metric = 'trainStation'\n  and url = '$server'\n  and session_name = '$session'\n  and not (data -> 'Name') <@ (\n    select\n          jsonb_path_query_array(data, '$.TimeTable[*].StationName') as station\n        from\n          cache c\n         \n        where\n          metric = 'train'\n          and data ->> 'Name' = '$train'\n          and url = '$server'\n          and session_name = '$session'\n        limit 1\n  );",
+          "refId": "Other stations",
           "sql": {
             "columns": [
               {
@@ -387,8 +464,303 @@
           }
         }
       ],
-      "title": "Truck Routes",
+      "title": "Train Routes",
       "type": "geomap"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "grafana-postgresql-datasource",
+        "uid": "GhzMNppVk"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "custom": {
+            "align": "center",
+            "cellOptions": {
+              "type": "color-text"
+            },
+            "filterable": false,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 12,
+        "y": 0
+      },
+      "id": 31,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": false,
+        "sortBy": []
+      },
+      "pluginVersion": "11.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "GhzMNppVk"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "select\ndata->>'TrainStation' as name\nfrom cache where metric = 'train'\nand data ->> 'Name' = '$train'\nand url = '$server'\nand session_name = '$session'\norder by id desc;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Next stop",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "grafana-postgresql-datasource",
+        "uid": "GhzMNppVk"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 3
+      },
+      "id": 30,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "11.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "GhzMNppVk"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "select\n          jsonb_array_elements_text(jsonb_path_query_array(data, '$.TimeTable[*].StationName')) as station\n        from\n          cache c\n         \n        where\n          metric = 'train'\n          and data ->> 'Name' = '$train'\n          and url = '$server'\n          and session_name = '$session'",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "$train timetable",
+      "type": "table"
+    },
+    {
+
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 4,
+
+      "title": "All Train Stats",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "dthms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 10
+      },
+      "id": 16,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "train_round_trip_seconds{url=\"$server\", session_name=\"$session\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "legendFormat": "{{name}}",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Train Round trip",
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -422,15 +794,28 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "d"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 593
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 0
+        "y": 10
       },
-      "id": 28,
+      "id": 29,
       "options": {
         "cellHeight": "sm",
         "footer": {
@@ -441,7 +826,8 @@
           ],
           "show": false
         },
-        "showHeader": true
+        "showHeader": true,
+        "sortBy": []
       },
       "pluginVersion": "11.2.2",
       "targets": [
@@ -453,7 +839,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\ndata->>'ID' as id,\ndata->>'Name' as type,\ndata->>'PathName' as path_name,\ndata->>'Autopilot' as autopilot,\ndata->>'Status' as status\nfrom cache WHERE metric = 'truck'\nand url = '$server'\nand session_name = '$session';",
+          "rawSql": "SELECT \ndata->>'Name' as name,\ndata->>'Status' as status,\ndata->>'TrainStation' as next_station,\nstring_agg(t.timetable,', ') as timetable\nfrom cache c\njoin (select\nid,\njsonb_array_elements_text(jsonb_path_query_array(data, '$.TimeTable[*].StationName')) as timetable from cache \nwhere metric='train'\nand url = '$server'\nand session_name = '$session'\n) as t on t.id = c.id\nwhere metric = 'train'\nand url = '$server'\nand session_name = '$session'\ngroup by data->>'Name', data->>'Status', data->>'TrainStation';",
           "refId": "A",
           "sql": {
             "columns": [
@@ -474,21 +860,8 @@
           }
         }
       ],
-      "title": "Vehicle list",
+      "title": "Train list",
       "type": "table"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 8
-      },
-      "id": 6,
-      "panels": [],
-      "title": "Vehicles",
-      "type": "row"
     },
     {
       "datasource": {
@@ -505,7 +878,7 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "Fuel Remaining",
+            "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
@@ -547,7 +920,7 @@
               }
             ]
           },
-          "unit": "locale"
+          "unit": "megwatt"
         },
         "overrides": []
       },
@@ -555,9 +928,9 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 9
+        "y": 18
       },
-      "id": 8,
+      "id": 14,
       "options": {
         "legend": {
           "calcs": [],
@@ -580,16 +953,16 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "vehicle_fuel{vehicle_type!=\"Factory Cart™\", url=\"$server\", session_name=\"$session\"}",
+          "expr": "train_power_consumed{name=\"$train\", url=\"$server\", session_name=\"$session\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
-          "legendFormat": "{{id}} ({{vehicle_type}}) - {{fuel_type}}",
+          "legendFormat": "{{name}} power use",
           "range": true,
           "refId": "A",
           "useBackend": false
         }
       ],
-      "title": "Fuel Loadout",
+      "title": "Train power consumption",
       "type": "timeseries"
     },
     {
@@ -637,7 +1010,6 @@
             }
           },
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -658,9 +1030,9 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 9
+        "y": 18
       },
-      "id": 10,
+      "id": 18,
       "options": {
         "legend": {
           "calcs": [],
@@ -683,17 +1055,53 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "vehicle_round_trip_seconds{url=\"$server\", session_name=\"$session\"}",
+          "expr": "avg by(from, to) (train_segment_trip_seconds{url=\"$server\", session_name=\"$session\"})",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
-          "legendFormat": "{{id}} ({{vehicle_type}}) - {{path_name}}",
+          "legendFormat": "{{from}} -> {{to}}",
           "range": true,
           "refId": "A",
           "useBackend": false
         }
       ],
-      "title": "Vehicle Round trip",
+      "title": "Station Travel Time",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 26
+      },
+      "id": 24,
+      "options": {
+        "alertInstanceLabelFilter": "url=~\"$server\",session_name=~\"$session\"",
+        "alertName": "TrainDerailed",
+        "dashboardAlerts": false,
+        "groupBy": [
+          "name"
+        ],
+        "groupMode": "custom",
+        "maxItems": 20,
+
+        "sortOrder": 1,
+        "stateFilter": {
+          "error": true,
+          "firing": true,
+          "noData": false,
+          "normal": false,
+          "pending": true
+        },
+        "viewMode": "list"
+      },
+
+      "title": "Derail Alerts",
+      "type": "alertlist"
     }
   ],
 
@@ -704,7 +1112,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "http://fakeserver:8080",
           "value": "http://fakeserver:8080"
         },
@@ -759,21 +1167,21 @@
       {
         "current": {
           "selected": false,
-          "text": "1 (Tractor:test1)",
-          "value": "1"
+          "text": "Train",
+          "value": "Train"
         },
         "datasource": {
           "type": "postgres",
           "uid": "GhzMNppVk"
         },
-        "definition": "select\ndata->>'ID' as __value,\nconcat(data->>'ID', ' (', data ->> 'Name', ':', data ->> 'PathName',')') as __text\nfrom cache where metric = 'truck'\nand url = '$server'\nand session_name = '$session'\norder by id desc;",
+        "definition": "select\ndata ->> 'Name'\nfrom cache_with_history c\nwhere metric = 'train'\nand url = '$server'\nand session_name = '$session'\norder by c.id desc",
         "hide": 0,
         "includeAll": false,
-        "label": "Vehicle",
+        "label": "Train name",
         "multi": false,
-        "name": "vehicle",
+        "name": "train",
         "options": [],
-        "query": "select\ndata->>'ID' as __value,\nconcat(data->>'ID', ' (', data ->> 'Name', ':', data ->> 'PathName',')') as __text\nfrom cache where metric = 'truck'\nand url = '$server'\nand session_name = '$session'\norder by id desc;",
+        "query": "select\ndata ->> 'Name'\nfrom cache_with_history c\nwhere metric = 'train'\nand url = '$server'\nand session_name = '$session'\norder by c.id desc",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -788,8 +1196,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Vehicles",
-  "uid": "XteIs3cVk",
-  "version": 4,
+  "title": "Trains (Template)",
+  "uid": "5TN0r0p4k",
+  "version": 2,
   "weekStart": ""
 }
