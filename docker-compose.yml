@@ -47,7 +47,8 @@ services:
       - PG_USER=${PG_USER:-postgres}
       - PG_DB=${PG_DB:-postgres}
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
   postgres:
     image: postgres:17
     restart: unless-stopped
@@ -55,6 +56,11 @@ services:
       - POSTGRES_PASSWORD=${PG_PASSWORD:-secretpassword}
     volumes:
       - postgresql:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PG_USER:-postgres}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   alertmanager-config:
     build: ./alertmanager-config

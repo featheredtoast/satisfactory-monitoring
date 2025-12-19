@@ -219,6 +219,8 @@ docker compose up -d
 
 If you are getting blank dashboards, you can view logs with `docker compose logs` to check for any errors. Specifically: `docker compose logs frmcompanion` and `docker compose logs frmcache` as those are the two apps that are pulling data.
 
+Podman Compose has a hard time interpolating the environment variable strings.  If you are using Podman it is advised to use the official `docker-compose` binary instead of Podman's wrapper.
+
 ### Development
 
 You are able to run `docker compose build --no-cache` to build the local docker images.

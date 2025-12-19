@@ -420,7 +420,7 @@
           "format": "table",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "SELECT (jsonb_array_elements(data -> 'Inventory') ->> 'Name') as NAME,\n(jsonb_array_elements(data -> 'Inventory') ->> 'Amount') as AMOUNT\n FROM cache where metric = 'player' and data ->> 'Name' in ($player) and url = '$server' and session_name = '$session';",
+          "rawSql": "SELECT (jsonb_array_elements(data -> 'Inventory') ->> 'Name') as NAME,\n(jsonb_array_elements(data -> 'Inventory') ->> 'Amount') as AMOUNT\n FROM cache where metric = 'player' and data ->> 'Name' in (${player:sqlstring}) and url = '$server' and session_name = '$session';",
           "refId": "A",
           "sql": {
             "columns": [
